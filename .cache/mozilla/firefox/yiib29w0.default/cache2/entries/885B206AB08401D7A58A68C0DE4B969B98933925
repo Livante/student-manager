@@ -1,0 +1,302 @@
+
+
+<!--************ html5 popup************-->
+<div class="html5-only hide_before_angular" ng-cloak ng-class="{active: !canvasSupported}" ng-show="!canvasSupported">
+	<p>This browser is not supported by Wikiwand :( <br/>Wikiwand requires a browser with modern capabilities in order to provide you with the best reading experience.<br/>Please download and use one of the following browsers:</p>
+	<ul>
+		<li><a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">Chrome 11+</a></li>
+		<li><a href="http://www.mozilla.org/en-US/firefox/new/" target="_blank">Firefox 4+</a></li>
+		<li><a href="http://support.apple.com/en-us/HT202908" target="_blank">Safari 6.1.2+</a></li>
+		<li><a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie" target="_blank">Internet Explorer 10+</a></li>
+	</ul>
+</div>
+<!--************ html5 popup ENDS************-->
+
+
+<!--************ html5 popup************-->
+<div class="html5-only hide_before_angular" style="display:none" id="httpsEverywhereNotice">
+	<p> An extension you use may be preventing Wikiwand articles from loading properly.<br><br><br>
+		If you're using <b>HTTPS Everywhere</b> or you're unable to access any article on Wikiwand, please consider switching to HTTPS (http<b>s</b>://www.wikiwand.com).</p>
+	<ul>
+		<li><a href="javascript:void(0)" onClick="window.location.href = 'https://' + window.location.href.replace('http://','');" target="_self">Switch Wikiwand to HTTPS</a></li>
+
+	</ul>
+</div>
+
+<div class="html5-only hide_before_angular" style="display:none" id="adblockNotice">
+	<p> An extension you use may be preventing Wikiwand articles from loading properly.<br><br>
+		If you are using an <b>Ad-Blocker</b>, it might have mistakenly blocked our content.
+		You will need to temporarily disable your Ad-blocker to view this page.
+</div>
+<!--************ html5 popup ENDS************-->
+
+
+<!--************refresh notice - this shows when the article has been updated since caching time ************-->
+
+<span id="global-notice" ng-cloak class="hide_before_angular" ng-show="showGlobalNotice">
+	<span ng-bind-html="globalNoticeText"></span><span class="close" ng-click="hideGlobalNotice()">&#10005;</span>
+</span>
+
+<div id="refresh-notice" ng-cloak class="hide_before_angular" ng-show="showRefreshNotice" ng-click="reloadArticle();" ng-class="{active: showRefreshNotice}">
+	This article was just edited, click to reload <i></i>
+</div>
+
+<div id="delete-notice" ng-cloak class="hide_before_angular" ng-show="showDeletedNotice" ng-click="showDeletedNotice = false" ng-class="{active: showDeletedNotice}">
+	This article has been deleted on Wikipedia (<a href="{{::articleData.links.wikipediaRead }}" onclick="if(event.stopPropagation) {event.stopPropagation();} event.cancelBubble=true;" target="_blank">Why?</a>) <span class="close">&#10005;</span>
+</div>
+
+
+
+	<!--************ extension pop up ************-->
+	<div ng-cloak class="extension_pop hide_before_angular" ng-class="{active:  $root.extPopAnim}" ng-if="$root.extPopShow">
+		<div class="bg" ng-class="{nonclickable: $root.lightboxShownAutomatically}" ng-click="$root.lightboxShownAutomatically ? null : $root.extensionPopup('clickClose')"></div>
+		<div ng-cloak  id="ext_pop_content" ng-class="{active: $root.activation.instructions, fox: $root.activation.browser == 'Firefox'}">
+			<div class="inline-installation-instructions" ng-cloak ng-show="$root.activation.instructions" ng-class="{active: $root.activation.instructions}">
+				<div ng-if="$root.activation.browser=='Chrome'">Please click <b>Add</b> in the dialog above</div>
+				<div ng-if="$root.activation.browser=='Firefox'">Please click <b>Allow</b> in the top-left corner, <br/>then click <b>Install Now</b> in the dialog</div>
+				<div ng-if="$root.activation.browser=='Safari' && $root.activation.windows">Please click <b>Open</b> in the download dialog, <br/>then click <b>Install</b></div>
+				<div ng-if="$root.activation.browser=='Safari' && !$root.activation.windows">Please click the "Downloads" icon in the Safari toolbar, open the first download in the list, <br/>then click <b>Install</b></div>
+			</div>
+			<!--<h3>
+				{{::$root.activation.installextension.popupHeadline}}
+			</h3>
+			<div class='extension_pop_rated_text' ng-bind-html="$root.activation.ratedText"></div> -->
+
+			
+
+<a href="javascript:void(0);" ng-cloak ng-show="!$root.activation.instructions"
+   ng-class="{active: btnHover}"
+   ng-mouseenter="$root.activationHover('enter')" ng-mouseleave="$root.activationHover('leave')"
+   ng-click="$root.reportClick('popup-button');$root.activationButtonClicked('')" class="upgrade_button small {{::$root.activation.nextAction}}" >
+    <span>{{::$root.activation.text}}</span><i></i>
+</a>
+
+
+			<i ng-click="$root.extensionPopup('clickClose');"></i>
+		</div>
+	</div>
+	<!--************ extension pop up ENDS ************-->
+
+	<!--************ install dialog  ************-->
+
+	<div class="dialog_wrapper install_dialog hide_before_angular" ng-cloak ng-if="$root.showInstall" >
+		<div class="bg" ng-click="$root.showInstall = false"></div>
+		<div class="dialog_box install_box round" ng-class="{active: $root.showInstall}">
+			<h4>Install Wikiwand</h4>
+
+			<a class="hover" style="margin-top: 20px; background-color:#5cc15b" target="_blank" href="https://chrome.google.com/webstore/detail/wikiwand-wikipedia-modern/emffkefkbkpkgpdeeooapgaicgmcbolj">Install on Chrome <i style="background-position: 0px -937px"></i></a>
+			<a class="hover" style="background-color:#e77926" target="_blank" href="https://addons.mozilla.org/en-US/firefox/addon/wikiwand-wikipedia-modernized/">Install on Firefox <i style="background-position: -26px -937px"></i></a>
+
+
+			<h6 ng-if="serverData.agent.family=='Chrome' || serverData.agent.family=='Firefox'">Don't forget to rate us</h6>
+
+			<div class="follow_rate">
+				<a class="hover" ng-if="serverData.agent.family=='Chrome'" href="https://chrome.google.com/webstore/detail/better-wikipedia/emffkefkbkpkgpdeeooapgaicgmcbolj/reviews" target="_blank"><img ng-src="/img/rate-us-on-chrome-webstore.png" style="position: relative;top:2px"/></a>
+				<a class="hover" ng-if="serverData.agent.family=='Firefox'" href="https://addons.mozilla.org/en-US/firefox/addon/wikiwand-wikipedia-modernized/reviews/add" target="_blank"><img ng-src="/img/rate-us-on-mozilla.png" style="position: relative;top:2px"/></a>
+			</div>
+
+		</div>
+	</div>
+
+	<!--************ tell a friend dialog ************-->
+
+	<div class="dialog_wrapper tell_dialog hide_before_angular" ng-cloak ng-if="$root.activation.showShare" >
+		<div class="bg" ng-click="$root.activation.showShare=false; $root.activation.animShare = false"></div>
+
+
+		<div class="dialog_box dialog_invite_box invite_box hide_before_angular" ng-class="{active: $root.activation.showShare, anim: $root.activation.animShare}">
+			
+			<h4>Tell your friends about Wikiwand!</h4>
+
+<a style="background-color:#bb0000" target="_blank" ng-click="$root.pressedTellAFriendLink('gmail','dialog')" href="http://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su=Have you seen Wikiwand%3F&body=Check out Wikiwand - it's an awesome new interface for Wikipedia:%0Ahttp://www.wikiwand.com/{{::$root.refString}}%0AGive it a try, you'll thank me later :)"><i style="background-position: 0 -96px"></i> Gmail</a>
+
+<a style="background-color:#3B5999" target="_blank" ng-click="$root.pressedTellAFriendLink('facebook','dialog')" target="_blank" href="http://www.facebook.com/sharer.php?u=http://www.wikiwand.com/{{::$root.refString}}"><i style="background-position: -120px -96px"></i> Facebook</a>
+
+<a style="background-color:#0084b4" target="_blank" ng-click="$root.pressedTellAFriendLink('twitter','dialog')" target="_blank" href="http://twitter.com/share?text=Wikiwand gives good old Wikipedia a great new look - check it out:&hashtags=wikipedia,ux,design&url=http://www.wikiwand.com/{{::$root.refString}}&related=wikiwand"><i style="background-position: -150px -96px"></i> Twitter</a>
+
+<a class="link" ng-click="$root.pressedTellAFriendLink('link','dialog')" ng-class="{wide: wideLink}"  style="background-color:#615a5f" href="javascript:void(0);"><i style="background-position: -90px -97px"></i><input type="text" value="http://www.wikiwand.com/" ng-focus="wideLink = true" ng-blur="wideLink = false" onClick="this.setSelectionRange(0, this.value.length)"/> Link</a>
+
+
+	<br><br>
+
+
+		</div>
+
+
+
+		<div class="dialog_box tell_box" ng-class="{active: $root.activation.showShare}" class="hide_before_angular">
+			<h4>Enjoying Wikiwand?</h4>
+			<h5>Tell your friends and spread the love:</h5>
+
+			<a  ng-click="$root.activation.showShare=false" class="hover" style="background-color:#bb0000" target="_blank" href="http://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su=Have you seen Wikiwand%3F&body=Check out Wikiwand - it's an awesome new interface for Wikipedia:%0Ahttp://www.wikiwand.com/{{::$root.refString}}%0AGive it a try, you'll thank me later :)">Share on Gmail <i style="background-position: -132px -910px"></i></a>
+
+			<a  ng-click="$root.activation.showShare=false" class="hover" style="background-color:#3B5999" target="_blank" href="http://www.facebook.com/sharer.php?u=http://www.wikiwand.com/{{::$root.refString}}">Share on Facebook <i style="background-position: 0 -910px"></i></a>
+
+			<a  ng-click="$root.activation.showShare=false" class="hover" style="background-color:#0084b4" target="_blank" href="http://twitter.com/share?text=Wikiwand gives good old Wikipedia a great new look - check it out:&hashtags=wikipedia,ux,design&url=http://www.wikiwand.com/{{::$root.refString}}&related=wikiwand">Share on Twitter <i style="background-position: -52px -910px"></i></a>
+
+			<a  ng-click="$root.activation.showShare=false" class="hover" style="background-color:#d34836" target="_blank" href="https://plus.google.com/share?url=http://www.wikiwand.com/{{::$root.refString}}">Share on Google+ <i style="background-position: -26px -910px"></i></a>
+
+			<a  ng-click="$root.activation.showShare=false" class="hover" style="background-color:#212121" target="_blank" href="http://bufferapp.com/add?url=http://www.wikiwand.com/{{::$root.refString}}&title=Wikiwand gives good old Wikipedia a great new look!">Share on Buffer <i style="background-position: -80px -910px"></i></a>
+		</div>
+	</div>
+
+
+<!-- ios blur screen on search focus-->
+<div ng-cloak ng-if="$root.iosFocus" id="ios_blur"></div>
+
+
+<!--************ lang ************-->
+<div id="lang" class="hide_before_angular" ng-show="$root.langOpenArticle"
+	ng-swipe-left="$root.$broadcast('hideAllArticleLanguagesFunc')"  ng-controller="AllAvailableLanguagesController">
+	<input type="hidden" id="langCode" value="" />
+	<div class="bg" ng-click="$root.$broadcast('hideAllArticleLanguagesFunc')"></div>
+	<ul id="lang-list" >
+		<li ng-cloak class="interlanguage-link interwiki-az" ng-repeat="lang in articleLanguageLinks | filter:filterUnrecognizedLangs | filter:filterByQueryArticle">
+			<a href="{{::lang.articleLink}}" title="{{::lang.articleTitle}} â€“ {{::lang.langEnglishName}}"
+				rel="alternate" hreflang="{{::lang.langCodeHTML}}"><i>{{::lang.langAbberviation}}</i>
+				<span>{{::lang.langEnglishName}}</span> - {{::lang.langNativeName}}</a></li>
+	</ul>
+
+	<div id="lang_search">
+		<div id="lang_search_wrap">
+			<input id="lang_input" ng-model="filterQuery" placeholder="Search languages" />
+		</div>
+	</div>
+</div>
+
+
+<div id="p-lang" class="hide_before_angular" ng-show="$root.langOpenWikipedia" ng-controller="AllAvailableLanguagesController">
+	<input type="hidden" id="p-langCode" value="" />
+	<div class="bg" ng-click="$root.$broadcast('hideAllWikipediaLanguagesFunc')"></div>
+
+	<div id="p-lang-wrapper">
+		<div id="p-lang_list">
+			<h4>Your preferred languages</h4>
+			<ul>
+				<li class="interlanguage-link interwiki-az" ng-repeat="lang in favoriteLanguages">
+					<a href="javascript:void(0)"  ng-click='toggleFavorite("{{::lang.CodeURL}}","{{::lang.NameEnglish}}");'>
+						<b class="lang_fave active_{{lang.fav}}"></b>
+						{{::lang.NameEnglish}} - {{::lang.NameNative}}</a>
+				</li>
+			</ul>
+		</div>
+		<div id="p-lang_search">
+			<h4>All languages</h4>
+			<input ng-model="filterQueryWikipedia" placeholder="Search language" />
+			<ul>
+				<li ng-cloak class="interlanguage-link interwiki-az" ng-repeat="lang in wikipediaLanguages | filter:filterUnrecognizedLangs | filter:filterByQueryWikipedia">
+					<a href="javascript:void(0)"  ng-click='toggleFavorite("{{::lang.CodeURL}}","{{::lang.NameEnglish}}");'>
+						<b class="lang_fave active_{{lang.fav}}"></b>
+						<span>{{::lang.NameEnglish}} - {{::lang.NameNative}}</span></a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="dialog_wrapper follow_dialog hide_before_angular" ng-cloak ng-if="$root.showFollow" >
+	<div class="bg" ng-click="$root.showFollow = false"></div>
+	<div class="dialog_box follow_box round" ng-class="{active: $root.showFollow}">
+		<h4>Follow Us</h4>
+
+
+		<div class="follow_iframe">
+			<iframe allowtransparency="true" frameborder="0" scrolling="no"	ng-src="https://platform.twitter.com/widgets/follow_button.html?screen_name=wikiwand&lang=en&show_count=true&show_screen_name=false&dnt=true" style="max-width:155px; height:20px;"></iframe>
+		</div><br/>
+		<div class="follow_iframe">
+			<iframe ng-src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FQuickiWiki%2F419557388127338&amp;send=false&amp;layout=button_count&amp;width=90&amp;show_faces=false&amp;font=arial&amp;colorscheme=light&amp;action=like&amp;height=21&amp;appId=503340393059553" scrolling="no" frameborder="0" style="border:none; overflow:hidden; max-width:90px; height:21px;" allowtransparency="true"></iframe>
+		</div><br/>
+		<div class="follow_iframe">
+			<div class="g-plusone" data-align="left" data-size="medium" data-href="https://plus.google.com/+Wikiwand"></div>
+		</div><br/>
+
+
+		<h6 ng-if="serverData.agent.family=='Chrome' || serverData.agent.family=='Firefox'">Don't forget to rate us</h6>
+
+		<div class="follow_rate">
+			<a class="hover" ng-if="serverData.agent.family=='Chrome'" href="https://chrome.google.com/webstore/detail/better-wikipedia/emffkefkbkpkgpdeeooapgaicgmcbolj/reviews" target="_blank"><img ng-src="/img/rate-us-on-chrome-webstore.png" style="position: relative;top:2px"/></a>
+			<a class="hover" ng-if="serverData.agent.family=='Firefox'" href="https://addons.mozilla.org/en-US/firefox/addon/wikiwand-wikipedia-modernized/reviews/add" target="_blank"><img ng-src="/img/rate-us-on-mozilla.png" style="position: relative;top:2px"/></a>
+		</div>
+
+	</div>
+</div>
+
+<!--
+<div id="citation_pop"  ng-mouseenter="citationHovered = true" ng-mouseleave="citationHovered = false" ng-show="$root.showSharePop" ng-class="{active: $root.showShareAnim, long: $root.shareTooLong, hovered: citationHovered}">
+
+	<span ng-show="$root.showSharePop && !citationHovered && !$root.shareTooLong">
+		<i></i> Link to selection
+	</span>
+
+	<ul class="citation_share" ng-show="citationHovered && !$root.shareTooLong" ng-class="{active: citationHovered}">
+		<li><a id="linkshare" class="share-link" ng-mousedown="$root.linkShare()"></a></li>
+		<li><a id="fbshare" class="share-facebook" ng-mousedown="$root.facebookShare()"></a></li>
+		<li><a id="gplusshare" class="share-gplus" ng-mousedown="$root.gplusShare()"></a></li>
+		<li><a id="twittshare" class="share-twitt" ng-mousedown="$root.twittShare()"></a></li>
+		<li><a id="gmailshare" class="share-gmail" ng-mousedown="$root.gmailShare()"></a></li>
+	</ul>
+
+	<span ng-show="$root.shareTooLong">
+		Selection too long for citation
+	</span>
+
+</div>
+-->
+
+<div ng-cloak ng-show="$root.showCoverImageReportPopup" class="report_popup_wrapp hide_before_angular">
+	<div class="bg" ng-click="$root.showCoverImageReportPopup = false"></div>
+	<div class="report_popup">
+
+		<div ng-cloak ng-show="$root.showReportCoverImageText1">
+			<h3>Our magic isn't perfect</h3>
+
+			<p>You can help our automatic cover photo selection by reporting an unsuitable photo.</p>
+			<a href="" target="_blank" ng-click="$root.reportImage($event,'disturbing',articleData.mainImage.full.originalUrl)" ></i>This photo is visually disturbing</a>
+			<a href="" target="_blank" ng-click="$root.reportImage($event,'irrelevant',articleData.mainImage.full.originalUrl)" ></i>This photo is not a good choice</a>
+		</div>
+
+		<div ng-cloak ng-show="$root.showReportCoverImageText2">
+			<h3>Thank you for helping!</h3>
+			<br>
+			<p>Your input will affect cover photo selection, along with input from other users.<br>
+		</div>
+		<div class="ex" ng-click="$root.showCoverImageReportPopup = false"></div>
+	</div>
+</div>
+
+
+<div ng-cloak ng-show="$root.map.showMap" ng-controller="MapController" ng-init="initializeMapController();" id="map_wrapper" class="hide_before_angular">
+	<div class="bg" ng-click="$root.map.showMap = false; $root.mapOut();"></div>
+	<div id="map_canvas" ng-class="{active: $root.map.showMap}">
+	</div>
+</div>
+
+
+ÿ%ô¿(ù      \¡«\¡«@5û\¡ÕO   +    :http://www.wikiwand.com/api/various_popups necko:classified 1 strongly-framed 1 request-method GET response-head HTTP/1.1 200 OK
+Cache-Control: public, max-age=10800
+Content-Type: text/html
+Date: Mon, 01 Apr 2019 06:09:35 GMT
+Server: nginx/1.15.10
+X-App-Version: 1.0.0
+X-Device: desktop
+X-Powered-By: Express
+X-Upstream: nodejs
+Content-Length: 16864
+X-Cache: MISS from gateway
+X-Cache-Lookup: MISS from gateway:3128
+Via: 1.1 gateway (squid/3.5.23)
+ original-response-headers Cache-Control: public, max-age=10800
+Content-Type: text/html
+Date: Mon, 01 Apr 2019 06:09:35 GMT
+Server: nginx/1.15.10
+Set-Cookie: i18next=en; path=/; expires=Wed, 01 Apr 2020 06:09:35 GMT
+X-App-Version: 1.0.0
+X-Device: desktop
+X-Powered-By: Express
+X-Upstream: nodejs
+Content-Length: 16864
+X-Cache: MISS from gateway
+X-Cache-Lookup: MISS from gateway:3128
+Via: 1.1 gateway (squid/3.5.23)
+Connection: keep-alive
+ uncompressed-len 0 net-response-time-onstart 149 net-response-time-onstop 151   Aà

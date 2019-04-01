@@ -1,0 +1,62 @@
+Xsession: X session started for student at Mon  1 Apr 12:04:07 EEST 2019
+dbus-update-activation-environment: setting DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+dbus-update-activation-environment: setting DISPLAY=:0
+dbus-update-activation-environment: setting XAUTHORITY=/home/student/.Xauthority
+localuser:student being added to access control list
+dbus-update-activation-environment: setting GTK_MODULES=gail:atk-bridge
+dbus-update-activation-environment: setting QT_ACCESSIBILITY=1
+dbus-update-activation-environment: setting QT_LINUX_ACCESSIBILITY_ALWAYS_ON=1
+OpenGL version: 2.
+dbus-update-activation-environment: setting HTTPS_PROXY=http://172.16.1.2:3128/
+dbus-update-activation-environment: setting USER=student
+dbus-update-activation-environment: setting XDG_SESSION_TYPE=x11
+dbus-update-activation-environment: setting HOME=/home/student
+dbus-update-activation-environment: setting DESKTOP_SESSION=lightdm-xsession
+dbus-update-activation-environment: setting XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
+dbus-update-activation-environment: setting GTK_MODULES=gail:atk-bridge
+dbus-update-activation-environment: setting QT_LINUX_ACCESSIBILITY_ALWAYS_ON=1
+dbus-update-activation-environment: setting DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+dbus-update-activation-environment: setting https_proxy=http://172.16.1.2:3128/
+dbus-update-activation-environment: setting LOGNAME=student
+dbus-update-activation-environment: setting http_proxy=http://172.16.1.2:3128/
+dbus-update-activation-environment: setting PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
+dbus-update-activation-environment: setting GDM_LANG=en_GB.utf8
+dbus-update-activation-environment: setting XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session0
+dbus-update-activation-environment: setting ftp_proxy=http://172.16.1.2:3128/
+dbus-update-activation-environment: setting XDG_RUNTIME_DIR=/run/user/1000
+dbus-update-activation-environment: setting DISPLAY=:0
+dbus-update-activation-environment: setting LANG=en_GB.UTF-8
+dbus-update-activation-environment: setting XDG_SESSION_DESKTOP=lightdm-xsession
+dbus-update-activation-environment: setting XAUTHORITY=/home/student/.Xauthority
+dbus-update-activation-environment: setting XDG_GREETER_DATA_DIR=/var/lib/lightdm/data/student
+dbus-update-activation-environment: setting SHELL=/bin/bash
+dbus-update-activation-environment: setting GDMSESSION=lightdm-xsession
+dbus-update-activation-environment: setting QT_ACCESSIBILITY=1
+dbus-update-activation-environment: setting GPG_AGENT_INFO=/run/user/1000/gnupg/S.gpg-agent:0:1
+dbus-update-activation-environment: setting PWD=/home/student
+dbus-update-activation-environment: setting FTP_PROXY=http://172.16.1.2:3128/
+dbus-update-activation-environment: setting XDG_DATA_DIRS=/usr/share/xfce4:/usr/local/share/:/usr/share/
+dbus-update-activation-environment: setting HTTP_PROXY=http://172.16.1.2:3128/
+/usr/bin/x-session-manager: X server already running on display :0
+
+** (xfce4-session:796): CRITICAL **: polkit_unix_process_set_property: assertion 'val != -1' failed
+xfce4-session-Message: SSH authentication agent is already running
+gpg-agent[813]: WARNING: "--write-env-file" is an obsolete option - it has no effect
+gpg-agent: a gpg-agent is already running - not starting a new one
+
+(xfce4-session:796): xfce4-session-WARNING **: gpg-agent returned no PID in the variables
+Error parsing gtk-icon-sizes string: ''
+
+(xfce4-terminal:873): Gdk-CRITICAL **: gdk_window_get_window_type: assertion 'GDK_IS_WINDOW (window)' failed
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+[90m[main 2019-04-01T09:35:29.951Z][0m update#setState idle
+bash: cannot set terminal process group (-1): Inappropriate ioctl for device
+bash: no job control in this shell
+[90m[main 2019-04-01T09:35:59.967Z][0m update#setState checking for updates
+[90m[main 2019-04-01T09:36:00.026Z][0m update#setState available for download
+
+(xfce4-terminal:873): Gtk-WARNING **: Allocating size to GtkScrollbar 0x56026e988940 without calling gtk_widget_get_preferred_width/height(). How does the code know the size to allocate?
+
+(xfce4-terminal:873): Gtk-WARNING **: Allocating size to GtkScrollbar 0x56026e988940 without calling gtk_widget_get_preferred_width/height(). How does the code know the size to allocate?
+
+(xfce4-terminal:873): Gtk-WARNING **: Allocating size to GtkScrollbar 0x56026e988940 without calling gtk_widget_get_preferred_width/height(). How does the code know the size to allocate?

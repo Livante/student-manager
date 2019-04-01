@@ -1,0 +1,432 @@
+body {margin: 0px; padding: 0px; font-family: 'Trebuchet MS'; color: #000000; font-size: 100%; background-color: #FAFAFA; width: 100vw; height: 100vh;}
+:root {
+	--procent_banner_h: 28;
+	--latime_banner: calc(100vw / 100 * var(--procent_banner_h));
+	--latime_main: calc(100vw - var(--latime_banner));
+	--procent_banner_w: 25;
+	--inaltime_banner: calc(100vh / 100 * var(--procent_banner_w));
+	--inaltime_main: calc(100vh - var(--inaltime_banner));
+}
+div#add_mobil {position: absolute; bottom: 16px; top: 38px; right: 0px; width: 120px; background-color: white;}
+div#main {left: 0px; bottom: 0px; width: auto; height: auto; position: absolute; top: 0px; right: 0px; z-index: 0; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;}
+div#top, div#bottom {-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;}
+
+@media screen and (min-width: 720px) and (min-height: 720px) {
+	/* Desktop, general */
+	div#top > a.logo {display: block; float: left; width: 180px; background-image: url("../img/sageata-inainte.png"); background-repeat: no-repeat; background-position: 100% 80%;}
+	div#main {left: 180px; bottom: 36px;}
+	div#cautare_ruta_inner {top: 94px; left: 16px;}
+	div#top {padding: 8px 16px; height: 60px;}
+	span#orase {margin-left: 20px; height: 45px;}
+	span#orase > span {height: 45px;}
+	div#top > span#orase > span#separator {margin-left: 16px;}
+	div#content {top: 94px; left: 16px;}
+	div#div_avansat {width: 354px; top: 94px; left: 244px;}
+	div#top > span#orase > img {float: left; margin-left: 8px; margin-right: 8px;}
+	div#top > span#orase > span#bg {background-image: url("../img/sageata-inainte.png"); background-repeat: no-repeat; background-position: 80% 100%; padding-right: 16px;}
+	tr.point, div.tabs_mobile, div.tabs_mobile_linie, div.tabs_mobile_statie, div#sageata_top, div#table_instructiuni, div#table_instructiuni_linie, div#table_instructiuni_statie {display: none !important;}
+	
+	/* Deocamdata il lasam tot pe stanga */
+	div#add_desktop {width: 180px; height: 100%; position: absolute; top: 0px; left: 0px; bottom: 0px; background-image: url('../img/bg-share.png');}
+}
+
+@media screen and (max-width: 720px), (max-height: 720px) {
+	/* Mobil, general */
+	div#top > a.logo {display: none;}
+	div#cautare_ruta_inner {top: 42px; left: 4px;}
+	div#top {padding: 4px 4px; height: 38px;}
+	#td_choose_color {display: none;}
+	span#orase {margin-left: 2px; height: 30px;}
+	span#orase > span {height: 30px;}
+	div#top > span#orase > span#separator {margin-left: 8px; margin-right: 8px;}
+	div#div_avansat {width: 300px; top: 42px; left: -4px;}
+	div#content {top: 30px; left: 4px;}
+	div#top > span#orase > img {display: none;}
+	div#top > span#orase > span#bg {background-image: none; padding-right: 6px;}
+	tr.point > td {font-size: 14px; font-weight: bold; border-bottom: 1px solid #CCCCCC; overflow: hidden;}
+	tr.point:first-child > td {border-bottom: none;}
+	div.tab.ruta_mobile_selected {color: red;}
+	div.leaflet-control {font-size: 7px !important; display: none;}
+	span#share, span#default, div#controls, div#bottom, div#taburi, div#content_tab_ruta, div#content_tab_linie, div#content_tab_statie {display: none !important;}
+	span#orase > span#km, span#orase > span#separator, span#orase > span#timp, span#orase.autobuze, span#orase.autobuze > span {display: block !important;}
+	
+	/* Taburile cu detalii, schimba, ruta, apar numai pe mobil, trebuie pozitionate in functie de banner */
+	div.tabs_mobile, div.tabs_mobile_linie, div.tabs_mobile_statie {width: 60px; position: absolute; bottom: 25px; left: 0px; display: none;}
+	div.tabs_mobile > div.tab, div.tabs_mobile_linie > div.tab, div.tabs_mobile_statie > div.tab, div.tab.ruta_mobile, div.tab.ruta_mobile_selected {width: 60px; height: 20px; border: 1px solid #CCCCCC; background-image: url("../img/px-trans.png"); line-height: 20px; text-align: left; padding-left: 4px; font-size: 12px; margin-top: 4px;}
+	div.tabs_mobile > div.tab:first-child, div.tabs_mobile_linie > div.tab:first-child, div.tabs_mobile_statie > div.tab:first-child {margin-top: 0px;}
+	
+	/* Instructiunile, care trebuie dimensionate in functie de pozitia bannerului */
+	div#table_instructiuni, div#table_instructiuni_linie, div#table_instructiuni_statie {position: absolute !important; top: 50px; bottom: 20px; left: 20px; right: 20px; border: 1px solid #CCCCCC; background-image: url("../img/px-trans.png"); display: none;}
+	div#table_instructiuni > img, div#table_instructiuni_linie > img, div#table_instructiuni_statie > img {position: absolute; top: -8px; right: -8px; z-index: 2;}
+	div#table_instructiuni > div.content_traseu, div#table_instructiuni_linie > div.content_traseu, div#table_instructiuni_statie > div.content_traseu {overflow-y: auto; overflow-x: none; width: 100%; height: 100%;}
+	
+	/* Caseta cu Cookie */
+	div.div_alert.cookie {overflow: visible !important;}
+	div.div_alert.cookie > a {display: none;}
+	
+	/* Sageata verde din dreapta sus, care face toogle */
+	div#sageata_top {position: absolute; top: 4px; right: 12px; width: 50px; height: 30px; display: none;}
+	div#sageata_top > img {position: absolute; top: 5px; left: 15px;}
+}
+
+@media screen and (max-height: 720px) and (min-width: 720px) {
+	/* Mobil, landscape, latime mai mare de 720px */
+	div#main {width: 75%; position: relative; height: 100%; float: left;}
+	/* div#add_desktop {width: var(--latime_banner); height: 100vh; background-image: url('../img/bg-share.png'); float: left;} */
+	div#add_desktop {width: 25%; height: 100vh; background-image: url('../img/bg-share.png'); float: left;}
+	#iframe_harta {width: 100%; height: 100%;}
+	/* ins.adsbygoogle {width: var(--latime_banner); height: 100%;} */
+}
+
+@media screen and (max-width: 720px) and (max-height: 720px) and (orientation: landscape) {
+	/* Mobil, landscape, inaltime si latime mai mici de 720px */
+	div#main {width: 75%; position: relative; height: 100%; float: left;}
+	/* div#add_desktop {width: var(--latime_banner); max-width: 220px; height: 100vh; background-image: url('../img/bg-share.png'); float: right;} */
+	div#add_desktop {width: 25%; height: 100vh; background-image: url('../img/bg-share.png'); float: left;}
+	#iframe_harta {width: 100%; height: 100%;}
+	/* ins.adsbygoogle {width: var(--latime_banner); height: 100%;} */
+}
+
+@media screen and (max-width: 720px) and (min-height: 720px) {
+	/* Mobil, portrait, inaltime mai mare de 720px */
+	span#orase > span {display: none !important;}
+	
+	div#main {height: 70%; width: 100%; position: relative;}
+	div#add_desktop {width: 100vw; background-image: url('../img/bg-share.png');}
+	#iframe_harta {width: 100%; height: 100%;}
+	/* ins.adsbygoogle {width: 100%; height: var(--inaltime_banner);} */
+	
+	/* div#main {top: var(--inaltime_banner);}
+	div#add_desktop {width: 100vw; height: var(--inaltime_banner); position: absolute; right: 0px; left: 0px; top: 0px; background-image: url('../img/bg-share.png'); z-index: 1;} */
+}
+
+@media screen and (max-width: 720px) and (max-height: 720px) and (orientation: portrait) {
+	/* Mobil, portrait, inaltime si latime mai mici de 720px */
+	span#orase > span {display: none !important;}
+	
+	div#main {height: 70%; width: 100%; position: relative;}
+	div#add_desktop {width: 100vw; max-height: 180px; background-image: url('../img/bg-share.png');}
+	#iframe_harta {width: 100%; height: 100%;}
+	/* ins.adsbygoogle {width: 100%; height: var(--inaltime_banner);} */
+	
+	/* div#main {top: var(--inaltime_banner);}
+	div#add_desktop {width: 100vw; height: var(--inaltime_banner); max-height: 180px; position: absolute; right: 0px; left: 0px; top: 0px; background-image: url('../img/bg-share.png'); z-index: 1;} */
+}
+
+
+img {border: 0px;}
+div#bottom {width: calc(100% - 180px); position: absolute; bottom: 0px; right: 0px; padding: 6px 8px; font-size: 100%; z-index: 10; word-spacing: 16px; background-image: url('../img/bg-bottom.jpg'); background-repeat: repeat-x; background-position: bottom left;}
+div#bottom div#bottom-mijloc {width: 266px; height: 35px; font-size: 11px; background-image: url('../img/bottom-mijloc.png'); background-position: top left; background-repeat: no-repeat; position: absolute; bottom: 0px; word-spacing: normal; text-align: center; padding-top: 18px; z-index: 1000;}
+div.bg-bottom {width: 100%; height: 8px; background-image: url("../img/shadow-top.png"); background-repeat: repeat-x; position: absolute; top: -8px; left: 0px;}
+div#bottom span, div#bottom > a {font-size: 12px;}
+div#bottom > a 		{color: #0FA1E3; font-weight: bold; text-decoration: none; word-spacing: normal; padding: 11px 10px 0px 10px; margin-bottom: -6px; background-image: none; text-shadow: 0px 1px 0px #FFFFFF;}
+div#bottom > a:hover 	{background-image: url('../img/bg-bottom-link-hover.jpg'); background-repeat: repeat-x; background-position: top left; text-shadow: 0px 1px 0px #000000;}
+div#bottom a#bottom-link-info {width: 21px; height: 18px; background-image: url('../img/info-bottom.png'); background-repeat: no-repeat; background-position: top left; vertical-align: middle; display: inline-block;}
+div#bottom a#bottom-link-contact {width: 27px; height: 18px; background-image: url('../img/contact-bottom.png'); background-repeat: no-repeat; background-position: top left; vertical-align: middle; display: inline-block;}
+div#bottom a#bottom-link-kfea {background-image: url('../img/kfea.jpg'); background-repeat: no-repeat; background-position: top left; width: 225px; vertical-align: middle; margin-top: 0px; color: white; padding-top: 4px; padding-left: 0px; padding-right: 0px; margin-top: -7px; height: 32px; text-shadow: none; font-weight: normal; font-style: italic;}
+img.separator-bottom {vertical-align: middle; margin-bottom: -6px;}
+div#div-credits {position: absolute; right: 0px; bottom: 0px; height: 36px; background-image: url('../img/bg-div-credits.jpg'); background-repeat: repeat-x; background-position: top left; padding-right: 30px;}
+
+div#bottom-divs {position: absolute; bottom: 34px; left: 180px; z-index: 2; background-image: url("../img/px-trans.png");}
+div#bottom-divs > div {display: none; padding: 10px; font-size: 12px; font-family: Arial; position: relative;}
+div#bottom-divs > div > div {display: block !important;}
+div#bottom-divs > div > table textarea {width: 100%; height: 140px; font-family: Arial; font-size: 13px;}
+div#bottom-divs > div > table input {width: 180px;}
+div#bottom-divs > div > div.links {display: block !important; float: left; line-height: 13px; margin-right: 15px; width: 80px;}
+div#bottom-divs > div > p > div > a {font-size: 11px; text-decoration: none; color: #333333; display: block; float: left; width: 120px;}
+div#bottom-divs > div > p > div > a:hover {font-size: 11px; text-decoration: underline; color: #333333; display: block; float: left; width: 120px;}
+div#bottom-divs > div > img.close {float: right; cursor: pointer;}
+div#bottom-divs > div > h1, div#bottom-divs > div > div > h1 {font-size: 18px; margin: 0px;}
+img.bottom-arrow {position: absolute; bottom: -10px;}
+div#top {width: 100%; background-image: url("../img/px-trans.png"); position: absolute; top: 0px; left: 0px; z-index: 2;}
+div.bg-top {width: 100%; height: 8px; background-image: url("../img/shadow-bottom.png"); background-repeat: repeat-x; position: absolute; bottom: -8px; left: 0px;}
+
+div#top > span#oras, div#top > span#default {display: block; float: left; font-size: 15px; margin-left: 20px; height: 45px; padding-top: 5px; width: 65%;}
+div#top > span#oras > img {vertical-align: middle;}
+div#top > span#oras > span#oras_pg_orasului {font-size: 27px; display: block; float: left; height: 45px; margin-right: 25px;}
+div#top > span#orase {display: block; float: left; font-size: 18px; padding-top: 5px;}
+div#top > span#orase > span {display: block; float: left;}
+div#top > span#orase > span#sosire {}
+div#top > span#orase > span#bg {}
+div#top > span#orase > span#km {font-weight: bold; margin-left: 8px;}
+div#top > span#orase > span#separator {font-weight: bold;}
+div#top > span#orase > span#timp {font-size: 18px; margin-top: 0px;}
+/* div#top > span#share {float: right; display: block; font-size: 16px; margin-top: -12px; margin-right: -52px; background-image: url('../img/bg-share.png');} */
+div#top > span#share {display: none; font-size: 16px; margin-right: 33px; position: absolute; right: 0px; top: 0px; height: 50px; padding-bottom: 16px; overflow: hidden;}
+div#top > span#share > img {vertical-align: middle;}
+div#top > span#share > a {text-decoration: none; color: #3C3C3C; font-size: 14px; margin-left: 16px;}
+div#top > span#share > a:first-child {margin-left: 0px; color: #5372AC;}
+div#controls {position: absolute; top: 70px; right: 40px; width: 400px;}
+
+div#controls > div#plus_minus, div#controls > div#hst, div#controls > div#trafic, div#controls > div#drumuri {border-radius: 0.5em 0.5em 0.5em 0.5em; position: absolute; background: none repeat scroll 0 0 rgba(255, 255, 255, 0.89); border: thin solid #CCCCCC;}
+div#controls > div#plus_minus {width: 30px; height: 58px; right: -31px;}
+div#controls > div#hst {padding: 0px 15px; right: 10px; cursor: pointer;}
+div#controls > div#drumuri.drumuri_inactive, div#controls > div#drumuri.drumuri_active {padding: 2px 12px; right: 10px; top: 32px; cursor: pointer;}
+div#controls > div#trafic.trafic_inactive, div#controls > div#trafic.trafic_active {padding: 0px 15px; right: 104px; cursor: pointer;}
+div#controls > div#trafic.trafic_active, div#controls > div#drumuri.drumuri_active {background-image: url('../img/px-trans-blue.png');  border: thin solid #000000; color: white;}
+div#controls > div#trafic.trafic_inactive, div#controls > div#drumuri.drumuri_inactive {background: none repeat scroll 0 0 rgba(255, 255, 255, 0.89); border: thin solid #CCCCCC;}
+div#controls > div#plus_minus > img {position: absolute; left: 3px; cursor: pointer;}
+
+div#taburi {position: absolute; top: 60px; left: 0px; padding-left: 16px; z-index: 2;}
+div#taburi > ul {list-style-type: none; padding: 0px; margin: 0px;}
+div#taburi > ul > li > a {text-decoration: none; display: block; width: 150px; height: 30px; font-size: 15px; font-weight: bold; text-align: center; padding-top: 7px; color: #FFFFFF; float: left; background-image: url("../img/bg-tab-blue.png"); background-position: bottom right; background-repeat: no-repeat;}
+div#taburi > ul > li > a:hover, div#taburi > ul > li > a.current {text-decoration: none; display: block; width: 150px; height: 30px; font-size: 15px; font-weight: bold; text-align: center; padding-top: 7px; color: #333333; float: left; background-image: url("../img/bg-tab-white.png"); background-position: bottom right; background-repeat: no-repeat;}
+div#content {position: absolute; z-index: 3;}
+div#content > div, div#content > div#content_tab_ruta > div#cautare_ruta {position: relative; width: 230px;}
+div#content_tab_detalii_consum, div#content_tab_detalii_autohop, div#content_tab_detalii_linie, div#content_tab_detalii_statie, div#content_tab_detalii_ruta {width: 230px; height: auto; background-position: bottom; margin-top: 12px; background-image: url("../img/px-trans.png"); position: relative; font-size: 75%;}
+div.bg-content-tab {width: 4px; height: 100%; background-image: url("../img/bg-content-tab.png") !important; background-repeat: repeat-y; position: absolute !important; top: 0px; right: -4px; bottom: 0px;}
+div.bg-content-tab-stanga {width: 4px; height: 100%; background-image: url("../img/bg-content-tab.png") !important; background-repeat: repeat-y; position: absolute !important; top: 0px; left: 0px; bottom: 0px;}
+div.bg-jos-content-tab {width: 100%; height: 8px; background-image: url('../img/shadow-bottom.png') !important; background-repeat: repeat-x; position: absolute !important; bottom: -8px; right: -2px;}
+div#content > div > div.inner_div, div#content > div > div.inner_div > div {overflow: hidden;}
+div#content > div > div.inner_div {line-height: 35px;}
+div.div-input-ruta {width: 153px; height: 19px; position: relative; font-size: 15px; color: #BBBBBB; font-style: italic; padding: 4px 10px; font-family: 'Trebuchet MS'; background-color: transparent; background-image: url('../img/bg-input-ruta.png'); background-repeat: no-repeat; background-position: top left;}
+div.div-input-ruta > span {font-size: 11px; position: absolute; right: 10px; z-index: 1;}
+div.div-input-ruta > input.input-ruta {width: 153px; height: 27px; position: absolute; top: 0px; left: 0px; padding: 0px 10px; border: none; font-size: 14px; font-family: 'Trebuchet MS'; background-color: transparent; z-index: 2;}
+
+table.autohop {margin: 0px 4px; width: 228px; padding: 4px 0px; font-family: Arial; font-size: 11px;}
+span.economie_autohop {font-size: 13px; font-weight: bold;}
+
+div#content > div > div.inner_div > div {line-height: normal;}
+div#div_plecare {cursor: pointer; margin: 0px -10px; padding: 8px 6px 8px 52px; min-height: 25px; font-weight: bold; background-image: url("../img/simbol-plecare.png"); background-position: 17px 6px; background-repeat: no-repeat; border-bottom: 1px solid #CCCCCC;}
+div#div_sosire {cursor: pointer; width: 183px; position: absolute; bottom: 0px; margin: 0px; padding: 8px 6px 8px 45px; min-height: 25px; font-weight: bold; background-image: url("../img/simbol-sosire.png"); background-position: 10px 6px; background-repeat: no-repeat; border-top: 1px solid #CCCCCC;}
+div#rezultate_ruta {padding-bottom: 42px; background-image: url("../img/px-trans.png"); overflow: hidden;}
+div#rezultate_ruta > div#traseu {margin: 0px -10px; overflow: hidden}
+
+div.content_traseu {position: relative;}
+div.content_traseu > div.cot, div.content_traseu > div.cot_over {font-size: 10px; cursor: pointer; margin: 0px; padding: 2px 15px 2px 20px; position: relative; overflow: auto;}
+div.content_traseu > div.cot {background-color: none;}
+div.content_traseu > div.cot_over {background-color: orange;}
+div.content_traseu > div.cot > img, div.content_traseu > div.cot_over > img {float: left; margin: 2px 10px 2px -2px;}
+div.content_traseu > div.cot .red {color: #DD0000;}
+div.content_traseu > div.cot_over .red {color: #FFFFFF;}
+div.content_traseu > div.cot .grey {color: #B3B3B3;}
+div.content_traseu > div.cot_over .grey {color: #000000;}
+div.content_traseu > div.cot b.numerotare, div.content_traseu > div.cot_over b.numerotare {display: inline-block; margin-right: 7px; font-size: 13px;}
+div.content_traseu > div.cot h3, div.content_traseu > div.cot_over h3 {display: block; margin: 0px; margin-left: 18px; margin-top: -17px;}
+div.content_traseu > div.cot div.nume_linie, div.content_traseu > div.cot_over div.nume_linie {font-size: 12px; font-weight: bold; display: inline; margin-top: 0px;}
+div.content_traseu > div.cot div.nume_linie {color: #0066FF;}
+div.content_traseu > div.cot_over div.nume_linie {color: #FFFFFF;}
+div.content_traseu > div.div_border {margin: 3px 60px 3px 15px; border-bottom: 1px dashed #CCCCCC; overflow: visible; position: relative;}
+div.content_traseu > div.div_border > span.km {position: absolute; font-size: 10px; bottom: -8px; right: -45px; z-index: 20;}
+div.content_traseu > div.cot > span.nr, div.content_traseu > div.cot_over > span.nr {position: absolute; top: 5px; left: 20px; width: 15px; text-align: center; display: block;}
+
+/*
+div#rezultate_ruta > div#traseu > div.content_traseu {position: relative;}
+div#rezultate_ruta > div#traseu > div.content_traseu > div.cot, div#rezultate_ruta > div#traseu > div.content_traseu > div.cot_over {font-size: 10px; cursor: pointer; margin: 0px; padding: 2px 15px 2px 20px; position: relative; overflow: auto;}
+div#rezultate_ruta > div#traseu > div.content_traseu > div.cot {background-color: none;}
+div#rezultate_ruta > div#traseu > div.content_traseu > div.cot_over {background-color: orange;}
+div#rezultate_ruta > div#traseu > div.content_traseu > div.cot > img, div#rezultate_ruta > div#traseu > div.content_traseu > div.cot_over > img {float: left; margin: 2px 10px 2px -2px;}
+div#rezultate_ruta > div#traseu > div.content_traseu > div.cot .red {color: #DD0000;}
+div#rezultate_ruta > div#traseu > div.content_traseu > div.cot_over .red {color: #FFFFFF;}
+div#rezultate_ruta > div#traseu > div.content_traseu > div.cot .grey {color: #B3B3B3;}
+div#rezultate_ruta > div#traseu > div.content_traseu > div.cot_over .grey {color: #000000;}
+div#rezultate_ruta > div#traseu > div.content_traseu > div.cot b.numerotare, div#rezultate_ruta > div#traseu > div.content_traseu > div.cot_over b.numerotare {display: inline-block; margin-right: 7px; font-size: 13px;}
+div#rezultate_ruta > div#traseu > div.content_traseu > div.cot h3, div#rezultate_ruta > div#traseu > div.content_traseu > div.cot_over h3 {display: block; margin: 0px; margin-left: 18px; margin-top: -17px;}
+div#rezultate_ruta > div#traseu > div.content_traseu > div.cot div.nume_linie, div#rezultate_ruta > div#traseu > div.content_traseu > div.cot_over div.nume_linie {font-size: 12px; font-weight: bold; display: inline; margin-top: 0px;}
+div#rezultate_ruta > div#traseu > div.content_traseu > div.cot div.nume_linie {color: #0066FF;}
+div#rezultate_ruta > div#traseu > div.content_traseu > div.cot_over div.nume_linie {color: #FFFFFF;}
+div#rezultate_ruta > div#traseu > div.content_traseu > div.div_border {width: 170px; margin: 3px 0px 3px 15px; border-bottom: 1px dashed #CCCCCC; overflow: visible; position: relative;}
+div#rezultate_ruta > div#traseu > div.content_traseu > div.div_border > span.km {position: absolute; font-size: 10px; bottom: -8px; right: -45px; z-index: 20;}
+div#rezultate_ruta > div#traseu > div.content_traseu > div.cot > span.nr, div#rezultate_ruta > div#traseu > div.content_traseu > div.cot_over > span.nr {position: absolute; top: 5px; left: 20px; width: 15px; text-align: center; display: block;}
+*/
+div#rezultate_ruta > div#traseu > div.content_traseu > div.blablacar {background-color: none; display: inline-block; text-decoration: none; width: 220px; margin: 10px 0px 10px 15px; font-family: Arial; font-size: 15px; color: #00b588;}
+.economie_blablacar {font-weight: bold;}
+table.blablacar {margin-top: 10px; width: 220px; border-bottom: 1px dashed #CCCCCC; padding-bottom: 10px;}
+
+div#content > div#content_tab_ruta {background-position: bottom; height: 0px;}
+div#cautare_ruta_inner {background-image: url("../img/px-trans.png"); position: absolute; padding: 0px 0px 0px 8px; width: 220px; padding-bottom: 4px; z-index: 3;}
+
+div.div_input_strada_obiectiv {width: 409px; height: 17px; position: relative; padding: 4px 10px; margin: 5px 0px; font-family: 'Trebuchet MS'; background-color: transparent; background-image: url('../img/bg-links-save-harta.png') !important; background-repeat: no-repeat !important; background-position: top left !important; display: inline-block !important; vertical-align: middle !important;}
+input.input_strada_obiectiv {width: 409px; height: 25px; position: absolute; top: 0px; left: 0px; padding: 0px 10px; border: none; font-size: 12px; font-family: 'Trebuchet MS'; background-color: transparent;}
+div.div_input_strada_obiectiv_oras {width: 380px; height: 24px; position: relative; font-size: 18px; color: #BBBBBB; font-style: italic; padding: 4px 10px; font-family: 'Trebuchet MS'; background-color: transparent; background-image: url('../img/bg-input-strada-obiectiv.png') !important; background-repeat: no-repeat !important; background-position: top left !important; display: inline-block !important; vertical-align: middle !important;}
+div.div_input_strada_obiectiv_oras input.input_strada_obiectiv {width: 380px; height: 32px; position: absolute; top: 0px; left: 0px; padding: 0px 10px; border: none; font-size: 18px; font-family: 'Trebuchet MS'; background-color: transparent;}
+
+div.div-input-contact {width: 151px; height: 19px; position: relative; font-size: 14px; color: #BBBBBB; font-style: italic; padding: 4px 10px; font-family: 'Trebuchet MS'; background-color: transparent; background-image: url('../img/bg-input-ruta.png'); background-repeat: no-repeat; background-position: top left;}
+div.div-input-contact input.input-contact {width: 151px; height: 27px; position: absolute; top: 0px; left: 0px; padding: 0px 10px; border: none; font-size: 14px; font-family: 'Trebuchet MS'; background-color: transparent;}
+div.div-textarea-contact {width: 295px; height: 71px; position: relative; font-size: 15px; color: #BBBBBB; font-style: italic; padding: 4px 10px; font-family: 'Trebuchet MS'; background-color: transparent; background-image: url('../img/bg-textarea.png'); background-repeat: no-repeat; background-position: top left;}
+div.div-textarea-contact textarea.textarea-contact {width: 285px; height: 78px; position: absolute; top: 0px; left: 0px; padding: 0px 10px; border: none; font-size: 15px; font-family: 'Trebuchet MS'; background-color: transparent;}
+div.div-input-contact span, div.div-textarea-contact span {float: right; font-size: 11px; color: black;}
+span#mesaj_after_contact {color: green; font-size: 11px; margin-top: 5px; display: none;}
+div#schimba_rute {position: absolute !important; background-image: url('../img/schimba_localitatile.png') !important; background-position: right !important; top: 23px; color: white; height: 16px; cursor: pointer; font-size: 13px; padding: 5px 5px 2px 10px; line-height: 12px; text-shadow: 1px 1px 0px #000000;}
+span.culoare {display: inline-block; width: 60px; height: 6px; font-size: 1px; cursor: pointer;}
+span.before_culoare {display: inline-block; height: 5px; width: 10px; font-size: 10px; vertical-align: middle;}
+span.rosu {background-color: #E01B4C;}
+span.albastru {background-color: #1B63E0;}
+span.mov {background-color: #B91BE0;}
+span.orange {background-color: #D25F28;}
+span.verde {background-color: #519949;}
+span.turcoise {background-color: #305D63;}
+span.negru {background-color: #000000;}
+span.maro {background-color: #663300;}
+span.gri {background-color: #494949;}
+span.portocaliu {background-color: #FF6633;}
+table#table_cautare {}
+table#table_cautare > tbody > tr > td {padding-bottom: 1px;}
+table#table_cautare > tbody > tr:first-child > td {padding-bottom: 8px;}
+div#div_avansat {margin-left: 0px; margin-right: 0px; padding: 0px 2px 0px 15px; font-size: 11px; background-image: url("../img/px-trans.png"); position: absolute; min-height: 132px; z-index: 2;}
+div#div_avansat > table {width: 359px; margin-top: 2px;}
+div#div_avansat > table > tbody > tr:first-child {font-weight: bold;}
+input.buton-verde {width: 71px !important; height: 27px !important; border: none; font-family: Arial !important; font-size: 14px !important; color: #FFFFFF; text-shadow: 1px 1px 0px #A1A1A1; background-image: url('../img/buton-verde3.png'); background-repeat: no-repeat; background-position: top left; cursor: pointer; background-color: transparent !important;}
+a#optiuni {height: 18px; background-color: none !important; background-image: url('../img/optiuni.png'); background-repeat: no-repeat; background-position: top left; font-family: Arial; font-size: 12px; text-decoration: none; color: #6596C5; position: absolute; right: 0px; top: 7px; padding-left: 10px; z-index: 8;}
+img.inchide {cursor: pointer;}
+a#adauga_destinatie {display: block; float: left; font-size: 10px; width: 45px; color: #3AD634; text-align: left; line-height: 10px; margin: 3px 0px 0px -1px; cursor: pointer; text-decoration: none;}
+a#switch-localitati {position: absolute; width: 21px; height: 39px; top: 47px; left: 202px; cursor: pointer;}
+div#tip_traseu {background-image: url('../img/bg-tipuri-ruta.png') !important; background-position: 0px 100% !important; background-repeat: no-repeat !important;}
+div#tip_traseu img {cursor: pointer; height: 31px;}
+table#table_main_cautare {width: 100%; height: 100%;}
+img.inchide_avansat {position: absolute; right: -15px; top: -2px; cursor: pointer; z-index: 5; background-image: none;}
+table#culori_traseu {border: 1px solid #D0D0CF; border-top: none; margin-top: 5px; margin-bottom: 5px; width: 95px !important;}
+div.div_alert {position: absolute; display: none; font-size: 28px; font-family: 'Trebuchet MS'; padding: 20px 65px; background: none repeat scroll 0 0 rgba(255, 255, 255, 0.95); border: thin solid #CCCCCC; border-radius: 0.3em;}
+div.rute_alternative {position: absolute !important; background-image: none !important; right: -65px; top: 60px; z-index: -1;}
+a.ruta_alternativa {background-image: url('../img/ruta_alternativa2.png') !important; background-position: 0px 2px !important; background-repeat: no-repeat !important; background-color: none !important; font-family: Arial; font-size: 12px; text-decoration: none; color: #6596C5; position: relative; padding: 3px 0px 3px 10px; display: block; margin-top: 0px; height: 17px; width: 57px; cursor: pointer; z-index: -3;}
+a.ruta_alternativa_selected {background-image: url('../img/ruta_alternativa_selected.png') !important; background-position: 0px 2px !important; background-repeat: no-repeat !important; background-color: none !important; font-family: Arial; font-size: 12px; text-decoration: none; color: #FF0000; position: relative; padding: 3px 0px 3px 10px; display: block; margin-top: 0px; height: 17px; width: 57px; cursor: pointer; z-index: 8;}
+div.rute_alternative a:first-child {margin-top: 0px;}
+div.div_copyright {font-size: 10px; font-family: Arial; padding: 10px; text-align: center;}
+div.chart-gauge {float: left; width: 200px; height: 200px; margin: 5px; background-color: transparent !important; background-image: none !important;}
+#info, #links {display: none;}
+img.img_go {cursor: pointer; height: 33px; margin-left: 5px; vertical-align: middle;}
+
+div#div_coords {float: right; margin-right: 15px; word-spacing: normal; font-size: 11px;}
+div#div_coords div {float: right;}
+div#div_coords div:first-child {float: left; margin-right: 15px;}
+
+div#div_arie {display: none;}
+
+div#div_tools, div#div_save, div#div_share {position: absolute; top: 60px; width: 450px; z-index: 1000; display: none;}
+div#div_tools div#main_tools, div#div_save div#main_save, div#div_share div#main_share {background-image: url("../img/px-trans.png"); width: 430px; position: absolute; top: 27px; left: 0px; z-index: 1002; padding: 12px 15px;}
+div#div_tools div#punte_tools, div#div_save div#punte_save, div#div_share div#punte_share {background-image: url("../img/bg-tab-blue.png"); background-position: bottom right; background-repeat: no-repeat; width: 50px; height: 30px; position: absolute; top: 0px; right: 82px; z-index: 1001;}
+div#div_tools div#main_tools div#tabs_tools {background-image: url("../img/bg-tabs-tools.png") !important; background-position: left bottom !important; background-repeat: no-repeat !important;}
+div#div_tools div#main_tools div#tabs_tools img {cursor: pointer;}
+div.div_optiuni_tools {padding: 5px 0px; font-size: 12px;}
+div#div_img_marker {cursor: pointer; padding: 0px 10px;}
+
+div.input-normal {width: 133px; height: 19px; position: relative; font-size: 15px; color: #BBBBBB; font-style: italic; padding: 4px 10px; font-family: 'Trebuchet MS'; background-color: transparent; background-image: url('../img/bg-input-ruta.png'); background-repeat: no-repeat; background-position: top left;}
+div.input-normal span {float: right; font-size: 11px;}
+div.input-normal input.input-normal {width: 133px; height: 27px; position: absolute; top: 0px; left: 0px; padding: 0px 10px; border: none; font-size: 15px; font-family: 'Trebuchet MS'; background-color: transparent;}
+
+div.textarea-normal {width: 195px; height: 67px; position: relative; font-size: 15px; color: #BBBBBB; font-style: italic; padding: 4px 10px; font-family: 'Trebuchet MS'; background-color: transparent; background-image: url('../img/bg-textarea-mic.png'); background-repeat: no-repeat; background-position: top left;}
+div.textarea-normal textarea.textarea-normal {width: 185px; height: 74px; position: absolute; top: 0px; left: 0px; padding: 0px 10px; border: none; font-size: 15px; font-family: 'Trebuchet MS'; background-color: transparent;}
+div.textarea-normal span {float: right; font-size: 11px;}
+div.choose-color {width: 29px; height: 29px; background-image: url('../img/bg-choose-color.png'); background-repeat: no-repeat; background-position: top left; position: relative;}
+div.div-choose-color {width: 17px; height: 17px; position: absolute; top: 5px; left: 5px;}
+
+div.div-pick-color {position: absolute; top: 0px; left: 0px; z-index: 1001; display: none; width: 126px; height: 165px; padding-top: 14px; padding-left: 23px; background-image: url('../img/bg-pick-color.png'); background-position: top left; background-repeat: no-repeat;}
+div.bg-color {width: 19px; height: 19px; margin-right: 11px; margin-bottom: 8px; position: relative; float: left; background-image: url('../img/bg-color.png'); background-position: top left; background-repeat: no-repeat;}
+div.bg-color div {width: 17px; height: 17px; position: absolute; top: 1px; left: 1px;}
+
+
+.dynamic-slider-control {position: relative; -moz-user-focus: normal; -moz-user-select: none; cursor: default; background-image: url('../img/bg-slider.png'); background-repeat: no-repeat; background-position: top left;}
+.horizontal {width: 187px; height: 19px;}
+.dynamic-slider-control input {display: none;}
+.dynamic-slider-control .handle {position: absolute; -moz-user-select: none; cursor: default;}
+.dynamic-slider-control .handle div {font-size: 1px; behavior: url("boxsizing.htc"); box-sizing: content-box; cursor: default; -moz-box-sizing: content-box;}
+.dynamic-slider-control.horizontal .handle {width: 15px; height: 15px; background-image: url('../img/handler.png'); background-position: top left; background-repeat: no-repeat;}
+.dynamic-slider-control.horizontal .handle div {width: 15px; height: 15px; cursor: default;}
+.dynamic-slider-control.horizontal .handle.hover {}
+.dynamic-slider-control .line {behavior: url("boxsizing.htc"); box-sizing: content-box; cursor: default; -moz-box-sizing: content-box; position: absolute; top: 0px; left: 0px; font-size: 0.01mm; overflow: hidden; background-color: #000000; background-image: url('../img/translucent-slider.png'); background-position: top left; background-repeat: repeat-y;}
+.dynamic-slider-control.horizontal .line {height: 3px; cursor: default;}
+.dynamic-slider-control .line div {display: none;}
+
+#text-exemplu-a, #text-exemplu-b {font-size: 12px;}
+img.img_select_suggest {position: absolute; right: 8px; top: 2px; width: 18px; height: 18px; z-index: 0;}
+
+#links-distante, #links-harti {display: none;}
+.icon-help-optiuni-cautare {vertical-align: middle; margin: 0px 0px 4px 3px;}
+#select-oras-cautare {font-size: 13px; float: left; margin-top: 0px; cursor: pointer; text-shadow: 0px 1px 0px #DEDEDE;}
+#select-oras-cautare img {vertical-align: middle; margin-bottom: 4px;}
+#div_unitati_masura_distante {float: right; font-size: 10px;}
+img.litera {margin-bottom: 4px;}
+span.submeniu_optiuni {display: inline-block; font-size: 13px; font-weight: bold; margin: -5px 0px 13px 0px; padding-left: 10px; width: 100%; position: relative; font-family: Arial;}
+span.submeniu_optiuni span {display: inline-block; float: left; margin-right: 10px; cursor: pointer; position: relative; z-index: 1; padding: 1px 12px;}
+span.submeniu_optiuni img {position: absolute; z-index: 0;}
+div#div_avansat input {font-size: 50%;}
+div.culoare_traseu {position: absolute; z-index: 5; top: -9px; left: 0px; width: 100%; text-align: center;}
+div#optiuni-consum-auto {float: left; margin-top: 5px;}
+div#div-container {position: absolute; z-index: 10; max-width: 550px;}
+div#div-container table {border-collapse: collapse; width: 100%; height: 100%; line-height: 25px; font-size: 13px;}
+div#div-container table span {cursor: pointer; text-shadow: 0px 1px 0px #DEDEDE;}
+div#div-container table span:hover {color: #0099FF;}
+
+div#div-suggest {border: 1px solid #CCCCCC; border-bottom: none; position: absolute; left: 50px; z-index: 3; background-color: white;}
+div#div-suggest div {padding: 3px 0px 3px 10px; font-size: 12px; cursor: pointer; border-bottom: 1px solid #CCCCCC; overflow: auto; text-shadow: 0px 1px 0px #DEDEDE; color: #BBBBBB; min-width: 158px;}
+div#div-suggest div.hover {background-color: #00CCFF;}
+div#div-suggest div.hover b, div#div-suggest div.hover small {color: white;}
+div#div-suggest div b {font-size: 14px; font-weight: normal; color: black;}
+div#div-suggest div b span {background-color: #F9F9F9;}
+div#div-suggest div.hover b span {background-color: #00CCFF;}
+div#div-suggest div small {font-size: 10px; float: right; margin-left: 20px; padding-right: 15px; text-align: right; color: red; position: relative; overflow: hidden;}
+div#div-suggest div img {position: absolute; right: -3px; top: 1px;}
+
+div#div-map-sugestii {width: 300px; height: 250px; position: relative; border: 1px solid #A1A1A1; margin-left: -10px;}
+#test_text {background-color: white;}
+#content_tab_elevatia, #content_tab_viteza_consum, #content_tab_orar {background-image: url("../img/px-trans.png");}
+div.loading-orar {margin:15px 0px 0px 15px;}
+div.loading-orar img {vertical-align: middle; margin-right: 7px;}
+#content_tab_strada_obiectiv {display: none; width: 440px; padding: 10px; font-size: 10px; font-style: italic; text-align: right; position: absolute; top: 94px; left: 16px; z-index: 20; background-image: url('../img/px-trans.png');}
+
+.close_banner {position: absolute; right: 315px; bottom: 275px; cursor: pointer; z-index: 50; opacity: 1 !important; filter: alpha(opacity=1) !important;}
+a.map {position: absolute; right: 20px; bottom: 60px; width: 305px; height: 225px; overflow: hidden; text-align: center;}
+a.map * {opacity: 0; filter: alpha(opacity=0);}
+a.map img.bg {position: absolute; top: 0px; left: 0px; z-index: 1;}
+a.map span.titlu {font-size: 25px; font-weight: bold; color: white; display: block; z-index: 2; top: 15px; left: 30px; right: 30px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; position: absolute; text-shadow: 1px 1px 1px #000000;}
+a.map span.mesaj {font-size: 25px; font-weight: bold; color: white; display: block; z-index: 2; top: 90px; left: 30px; right: 30px; position: absolute; text-shadow: 1px 1px 1px #000000;}
+a.map div.red {height: 45px; line-height: 45px; font-size: 28px; font-weight: bold; color: black; background-color: rgba(199,41,43,0.8); position: absolute; top: 110px; z-index: 2; border-radius: 12px; background-image: url('../img/pompa.png'); background-repeat: no-repeat; background-position: 15px 3px; text-align: right; padding-right: 15px;}
+a.map div.red.mic {width: 150px; left: 80px; right: 75px;}
+a.map div.red.mare {width: 165px; left: 70px; right: 70px;}
+a.map div.green {font-weight: bold; color: white; background-color: rgba(0,161,8,0.8); position: absolute; z-index: 2; text-align: center;}
+a.map div.green.mare {height: 30px; line-height: 30px; font-size: 20px; width: 87px; border-radius: 8px;}
+a.map div.green.mic {height: 20px; line-height: 20px; font-size: 13px; width: 45px; border-radius: 4px;}
+a.map div.green.pos1 {left: 100px; top: 105px;}
+a.map div.green.pos2 {left: 145px; top: 110px;}
+a.map div.green.pos3 {left: 40px; top: 150px;}
+a.map div.green.pos4 {left: 175px; top: 150px;}
+a.map div.white {background-color: rgba(255, 255, 255, 0.9); height: 64px; width: 100%; line-height: 64px; text-align: center; position: absolute; bottom: 0px; left: 0px; right: 0px; z-index: 2;}
+a.map div.white img.logo {margin-right: 20px; margin-top: 12px;}
+a.map div.white img.buton {margin-top: 12px;}
+
+a.map_uber {position: absolute; right: 20px; bottom: 60px; width: 300px; height: 250px; overflow: hidden; text-align: center;}
+a.map_uber img.bg {position: absolute; top: 0px; left: 0px; z-index: 1;}
+
+.leaflet-routing-icon {
+    background-image: url('../img/leaflet.routing.icons.png');
+    -webkit-background-size: 240px 20px;
+    background-size: 240px 20px;
+    background-repeat: no-repeat;
+    margin: 0px 4px 12px -5px;
+    content: '';
+    display: inline-block;
+    float: left;
+    vertical-align: top;
+    width: 20px;
+    height: 20px;
+}
+
+.leaflet-routing-icon-continue         { background-position: 0 0; }
+.leaflet-routing-icon-sharp-right      { background-position: -20px 0; }
+.leaflet-routing-icon-turn-right       { background-position: -40px 0; }
+.leaflet-routing-icon-bear-right       { background-position: -60px 0; }
+.leaflet-routing-icon-u-turn           { background-position: -80px 0; }
+.leaflet-routing-icon-sharp-left       { background-position: -100px 0; }
+.leaflet-routing-icon-turn-left        { background-position: -120px 0; }
+.leaflet-routing-icon-bear-left        { background-position: -140px 0; }
+.leaflet-routing-icon-depart           { background-position: -160px 0; }
+.leaflet-routing-icon-enter-roundabout { background-position: -180px 0; }
+.leaflet-routing-icon-arrive           { background-position: -200px 0; }
+.leaflet-routing-icon-via              { background-position: -220px 0; }
+
+.leaflet-routing-container {display: none !important;}é=<fÉ      \œf¼\œgg@1iY\žÙd   +    :https://distanta.ro/temp/css/general.css?9 necko:classified 1 strongly-framed 1 security-info FnhllAKWRHGAlo+ESXykKAAAAAAAAAAAwAAAAAAAAEaphjojH6pBabDSgSnsfLHeAAQAAgAAAAAAAAAAAAAAAAAAAAAB4vFIJp5wRkeyPxAQ9RJGKPqbqVvKO0mKuIl8ec8o/uhmCjImkVxP+7sgiYWmMt8FvcOXmlQiTNWFiWlrbpbqgwAAAAAAAAY2MIIGMjCCBRqgAwIBAgIQXQurbpxyEGFYj01EOsC30zANBgkqhkiG9w0BAQsFADByMQswCQYDVQQGEwJVUzELMAkGA1UECBMCVFgxEDAOBgNVBAcTB0hvdXN0b24xFTATBgNVBAoTDGNQYW5lbCwgSW5jLjEtMCsGA1UEAxMkY1BhbmVsLCBJbmMuIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MB4XDTE5MDMxOTAwMDAwMFoXDTE5MDYxNzIzNTk1OVowFjEUMBIGA1UEAxMLZGlzdGFudGEucm8wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCrBC0IWlvIKBkQZjsag+Iytwo49jS3pnYz7M/h9mYR2JJQGFJgVV1qxCad8aIvg7YWyX//kWl7HudFX9qi1NlrpJUbccx7AkEWHGCgu7JDRSKY51R14mtV5etZVbY7tK3qYFnUUifvAFnjIanTzUrkr/EN0WVWJXO69dMmnHa4fLB9D1c6u/xMTbXSdI7wOLQe7JJLoo4yHtY5S/iPfTw/n3/Cl0E3Mi2N0pwuv297p69JvxeAfl9sgs9P9+1wUWxmfSlvY30lkhL8AkRcQl/p3JW1rOuA5Sd7FJvQ9w5oa4RnM71pEVhsPBoJMcTIcdGL5QcPKn6PZsjGt6gIRUDjAgMBAAGjggMeMIIDGjAfBgNVHSMEGDAWgBR+A1plQWunfgrhuJ0I6h2OHWrHZTAdBgNVHQ4EFgQUSlm/tHXS6cl8+THeE+RCkW++uTMwDgYDVR0PAQH/BAQDAgWgMAwGA1UdEwEB/wQCMAAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCME8GA1UdIARIMEYwOgYLKwYBBAGyMQECAjQwKzApBggrBgEFBQcCARYdaHR0cHM6Ly9zZWN1cmUuY29tb2RvLmNvbS9DUFMwCAYGZ4EMAQIBMEwGA1UdHwRFMEMwQaA/oD2GO2h0dHA6Ly9jcmwuY29tb2RvY2EuY29tL2NQYW5lbEluY0NlcnRpZmljYXRpb25BdXRob3JpdHkuY3JsMH0GCCsGAQUFBwEBBHEwbzBHBggrBgEFBQcwAoY7aHR0cDovL2NydC5jb21vZG9jYS5jb20vY1BhbmVsSW5jQ2VydGlmaWNhdGlvbkF1dGhvcml0eS5jcnQwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3NwLmNvbW9kb2NhLmNvbTB3BgNVHREEcDBuggtkaXN0YW50YS5yb4ISY3BhbmVsLmRpc3RhbnRhLnJvghBtYWlsLmRpc3RhbnRhLnJvghN3ZWJkaXNrLmRpc3RhbnRhLnJvghN3ZWJtYWlsLmRpc3RhbnRhLnJvgg93d3cuZGlzdGFudGEucm8wggECBgorBgEEAdZ5AgQCBIHzBIHwAO4AdQC72d+8H4pxtZOUI5eqkntHOFeVCqtS6BqQlmQ2jh7RhQAAAWmUF6nTAAAEAwBGMEQCIBEWU4YfaHkUADrFRvwSSntiWxMDahLpiPIYosAtm3K8AiADzW1aEgJbY+K5apnJrI2HAGNM2Z+hFPdr+UJWw72DeAB1AHR+2oMxrTMQkSGcziVPQnDCv/1eQiAIxjc1eeYQe8xWAAABaZQXqhUAAAQDAEYwRAIgRj0YEojZJlanmMMsLLKMslPpPWy8EYVAX51O5yNMM+8CIGZ6s0r9ILCkVm3I0b1bb5fXVIlg9kE9SSCtJ2TrENarMA0GCSqGSIb3DQEBCwUAA4IBAQBOBAa2Y682qjYEFTL2JRS6AHMvnJLo6synX2KT7LinNj3mt3u70VrmDXOubdxHCzQ4QoygMTU3IWwO6DyOPHZaogUnZ1ktU03/LevhkMtUy12Tr6uZroYHoPzHn/pr144J/ZlFm3Xjl6UpyEn42oi5SbzqCzgCc08i/Jp7M/2Lhoon8sFQse/PCC2A8msw5Qm0aDBFhXPBJp8TlqU/Vk19ZNBNSjyNWEtKMTCI6fjZ1B9bLqrvktH25wsveIdn3MjTf5JRXvZnFwpv+9ZTEMbFQ9P91dshN9E0dmjLrHxaVegFOjgp5Phdhnkf/uq0zp9I+xxDuSEPaoTLKdabEp6pwC8DAwAAAAABAQAAAAAAAARQMjU2AAAAEFJTQS1QS0NTMS1TSEEyNTYBlZ+xZWUXSH+rm9iRO+Uxl650zaXNL0c/lvXwt//2LGgAAAADZgoyJpFcT/u7IImFpjLfBb3Dl5pUIkzVhYlpa26W6oMAAAAAAAAGNjCCBjIwggUaoAMCAQICEF0Lq26cchBhWI9NRDrAt9MwDQYJKoZIhvcNAQELBQAwcjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAlRYMRAwDgYDVQQHEwdIb3VzdG9uMRUwEwYDVQQKEwxjUGFuZWwsIEluYy4xLTArBgNVBAMTJGNQYW5lbCwgSW5jLiBDZXJ0aWZpY2F0aW9uIEF1dGhvcml0eTAeFw0xOTAzMTkwMDAwMDBaFw0xOTA2MTcyMzU5NTlaMBYxFDASBgNVBAMTC2Rpc3RhbnRhLnJvMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqwQtCFpbyCgZEGY7GoPiMrcKOPY0t6Z2M+zP4fZmEdiSUBhSYFVdasQmnfGiL4O2Fsl//5Fpex7nRV/aotTZa6SVG3HMewJBFhxgoLuyQ0UimOdUdeJrVeXrWVW2O7St6mBZ1FIn7wBZ4yGp081K5K/xDdFlViVzuvXTJpx2uHywfQ9XOrv8TE210nSO8Di0HuySS6KOMh7WOUv4j308P59/wpdBNzItjdKcLr9ve6evSb8XgH5fbILPT/ftcFFsZn0pb2N9JZIS/AJEXEJf6dyVtazrgOUnexSb0PcOaGuEZzO9aRFYbDwaCTHEyHHRi+UHDyp+j2bIxreoCEVA4wIDAQABo4IDHjCCAxowHwYDVR0jBBgwFoAUfgNaZUFrp34K4bidCOodjh1qx2UwHQYDVR0OBBYEFEpZv7R10unJfPkx3hPkQpFvvrkzMA4GA1UdDwEB/wQEAwIFoDAMBgNVHRMBAf8EAjAAMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjBPBgNVHSAESDBGMDoGCysGAQQBsjEBAgI0MCswKQYIKwYBBQUHAgEWHWh0dHBzOi8vc2VjdXJlLmNvbW9kby5jb20vQ1BTMAgGBmeBDAECATBMBgNVHR8ERTBDMEGgP6A9hjtodHRwOi8vY3JsLmNvbW9kb2NhLmNvbS9jUGFuZWxJbmNDZXJ0aWZpY2F0aW9uQXV0aG9yaXR5LmNybDB9BggrBgEFBQcBAQRxMG8wRwYIKwYBBQUHMAKGO2h0dHA6Ly9jcnQuY29tb2RvY2EuY29tL2NQYW5lbEluY0NlcnRpZmljYXRpb25BdXRob3JpdHkuY3J0MCQGCCsGAQUFBzABhhhodHRwOi8vb2NzcC5jb21vZG9jYS5jb20wdwYDVR0RBHAwboILZGlzdGFudGEucm+CEmNwYW5lbC5kaXN0YW50YS5yb4IQbWFpbC5kaXN0YW50YS5yb4ITd2ViZGlzay5kaXN0YW50YS5yb4ITd2VibWFpbC5kaXN0YW50YS5yb4IPd3d3LmRpc3RhbnRhLnJvMIIBAgYKKwYBBAHWeQIEAgSB8wSB8ADuAHUAu9nfvB+KcbWTlCOXqpJ7RzhXlQqrUugakJZkNo4e0YUAAAFplBep0wAABAMARjBEAiARFlOGH2h5FAA6xUb8Ekp7YlsTA2oS6YjyGKLALZtyvAIgA81tWhICW2PiuWqZyayNhwBjTNmfoRT3a/lCVsO9g3gAdQB0ftqDMa0zEJEhnM4lT0Jwwr/9XkIgCMY3NXnmEHvMVgAAAWmUF6oVAAAEAwBGMEQCIEY9GBKI2SZWp5jDLCyyjLJT6T1svBGFQF+dTucjTDPvAiBmerNK/SCwpFZtyNG9W2+X11SJYPZBPUkgrSdk6xDWqzANBgkqhkiG9w0BAQsFAAOCAQEATgQGtmOvNqo2BBUy9iUUugBzL5yS6OrMp19ik+y4pzY95rd7u9Fa5g1zrm3cRws0OEKMoDE1NyFsDug8jjx2WqIFJ2dZLVNN/y3r4ZDLVMtdk6+rma6GB6D8x5/6a9eOCf2ZRZt145elKchJ+NqIuUm86gs4AnNPIvyaezP9i4aKJ/LBULHvzwgtgPJrMOUJtGgwRYVzwSafE5alP1ZNfWTQTUo8jVhLSjEwiOn42dQfWy6q75LR9ucLL3iHZ9zI03+SUV72ZxcKb/vWUxDGxUPT/dXbITfRNHZoy6x8WlXoBTo4KeT4XYZ5H/7qtM6fSPscQ7khD2qEyynWmxKeqWYKMiaRXE/7uyCJhaYy3wW9w5eaVCJM1YWJaWtuluqDAAAAAAAABfUwggXxMIID2aADAgECAhEA8B1L7nt8o3s8BWasBZckWDANBgkqhkiG9w0BAQwFADCBhTELMAkGA1UEBhMCR0IxGzAZBgNVBAgTEkdyZWF0ZXIgTWFuY2hlc3RlcjEQMA4GA1UEBxMHU2FsZm9yZDEaMBgGA1UEChMRQ09NT0RPIENBIExpbWl0ZWQxKzApBgNVBAMTIkNPTU9ETyBSU0EgQ2VydGlmaWNhdGlvbiBBdXRob3JpdHkwHhcNMTUwNTE4MDAwMDAwWhcNMjUwNTE3MjM1OTU5WjByMQswCQYDVQQGEwJVUzELMAkGA1UECBMCVFgxEDAOBgNVBAcTB0hvdXN0b24xFTATBgNVBAoTDGNQYW5lbCwgSW5jLjEtMCsGA1UEAxMkY1BhbmVsLCBJbmMuIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi14BVrnsaxHvSOlDnpvIulORpb2rKvpeOjXhDVw16lKomTQoD35ZK0hr57TXS30vg8/+iybDWXkfYKFpp1rLnzch7xi9m/1B63V8t5bZXobLKhLip/cD5M7mBfdBmx680vbRZmlRDN617TwLJ8+IjiA9406VjxU0xibL9z9k6fUwJX3NqTmbP+p6aSuLxH0L+FaTtmuWyuzP0nu9Q77T9YnaTXRJIcS99TC8vEmpZRWz1v+/HZCUnAgltq3P/MfZ+1XVGdBKv2JG5STtj75kmAxqUZ56gHMgqbTZv0NqnhCtK6DNZK1AOdLiuNvC8jqj4rcWlx8e9s/fPB5Y6QAHawIDAQABo4IBbDCCAWgwHwYDVR0jBBgwFoAUu69+Aj36pvE8hI6t7jiY7NkyMtQwHQYDVR0OBBYEFH4DWmVBa6d+CuG4nQjqHY4dasdlMA4GA1UdDwEB/wQEAwIBhjASBgNVHRMBAf8ECDAGAQH/AgEAMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjAiBgNVHSAEGzAZMA0GCysGAQQBsjEBAgI0MAgGBmeBDAECATBMBgNVHR8ERTBDMEGgP6A9hjtodHRwOi8vY3JsLmNvbW9kb2NhLmNvbS9DT01PRE9SU0FDZXJ0aWZpY2F0aW9uQXV0aG9yaXR5LmNybDBxBggrBgEFBQcBAQRlMGMwOwYIKwYBBQUHMAKGL2h0dHA6Ly9jcnQuY29tb2RvY2EuY29tL0NPTU9ET1JTQUFkZFRydXN0Q0EuY3J0MCQGCCsGAQUFBzABhhhodHRwOi8vb2NzcC5jb21vZG9jYS5jb20wDQYJKoZIhvcNAQEMBQADggIBABCfoGAIgXShoIR4YEw5Odpkd+8ZCnI5I5Q7kX1/NIuXWE5ZCi1owxBCsKB6gYx7qzEyIDnkInPg3skXXYPFdS3hEUdZAZ5dwPTdEmrQbTAg6LPKT9+a4KcXnxovh37rUOFT8/hH2Yxg8sllZZzw2gHmsvLYB5iH3zeJmFUSQsnkLd4tvqpklE7ZLubC1fLA5unqGT43C4lfyTr4T0dAPq8af6L2hQGIFza1I+q5/rprSAsCIDmuw2HrlaWhc8ccX1Qzc1dLNoubWyjjPrELeFxrFKcQzOXaP7rp1rItHXBUul6rfU8piRDgOpAExe65jkOi42NYf0mLcT5XYiNA0V2WZCJhVp+WZ0eHvOUAIKRo4sGggXtocwjEbU5weejdVdcJXLmdCpWmDNnb4opV67nh55qVFExYBkHBEKqqsTripUpK4NnJH8Kgl7sG7xkA2wK+lvH7VI+TmvowIjapdyYflCiT6RM9RdE6NUgemA2CcMALWiiHoXhRP7WnXKaRIgBCTLmAFYAqsS2JT/e6HhjEjFkec0mjqHu8H/dWTVCfZxanxxdI521UV3Zul1hbeGSk7WK0ADsGfnm4WF9uhNZDvE/bOaoo8MGJCcX74xhEt+Wyi12V+SNaC3L3aTrWV4vh6fRgvsRRKxGs/kizcnPKE1BzDQR2ygHhQsLXIc/5ZgoyJpFcT/u7IImFpjLfBb3Dl5pUIkzVhYlpa26W6oMAAAAAAAAF3DCCBdgwggPAoAMCAQICEEyq+crbY2/gH/dO2FsDhp0wDQYJKoZIhvcNAQEMBQAwgYUxCzAJBgNVBAYTAkdCMRswGQYDVQQIExJHcmVhdGVyIE1hbmNoZXN0ZXIxEDAOBgNVBAcTB1NhbGZvcmQxGjAYBgNVBAoTEUNPTU9ETyBDQSBMaW1pdGVkMSswKQYDVQQDEyJDT01PRE8gUlNBIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MB4XDTEwMDExOTAwMDAwMFoXDTM4MDExODIzNTk1OVowgYUxCzAJBgNVBAYTAkdCMRswGQYDVQQIExJHcmVhdGVyIE1hbmNoZXN0ZXIxEDAOBgNVBAcTB1NhbGZvcmQxGjAYBgNVBAoTEUNPTU9ETyBDQSBMaW1pdGVkMSswKQYDVQQDEyJDT01PRE8gUlNBIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAkehUktIKVrGsDSTdxc9EZ3SZKzejfSNwAHG8U9/E+ioSj0t/EFa9n3Byt2F/yUsPF6c947AEYe7/EZfH9IY+Cvo+XPmT5jR62RRr55yzhaCCenavcZDX7P0N+pxs+t+wgvQUfvm+xKYvT3+Zf7X8Z0NyvQwA1onrayzT7Y+YHBSrfuXjbvzYqOSSJNpDa2K4Vf3qwbxstovzDo2a5JtsaZn4eEgwRdWt4Q08RWD8MpZRJ7xnw8outmvqRsfHIKCxH2XeSAi6pE6p8oNGN4Tr6MyBSENnTnIqm1y9TBsoilwie7SrmNnu4FGDwwlGTm0+mfqVF9p8M1dBPI1R7Qu2XK8sYxrfV8g/vOldxJuvRZnio1oktLqpVj3Pb6r/SVi+8Kj/9Lit6Tf7urj0Czr56ENCHonYhMsT8dm74YlguIwoVqwUHZwK53Hrzw7dPamWoUi9PPevtQ0iTMARgexWO/bTouJbt7IEIlKVgJNp6I5MZfGRAy1wdALqi2cVKWlSArvX31BqVUa/oKMoYX9w0MOiqiwhqkfOKJwGRXa/ghgntNWutMtQ5mv0TIZxMOmm3xaG4Nj/QN370EKIf6MzOi5cHkERgWPOGHFrK+ymircxXDpqR+DDeVnWIBqv8mqYqnK8V0rSS527EPywTEHl7R09XiidnMy/s1Hap0flhFMCAwEAAaNCMEAwHQYDVR0OBBYEFLuvfgI9+qbxPISOre44mOzZMjLUMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MA0GCSqGSIb3DQEBDAUAA4ICAQAK8dVGhLeuUbtssk1BFACTTJzL5cBUz6AljgL5/bCiDfUgmDwTLaxWorDWfhGS6S66ni6acrG9GURsYTWimrQWEmlajOHXPqQa6C8D9K5hHRAbKqSLesX+BabhwNbI/p6ujyu6PZn42HMJWEZuppz01yfTldo3g3Ic03PgokeZAzhd1Ul5ACkcx+ybIBwHJGlXeLI5/DqEoLWcfI2/LpNiJ7c52hcYrr08CWj/hJs81dYLA+NXnhT30etPyL2HI7e2SUN5hVy665ILocboaKhMFrEamQroUyySu6EJGHUMZah7yyO3GsIohcMb/9ArYu+kewmRmGeMFAHNaAZqYyF1A4CIim6BxoXyqaQt5/SlJBBHg8rN9I15WLEGm+caKtmdAdeUfe0DSsrw2+ipAT71VpnJHo5JPbvlCbngT0mSPRaCQMzMWcbmOu0SLmk8bJWx/aode3+Gvh4OMkb7+xOPdX9Mi0tGY/4ANEBwwcO5od2mcOIEs0G86YCR6mSceuEiA6mcbm8OZU9sh4de826g+XWlm0DoU7InnUq5wHchjf+H8t68jO8X37dJC9HybjALGg5Odu0R/PXpVrJ9v8dtCpOMpdDAth2+Ok6UotdubAvCinz6IPPE5OXNDajLkZKxfIXstRRpZg6C583OyC2mUX8hwTVThQZKXZ+tuxtfdAAA request-method GET response-head HTTP/1.1 200 OK
+Date: Thu, 28 Mar 2019 06:16:28 GMT
+Server: Apache
+Last-Modified: Sat, 09 Mar 2019 16:39:00 GMT
+Accept-Ranges: bytes
+Content-Length: 40676
+Content-Type: text/css
+ original-response-headers Date: Thu, 28 Mar 2019 06:16:28 GMT
+Server: Apache
+Last-Modified: Sat, 09 Mar 2019 16:39:00 GMT
+Accept-Ranges: bytes
+Content-Length: 40676
+Keep-Alive: timeout=5, max=98
+Connection: Keep-Alive
+Content-Type: text/css
+ uncompressed-len 0 net-response-time-onstart 31 net-response-time-onstop 32   žä

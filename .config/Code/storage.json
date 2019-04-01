@@ -1,0 +1,37 @@
+{
+    "telemetry.machineId": "8ea457c70e7a054f48aed6fa2f903a94379bd07eaaeb446f0785cca95c6af24e",
+    "openedPathsList": {
+        "workspaces2": [
+            "file:///home/student"
+        ],
+        "files2": [
+            "file:///home/student/IdeaProjects/StudentManager/src/sample/sample.fxml",
+            "file:///home/student/IdeaProjects/StudentManager/src/sample/Main.java",
+            "file:///home/student/IdeaProjects/StudentManager/src/sample/Controller.java",
+            "file:///home/student/lab1-master/src/loose/oose/fis/documents/XML.java",
+            "file:///home/student/lab1-master/src/loose/oose/fis/documents/JSON.java",
+            "file:///home/student/lab1-master/src/loose/oose/fis/documents/Document.java",
+            "file:///home/student/lab1-master/src/loose/oose/fis/processors/ProcesorCompus.java",
+            "file:///home/student/lab1-master/src/loose/oose/fis/processors/ProcesorCautare.java",
+            "file:///home/student/lab1-master/src/loose/oose/fis/processors/Procesor.java",
+            "file:///tmp/xa-F11Bqn/Main.java",
+            "file:///home/student/lab1-master/src/loose/oose/fis/Main.java",
+            "file:///home/student/incubating-netbeans-10.0-source.zip"
+        ]
+    },
+    "theme": "vs-dark",
+    "themeBackground": "#1e1e1e",
+    "windowsState": {
+        "openedWindows": [],
+        "lastActiveWindow": {
+            "backupPath": "/home/student/.config/Code/Backups/1554111330995",
+            "uiState": {
+                "mode": 1,
+                "x": 237,
+                "y": 236,
+                "width": 1024,
+                "height": 768
+            }
+        }
+    }
+}

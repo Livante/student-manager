@@ -1,0 +1,11 @@
+// Place your key bindings in this file to overwrite the defaults
+[
+    {
+        "key": "ctrl+f6",
+        "command": "ocaml.repl"
+    },
+    {
+        "key": "f6",
+        "command": "ocaml.repl_send_all"
+    }
+]

@@ -1,0 +1,13 @@
+OCP 1
+TYP library
+VER 1.99.20-beta
+REG /home/student/.opam/system/lib/META.ocplib-file-compat
+REG /home/student/.opam/system/lib/ocaml/ocplib-file-compat/file.cmi
+REG /home/student/.opam/system/lib/ocaml/ocplib-file-compat/file.cmx
+REG /home/student/.opam/system/lib/ocaml/ocplib-file-compat/file.cmi
+REG /home/student/.opam/system/lib/ocaml/ocplib-file-compat/ocplib-file-compat.cmxs
+REG /home/student/.opam/system/lib/ocaml/ocplib-file-compat/ocplib-file-compat.a
+REG /home/student/.opam/system/lib/ocaml/ocplib-file-compat/ocplib-file-compat.cmxa
+REG /home/student/.opam/system/lib/ocaml/ocplib-file-compat/ocplib-file-compat.cma
+REG /home/student/.opam/system/lib/ocaml/ocplib-file-compat/ocplib-file-compat.uninstall
+DIR /home/student/.opam/system/lib/ocaml/ocplib-file-compat

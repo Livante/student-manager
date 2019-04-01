@@ -1,0 +1,3815 @@
+(function ($) {
+	$.fn.scrolltastic = function (options) {
+		var anchors;
+		var timer;
+		var mouseWheelActive;
+		var defaults = {
+			up: null,
+			down: null,
+			duration: "auto",
+			autohide: false
+		};
+		var options = $.extend(defaults, options);
+		var elem = this;
+		var content = $(elem);
+		var wrapper = content.parent();
+		if (wrapper.css("position") == "static") {
+			wrapper.css("position", "relative");
+		};
+		var wrapperHeight = wrapper.height();
+		var contentHeight = content.height();
+		content.children(":last-child").each(function () {
+			if ($(this).css("margin-top") != "") {
+				var margin = $(this).css("margin-top");
+				var marginArr = margin.split("p");
+				contentHeight += (isNaN(parseInt(marginArr[0]))) ? 0 : parseInt(marginArr[0]);
+			};
+		});
+		if ((options.up != null && options.down == null) || (options.up == null && options.down != null)) {
+			alert('O mic' + String.fromCharCode(259) + ' eroare.\nSemnala' + String.fromCharCode(355) + 'i v' + String.fromCharCode(259) + ' rug' + String.fromCharCode(259) + 'm aceast' + String.fromCharCode(259) + ' eroare prin formularul de contact.');
+		} else if (options.up != null && options.down != null) {
+			$.each(["mousedown", "touchstart"], function (j, event) {
+				options.up.bind(event, function () {
+					upMouseDown();
+					return false;
+				});
+				options.down.bind(event, function () {
+					downMouseDown();
+					return false;
+				});
+			});
+			$.each([options.up, options.down], function (i, button) {
+				$.each(["mouseup", "touchend"], function (j, event) {
+					button.bind(event, function () {
+						mouseUp();
+					});
+				});
+			});
+			$(options.down).click(function () {
+				return false;
+			});
+			$(options.up).click(function () {
+				return false;
+			});
+			anchors = true;
+		} else {
+			anchors = false;
+		};
+		content.mousewheel(function (event, delta, deltaX, deltaY) {
+			if (mouseWheelActive == null) {
+				$.clear(timer);
+				if (delta > 0) {
+					upMouseDown(content);
+				} else {
+					downMouseDown(content);
+				};
+				$.timeout(mouseUp, 150);
+				mouseWheelActive = true;
+			};
+			return false;
+		});
+
+		function upMouseDown() {
+			if (options.duration == "auto") {
+				var dis = $(content).position().top * -1;
+				var dur = dis * 2;
+			};
+			$(content).stop().animate({
+				top: "0px"
+			}, dur, "linear");
+		};
+
+		function downMouseDown() {
+			if (options.duration == "auto") {
+				var dis = ($(content).position().top + contentHeight) - wrapperHeight;
+				var dur = dis * 2;
+			};
+			$(content).stop().animate({
+				top: (contentHeight - wrapperHeight) * -1
+			}, dur, "linear");
+		};
+
+		function mouseUp() {
+			content.stop();
+			var top = $(content).position().top;
+			if (anchors) {
+				if (top * -1 == contentHeight - wrapperHeight && options.autohide == true) {
+					options.down.hide();
+				} else {
+					options.down.show();
+				}; if (top == 0 && options.autohide == true) {
+					options.up.hide();
+				} else {
+					options.up.show();
+				};
+			};
+			mouseWheelActive = null;
+		};
+	};
+})(jQuery);
+(function (c) {
+	var a = ["DOMMouseScroll", "mousewheel"];
+	c.event.special.mousewheel = {
+		setup: function () {
+			if (this.addEventListener) {
+				for (var d = a.length; d;) {
+					this.addEventListener(a[--d], b, false)
+				}
+			} else {
+				this.onmousewheel = b
+			}
+		},
+		teardown: function () {
+			if (this.removeEventListener) {
+				for (var d = a.length; d;) {
+					this.removeEventListener(a[--d], b, false)
+				}
+			} else {
+				this.onmousewheel = null
+			}
+		}
+	};
+	c.fn.extend({
+		mousewheel: function (d) {
+			return d ? this.bind("mousewheel", d) : this.trigger("mousewheel")
+		},
+		unmousewheel: function (d) {
+			return this.unbind("mousewheel", d)
+		}
+	});
+
+	function b(i) {
+		var g = i || window.event,
+			f = [].slice.call(arguments, 1),
+			j = 0,
+			h = true,
+			e = 0,
+			d = 0;
+		i = c.event.fix(g);
+		i.type = "mousewheel";
+		if (i.wheelDelta) {
+			j = i.wheelDelta / 120
+		}
+		if (i.detail) {
+			j = -i.detail / 3
+		}
+		d = j;
+		if (g.axis !== undefined && g.axis === g.HORIZONTAL_AXIS) {
+			d = 0;
+			e = -1 * j
+		}
+		if (g.wheelDeltaY !== undefined) {
+			d = g.wheelDeltaY / 120
+		}
+		if (g.wheelDeltaX !== undefined) {
+			e = -1 * g.wheelDeltaX / 120
+		}
+		f.unshift(i, j, e, d);
+		return c.event.handle.apply(this, f)
+	}
+})(jQuery);
+(function ($) {
+	if (typeof $.timeout != "undefined") {
+		return;
+	};
+	$.extend({
+		timeout: function (func, delay) {
+			if (typeof $.timeout.count == "undefined") {
+				$.timeout.count = 0;
+			};
+			if (typeof $.timeout.funcs == "undefined") {
+				$.timeout.funcs = new Array();
+			};
+			if (typeof func == 'string') {
+				return setTimeout(func, delay);
+			};
+			if (typeof func == 'function') {
+				$.timeout.count++;
+				$.timeout.funcs[$.timeout.count] = func;
+				return setTimeout("$.timeout.funcs['" + $.timeout.count + "']();", delay);
+			};
+		},
+		interval: function (func, delay) {
+			if (typeof $.interval.count == "undefined") {
+				$.interval.count = 0;
+			};
+			if (typeof $.interval.funcs == "undefined") {
+				$.interval.funcs = new Array();
+			};
+			if (typeof func == 'string') {
+				return setInterval(func, delay);
+			};
+			if (typeof func == 'function') {
+				$.interval.count++;
+				$.interval.funcs[$.interval.count] = func;
+				return setInterval("$.interval.funcs['" + $.interval.count + "']();", delay);
+			};
+		},
+		idle: function (func, delay) {
+			if (typeof $.idle.lasttimeout == "undefined") {
+				$.idle.lasttimeout = null;
+			};
+			if (typeof $.idle.lastfunc == "undefined") {
+				$.idle.lastfunc = null;
+			};
+			if ($.idle.timeout) {
+				clearTimeout($.idle.timeout);
+				$.idle.timeout = null;
+				$.idle.lastfunc = null;
+			};
+			if (typeof (func) == 'string') {
+				$.idle.timeout = setTimeout(func, delay);
+				return $.idle.timeout;
+			};
+			if (typeof (func) == 'function') {
+				$.idle.lastfunc = func;
+				$.idle.timeout = setTimeout("$.idle.lastfunc();", delay);
+				return $.idle.timeout;
+			};
+		},
+		clear: function (countdown) {
+			clearInterval(countdown);
+			clearTimeout(countdown);
+		}
+	});
+})(jQuery);
+
+function Range() {
+	this._value = 0;
+	this._minimum = 0;
+	this._maximum = 100;
+	this._extent = 0;
+	this._isChanging = false;
+};
+Range.prototype.setValue = function (value) {
+	value = Math.round(parseFloat(value));
+	if (isNaN(value)) {
+		return;
+	};
+	if (this._value != value) {
+		if (value + this._extent > this._maximum) {
+			this._value = this._maximum - this._extent;
+		} else if (value < this._minimum) {
+			this._value = this._minimum;
+		} else {
+			this._value = value;
+		}; if (!this._isChanging && typeof this.onchange == "function") {
+			this.onchange();
+		};
+	};
+};
+Range.prototype.getValue = function () {
+	return this._value;
+};
+Range.prototype.setExtent = function (extent) {
+	if (this._extent != extent) {
+		if (extent < 0) {
+			this._extent = 0;
+		} else if (this._value + extent > this._maximum) {
+			this._extent = this._maximum - this._value;
+		} else {
+			this._extent = extent;
+		}; if (!this._isChanging && typeof this.onchange == "function") {
+			this.onchange();
+		};
+	};
+};
+Range.prototype.getExtent = function () {
+	return this._extent;
+};
+Range.prototype.setMinimum = function (minimum) {
+	if (this._minimum != minimum) {
+		var oldIsChanging = this._isChanging;
+		this._isChanging = true;
+		this._minimum = minimum;
+		if (minimum > this._value) {
+			this.setValue(minimum);
+		};
+		if (minimum > this._maximum) {
+			this._extent = 0;
+			this.setMaximum(minimum);
+			this.setValue(minimum);
+		};
+		if (minimum + this._extent > this._maximum) {
+			this._extent = this._maximum - this._minimum;
+		};
+		this._isChanging = oldIsChanging;
+		if (!this._isChanging && typeof this.onchange == "function") {
+			this.onchange();
+		};
+	};
+};
+Range.prototype.getMinimum = function () {
+	return this._minimum;
+};
+Range.prototype.setMaximum = function (maximum) {
+	if (this._maximum != maximum) {
+		var oldIsChanging = this._isChanging;
+		this._isChanging = true;
+		this._maximum = maximum;
+		if (maximum < this._value) {
+			this.setValue(maximum - this._extent);
+		};
+		if (maximum < this._minimum) {
+			this._extent = 0;
+			this.setMinimum(maximum);
+			this.setValue(this._maximum);
+		};
+		if (maximum < this._minimum + this._extent) {
+			this._extent = this._maximum - this._minimum;
+		};
+		if (maximum < this._value + this._extent) {
+			this._extent = this._maximum - this._value;
+		};
+		this._isChanging = oldIsChanging;
+		if (!this._isChanging && typeof this.onchange == "function") {
+			this.onchange();
+		};
+	};
+};
+Range.prototype.getMaximum = function () {
+	return this.maximum;
+};
+
+function Timer(nPauseTime) {
+	this._pauseTime = typeof nPauseTime == "undefined" ? 1000 : nPauseTime;
+	this._timer = null;
+	this._isStarted = false;
+};
+Timer.prototype.start = function () {
+	if (this.isStarted()) {
+		this.stop();
+	};
+	var oThis = this;
+	this._timer = window.setTimeout(function () {
+		if (typeof oThis.ontimer == "function") {
+			oThis.ontimer();
+		};
+	}, this._pauseTime);
+	this._isStarted = false;
+};
+Timer.prototype.stop = function () {
+	if (this._timer != null) {
+		window.clearTimeout(this._timer);
+	};
+	this._isStarted = false;
+};
+Timer.prototype.isStarted = function () {
+	return this._isStarted;
+};
+Timer.prototype.getPauseTime = function () {
+	return this._pauseTime;
+};
+Timer.prototype.setPauseTime = function (nPauseTime) {
+	this._pauseTime = nPauseTime;
+};
+Slider.isSupported = typeof document.createElement != "undefined" && typeof document.documentElement != "undefined" && typeof document.documentElement.offsetWidth == "number";
+
+function Slider(oElement, oInput, sOrientation) {
+	if (!oElement) {
+		return;
+	};
+	this._orientation = sOrientation || "horizontal";
+	this._range = new Range();
+	this._range.setExtent(0);
+	this._blockIncrement = 10;
+	this._unitIncrement = 1;
+	this._timer = new Timer(100);
+	if (Slider.isSupported && oElement) {
+		this.document = oElement.ownerDocument || oElement.document;
+		this.element = oElement;
+		this.element.slider = this;
+		this.element.unselectable = "on";
+		this.element.className = this._orientation + " " + this.classNameTag + " " + this.element.className;
+		this.line = this.document.createElement("DIV");
+		this.line.className = "line";
+		this.line.unselectable = "on";
+		this.line.appendChild(this.document.createElement("DIV"));
+		this.element.appendChild(this.line);
+		this.handle = this.document.createElement("DIV");
+		this.handle.className = "handle";
+		this.handle.unselectable = "on";
+		this.handle.appendChild(this.document.createElement("DIV"));
+		this.handle.firstChild.appendChild(this.document.createTextNode(String.fromCharCode(160)));
+		this.element.appendChild(this.handle);
+	};
+	this.input = oInput;
+	var oThis = this;
+	this._range.onchange = function () {
+		oThis.recalculate();
+		if (typeof oThis.onchange == "function") {
+			oThis.onchange();
+		};
+	};
+	if (Slider.isSupported && oElement) {
+		this.element.onfocus = Slider.eventHandlers.onfocus;
+		this.element.onblur = Slider.eventHandlers.onblur;
+		this.element.onmousedown = Slider.eventHandlers.onmousedown;
+		this.element.onmouseover = Slider.eventHandlers.onmouseover;
+		this.element.onmouseout = Slider.eventHandlers.onmouseout;
+		this.element.onkeydown = Slider.eventHandlers.onkeydown;
+		this.element.onkeypress = Slider.eventHandlers.onkeypress;
+		this.element.onmousewheel = Slider.eventHandlers.onmousewheel;
+		this.handle.onselectstart = this.element.onselectstart = function () {
+			return false;
+		};
+		this._timer.ontimer = function () {
+			oThis.ontimer();
+		};
+		window.setTimeout(function () {
+			oThis.recalculate();
+		}, 1);
+	} else {
+		this.input.onchange = function (e) {
+			oThis.setValue(oThis.input.value);
+		};
+	};
+};
+Slider.eventHandlers = {
+	getEvent: function (e, el) {
+		if (!e) {
+			if (el) {
+				e = el.document.parentWindow.event;
+			} else {
+				e = window.event;
+			};
+		};
+		if (!e.srcElement) {
+			var el = e.target;
+			while (el != null && el.nodeType != 1) {
+				el = el.parentNode;
+			};
+			e.srcElement = el;
+		};
+		if (typeof e.offsetX == "undefined") {
+			e.offsetX = e.layerX;
+			e.offsetY = e.layerY;
+		};
+		return e;
+	},
+	getDocument: function (e) {
+		if (e.target) {
+			return e.target.ownerDocument;
+		};
+		return e.srcElement.document;
+	},
+	getSlider: function (e) {
+		var el = e.target || e.srcElement;
+		while (el != null && el.slider == null) {
+			el = el.parentNode;
+		};
+		if (el) {
+			return el.slider;
+		};
+		return null;
+	},
+	getLine: function (e) {
+		var el = e.target || e.srcElement;
+		while (el != null && el.className != "line") {
+			el = el.parentNode;
+		};
+		return el;
+	},
+	getHandle: function (e) {
+		var el = e.target || e.srcElement;
+		var re = /handle/;
+		while (el != null && !re.test(el.className)) {
+			el = el.parentNode;
+		};
+		return el;
+	},
+	onfocus: function (e) {
+		var s = this.slider;
+		s._focused = true;
+		s.handle.className = "handle hover";
+	},
+	onblur: function (e) {
+		var s = this.slider;
+		s._focused = false;
+		s.handle.className = "handle";
+	},
+	onmouseover: function (e) {
+		e = Slider.eventHandlers.getEvent(e, this);
+		var s = this.slider;
+		if (e.srcElement == s.handle) {
+			s.handle.className = "handle hover";
+		};
+	},
+	onmouseout: function (e) {
+		e = Slider.eventHandlers.getEvent(e, this);
+		var s = this.slider;
+		if (e.srcElement == s.handle && !s._focused) {
+			s.handle.className = "handle";
+		};
+	},
+	onmousedown: function (e) {
+		e = Slider.eventHandlers.getEvent(e, this);
+		var s = this.slider;
+		if (s.element.focus) {
+			s.element.focus();
+		};
+		Slider._currentInstance = s;
+		var doc = s.document;
+		if (doc.addEventListener) {
+			doc.addEventListener("mousemove", Slider.eventHandlers.onmousemove, true);
+			doc.addEventListener("mouseup", Slider.eventHandlers.onmouseup, true);
+		} else if (doc.attachEvent) {
+			doc.attachEvent("onmousemove", Slider.eventHandlers.onmousemove);
+			doc.attachEvent("onmouseup", Slider.eventHandlers.onmouseup);
+			doc.attachEvent("onlosecapture", Slider.eventHandlers.onmouseup);
+			s.element.setCapture();
+		};
+		if (Slider.eventHandlers.getHandle(e)) {
+			Slider._sliderDragData = {
+				screenX: e.screenX,
+				screenY: e.screenY,
+				dx: e.screenX - s.handle.offsetLeft,
+				dy: e.screenY - s.handle.offsetTop,
+				startValue: s.getValue(),
+				slider: s
+			};
+		} else {
+			var lineEl = Slider.eventHandlers.getLine(e);
+			s._mouseX = e.offsetX + (lineEl ? s.line.offsetLeft : 0);
+			s._mouseY = e.offsetY + (lineEl ? s.line.offsetTop : 0);
+			s._increasing = null;
+			s.ontimer();
+		};
+	},
+	onmousemove: function (e) {
+		e = Slider.eventHandlers.getEvent(e, this);
+		if (Slider._sliderDragData) {
+			var s = Slider._sliderDragData.slider;
+			var boundSize = s.getMaximum() - s.getMinimum();
+			var size, pos, reset;
+			if (s._orientation == "horizontal") {
+				size = s.element.offsetWidth - s.handle.offsetWidth;
+				pos = e.screenX - Slider._sliderDragData.dx;
+				reset = Math.abs(e.screenY - Slider._sliderDragData.screenY) > 100;
+			} else {
+				size = s.element.offsetHeight - s.handle.offsetHeight;
+				pos = s.element.offsetHeight - s.handle.offsetHeight - (e.screenY - Slider._sliderDragData.dy);
+				reset = Math.abs(e.screenX - Slider._sliderDragData.screenX) > 100;
+			};
+			s.setValue(reset ? Slider._sliderDragData.startValue : s.getMinimum() + boundSize * pos / size);
+			return false;
+		} else {
+			var s = Slider._currentInstance;
+			if (s != null) {
+				var lineEl = Slider.eventHandlers.getLine(e);
+				s._mouseX = e.offsetX + (lineEl ? s.line.offsetLeft : 0);
+				s._mouseY = e.offsetY + (lineEl ? s.line.offsetTop : 0);
+			};
+		};
+	},
+	onmouseup: function (e) {
+		e = Slider.eventHandlers.getEvent(e, this);
+		var s = Slider._currentInstance;
+		var doc = s.document;
+		if (doc.removeEventListener) {
+			doc.removeEventListener("mousemove", Slider.eventHandlers.onmousemove, true);
+			doc.removeEventListener("mouseup", Slider.eventHandlers.onmouseup, true);
+		} else if (doc.detachEvent) {
+			doc.detachEvent("onmousemove", Slider.eventHandlers.onmousemove);
+			doc.detachEvent("onmouseup", Slider.eventHandlers.onmouseup);
+			doc.detachEvent("onlosecapture", Slider.eventHandlers.onmouseup);
+			s.element.releaseCapture();
+		};
+		if (Slider._sliderDragData) {
+			Slider._sliderDragData = null;
+		} else {
+			s._timer.stop();
+			s._increasing = null;
+		};
+		Slider._currentInstance = null;
+	},
+	onkeydown: function (e) {
+		e = Slider.eventHandlers.getEvent(e, this);
+		var s = this.slider;
+		var kc = e.keyCode;
+		switch (kc) {
+		case 33:
+			s.setValue(s.getValue() + s.getBlockIncrement());
+			break;
+		case 34:
+			s.setValue(s.getValue() - s.getBlockIncrement());
+			break;
+		case 35:
+			s.setValue(s.getOrientation() == "horizontal" ? s.getMaximum() : s.getMinimum());
+			break;
+		case 36:
+			s.setValue(s.getOrientation() == "horizontal" ? s.getMinimum() : s.getMaximum());
+			break;
+		case 38:
+			break;
+		case 39:
+			s.setValue(s.getValue() + s.getUnitIncrement());
+			break;
+		case 37:
+			break;
+		case 40:
+			s.setValue(s.getValue() - s.getUnitIncrement());
+			break;
+		};
+		if (kc >= 33 && kc <= 40) {
+			return false;
+		};
+	},
+	onkeypress: function (e) {
+		e = Slider.eventHandlers.getEvent(e, this);
+		var kc = e.keyCode;
+		if (kc >= 33 && kc <= 40) {
+			return false;
+		};
+	},
+	onmousewheel: function (e) {
+		e = Slider.eventHandlers.getEvent(e, this);
+		var s = this.slider;
+		if (s._focused) {
+			s.setValue(s.getValue() + e.wheelDelta / 120 * s.getUnitIncrement());
+			return false;
+		};
+	}
+};
+Slider.prototype.classNameTag = "dynamic-slider-control";
+Slider.prototype.setValue = function (v) {
+	this._range.setValue(v);
+	this.input.value = this.getValue();
+};
+Slider.prototype.getValue = function () {
+	return this._range.getValue();
+};
+Slider.prototype.setMinimum = function (v) {
+	this._range.setMinimum(v);
+	this.input.value = this.getValue();
+};
+Slider.prototype.getMinimum = function () {
+	return this._range.getMinimum();
+};
+Slider.prototype.setMaximum = function (v) {
+	this._range.setMaximum(v);
+	this.input.value = this.getValue();
+};
+Slider.prototype.getMaximum = function () {
+	return this._range.getMaximum();
+};
+Slider.prototype.setUnitIncrement = function (v) {
+	this._unitIncrement = v;
+};
+Slider.prototype.getUnitIncrement = function () {
+	return this._unitIncrement;
+};
+Slider.prototype.setBlockIncrement = function (v) {
+	this._blockIncrement = v;
+};
+Slider.prototype.getBlockIncrement = function () {
+	return this._blockIncrement;
+};
+Slider.prototype.getOrientation = function () {
+	return this._orientation;
+};
+Slider.prototype.setOrientation = function (sOrientation) {
+	if (sOrientation != this._orientation) {
+		if (Slider.isSupported && this.element) {
+			this.element.className = this.element.className.replace(this._orientation, sOrientation);
+		};
+		this._orientation = sOrientation;
+		this.recalculate();
+	};
+};
+Slider.prototype.recalculate = function () {
+	if (!Slider.isSupported || !this.element) {
+		return;
+	};
+	var w = this.element.offsetWidth;
+	var h = this.element.offsetHeight;
+	var hw = this.handle.offsetWidth;
+	var hh = this.handle.offsetHeight;
+	var lw = this.line.offsetWidth;
+	var lh = this.line.offsetHeight;
+	if (this._orientation == "horizontal") {
+		this.handle.style.left = (w - hw) * (this.getValue() - this.getMinimum()) / (this.getMaximum() - this.getMinimum()) + "px";
+		this.handle.style.top = (h - hh) / 2 + "px";
+		this.line.style.top = ((h - lh) / 2) - 1 + "px";
+		this.line.style.left = hw / 2 + "px";
+		this.line.style.width = Math.max(0, w - hw - 2) + "px";
+		this.line.firstChild.style.width = Math.max(0, w - hw - 4) + "px";
+	} else {
+		this.handle.style.left = (w - hw) / 2 + "px";
+		this.handle.style.top = h - hh - (h - hh) * (this.getValue() - this.getMinimum()) / (this.getMaximum() - this.getMinimum()) + "px";
+		this.line.style.left = (w - lw) / 2 + "px";
+		this.line.style.top = hh / 2 + "px";
+		this.line.style.height = Math.max(0, h - hh - 2) + "px";
+		this.line.firstChild.style.height = Math.max(0, h - hh - 4) + "px";
+	};
+};
+Slider.prototype.ontimer = function () {
+	var hw = this.handle.offsetWidth;
+	var hh = this.handle.offsetHeight;
+	var hl = this.handle.offsetLeft;
+	var ht = this.handle.offsetTop;
+	if (this._orientation == "horizontal") {
+		if (this._mouseX > hl + hw && (this._increasing == null || this._increasing)) {
+			this.setValue(this.getValue() + this.getBlockIncrement());
+			this._increasing = true;
+		} else if (this._mouseX < hl && (this._increasing == null || !this._increasing)) {
+			this.setValue(this.getValue() - this.getBlockIncrement());
+			this._increasing = false;
+		};
+	} else {
+		if (this._mouseY > ht + hh && (this._increasing == null || !this._increasing)) {
+			this.setValue(this.getValue() - this.getBlockIncrement());
+			this._increasing = false;
+		} else if (this._mouseY < ht && (this._increasing == null || this._increasing)) {
+			this.setValue(this.getValue() + this.getBlockIncrement());
+			this._increasing = true;
+		};
+	};
+	this._timer.start();
+};
+
+function rankingsPush() {
+	var url = String(document.referrer);
+	if (url.indexOf("google." + pageVars['generale']['region_tara']) != -1) {
+		var urlVars = {};
+		var parts = url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+			urlVars[key] = value;
+		});
+	};
+};
+(function ($, document, undefined) {
+	var pluses = /\+/g;
+
+	function raw(s) {
+		return s;
+	};
+
+	function decoded(s) {
+		return decodeURIComponent(s.replace(pluses, ' '));
+	};
+	var config = $.cookie = function (key, value, options) {
+		if (value !== undefined) {
+			options = $.extend({}, config.defaults, options);
+			if (value === null) {
+				options.expires = -1;
+			};
+			if (typeof options.expires === 'number') {
+				var days = options.expires,
+					t = options.expires = new Date();
+				t.setDate(t.getDate() + days);
+			};
+			value = config.json ? JSON.stringify(value) : String(value);
+			return (document.cookie = [encodeURIComponent(key), '=', config.raw ? value : encodeURIComponent(value), options.expires ? '; expires=' + options.expires.toUTCString() : '', options.path ? '; path=' + options.path : '', options.domain ? '; domain=' + options.domain : '', options.secure ? '; secure' : ''].join(''));
+		};
+		var decode = config.raw ? raw : decoded;
+		var cookies = document.cookie.split('; ');
+		for (var i = 0, l = cookies.length; i < l; i++) {
+			var parts = cookies[i].split('=');
+			if (decode(parts.shift()) === key) {
+				var cookie = decode(parts.join('='));
+				return config.json ? JSON.parse(cookie) : cookie;
+			};
+		};
+		return null;
+	};
+	config.defaults = {};
+	$.removeCookie = function (key, options) {
+		if ($.cookie(key) !== null) {
+			$.cookie(key, null, options);
+			return true;
+		};
+		return false;
+	};
+})(jQuery, document);
+
+function crossProduct(sets) {
+	var n = sets.length,
+		carets = [],
+		args = [];
+
+	function init() {
+		for (var i = 0; i < n; i++) {
+			carets[i] = 0;
+			args[i] = sets[i][0];
+		};
+	};
+
+	function next() {
+		if (!args.length) {
+			init();
+			return true;
+		};
+		var i = n - 1;
+		carets[i]++;
+		if (carets[i] < sets[i].length) {
+			args[i] = sets[i][carets[i]];
+			return true;
+		};
+		while (carets[i] >= sets[i].length) {
+			if (i == 0) {
+				return false;
+			};
+			carets[i] = 0;
+			args[i] = sets[i][0];
+			carets[--i]++;
+		};
+		args[i] = sets[i][carets[i]];
+		return true;
+	};
+	return {
+		next: next,
+		dos: function (target) {
+			target[args.join("-")] = [];
+		}
+	};
+};
+
+
+
+
+
+
+
+
+
+/* De aici incepe */
+
+
+
+
+
+
+
+
+
+function createEl(element, attributes, inner) {
+	el = document.createElement(element);
+	$(el).attr(attributes);
+	$(el).html(inner);
+	return el;
+};
+
+function createSpace() {
+	return createText(String.fromCharCode(32));
+};
+
+function createText(text) {
+	return document.createTextNode(text);
+};
+
+function createDivBottom() {
+	divBottom = createEl("div", {
+		'id': 'bottom'
+	}, '');
+	$(divBottom).append(createEl("a", {
+		'id': 'bottom-link-info',
+		'href': 'javascript:void(0);',
+		'onclick': 'clickBottomLink(this);',
+		'title': pageVars['texte']['info'],
+		'alt': pageVars['texte']['info']
+	}));
+	$(divBottom).append(createEl("a", {
+		'id': 'bottom-link-contact',
+		'href': 'javascript:void(0);',
+		'onclick': 'clickBottomLink(this);',
+		'title': pageVars['texte']['contact'],
+		'alt': pageVars['texte']['contact']
+	}));
+	$(divBottom).append(createEl("img", {
+		'src': pathToImg + 'separator-bottom.png',
+		'class': 'separator-bottom'
+	}));
+	$(divBottom).append(createEl("a", {
+		'id': 'bottom-link-termeni',
+		'href': 'javascript:void(0);',
+		'onclick': 'clickBottomLink(this);'
+	}, pageVars['texte']['termeni']));
+	$(divBottom).append(createEl("img", {
+		'src': pathToImg + 'separator-bottom.png',
+		'class': 'separator-bottom'
+	}));
+	$(divBottom).append(createEl("a", {
+		'id': 'bottom-link-distante',
+		'href': 'javascript:void(0);',
+		'onclick': 'clickBottomLink(this);'
+	}, pageVars['texte']['alte_orase']));
+	$(divBottom).append(createEl("img", {
+		'src': pathToImg + 'separator-bottom.png',
+		'class': 'separator-bottom'
+	}));
+	/* $(divBottom).append(createEl("a", {
+		'id': 'bottom-link-kfea',
+		'href': 'http://www.kfea.ro/templates/kfea/energie-la-o-cafea-distanta.html',
+		'target': '_blank',
+		'title': 'Cafea de calitate pentru tine'
+	})); */
+	var sageataDivCredits = createEl("img", {
+		'src': pathToImg + 'sageata-div-credits.jpg',
+		'style': 'float: left;'
+	});
+	var divCredits = createEl("div", {
+		'id': 'div-credits'
+	}, sageataDivCredits);
+	$.each(pageVars['credits'], function (key, credit) {
+		s = createEl("a", {
+			'href': credit['url'],
+			'target': credit['target']
+		}, createEl("img", {
+			'src': pathToImg + credit['imgOff'],
+			'onmouseover': 'this.src=\'' + pathToImg + credit['imgOn'] + '\';',
+			'onmouseout': 'this.src=\'' + pathToImg + credit['imgOff'] + '\';',
+			'title': credit['title'],
+			'style': 'margin: 10px 0px 0px 15px;'
+		}));
+		$(divCredits).append(s);
+	});
+	var traficro = $(createEl("div", {
+		style: "width: 88px; height: 31px; position: absolute; top: 2px; left: -120px; display: none;"
+	})).append(createEl("div", {
+		id: "trfc_trafic_script"
+	}));
+	$(divCredits).append(traficro);
+	var divCoords = createEl("div", {
+		'id': 'div_coords'
+	});
+	var divArie = createEl("div", {
+		'id': 'div_arie'
+	});
+	$(divCoords).append(createEl("div"), createEl("div"));
+	var divBottomMijloc = createEl("div", {
+		'id': 'bottom-mijloc'
+	}, divCoords);
+	$(divBottom).append(divBottomMijloc, divCredits);
+	return divBottom;
+};
+
+function createDivBottomDivs() {
+	var divBottomDivs = createEl("div", {
+		'id': 'bottom-divs'
+	});
+	$.each(linksBottom, function (key, value) {
+		_img = createEl("img", {
+			'class': 'close',
+			'onclick': 'closeDivBottom(this.parentNode);',
+			'src': pathToImg + 'delete.png',
+			'title': pageVars['texte']['inchide'],
+			'alt': pageVars['texte']['inchide']
+		});
+		_sh1 = createEl("div", {
+			'class': 'bg-bottom'
+		});
+		_sh2 = createEl("div", {
+			'class': 'bg-content-tab',
+			'style': 'top: -2px; height: 100%;'
+		});
+		_d = createEl("div", {
+			'id': 'bottom-' + key,
+			'style': (((value[1]) ? 'width: ' + value[1] + 'px;' : '') + ((value[2]) ? 'height: ' + value[2] + 'px;' : ''))
+		});
+		$(_d).append(_img, _sh1, _sh2);
+		$(divBottomDivs).append(_d);
+	});
+	return divBottomDivs;
+};
+// 
+// function createDivMain() {
+// 	var divMain = createEl("div", {
+// 		'id': 'main'
+// 	});
+// 	$(divMain).append(
+// 		createDivTop(),
+// 		createHarta(),
+// 		createTabsMobile(),
+// 		createTabsMobileLinie(),
+// 		createTabsMobileStatie(),
+// 		createTableInstructiuni(),
+// 		createTableInstructiuniLinie(),
+// 		createTableInstructiuniStatie(),
+// 		createDivTabs(stabilesteTaburi()),
+// 		createControlsHarta(),
+// 		createDivCautareRutaInner(),
+// 		createAdMobil()
+// 	);
+// 	return divMain;
+// };
+
+function createDivMainSuggest() {
+	var div = createEl("div", {
+		'id': 'div-suggest'
+	});
+	return div;
+};
+
+/* function createAdMobil() {
+	var div = createEl("div", {
+		'id': 'add_mobil'
+	});
+	return div;
+}; */
+
+function createDivBooking(){
+	var div = $(createEl("ins",{class:"bookingaff","data-aid":"1346362","data-target_aid":"1346346","data-prod":"banner","data-width":300,"data-height":250,"data-banner_id":"54509","data-lang":"ro","data-currency":"RON"})).append(
+		createEl("a",{href:"//www.booking.com?aid=1346346",target:"_blank"},"Booking.com")
+	);
+	return div;
+};
+
+function createSuggest(indexObjFor, indexSuggest, textRight, textLeft, idSuggest, val) {
+	var divSuggest = createEl("div", {
+		'onmouseover': 'overSuggest(this,' + idSuggest + ',"' + val + '");',
+		'onmouseout': 'outSuggest(this,' + idSuggest + ',"' + val + '");',
+		'onclick': 'clickSuggest(' + indexObjFor + ',' + indexSuggest + ',this,"' + val + '");'
+	});
+	var bSuggest = createEl("b", {}, evidentiazaInput(textLeft, val));
+	var smallSuggest = createEl("small", {}, textRight);
+	if (idSuggest > 0) {
+		$(smallSuggest).append(createEl("img", {
+			'src': pathToImg + 'arrow.gif'
+		}));
+	};
+	$(divSuggest).append(bSuggest);
+	$(divSuggest).append(smallSuggest);
+	return divSuggest;
+};
+
+function createDivMapSugestii() {
+	var divMap = createEl("div", {
+		'id': 'div-map-sugestii'
+	});
+	return divMap;
+};
+
+function createDivArrow(orientare, content, pos) {
+	var div = createEl("div", {
+		'id': 'div-container',
+		'style': 'top: ' + pos[0] + 'px; left: ' + pos[1] + 'px;'
+	});
+	var img = createEl("img", {
+		'src': pathToImg + 'container/' + orientare + '/arrow.png',
+		'id': 'img-container',
+		'style': 'position: absolute; ' + pageVars['generale']['dimensiuni_container'][orientare]['arrow'][2]
+	});
+	var table = createEl("table", {
+		'cellpadding': 0,
+		'cellspacing': 0
+	});
+	var tr1 = createEl("tr");
+	var tr1td1 = createEl("td", {
+		'style': 'width: ' + pageVars['generale']['dimensiuni_container'][orientare]['colturi'][3][0] + 'px; height: ' + pageVars['generale']['dimensiuni_container'][orientare]['colturi'][3][1] + 'px; background-image: url(\'' + pathToImg + 'container/' + orientare + '/stanga-sus.png\'); background-repeat: no-repeat; background-position: top left;'
+	});
+	var tr1td2 = createEl("td", {
+		'style': 'height: ' + pageVars['generale']['dimensiuni_container'][orientare]['margini'][0][1] + 'px; background-image: url(\'' + pathToImg + 'container/' + orientare + '/bg-sus.png\'); background-repeat: repeat-x; background-position: top left;'
+	});
+	var tr1td3 = createEl("td", {
+		'style': 'width: ' + pageVars['generale']['dimensiuni_container'][orientare]['colturi'][0][0] + 'px; height: ' + pageVars['generale']['dimensiuni_container'][orientare]['colturi'][0][1] + 'px; background-image: url(\'' + pathToImg + 'container/' + orientare + '/dreapta-sus.png\'); background-repeat: no-repeat; background-position: top left;'
+	});
+	$(tr1).append(tr1td1, tr1td2, tr1td3);
+	var tr2 = createEl("tr");
+	var tr2td1 = createEl("td", {
+		'style': 'width: ' + pageVars['generale']['dimensiuni_container'][orientare]['margini'][3][0] + 'px; background-image: url(\'' + pathToImg + 'container/' + orientare + '/bg-stanga.png\'); background-repeat: repeat-y; background-position: top left;'
+	});
+	var tr2td2 = createEl("td", {
+		'style': 'background-color: white; padding: 3px;',
+		'valign': 'top'
+	}, content);
+	var tr2td3 = createEl("td", {
+		'style': 'width: ' + pageVars['generale']['dimensiuni_container'][orientare]['margini'][1][0] + 'px; background-image: url(\'' + pathToImg + 'container/' + orientare + '/bg-dreapta.png\'); background-repeat: repeat-y; background-position: top left;'
+	});
+	$(tr2).append(tr2td1, tr2td2, tr2td3);
+	var tr3 = createEl("tr");
+	var tr3td1 = createEl("td", {
+		'style': 'width: ' + pageVars['generale']['dimensiuni_container'][orientare]['colturi'][2][0] + 'px; height: ' + pageVars['generale']['dimensiuni_container'][orientare]['colturi'][2][1] + 'px; background-image: url(\'' + pathToImg + 'container/' + orientare + '/stanga-jos.png\'); background-repeat: no-repeat; background-position: top left;'
+	});
+	var tr3td2 = createEl("td", {
+		'style': 'height: ' + pageVars['generale']['dimensiuni_container'][orientare]['margini'][2][1] + 'px; background-image: url(\'' + pathToImg + 'container/' + orientare + '/bg-jos.png\'); background-repeat: repeat-x; background-position: top left;'
+	});
+	var tr3td3 = createEl("td", {
+		'style': 'width: ' + pageVars['generale']['dimensiuni_container'][orientare]['colturi'][1][0] + 'px; height: ' + pageVars['generale']['dimensiuni_container'][orientare]['colturi'][2][1] + 'px; background-image: url(\'' + pathToImg + 'container/' + orientare + '/dreapta-jos.png\'); background-repeat: no-repeat; background-position: top left;'
+	});
+	$(tr3).append(tr3td1, tr3td2, tr3td3);
+	$(table).append(tr1, tr2, tr3);
+	$(div).append(table, img);
+	return div;
+};
+
+function createLogo() {
+	var imgLogo = createEl("img", {
+		'src': pathToImg + 'logo.png',
+		'style': 'width: 150px; height: 48px;',
+		'alt': 'Logo',
+		'title': pageVars['texte']['distante_rutiere']
+	});
+	var aLogo = createEl("a", {
+		'href': '/',
+		'class': 'logo'
+	}, imgLogo);
+	return aLogo;
+};
+
+function createDivTop() {
+	var divTop = createEl("div", {
+		'id': 'top'
+	}, createLogo());
+	$(divTop).append(createEl("div", {
+		'class': 'bg-top'
+	}), createSpanShare(), createArrowTop());
+	return divTop;
+};
+
+function createSpanShare() {
+	var spanParent = createEl("span", {
+		'id': 'share'
+	});
+	var imgSave = createEl("img", {
+		'src': pathToImg + 'save.png',
+		'title': pageVars['texte']['title_save'],
+		'alt': pageVars['texte']['alt_save']
+	});
+	var imgTools = createEl("img", {
+		'src': pathToImg + 'tools.png',
+		'title': pageVars['texte']['title_tools'],
+		'alt': pageVars['texte']['title_tools']
+	});
+	var imgPrinter = createEl("img", {
+		'src': pathToImg + 'printer.png',
+		'title': pageVars['texte']['title_printer'],
+		'alt': pageVars['texte']['alt_printer']
+	});
+	var imgShare = createEl("img", {
+		'src': pathToImg + 'share.png',
+		'title': pageVars['texte']['title_share'],
+		'alt': pageVars['texte']['alt_share']
+	});
+	var aSave = createEl("a", {
+		'href': 'javascript:void(0);',
+		'onclick': 'clickSaveConfiguratie();'
+	}, imgSave);
+	var aTools = createEl("a", {
+		'href': 'javascript:void(0);',
+		'onclick': 'showTools();'
+	}, imgTools);
+	var aPrinter = createEl("a", {
+		'href': 'javascript:void(0);',
+		'onclick': 'printConfiguratie();',
+		'style': 'margin-right: 45px;'
+	}, imgPrinter);
+	var aShare = createEl("a", {
+		'href': 'javascript:void(0);',
+		'onclick': 'shareConfiguratie();'
+	}, imgShare);
+	var facebook = createEl("div", {
+		'class': 'fb-like-box',
+		'data-href': 'https://www.facebook.com/distanta',
+		'data-width': '292',
+		'data-show-faces': 'false',
+		'data-stream': 'false',
+		'data-header': 'false'
+	});
+	var aTwitter = createEl("a", {
+		'href': 'https://twitter.com/distanta',
+		'class': 'twitter-follow-button',
+		'data-show-count': 'false',
+		'data-lang': 'ro',
+		'data-size': 'large',
+		'data-dnt': 'true'
+	}, 'Urmareste pe @distanta');
+	var twitter = createEl("div", {
+		'style': 'margin-bottom:0px;'
+	}, aTwitter);
+	var imgBlaBlaCar = createEl("img", {
+		'src': pathToImg + 'Distanta_Top_Varianta2.2.png',
+		'title': String.fromCharCode(206)+"mparte costul c"+String.fromCharCode(259)+"l"+String.fromCharCode(259)+"toriei cu BlaBlaCar",
+		'alt': String.fromCharCode(206)+"mparte costul c"+String.fromCharCode(259)+"l"+String.fromCharCode(259)+"toriei cu BlaBlaCar"
+	});
+	var aBlaBlaCar = createEl("a", {
+		'href': 'javascript:void(0);',
+		'target': '_blank',
+		'id': 'share_blablacar',
+		'onclick': 'clickBlaBlaCarTop(this);'
+	}, imgBlaBlaCar);
+	//$(spanParent).append(facebook);
+	//$(spanParent).append(aBlaBlaCar);
+	return spanParent;
+};
+
+function createHarta() {
+	var harta = createEl("iframe", {
+		'src': '/harta',
+		'frameborder': 0,
+		'style': 'height: 100%; width: 100%;',
+		'name': 'iframe_harta',
+		'id': 'iframe_harta',
+		'height': '100%',
+		'scrolling': 'no'
+	});
+	return harta;
+};
+
+function createDivTabs(tabs) {
+	$("#taburi").remove();
+	var div = createEl("div", {
+		'id': 'taburi'
+	});
+	$(div).width(16 + tabs.length * 150);
+	$(div).append(appendTabsToUL(tabs));
+	return div;
+};
+
+function appendTabsToUL(tabs) {
+	var ul = createEl("ul");
+	for (i = 0; i < tabs.length; i++) {
+		$(ul).append(createTab(tabs[i], i));
+	};
+	return ul;
+};
+
+function createTab(numeTab, index) {
+	var aTab = createEl("a", {
+		'href': 'javascript:void(0);',
+		'onclick': 'clickTab(this,' + index + ');',
+		'rel': 'content_tab_' + numeTab,
+		'id': 'a_content_tab_' + numeTab
+	});
+	$(aTab).html(pageVars['taburi'][numeTab][0]);
+	var liTab = createEl("li", {
+		'class': 'tab',
+		'id': 'tab_' + numeTab
+	});
+	$(liTab).append(aTab);
+	return liTab;
+};
+
+function createControlsHarta() {
+	var divControls = createEl("div", {
+		'id': 'controls'
+	});
+	var divPlusMinus = createEl("div", {
+		'id': 'plus_minus'
+	});
+	var plus = createEl("img", {
+		'src': pathToImg + 'plus.png',
+		'style': 'top: 3px;',
+		'title': pageVars['texte']['title_zoom_in'],
+		'onclick': 'clickZoomIn();'
+	});
+	var minus = createEl("img", {
+		'src': pathToImg + 'minus.png',
+		'style': 'bottom: 3px;',
+		'title': pageVars['texte']['title_zoom_out'],
+		'onclick': 'clickZoomOut();'
+	});
+	$(divPlusMinus).append(plus, minus);
+	$(divControls).append(divPlusMinus);
+	return divControls;
+};
+
+function createDivContent(mode) {
+	var divContent = createEl("div", {
+		'id': 'content',
+		'style': ''
+	});
+	$(divContent).append(createTabRuta(mode));
+	if (mode == 'rezultate') {
+		$(divContent).append(createTabDetaliiConsum());
+	};
+	if (mode == 'rezultate-autobuze-linie') {
+		$(divContent).append(createTabDetaliiLinie(), createContentTabOrar('linie'));
+	};
+	if (mode == 'rezultate-autobuze-statie') {
+		$(divContent).append(createTabDetaliiStatie(), createContentTabOrar('statie'));
+	};
+	if (mode == 'rezultate-autobuze-ruta') {
+		$(divContent).append(createTabDetaliiRuta(), createContentTabOrar('ruta'));
+	};
+	return divContent;
+};
+
+function createTabRuta(mode) {
+	var divTabRuta = createEl("div", {
+		'id': 'content_tab_' + ((mode == 'rezultate-autobuze-linie') ? 'linie' : ((mode == 'rezultate-autobuze-statie') ? 'statie' : 'ruta'))
+	});
+	if (mode == 'rezultate') {
+		$(divTabRuta).append(createRezultateRuta(), createSchimbaRuta());
+		$(divTabRuta).height($(window).height() - 315);
+	} else if (mode == 'cautare') {
+		$(divTabRuta).append(createDivCautareRuta());
+	} else if (mode == 'rezultate-autobuze-linie') {
+		$(divTabRuta).append(createRezultateRutaAutobuzeLinie(), createSchimbaRuta());
+		$(divTabRuta).height($(window).height() - 270);
+	} else if (mode == 'rezultate-autobuze-statie') {
+		$(divTabRuta).append(createRezultateRutaAutobuzeStatie(), createSchimbaRuta());
+		$(divTabRuta).height($(window).height() - 270);
+	} else if (mode == 'rezultate-autobuze-ruta') {
+		$(divTabRuta).append(createRezultateRutaAutobuze(), createSchimbaRuta());
+		$(divTabRuta).height($(window).height() - 270);
+	};
+	return divTabRuta;
+};
+
+function createTabDetaliiStatie() {
+	var divParent = createEl("div", {
+		'id': 'content_tab_detalii_statie'
+	});
+	var divBgLateral = createEl("div", {
+		'class': 'bg-content-tab'
+	});
+	var divBgJos = createEl("div", {
+		'class': 'bg-jos-content-tab'
+	});
+	$(divParent).append(createStatieSumar(), divBgLateral, divBgJos);
+	return divParent;
+};
+
+function createStatieSumar() {
+	var table = createEl("table", {
+		'style': 'width: 100%;',
+		'id': 'detalii_statie',
+		'cellpadding': 1,
+		'cellspacing': 0
+	});
+	var tr_head = createEl("tr", {
+		'style': 'font-weight:bold;background-color:#DEDEDE;'
+	});
+	$(tr_head).append(createEl("td", {
+		'style': 'padding-left:10px;width:170px;',
+		'colspan': 2
+	}, pageVars['texte']['nr_mijloace_zilnic']));
+	$(table).append(tr_head);
+	$.each(pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['nr_mijloace_zilnic'], function (tipZi, nr) {
+		var tr = createEl("tr");
+		$(tr).append(createEl("td", {
+			'style': 'padding:2px 2px 2px 10px;border-bottom:1px solid #F6F6F6;'
+		}, tipZi), createEl("td", {
+			'style': 'padding:2px 10px 2px 2px;text-align:right;border-bottom:1px solid #F6F6F6;'
+		}, nr));
+		$(table).append(tr);
+	});
+	$(table).find("tr:last").children("td").css("border-bottom", "2px solid #DEDEDE");
+	var nrLinii = 0;
+	var nrStatiiApropiate = 0;
+	if ($.isEmptyObject(pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['linii']) === false) {
+		$.each(pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['linii'], function (idLinie, linie) {
+			nrLinii++;
+		});
+	};
+	if ($.isEmptyObject(pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['statii_apropiere']) === false) {
+		$.each(pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['statii_apropiere'], function (idStatie, statie) {
+			nrStatiiApropiate++;
+		});
+	};
+	var tr = createEl("tr");
+	$(tr).append(createEl("td", {
+		'style': 'padding:2px 2px 2px 10px;border-bottom:1px solid #DEDEDE;'
+	}, pageVars['texte']['nr_linii_pe_zi']), createEl("td", {
+		'style': 'padding:2px 10px 2px 2px;text-align:right;border-bottom:1px solid #DEDEDE;'
+	}, nrLinii));
+	$(table).append(tr);
+	var tr = createEl("tr");
+	$(tr).append(createEl("td", {
+		'style': 'padding:2px 2px 2px 10px;'
+	}, pageVars['texte']['nr_statii_apropiate']), createEl("td", {
+		'style': 'padding:2px 10px 2px 2px;text-align:right;'
+	}, nrStatiiApropiate));
+	$(table).append(tr);
+	return table;
+};
+
+function createTableOrarStatie() {
+	var table = createEl("table", {
+		'style': 'padding:10px 10px 10px 0px;font-size:12px;',
+		'cellspacing': 0,
+		'cellpadding': 0
+	});
+	var trHead = createEl("tr", {
+		'style': 'font-weight:bold;color:#E01B4C;background-color:#EAEAEA;text-shadow: 1px 0px 0px #DEDEDE;'
+	});
+	$(trHead).append(createEl("td", {
+		'style': 'border:1px solid #D0D0D0;border-right:none;padding:3px 8px;width:200px;'
+	}, pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['nume']), createEl("td", {
+		'style': 'border:1px solid #D0D0D0;padding:3px 15px;border-left:1px solid white;',
+		'id': 'td_head_interval_orar'
+	}));
+	var trBody = createEl("tr", {});
+	var form = createEl("table", {
+		'cellspacing': 0,
+		'cellpadding': 0,
+		'style': ''
+	});
+	var td_select = createEl("td", {
+		'style': 'padding:3px 0px;'
+	});
+	var select_linii = createEl("select", {
+		'id': 'select_linii_orar',
+		'onchange': 'changeLinieOrarStatieAutobuz(this.value);'
+	});
+	$(td_select).append(select_linii);
+	var td_tip_zi = createEl("td", {
+		'style': 'padding:3px 0px;'
+	});
+	var tipuri_zi = createEl("select", {
+		'id': 'select_tip_zi_orar'
+	});
+	var ore = createEl("select", {
+		'id': 'select_ore_orar',
+		'style': 'margin-left:15px;'
+	});
+	$(td_tip_zi).append(tipuri_zi, ore);
+	var trDisclaimer = createEl("tr", {
+		'style': 'font-size:9px;font-style:italic;'
+	}, createEl("td", {
+		'colspan': 2
+	}, pageVars['texte']['disclaimer_orar_linii_autobuz']));
+	$(form).append(createEl("tr", {}, td_select));
+	$(form).append(createEl("tr", {}, td_tip_zi));
+	$(trBody).append(createEl("td", {
+		'valign': 'top'
+	}, form));
+	$(trBody).append(createEl("td", {
+		'id': 'td_orar',
+		'valign': 'top',
+		'style': 'padding:3px 15px 3px 0px;'
+	}));
+	$(table).append(trHead, trBody, trDisclaimer);
+	return table;
+};
+
+function createSpanTopAutobuzeStatie(numeStatie, oras) {
+	var spanParent = createEl("span", {
+		'id': 'orase',
+		'class': 'autobuze'
+	});
+	var span = createEl("span", {
+		'id': 'plecare'
+	}, numeStatie + ', ' + oras, pageVars['generale']['limit_caractere_ruta']);
+	$(spanParent).append(span);
+	return spanParent;
+};
+
+function createRezultateRutaAutobuzeStatie() {
+	var div = createEl("div", {
+		'id': 'rezultate_ruta',
+		'class': 'inner_div',
+		'style': ''
+	});
+	var divBgLateral = createEl("div", {
+		'class': 'bg-content-tab'
+	});
+	var divBgJos = createEl("div", {
+		'class': 'bg-jos-content-tab'
+	});
+	$(div).append(createDivPlecareStatie(), createDivTraseuAutobuzeStatie(), createDivSosireStatie(), divBgLateral, divBgJos);
+	return div;
+};
+
+function createDivPlecareStatie() {
+	var divPlecare = createEl("div", {
+		'id': 'div_plecare',
+		'title': pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['nume'] + pageVars['texte']['click_derulare_ruta']
+	}, shorterString(pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['nume'], pageVars['generale']['limit_caractere_ruta']));
+	return divPlecare;
+};
+
+function createDivSosireStatie() {
+	var divSosire = createEl("div", {
+		'id': 'div_sosire',
+		'title': pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['nume'] + pageVars['texte']['click_derulare_ruta']
+	}, shorterString(pageVars['texte']['click_derulare'], pageVars['generale']['limit_caractere_ruta']));
+	return divSosire;
+};
+
+function createDivTraseuAutobuzeStatie() {
+	var divTraseu = createEl("div", {
+		'id': 'traseu',
+		'style': 'position:relative;'
+	});
+	$(divTraseu).height($(window).height() - 353);
+	return divTraseu;
+};
+
+function createTableAutobuzeStatie() {
+	//$("#content_traseu").remove();
+	var divContentTraseu = createEl("div", {
+		'class': 'content_traseu'
+	});
+	var table = createEl("table", {
+		'style': 'font-size:12px;margin-left:10px;width:100%;padding-right:20px;',
+		'cellspacing': 0,
+		'cellpadding': 0
+	});
+	var trHead;
+	var tr;
+	var nrLinii = 0;
+	var nrStatiiApropiate = 0;
+	var liniiDeja = {};
+	if (pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['ordine_linii'].length > 0) {
+		trHead = createEl("tr", {
+			'style': 'font-weight:bold;background-color:#DEDEDE;'
+		});
+		$(trHead).append(createEl("td", {
+			'style': 'padding-left:10px;width:220px;',
+			'colspan': 2
+		}, pageVars['texte']['linii']));
+		$(table).append(trHead);
+		$.each(pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['ordine_linii'], function (indexLinie, idLinie) {
+			var linie = pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['linii'][idLinie];
+			if (!liniiDeja[linie['nume']]) {
+				tr = createEl("tr", {
+					'style': 'cursor:pointer;',
+					'class': 'tr_orange',
+					'onclick': 'clickRowLiniiStatie(this,\'' + linie['nume'] + '\');',
+					'onmouseover': 'mouseOverRowLiniiStatie(this,\'' + linie['nume'] + '\');',
+					'onmouseout': 'mouseOutRowLiniiStatie(this,\'' + linie['nume'] + '\');',
+					'title': pageVars['texte']['string_cost'] + ': ' + returnNumberWithDecimals(linie['cost']) + ' ' + pageVars['texte']['moneda']
+				});
+				$(tr).append(createEl("td", {
+					'style': 'border-bottom:1px solid #DEDEDE;text-align:left;line-height:23px;padding-left:10px;width:50px;'
+				}, linie['nume']), createEl("td", {
+					'style': 'border-bottom:1px solid #DEDEDE;text-align:right;line-height:23px;padding-right:10px;font-size:10px;color:#E01B4C;text-shaddow:1px 0px 0px #DEDEDE'
+				}, linie['nume_tip_mijloc']));
+				$(table).append(tr);
+				nrLinii++;
+				liniiDeja[linie['nume']] = 1;
+			};
+		});
+	};
+	if ($.isEmptyObject(pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['statii_apropiere']) === false) {
+		trHead = createEl("tr", {
+			'style': 'font-weight:bold;background-color:#DEDEDE;'
+		});
+		$(trHead).append(createEl("td", {
+			'style': 'padding-left:10px;width:205px;',
+			'colspan': 2
+		}, pageVars['texte']['statii_apropiate']));
+		$(table).append(trHead);
+		$.each(pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['statii_apropiere'], function (idStatie, statie) {
+			tr = createEl("tr", {
+				'style': 'cursor:pointer;',
+				'class': 'tr_orange',
+				'onclick': 'clickRowLiniiStatieApropiata(this,' + idStatie + ');',
+				'onmouseover': 'mouseOverRowLiniiStatieApropiata(this,' + idStatie + ');',
+				'onmouseout': 'mouseOutRowLiniiStatieApropiata(this,' + idStatie + ');',
+				'title': statie['nume'] + '\n' + pageVars['texte']['legaturi'] + ': ' + statie['legaturi'] + '\n' + calculateDistanta(statie['distanta'], 1) + ' ' + pageVars['texte']['distanta']
+			});
+			var td = createEl("td", {
+				'style': 'border-bottom:1px solid #DEDEDE;line-height:23px;padding-left:10px;',
+				'colspan': 2
+			});
+			$(td).append(createText(statie['nume']));
+			$(td).append(createEl("div", {
+				'style': 'float:right;font-size:10px;padding-right:10px;'
+			}, calculateDistanta(statie['distanta'], 1)));
+			$(tr).append(td);
+			$(table).append(tr);
+			nrStatiiApropiate++;
+		});
+	};
+	$(divContentTraseu).append(table);
+	$(divContentTraseu).append(createEl("div", {
+		'class': 'div_copyright'
+	}, pageVars['texte']['copyright']));
+	return divContentTraseu;
+};
+
+function createRezultateRutaAutobuzeLinie() {
+	var div = createEl("div", {
+		'id': 'rezultate_ruta',
+		'class': 'inner_div',
+		'style': ''
+	});
+	var divBgLateral = createEl("div", {
+		'class': 'bg-content-tab'
+	});
+	var divBgJos = createEl("div", {
+		'class': 'bg-jos-content-tab'
+	});
+	$(div).append(createDivPlecareLinie(), createDivTraseuAutobuzeLinie(), createDivSosireLinie(), divBgLateral, divBgJos);
+	return div;
+};
+
+function createTableAutobuzeLinie(turRetur) {
+	//$("#content_traseu").remove();
+	var divContentTraseu = createEl("div", {
+		'class': 'content_traseu'
+	});
+	var table = createEl("table", {
+		'style': 'font-size:12px;margin-left:10px;border-bottom:1px solid #DEDEDE;',
+		'cellspacing': 0,
+		'cellpadding': 0
+	});
+	var trHead;
+	var tr;
+	$.each(turRetur, function (key, t_ret) {
+		trHead = createEl("tr", {
+			'style': 'font-weight:bold;background-color:#DEDEDE;'
+		});
+		$(trHead).append(createEl("td", {
+			'style': 'width:20px;'
+		}, '&nbsp;'), createEl("td", {
+			'style': 'padding-left:10px;border-left:2px solid white;width:200px;',
+			'colspan': 2
+		}, pageVars['texte']['string_' + t_ret + '_caps']));
+		$(table).append(trHead);
+		var k = 1;
+		for (var i = 0; i < pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0][t_ret]['statii'].length; i++) {
+			tr = createEl("tr", {
+				'style': 'cursor:pointer;',
+				'onclick': 'clickRowLinii(this,\'' + t_ret + '\',' + i + ');',
+				'onmouseover': 'mouseOverRowLinii(this,\'' + t_ret + '\',' + i + ');',
+				'onmouseout': 'mouseOutRowLinii(this,\'' + t_ret + '\',' + i + ');',
+				'title': ((pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0][t_ret]['statii'][i]['legaturi'] != '') ? pageVars['texte']['legaturi'] + ':\n' + pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0][t_ret]['statii'][i]['legaturi'] : "")
+			});
+			$(tr).append(createEl("td", {
+				'style': ((i < pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0][t_ret]['statii'].length - 1) ? 'border-bottom:1px solid #DEDEDE;' : '') + 'text-align:right;padding-right:2px;'
+			}, k), createEl("td", {
+				'style': ((i < pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0][t_ret]['statii'].length - 1) ? 'border-bottom:1px solid #DEDEDE;' : '') + 'padding-left:10px;line-height:23px;'
+			}, pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0][t_ret]['statii'][i]['nume']), ((i > 0) ? createEl("td", {
+				'style': 'width:41px;font-size:10px;text-align:right;padding-right:12px;'
+			}, createEl("div", {
+				'style': 'position:relative;width:100%;'
+			}, createEl("span", {
+				'style': 'position:absolute;width:100%;top:-20px;left:0px;display:block;border:none;'
+			}, calculateDistanta(pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0][t_ret]['statii'][i]['distanta'])))) : (function () {})));
+			$(table).append(tr);
+			k++;
+		};
+	});
+	$(divContentTraseu).append(table);
+	$(divContentTraseu).append(createEl("div", {
+		'class': 'div_copyright'
+	}, pageVars['texte']['copyright']));
+	return divContentTraseu;
+};
+
+function createDivTraseuAutobuzeLinie() {
+	var divTraseu = createEl("div", {
+		'id': 'traseu',
+		'style': 'position:relative;'
+	});
+	$(divTraseu).height($(window).height() - 353);
+	return divTraseu;
+};
+
+function createTabTurRetur(nr) {
+	var aRutaAlternativa = createEl("a", {
+		'class': 'ruta_alternativa',
+		'onmouseover': 'mouseOverTabAutobuzLinie(this,' + nr + ');',
+		'onmouseout': 'mouseOutTabAutobuzLinie(this,' + nr + ');',
+		'onclick': 'clickTabAutobuzLinie(' + nr + ');',
+		'title': ''
+	}, (nr == 0) ? pageVars['texte']['string_tur_retur'] : ((nr == 1) ? pageVars['texte']['string_tur'] : pageVars['texte']['string_retur']));
+	return aRutaAlternativa;
+};
+
+function createTabReturRuta() {
+	var aRetur = createEl("a", {
+		'class': 'ruta_alternativa',
+		'style': 'margin-top: 20px;',
+		'onmouseover': 'mouseOverTabRetur(this);',
+		'onmouseout': 'mouseOutTabRetur(this);',
+		'onclick': 'clickTabRetur(this);',
+		'title': pageVars['texte']['click_retur']
+	}, pageVars['texte']['string_retur']);
+	return aRetur;
+};
+
+function createTaburiTurRetur(nr) {
+	var divRuteAlternative = createEl("div", {
+		'class': 'rute_alternative'
+	});
+	for (var i = 0; i < nr; i++) {
+		$(divRuteAlternative).append(createTabTurRetur(i));
+	};
+	return divRuteAlternative;
+};
+
+function createTaburiAutobuzeRuta(nr) {
+	var divRuteAlternative = createEl("div", {
+		'class': 'rute_alternative'
+	});
+	if (nr > 1) {
+		for (var i = 0; i < nr; i++) {
+			$(divRuteAlternative).append(createTabAutobuzeRuta(i));
+		};
+	};
+	return divRuteAlternative;
+};
+
+function createTabAutobuzeRuta(nr) {
+	var aRutaAlternativa = createEl("a", {
+		'class': 'ruta_alternativa',
+		'onmouseover': 'mouseOverTabAutobuzRuta(this,' + nr + ');',
+		'onmouseout': 'mouseOutTabAutobuzRuta(this,' + nr + ');',
+		'onclick': 'clickTabAutobuzRuta(' + nr + ');',
+		'title': ''
+	}, pageVars['texte']['ruta'] + ' ' + (nr + 1));
+	return aRutaAlternativa;
+};
+
+function createTabDetaliiLinie() {
+	var divParent = createEl("div", {
+		'id': 'content_tab_detalii_linie'
+	});
+	var divBgLateral = createEl("div", {
+		'class': 'bg-content-tab'
+	});
+	var divBgJos = createEl("div", {
+		'class': 'bg-jos-content-tab'
+	});
+	$(divParent).append(createTableSumar(), divBgLateral, divBgJos);
+	return divParent;
+};
+
+function createTabDetaliiRuta() {
+	var divParent = createEl("div", {
+		'id': 'content_tab_detalii_ruta'
+	});
+	var divBgLateral = createEl("div", {
+		'class': 'bg-content-tab'
+	});
+	var divBgJos = createEl("div", {
+		'class': 'bg-jos-content-tab'
+	});
+	$(divParent).append(createTableSumarRuta(), divBgLateral, divBgJos);
+	return divParent;
+};
+
+function createRezultateRutaAutobuze() {
+	var div = createEl("div", {
+		'id': 'rezultate_ruta',
+		'class': 'inner_div',
+		'style': ''
+	});
+	var divBgLateral = createEl("div", {
+		'class': 'bg-content-tab'
+	});
+	var divBgJos = createEl("div", {
+		'class': 'bg-jos-content-tab'
+	});
+	$(div).append(createDivPlecareAutobuzeRuta(), createDivTraseuAutobuzeLinie(), createDivSosireAutobuzeRuta(), divBgLateral, divBgJos);
+	return div;
+};
+
+function createDivPlecareAutobuzeRuta() {
+	var divPlecare = createEl("div", {
+		'id': 'div_plecare'
+	});
+	return divPlecare;
+};
+
+function createDivSosireAutobuzeRuta() {
+	var divSosire = createEl("div", {
+		'id': 'div_sosire'
+	});
+	return divSosire;
+};
+
+function createDivTraseuAutobuzeLinie() {
+	var divTraseu = createEl("div", {
+		'id': 'traseu',
+		'style': 'position:relative;'
+	});
+	$(divTraseu).height($(window).height() - 353);
+	return divTraseu;
+};
+
+function createDivPlecareLinie() {
+	var divPlecare = createEl("div", {
+		'id': 'div_plecare',
+		'title': pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['nume_tip_mijloc'] + ' ' + pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['nume'] + pageVars['texte']['click_derulare_ruta']
+	}, shorterString(pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['nume_tip_mijloc'] + ' ' + pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['nume'], pageVars['generale']['limit_caractere_ruta']));
+	return divPlecare;
+};
+
+function createDivSosireLinie() {
+	var divSosire = createEl("div", {
+		'id': 'div_sosire',
+		'title': pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['nume_tip_mijloc'] + ' ' + pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['nume'] + pageVars['texte']['click_derulare_ruta']
+	}, shorterString(pageVars['texte']['click_derulare'], pageVars['generale']['limit_caractere_ruta']));
+	return divSosire;
+};
+
+function createPlusMinusRutaAutobuz(plecareSosire) {
+	var divImgMinusPlus = createEl("div", {
+		'id': 'div_img_minus_plus_consum',
+		'style': 'float: right;'
+	});
+	var imgMinus = createEl("img", {
+		'src': pathToImg + 'minus-mic.png',
+		'style': 'cursor: pointer;margin-left:10px;',
+		'onclick': 'modifyOrarRutaAutobuz(\'minus\',\'' + ((plecareSosire == 'plecare') ? 'plecare' : 'sosire') + '\');',
+		'title': pageVars['texte'][(plecareSosire == 'plecare') ? 'plecati_mai_devreme' : 'ajungeti_mai_devreme']
+	});
+	var imgPlus = createEl("img", {
+		'src': pathToImg + 'plus-mic.png',
+		'style': 'cursor: pointer; margin-left:7px;',
+		'onclick': 'modifyOrarRutaAutobuz(\'plus\',\'' + ((plecareSosire == 'plecare') ? 'plecare' : 'sosire') + '\');',
+		'title': pageVars['texte'][(plecareSosire == 'plecare') ? 'plecati_mai_tarziu' : 'ajungeti_mai_tarziu']
+	});
+	$(divImgMinusPlus).append(imgMinus, imgPlus);
+	return divImgMinusPlus;
+};
+
+function createContentTraseuAutobuz() {
+	//$("#content_traseu").remove();
+	var divContentTraseu = createEl("div", {
+		'class': 'content_traseu'
+	});
+	var nrCot = 1;
+	var nrBuses = 0;
+	var buses = pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['optiuni']['buses'].split('-');
+	var rs = pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['dataFromAjax']['rute'][pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['optiuni']['ruta_selected']];
+	$.each(rs['order'], function (key, idStatie) {
+		if ($.isEmptyObject(rs[idStatie])) {
+			if (rs['order'][key + 1]) {
+				var det = pageVars['generale']['pointsLinii'][idStatie + '-' + rs['order'][key + 1]];
+				var sec = Math.round(det[2] / pageVars['generale']['viteza_pe_jos_m_s']);
+				var arrayCot = [nrCot, idStatie, [], 0, 0, rs['order'][key + 1], det[2], sec, (rs['order'][key + 2]) ? 0 : 1];
+			};
+		} else {
+			var linii = [];
+			$.each(rs[idStatie], function (idLinie, arrLinii) {
+				linii.push(idLinie);
+			});
+			var det = pageVars['generale']['pointsLinii'][idStatie + '-' + parseInt(buses[nrBuses]) + '-' + rs['order'][key + 1]];
+			var sec = Math.round(det[2] / pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['dataFromAjax']['linii'][parseInt(buses[nrBuses])]['v'] + (rs[idStatie][parseInt(buses[nrBuses])].length + 1) * pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['dataFromAjax']['linii'][parseInt(buses[nrBuses])]['o']);
+			var arrayCot = [nrCot, idStatie, linii, parseInt(buses[nrBuses]), rs[idStatie][parseInt(buses[nrBuses])].length + 1, rs['order'][key + 1], det[2], sec, (rs['order'][key + 2]) ? 0 : 1];
+			nrBuses++;
+		}; if (rs['order'][key + 1]) {
+			$(divContentTraseu).append(createDivCotRutaAutobuz(arrayCot));
+		};
+		nrCot++;
+	});
+	$(divContentTraseu).append(createEl("div", {
+		'class': 'div_copyright'
+	}, pageVars['texte']['copyright']));
+	return divContentTraseu;
+};
+
+function createDivCotRutaAutobuz(arrayCot) {
+	var div = createEl("div", {
+		'class': 'cot',
+		'style': 'border-bottom: 1px dashed #CCCCCC; padding-top: 5px; padding-bottom: 5px;',
+		'onmouseover': 'mouseOverCotRutaAutobuz(this);',
+		'onmouseout': 'mouseOutCotRutaAutobuz(this);',
+		'onclick': 'clickCotRutaAutobuz(this,\'' + arrayCot[1] + '-' + ((arrayCot[2].length > 0) ? arrayCot[3] + '-' : '') + arrayCot[5] + '\');'
+	});
+	$(div).append(createEl("b", {
+		'class': 'numerotare'
+	}, arrayCot[0] + '.'));
+	var divText = createEl("div", {
+		'style': 'margin-left: 18px;' + ((arrayCot[2].length == 0) ? ' display: inline-block; margin-top: -15px;' : '')
+	});
+	if (arrayCot[2].length == 0) {
+		$(divText).append(createText(pageVars['texte']['rute_autobuz']['mergeti_pe_jos'] + ' '));
+	} else {
+		$(div).append(createEl("h3", {
+			'class': 'red'
+		}, pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['dataFromAjax']['statii'][arrayCot[1]]['nume']));
+		var divLinii = createEl("div", {
+			'style': 'height: 20px; margin-bottom: 2px; margin-left: 3px;'
+		});
+		var strLinii = [];
+		$.each(arrayCot[2], function (key, idLinie) {
+			$(divLinii).append(createEl("div", {
+				'style': 'margin-left: ' + ((key == 0) ? 15 : 7) + 'px;',
+				'class': 'nume_linie'
+			}, pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['dataFromAjax']['linii'][idLinie]['n']));
+			if (key < arrayCot[2].length - 1) {
+				$(divLinii).append(createText(','));
+			};
+			if (idLinie != arrayCot[3]) {
+				strLinii.push(pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['dataFromAjax']['linii'][idLinie]['n']);
+			};
+		});
+		$(div).append(divLinii);
+		$(divText).append(createEl("span", {}, pageVars['texte']['rute_autobuz']['luati'] + ' ' + pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['dataFromAjax']['linii'][arrayCot[3]]['t'] + ' '));
+		$(divText).append(createEl("u", {}, pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['dataFromAjax']['linii'][arrayCot[3]]['n']));
+		if (strLinii.length > 0) {
+			$(divText).append(createEl("span", {}, ' (' + pageVars['texte']['rute_autobuz']['sau'] + ' ' + strLinii.join() + ') '));
+		};
+		$(divText).append(createEl("span", {}, ' ' + pageVars['texte']['rute_autobuz']['si_mergeti'] + ' '));
+		$(divText).append(createEl("u", {}, arrayCot[4] + ' ' + ((arrayCot[4] == 1) ? pageVars['texte']['rute_autobuz']['statie'] : pageVars['texte']['rute_autobuz']['statii'])));
+		$(divText).append(createEl("span", {}, ', ' + pageVars['texte']['rute_autobuz']['pana_la_statia'] + ' '));
+	}; if (arrayCot[8] == 1) {
+		$(divText).append(createEl("span", {}, ' ' + pageVars['texte']['rute_autobuz']['de_destinatie'] + ' '));
+	};
+	$(divText).append(createEl("b", {}, pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['dataFromAjax']['statii'][arrayCot[5]]['nume']));
+	$(divText).append(createEl("i", {
+		'style': 'font-size: 9px;',
+		'class': 'grey'
+	}, ' (' + calculateDistanta(arrayCot[6], 1) + ', ' + transformSecundeToText(arrayCot[7], 'simbol') + ')'));
+	$(div).append(divText);
+	return div;
+};
+
+function createTableSumarRuta() {
+	
+	var tr_de_la = createEl("tr",{class:"point"});
+	var tr_pana_la = createEl("tr",{class:"point"});
+	
+	$(tr_de_la).append(createEl("td",{colspan:4}));
+	$(tr_pana_la).append(createEl("td",{colspan:4}));
+	
+	var tr_distanta = createEl("tr");
+	$(tr_distanta).append(createEl("td", {
+		'style': 'width: 50px;',
+		'valign': 'top'
+	}, pageVars['texte']['string_distanta'] + ':'), createEl("td", {
+		'id': 'td_distanta',
+		'valign': 'top'
+	}), createEl("td", {
+		'style': 'width:110px;color:blue;text-align:right;',
+		'id': 'td_plecati_la',
+		'valign': 'top'
+	}, createEl("div", {}, createEl("span"))));
+	$(tr_distanta).children("td").eq(2).children("div").eq(0).append(createPlusMinusRutaAutobuz('plecare'));
+	var tr_timp = createEl("tr");
+	$(tr_timp).append(createEl("td", {
+		'valign': 'top'
+	}, pageVars['texte']['string_timp'] + ':'), createEl("td", {
+		'id': 'td_timp',
+		'valign': 'top'
+	}), createEl("td", {
+		'style': 'width:110px;color:blue;text-align:right;',
+		'id': 'td_ajungeti_la',
+		'valign': 'top'
+	}, createEl("div", {}, createEl("span"))));
+	$(tr_timp).children("td").eq(2).children("div").eq(0).append(createPlusMinusRutaAutobuz('sosire'));
+	var tr_viteza = createEl("tr");
+	$(tr_viteza).append(createEl("td", {
+		'valign': 'top'
+	}, pageVars['texte']['string_viteza'] + ':'), createEl("td", {
+		'id': 'td_viteza',
+		'valign': 'top'
+	}), createEl("td", {
+		'id': 'td_mijloace_statii',
+		'valign': 'top'
+	}));
+	var tr_combi = createEl("tr", {
+		'id': 'tr_combi'
+	});
+	var td_combi = createEl("td", {
+		'colspan': 3
+	});
+	var table_combi = createEl("table", {
+		'style': 'width: 100%; border-bottom: 1px solid #DEDEDE; margin-top: 3px;',
+		'cellspacing': 0,
+		'cellpadding': 0
+	});
+	var tr_combi_1 = createEl("tr", {
+		'style': 'background-color: #DEDEDE;'
+	});
+	$(tr_combi_1).append(createEl("td", {
+		'style': 'width: 80px;'
+	}, pageVars['texte']['pe_jos']), createEl("td", {
+		'style': 'border-left: 2px solid white; border-right: 2px solid white; padding-left: 10px;'
+	}, pageVars['texte']['string_cost']), createEl("td", {
+		'style': 'padding-left: 10px; width: 50px;'
+	}, pageVars['texte']['string_dis']));
+	$(tr_combi_1).children("td:nth-child(3)").append(createIconExplicatiiDis());
+	var tr_combi_2 = createEl("tr");
+	$(tr_combi_2).append(createEl("td", {
+		'id': 'td_pe_jos',
+		'valign': 'top'
+	}), createEl("td", {
+		'style': 'font-weight: bold; color: #DD0000; padding-left: 10px;',
+		'id': 'td_cost',
+		'valign': 'top'
+	}), createEl("td", {
+		'id': 'td_dis',
+		'style': 'padding-left: 10px;',
+		'valign': 'top'
+	}));
+	$(table_combi).append(tr_combi_1, tr_combi_2);
+	$(td_combi).append(table_combi);
+	$(tr_combi).append(td_combi);
+	var tr_valori_medii = createEl("tr");
+	$(tr_valori_medii).append(createEl("td", {
+		'colspan': 3,
+		'style': 'text-align: right; font-style: italic; font-size: 80%;'
+	}, pageVars['texte']['valori_medii_aproximative']));
+	var table = createEl("table", {
+		'style': 'width: 100%;',
+		'id': 'consum',
+		'cellpadding': 1,
+		'cellspacing': 1
+	});
+	$(table).append(tr_de_la, tr_pana_la, tr_distanta, tr_timp, tr_viteza, tr_combi, tr_valori_medii);
+	return table;
+};
+
+function createTableSumar() {
+	var tr_tur_retur = createEl("tr", {
+		'style': 'font-weight:bold;text-align:right;background-color:#DEDEDE;'
+	});
+	$(tr_tur_retur).append(createEl("td", {
+		'style': 'width:60px;'
+	}, '&nbsp;'), createEl("td", {
+		'style': 'padding-right:10px;border-left:2px solid white;width:85px;'
+	}, pageVars['texte']['string_tur_caps']), createEl("td", {
+		'style': 'padding-right:10px;border-left:2px solid white;width:85px;'
+	}, pageVars['texte']['string_retur_caps']));
+	var tr_distanta = createEl("tr");
+	$(tr_distanta).append(createEl("td", {
+		'style': 'padding:2px;border-bottom:1px solid #F6F6F6;'
+	}, pageVars['texte']['string_distanta']), createEl("td", {
+		'id': 'detalii_linie_distanta_tur',
+		'style': 'padding:2px 10px 2px 2px;text-align:right;border-bottom:1px solid #F6F6F6;'
+	}), createEl("td", {
+		'id': 'detalii_linie_distanta_retur',
+		'style': 'padding:2px 10px 2px 2px;text-align:right;border-bottom:1px solid #F6F6F6;'
+	}));
+	var tr_timp = createEl("tr");
+	$(tr_timp).append(createEl("td", {
+		'style': 'padding:2px;border-bottom:1px solid #F6F6F6;'
+	}, pageVars['texte']['string_timp']), createEl("td", {
+		'id': 'detalii_linie_timp_tur',
+		'style': 'padding:2px 10px 2px 2px;text-align:right;border-bottom:1px solid #F6F6F6;'
+	}), createEl("td", {
+		'id': 'detalii_linie_timp_retur',
+		'style': 'padding:2px 10px 2px 2px;text-align:right;border-bottom:1px solid #F6F6F6;'
+	}));
+	var tr_cost = createEl("tr");
+	$(tr_cost).append(createEl("td", {
+		'style': 'padding:2px;border-bottom:1px solid #F6F6F6;'
+	}, pageVars['texte']['string_cost']), createEl("td", {
+		'id': 'detalii_linie_cost_tur',
+		'style': 'padding:2px 10px 2px 2px;text-align:right;border-bottom:1px solid #F6F6F6;'
+	}), createEl("td", {
+		'id': 'detalii_linie_cost_retur',
+		'style': 'padding:2px 10px 2px 2px;text-align:right;border-bottom:1px solid #F6F6F6;'
+	}));
+	var tr_dis = createEl("tr");
+	$(tr_dis).append(createEl("td", {
+		'style': 'padding:2px;border-bottom:1px solid #DEDEDE;'
+	}, pageVars['texte']['string_dis']), createEl("td", {
+		'id': 'detalii_linie_dis_tur',
+		'style': 'padding:2px 10px 2px 2px;text-align:right;border-bottom:1px solid #DEDEDE;'
+	}), createEl("td", {
+		'id': 'detalii_linie_dis_retur',
+		'style': 'padding:2px 10px 2px 2px;text-align:right;border-bottom:1px solid #DEDEDE;'
+	}));
+	$(tr_dis).children().first().append(createIconExplicatiiDis());
+	var tr_radio = createEl("tr");
+	var td_radio = createEl("td", {
+		'style': 'padding:2px;',
+		'colspan': 3
+	});
+	$(td_radio).append(createEl("input", {
+		'name': 'tur_retur',
+		'type': 'radio',
+		'id': 'tur-retur',
+		'onclick': 'clickTabAutobuzLinie(0);',
+		'checked': true
+	}), createEl("label", {
+		'for': 'tur-retur'
+	}, pageVars['texte']['string_tur_retur']));
+	$(td_radio).append(createEl("input", {
+		'name': 'tur_retur',
+		'type': 'radio',
+		'id': 'tur',
+		'onclick': 'clickTabAutobuzLinie(1);',
+		'style': 'margin-left:20px;'
+	}), createEl("label", {
+		'for': 'tur'
+	}, pageVars['texte']['string_tur']));
+	$(td_radio).append(createEl("input", {
+		'name': 'tur_retur',
+		'type': 'radio',
+		'id': 'retur',
+		'onclick': 'clickTabAutobuzLinie(2);',
+		'style': 'margin-left:20px;'
+	}), createEl("label", {
+		'for': 'retur'
+	}, pageVars['texte']['string_retur']));
+	$(tr_radio).append(td_radio);
+	var table = createEl("table", {
+		'style': 'width: 100%;',
+		'id': 'detalii_linie',
+		'cellpadding': 1,
+		'cellspacing': 0
+	});
+	$(table).append(tr_tur_retur, tr_distanta, tr_timp, tr_cost, tr_dis, tr_radio);
+	return table;
+};
+
+function createRezultateRuta() {
+	var div = createEl("div", {
+		'id': 'rezultate_ruta',
+		'class': 'inner_div',
+		'style': ''
+	});
+	var divBgLateral = createEl("div", {
+		'class': 'bg-content-tab'
+	});
+	var divBgJos = createEl("div", {
+		'class': 'bg-jos-content-tab'
+	});
+	$(div).append(createDivPlecare(), createDivTraseu(), createDivSosire(), divBgLateral, divBgJos);
+	return div;
+};
+
+function createDivTraseu() {
+	var divTraseu = createEl("div", {
+		'id': 'traseu'
+	});
+	$(divTraseu).height($(window).height() - 398);
+	$(divTraseu).append(createContentTraseu());
+	return divTraseu;
+};
+
+function createCot(text, nr, tip) {
+	var img = createEl("img", {
+		'src': pathToImg + 'pin.png',
+		style: "display: none;"
+	});
+	var spanNr = createEl("span", {
+		'class': 'nr',
+		style: "display: none;"
+	}, nr);
+	var divImg = createEl("div", {
+		class: "leaflet-routing-icon leaflet-routing-icon-"+tip
+	});
+	var spanText = createEl("span", {
+		'class': 'text'
+	}, text);
+	var divCot = createEl("div", {
+		'class': 'cot',
+		'onmouseover': 'cotOver(this);',
+		'onmouseout': 'cotOut(this);',
+		'onclick': 'clickCot(this);'
+	});
+	$(divCot).append(divImg, img, spanText, spanNr);
+	return divCot;
+};
+
+function createInterCot(distantaText) {
+	var spanKm = createEl("span", {
+		'class': 'km'
+	}, distantaText);
+	var divBorderCot = createEl("div", {
+		'class': 'div_border'
+	});
+	$(divBorderCot).append(spanKm);
+	return divBorderCot;
+};
+
+function createSchimbaRuta() {
+	var div = createEl("div", {
+		'id': 'schimba_rute',
+		'style': 'width:' + pageVars['texte']['schimba_localitatile'][tipRuta][moduriCautare][1] + 'px;right:' + pageVars['texte']['schimba_localitatile'][tipRuta][moduriCautare][2] + 'px;',
+		'onclick': 'changeLocalitati();'
+	}, pageVars['texte']['schimba_localitatile'][tipRuta][moduriCautare][0]);
+	return div;
+};
+
+function createDivCautareRuta() {
+	var divCautareRuta = createEl("div", {
+		'id': 'cautare_ruta',
+		'class': 'inner_div',
+		'style': 'line-height: normal;'
+	}, createDivCautareRutaInner());
+	return divCautareRuta;
+};
+
+function createDivCautareRutaInner() {
+	var tableCautareRuta = createEl("table", {
+		'id': 'table_cautare'
+	});
+	var tableCautareRutaTr1 = createEl("tr");
+	var tableCautareRutaTr1Td1 = createEl("td");
+	var tableCautareRutaTr1Td2 = createEl("td", {
+		'valign': 'top',
+		'colspan': '2'
+	});
+	$(tableCautareRutaTr1Td2).append(createEl("b", {
+		'id': 'b_string_cautare'
+	}, '&nbsp;'));
+	$(tableCautareRutaTr1).append(tableCautareRutaTr1Td1, tableCautareRutaTr1Td2);
+	var tableCautareRutaTr2 = createEl("tr");
+	var tableCautareRutaTr2Td1 = createEl("td", {}, createButonAddDestinatie());
+	var tableCautareRutaTr2Td2 = createEl("td", {
+		'style': 'text-align: right; width: 155px;'
+	});
+	$(tableCautareRutaTr2Td2).append(createTextAddDestinatie(), createButonVeziDirectii());
+	var tableCautareRutaTr2Td3 = createEl("td");
+	$(tableCautareRutaTr2).append(tableCautareRutaTr2Td1, tableCautareRutaTr2Td2, tableCautareRutaTr2Td3);
+	$(tableCautareRuta).append(tableCautareRutaTr1, tableCautareRutaTr2);
+	var divCautareRuta = createEl("div", {
+		'id': 'cautare_ruta_inner',
+		'class': 'inner_div'
+	}, tableCautareRuta);
+	var divBgLateralRuta = createEl("div", {
+		'class': 'bg-content-tab'
+	});
+	var divBgJosRuta = createEl("div", {
+		'class': 'bg-jos-content-tab'
+	});
+	$(divCautareRuta).append(divBgLateralRuta, divBgJosRuta, createAOptiuni());
+	return divCautareRuta;
+};
+
+function createAOptiuni() {
+	var aOptiuni = createEl("a", {
+		'href': 'javascript:void(0);',
+		'id': 'optiuni',
+		'onclick': 'clickOptiuni();',
+		'title': pageVars['texte']['afiseaza_mai_multe_optiuni']
+	}, pageVars['texte']['optiuni']);
+	return aOptiuni;
+};
+
+function createButonAddDestinatie() {
+	var imgAddDestinatie = createEl("img", {
+		'src': pathToImg + 'add-leg.png',
+		'title': pageVars['texte']['adauga_destinatie']
+	});
+	var aAddDestinatie = createEl("a", {
+		'href': 'javascript:void(0);',
+		'onclick': 'adaugaDestinatie();',
+		'id': 'buton_adauga_destinatie'
+	}, imgAddDestinatie);
+	$(aAddDestinatie).append(imgAddDestinatie);
+	return aAddDestinatie;
+};
+
+function createTextAddDestinatie() {
+	var aAddDestinatie = createEl("a", {
+		'id': 'adauga_destinatie',
+		'href': 'javascript:void(0);',
+		'onclick': 'adaugaDestinatie();',
+		'title': pageVars['texte']['title_adauga_destinatie']
+	}, pageVars['texte']['adauga_destinatie']);
+	return aAddDestinatie;
+};
+
+function createButonVeziDirectii() {
+	var butonVeziDirectii = createEl("input", {
+		'type': 'button',
+		'class': 'buton-verde',
+		'id': 'buton_vezi_directii',
+		'onclick': 'clickVeziDirectii();'
+	});
+	return butonVeziDirectii;
+};
+
+function createTabDetaliiBlaBlaCar() {
+	var divParent = createEl("div", {
+		'id': 'content_tab_detalii_blablacar',
+		'class': 'blablacar'
+	});
+	$(divParent).append("Economise"+String.fromCharCode(351)+"te p"+String.fromCharCode(226)+"n"+String.fromCharCode(259)+" la <span class=\"economie_blablacar\" id=\"pret_blablacar\"></span>");
+	$(divParent).append(
+		$(createEl("table",{'class':"blablacar","cellspacing":0,"cellpadding":0})).append(
+			$(createEl("tr")).append(
+				$(createEl("td")).append("<span style=\"font-size: 9px; color: #000000;\">"+String.fromCharCode(206)+"n colaborare cu:</span><br /><a href=\"https://www.blablacar.ro/cum-functioneaza-ridesharing\" target=\"_blank\"><img src=\""+pathToImg+"blablacar-logo.png\" style=\"margin-top: 5px;\" width=77 height=13 title=\"Ce este "+String.fromCharCode(351)+"i cum func"+String.fromCharCode(355)+"ioneaza Blablacar\" /></a>"),
+				$(createEl("td",{style:"text-align: right;"})).append(
+					$(createEl("a",{
+						href:"#",
+						'id': 'link_blablacar',
+						'target': '_blank',
+						'onclick': 'clickBlaBlaCar(this);'
+					})).append(
+						createEl("img",{src:pathToImg+"blablacar-buton2.jpg",style:"margin-top: 5px;",width:130,height:26})
+					)
+				)
+			)
+		)
+	);
+	return divParent;
+};
+
+function createTabDetaliiBlaBlaCar2() {
+	var divParent = createEl("div", {
+		'id': 'content_tab_detalii_blablacar2',
+		'class': 'blablacar'
+	});
+	$(divParent).append("Economise"+String.fromCharCode(351)+"te p"+String.fromCharCode(226)+"n"+String.fromCharCode(259)+" la <span class=\"economie_blablacar\" id=\"pret_blablacar2\"></span>");
+	$(divParent).append(
+		$(createEl("table",{'class':"blablacar","cellspacing":0,"cellpadding":0})).append(
+			$(createEl("tr")).append(
+				$(createEl("td")).append("<span style=\"font-size: 9px; color: #000000;\">"+String.fromCharCode(206)+"n colaborare cu:</span><br /><a href=\"https://www.blablacar.ro/cum-functioneaza-ridesharing\" target=\"_blank\"><img src=\""+pathToImg+"blablacar-logo.png\" style=\"margin-top: 5px;\" width=77 height=13 title=\"Ce este "+String.fromCharCode(351)+"i cum func"+String.fromCharCode(355)+"ioneaza Blablacar\" /></a>"),
+				$(createEl("td",{style:"text-align: right;"})).append(
+					$(createEl("a",{
+						href:"#",
+						'id': 'link_blablacar2',
+						'target': '_blank',
+						'onclick': 'clickBlaBlaCar2(this);'
+					})).append(
+						createEl("img",{src:pathToImg+"blablacar-buton2.jpg",style:"margin-top: 5px;",width:130,height:26})
+					)
+				)
+			)
+		)
+	);
+	return divParent;
+};
+
+function createTabDetaliiAutohop() {
+	var divParent = createEl("div", {
+		'id': 'content_tab_detalii_autohop'
+	});
+	var divBgLateral = createEl("div", {
+		'class': 'bg-content-tab'
+	});
+	var divBgJos = createEl("div", {
+		'class': 'bg-jos-content-tab'
+	});
+	$(divParent).append(createTableAutohop(), divBgLateral, divBgJos);
+	return divParent;
+};
+
+function createTableAutohop() {
+	var table = $(createEl("table",{'class':"autohop","cellspacing":0,"cellpadding":0})).append(
+		$(createEl("tr")).append(
+			$(createEl("td",{"width":"48%","valign":"top","style":"font-size: 12px;"})).append("<b>Ofer"+String.fromCharCode(259)+"-"+String.fromCharCode(355)+"i locul liber!</b><br /><br /><span style=\"font-size: 9px; margin-left: 7px;\">"+String.fromCharCode(206)+"n colaborare cu:</span><br /><a href=\"https://www.autohop.ro/infopages/learnmore\" target=\"_blank\"><img src=\""+pathToImg+"autohop-logo.png\" title=\"Ce este "+String.fromCharCode(351)+"i cum func"+String.fromCharCode(355)+"ioneaz"+String.fromCharCode(259)+" AutoHop\" style=\"margin-top: 5px; margin-left: 7px;\" width=72 height=14 /></a>"),
+			$(createEl("td",{"width":"52%","valign":"top","style":"text-align: center;color: #009A2C;"})).append("Economise"+String.fromCharCode(351)+"te p"+String.fromCharCode(226)+"n"+String.fromCharCode(259)+" la<br /><span class=\"economie_autohop\" id=\"pret_autohop\"></span><br /><a href=\"#\" id=\"link_autohop\" onclick=\"clickAutohop(this);\" target=\"_blank\"><img src=\""+pathToImg+"autohop-buton.jpg\" style=\"margin-top: 5px;\" width=105 height=25 /></a>")
+		)
+	);
+	return table;
+};
+
+function createTabDetaliiConsum() {
+	var divParent = createEl("div", {
+		'id': 'content_tab_detalii_consum'
+	});
+	var divBgLateral = createEl("div", {
+		'class': 'bg-content-tab'
+	});
+	var divBgJos = createEl("div", {
+		'class': 'bg-jos-content-tab'
+	});
+	$(divParent).append(createTableConsum(), divBgLateral, divBgJos);
+	return divParent;
+};
+
+function createPlusMinusConsum() {
+	var divImgMinusPlus = createEl("div", {
+		'id': 'div_img_minus_plus_consum',
+		'style': 'float: right;'
+	});
+	var imgMinus = createEl("img", {
+		'src': pathToImg + 'minus-mic.png',
+		'style': 'cursor: pointer;',
+		'onclick': 'modifyConsum(\'minus\');',
+		'title': pageVars['texte']['micsorati_consumul']
+	});
+	var imgPlus = createEl("img", {
+		'src': pathToImg + 'plus-mic.png',
+		'style': 'cursor: pointer; margin-left: 7px;',
+		'onclick': 'modifyConsum(\'plus\');',
+		'title': pageVars['texte']['mariti_consumul']
+	});
+	$(divImgMinusPlus).append(imgMinus, imgPlus);
+	return divImgMinusPlus;
+};
+
+function createPlusMinusViteza() {
+	var divImgMinusPlus = createEl("div", {
+		'id': 'div_img_minus_plus_viteza',
+		'style': 'float: right;'
+	});
+	var imgMinus = createEl("img", {
+		'src': pathToImg + 'minus-mic.png',
+		'style': 'cursor: pointer;',
+		'onclick': 'modifyViteza(\'minus\');',
+		'title': pageVars['texte']['micsorati_viteza']
+	});
+	var imgPlus = createEl("img", {
+		'src': pathToImg + 'plus-mic.png',
+		'style': 'cursor: pointer; margin-left: 7px;',
+		'onclick': 'modifyViteza(\'plus\');',
+		'title': pageVars['texte']['mariti_viteza']
+	});
+	$(divImgMinusPlus).append(imgMinus, imgPlus);
+	return divImgMinusPlus;
+};
+
+function createPlusMinusTimp() {
+	var divImgMinusPlus = createEl("div", {
+		'id': 'div_img_minus_plus_timp',
+		'style': 'float: right;'
+	});
+	var imgMinus = createEl("img", {
+		'src': pathToImg + 'minus-mic.png',
+		'style': 'cursor: pointer;',
+		'onclick': 'modifyTimp(\'minus\');',
+		'title': pageVars['texte']['micsorati_timpul']
+	});
+	var imgPlus = createEl("img", {
+		'src': pathToImg + 'plus-mic.png',
+		'style': 'cursor: pointer; margin-left: 7px;',
+		'onclick': 'modifyTimp(\'plus\');',
+		'title': pageVars['texte']['mariti_timpul']
+	});
+	$(divImgMinusPlus).append(imgMinus, imgPlus);
+	return divImgMinusPlus;
+};
+
+/* function createContentTabViteza() {
+	var divContentTabViteza = createEl("div", {
+		'id': 'content_tab_viteza_consum',
+		'style': 'display: none; width: 630px; height: 210px;'
+	});
+	var divViteza = createEl("div", {
+		'id': 'chart_viteza',
+		'class': 'chart-gauge'
+	});
+	var divTimp = createEl("div", {
+		'id': 'chart_timp',
+		'class': 'chart-gauge'
+	});
+	var divConsum = createEl("div", {
+		'id': 'chart_consum',
+		'class': 'chart-gauge'
+	});
+	var divBgLateralViteza = createEl("div", {
+		'class': 'bg-content-tab'
+	});
+	var divBgJosViteza = createEl("div", {
+		'class': 'bg-jos-content-tab'
+	});
+	$(divContentTabViteza).append(divBgLateralViteza, divBgJosViteza, divViteza, divTimp, divConsum);
+	return divContentTabViteza;
+}; */
+
+/* function createContentTabElevatie() {
+	var divContentTabElevatieInside = createEl("div", {
+		'id': 'content_tab_elevatia_inside',
+		'style': 'width: 670px; height: 200px; padding-left: 10px; background-image: none;'
+	});
+	var divContentTabElevatie = createEl("div", {
+		'id': 'content_tab_elevatia',
+		'style': 'display: none; width: 700px; height: 200px;'
+	}, divContentTabElevatieInside);
+	var divBgLateralElevatie = createEl("div", {
+		'class': 'bg-content-tab'
+	});
+	var divBgJosElevatie = createEl("div", {
+		'class': 'bg-jos-content-tab'
+	});
+	$(divContentTabElevatie).append(divBgLateralElevatie, divBgJosElevatie);
+	return divContentTabElevatie;
+}; */
+
+function createContentTabOrar(linieStatie) {
+	if (linieStatie == 'linie') {
+		var divInside = createEl("div", {
+			'id': 'content_tab_orar_inside',
+			'style': 'width: auto; height: auto; padding-left: 10px; background-image: none;'
+		}, createTableOrarLinie());
+	} else if (linieStatie == 'statie') {
+		var divInside = createEl("div", {
+			'id': 'content_tab_orar_inside',
+			'style': 'width: auto; height: auto; padding-left: 10px; background-image: none;'
+		}, createTableOrarStatie());
+	} else if (linieStatie == 'ruta') {
+		var divInside = createEl("div", {
+			'id': 'content_tab_orar_inside',
+			'style': 'width: auto; height: auto; padding-left: 10px; background-image: none;'
+		}, createTableOrarRuta());
+	};
+	var div = createEl("div", {
+		'id': 'content_tab_orar',
+		'style': 'display: none; width: auto; height: auto;'
+	}, divInside);
+	var divBgLateral = createEl("div", {
+		'class': 'bg-content-tab'
+	});
+	var divBgJos = createEl("div", {
+		'class': 'bg-jos-content-tab'
+	});
+	$(div).append(divBgLateral, divBgJos);
+	return div;
+};
+
+function createTableOrarRuta() {
+	var table = createEl("table", {
+		'style': 'padding:10px 10px 10px 0px;font-size:12px;',
+		'cellspacing': 0,
+		'cellpadding': 0
+	});
+	var trHead = createEl("tr", {
+		'style': 'font-weight:bold;color:#E01B4C;background-color:#EAEAEA;text-shadow: 1px 0px 0px #DEDEDE;'
+	});
+	$(trHead).append(createEl("td", {
+		'style': 'border:1px solid #D0D0D0;border-right:none;padding:3px 8px;width:200px;'
+	}, 'Text 1'), createEl("td", {
+		'style': 'border:1px solid #D0D0D0;padding:3px 15px;border-left:1px solid white;',
+		'id': 'td_head_interval_orar'
+	}));
+	var trBody = createEl("tr", {});
+	var form = createEl("table", {
+		'cellspacing': 0,
+		'cellpadding': 0,
+		'style': ''
+	});
+	var td_select = createEl("td", {
+		'style': 'padding:3px 0px;'
+	});
+	var select_statii = createEl("select", {
+		'id': 'select_rute_orar'
+	});
+	$(td_select).append(select_statii);
+	var td_tip_zi = createEl("td", {
+		'style': 'padding:3px 0px;'
+	});
+	var tipuri_zi = createEl("select", {
+		'id': 'select_tip_zi_orar'
+	});
+	var ore = createEl("select", {
+		'id': 'select_ore_orar',
+		'style': 'margin-left:15px;'
+	});
+	$(td_tip_zi).append(tipuri_zi, ore);
+	var trDisclaimer = createEl("tr", {
+		'style': 'font-size:9px;font-style:italic;'
+	}, createEl("td", {
+		'colspan': 2
+	}, pageVars['texte']['disclaimer_orar_linii_autobuz']));
+	$(form).append(createEl("tr", {}, td_select));
+	$(form).append(createEl("tr", {}, td_tip_zi));
+	$(trBody).append(createEl("td", {
+		'valign': 'top'
+	}, form));
+	$(trBody).append(createEl("td", {
+		'id': 'td_orar',
+		'valign': 'top',
+		'style': 'padding:3px 15px 3px 0px;'
+	}));
+	$(table).append(trHead, trBody, trDisclaimer);
+	return table;
+};
+
+function createTableOrarLinie() {
+	var table = createEl("table", {
+		'style': 'padding:10px 10px 10px 0px;font-size:12px;',
+		'cellspacing': 0,
+		'cellpadding': 0
+	});
+	var trHead = createEl("tr", {
+		'style': 'font-weight:bold;color:#E01B4C;background-color:#EAEAEA;text-shadow: 1px 0px 0px #DEDEDE;'
+	});
+	$(trHead).append(createEl("td", {
+		'style': 'border:1px solid #D0D0D0;border-right:none;padding:3px 8px;width:200px;'
+	}, pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['nume_tip_mijloc_articulat'] + " " + pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['nume']), createEl("td", {
+		'style': 'border:1px solid #D0D0D0;padding:3px 15px;border-left:1px solid white;',
+		'id': 'td_head_interval_orar'
+	}));
+	var trBody = createEl("tr", {});
+	var form = createEl("table", {
+		'cellspacing': 0,
+		'cellpadding': 0,
+		'style': ''
+	});
+	var td_radio = createEl("td", {
+		'style': 'padding:3px 0px;'
+	});
+	if (pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['tur']) {
+		$(td_radio).append(createEl("input", {
+			'type': 'radio',
+			'name': 'tur_retur_orar',
+			'id': 'tur_retur_orar_tur',
+			'onclick': 'clickTabAutobuzLinie(1);'
+		}));
+		$(td_radio).append(createEl("label", {
+			'for': 'tur_retur_orar_tur'
+		}, pageVars['texte']['spre'] + pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['tur']['statii'][pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['tur']['statii'].length - 1]['nume']));
+	};
+	if (pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['tur'] && pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['retur']) {
+		$(td_radio).append(createEl("br"));
+	};
+	if (pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['retur']) {
+		$(td_radio).append(createEl("input", {
+			'type': 'radio',
+			'name': 'tur_retur_orar',
+			'id': 'tur_retur_orar_retur',
+			'onclick': 'clickTabAutobuzLinie(2);'
+		}));
+		$(td_radio).append(createEl("label", {
+			'for': 'tur_retur_orar_retur'
+		}, pageVars['texte']['spre'] + pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['retur']['statii'][pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][0]['retur']['statii'].length - 1]['nume']));
+	};
+	var td_select = createEl("td", {
+		'style': 'padding:3px 0px;'
+	});
+	var select_statii = createEl("select", {
+		'id': 'select_statii_orar'
+	});
+	$(td_select).append(select_statii);
+	var td_tip_zi = createEl("td", {
+		'style': 'padding:3px 0px;'
+	});
+	var tipuri_zi = createEl("select", {
+		'id': 'select_tip_zi_orar'
+	});
+	var ore = createEl("select", {
+		'id': 'select_ore_orar',
+		'style': 'margin-left:15px;'
+	});
+	$(td_tip_zi).append(tipuri_zi, ore);
+	var trDisclaimer = createEl("tr", {
+		'style': 'font-size:9px;font-style:italic;'
+	}, createEl("td", {
+		'colspan': 2
+	}, pageVars['texte']['disclaimer_orar_linii_autobuz']));
+	$(form).append(createEl("tr", {}, td_radio));
+	$(form).append(createEl("tr", {}, td_select));
+	$(form).append(createEl("tr", {}, td_tip_zi));
+	$(trBody).append(createEl("td", {
+		'valign': 'top'
+	}, form));
+	$(trBody).append(createEl("td", {
+		'id': 'td_orar',
+		'valign': 'top',
+		'style': 'padding:3px 15px 3px 0px;'
+	}));
+	$(table).append(trHead, trBody, trDisclaimer);
+	return table;
+};
+
+function createContentTabStradaObiectiv() {
+	var divTabStradaObiectiv = createEl("div", {
+		'id': 'content_tab_strada_obiectiv',
+		'style': ''
+	});
+	var divBgLateralStradaObiectiv = createEl("div", {
+		'class': 'bg-content-tab'
+	});
+	var divBgJosStradaObiectiv = createEl("div", {
+		'class': 'bg-jos-content-tab'
+	});
+	var divInputStradaObiectiv = createEl('div', {
+		'class': 'div_input_strada_obiectiv_oras'
+	});
+	var inputStradaObiectiv = createEl('input', {
+		'class': 'input_strada_obiectiv',
+		'value': pageVars['generale']['oras']['string_cautare_strada'],
+		'id': 'input_strada_obiectiv',
+		'onkeydown': 'keyDownStradaObiectiv(this,event);',
+		'tabindex': 1,
+		'onfocus': 'defaultValInputs(this,\'' + pageVars['texte']['cauta_strada_obiectiv'] + pageVars['generale']['oras']['nume'] + '\');',
+		'onblur': 'defaultValInputs(this,\'' + pageVars['texte']['cauta_strada_obiectiv'] + pageVars['generale']['oras']['nume'] + '\');',
+		'onkeyup': 'defaultValInputs(this,\'' + pageVars['texte']['cauta_strada_obiectiv'] + pageVars['generale']['oras']['nume'] + '\');'
+	});
+	$(divInputStradaObiectiv).append(inputStradaObiectiv);
+	if (pageVars['generale']['oras']['string_cautare_strada'] == '') {
+		$(divInputStradaObiectiv).append(createEl("span", {
+			'style': 'font-size: 12px;'
+		}, pageVars['texte']['cauta_strada_obiectiv'] + pageVars['generale']['oras']['nume']));
+	};
+	var imgGo = createEl('img', {
+		'src': pathToImg + 'go.png',
+		'class': 'img_go',
+		'onclick': 'clickCautaObiectiv($("#input_strada_obiectiv"));'
+	});
+	$(divTabStradaObiectiv).append(divInputStradaObiectiv, imgGo, divBgLateralStradaObiectiv, divBgJosStradaObiectiv);
+	return divTabStradaObiectiv;
+};
+
+function createFormularContact() {
+	var divContact = createEl('div');
+	var h1 = createEl('h1', {}, pageVars['texte']['contact_contact']);
+	var pContact = createEl('p');
+	var tableContact = createEl('table', {
+		'style': 'width: 100%'
+	});
+	var tr1 = createEl('tr', {
+		'height': 50
+	});
+	var tdNume = createEl('td', {
+		'valign': 'top'
+	});
+	var divInputNume = createEl("div", {
+		'class': 'div-input-contact'
+	});
+	var inputNume = createEl("input", {
+		'type': 'text',
+		'name': 'nume',
+		'id': 'nume',
+		'tabindex': 1001,
+		'autocomplete': 'off',
+		'class': 'input-contact',
+		'onfocus': 'defaultValInputs(this,\'' + pageVars['texte']['nume_contact'] + '\');',
+		'onblur': 'defaultValInputs(this,\'' + pageVars['texte']['nume_contact'] + '\');',
+		'onkeyup': 'defaultValInputs(this,\'' + pageVars['texte']['nume_contact'] + '\');'
+	});
+	$(divInputNume).append(inputNume, createEl("span", {}, pageVars['texte']['nume_contact']));
+	$(tdNume).append(divInputNume);
+	var tdMesaj = createEl('td', {
+		'rowspan': 2,
+		'valign': 'top'
+	});
+	var divInputMesaj = createEl("div", {
+		'class': 'div-textarea-contact'
+	});
+	var inputMesaj = createEl("textarea", {
+		'name': 'mesaj',
+		'id': 'mesaj',
+		'class': 'textarea-contact',
+		'tabindex': 1004,
+		'onfocus': 'defaultValInputs(this,\'' + pageVars['texte']['mesaj_contact'] + '\');',
+		'onblur': 'defaultValInputs(this,\'' + pageVars['texte']['mesaj_contact'] + '\');',
+		'onkeyup': 'defaultValInputs(this,\'' + pageVars['texte']['mesaj_contact'] + '\');'
+	});
+	$(divInputMesaj).append(inputMesaj, createEl("span", {}, pageVars['texte']['mesaj_contact']));
+	var mesajAfter = createEl('span', {
+		'id': 'mesaj_after_contact'
+	});
+	$(tdMesaj).append(divInputMesaj, mesajAfter);
+	$(tr1).append(tdNume, tdMesaj);
+	var tr2 = createEl('tr', {
+		'height': 50
+	});
+	var tdEmail = createEl('td', {
+		'valign': 'top'
+	});
+	var divInputEmail = createEl("div", {
+		'class': 'div-input-contact'
+	});
+	var inputEmail = createEl("input", {
+		'type': 'text',
+		'name': 'email',
+		'id': 'email',
+		'tabindex': 1002,
+		'autocomplete': 'off',
+		'class': 'input-contact',
+		'onfocus': 'defaultValInputs(this,\'' + pageVars['texte']['email_contact'] + '\');',
+		'onblur': 'defaultValInputs(this,\'' + pageVars['texte']['email_contact'] + '\');',
+		'onkeyup': 'defaultValInputs(this,\'' + pageVars['texte']['email_contact'] + '\');'
+	});
+	$(divInputEmail).append(inputEmail, createEl("span", {}, pageVars['texte']['email_contact']));
+	$(tdEmail).append(divInputEmail);
+	$(tr2).append(tdEmail);
+	var tr3 = createEl('tr', {
+		'height': 50
+	});
+	var tdTelefon = createEl('td', {
+		'valign': 'top'
+	});
+	var divInputTelefon = createEl("div", {
+		'class': 'div-input-contact'
+	});
+	var inputTelefon = createEl("input", {
+		'type': 'text',
+		'name': 'telefon',
+		'id': 'telefon',
+		'tabindex': 1003,
+		'autocomplete': 'off',
+		'class': 'input-contact',
+		'onfocus': 'defaultValInputs(this,\'' + pageVars['texte']['telefon_contact'] + '\');',
+		'onblur': 'defaultValInputs(this,\'' + pageVars['texte']['telefon_contact'] + '\');',
+		'onkeyup': 'defaultValInputs(this,\'' + pageVars['texte']['telefon_contact'] + '\');'
+	});
+	$(divInputTelefon).append(inputTelefon, createEl("span", {}, pageVars['texte']['telefon_contact']));
+	$(tdTelefon).append(divInputTelefon);
+	var tdButon = createEl('td', {
+		'valign': 'top',
+		'style': 'text-align: right;'
+	});
+	var divInputButon = createEl("div", {});
+	var inputButon = createEl("input", {
+		'type': 'button',
+		'class': 'buton-verde',
+		'id': 'trimite_contact',
+		'tabindex': 1005,
+		'onclick': 'trimiteContact();',
+		'value': pageVars['texte']['trimite_contact'],
+		'style': 'margin-right: 5px;'
+	});
+	$(divInputButon).append(inputButon, createEl("span", {}));
+	$(tdButon).append(divInputButon);
+	$(tr3).append(tdTelefon, tdButon);
+	$(tableContact).append(tr1, tr2, tr3);
+	$(pContact).append(tableContact);
+	$(divContact).append(h1, pContact);
+	return divContact;
+};
+
+function createSpanTopDefault() {
+	var spanParent = createEl("span", {
+		'id': 'default',
+		'style': 'margin-top: 5px;'
+	});
+	$(spanParent).append(createText(pageVars['texte']['mesaje_top'][tipRuta][randomNumber(0, pageVars['texte']['mesaje_top'][tipRuta].length - 1)]));
+	return spanParent;
+};
+
+function createTopBlablacar(){
+	var aWidth = $(window).width()-406;
+	var a = createEl("a",{
+		href: "https://www.blablacar.ro/lp/rodistanta?redirect_to=blablacar_trip_publication_step1&p=distanta&hide_map=1&from=&to=&waypoints=&comuto_cmkt=RO_DISTANTA_DRVR_TOPHEADER&utm_source=DISTANTA&utm_medium=banner&utm_campaign=RO_DISTANTA_DRVR_TOPHEADER",
+		//style: "display: inline-block; width: 950px; height: 60px; margin-top: -8px; margin-right: 18px; float: right;",
+		style: "display: block; position: absolute; right: 33px; top: 0px; max-width: 950px; overflow: hidden; height: 60px; width: "+aWidth+"px !important",
+		target: "_blank",
+		id: "top_blablacar",
+		onclick: "clickBlaBlaCarTop(this);"
+	});
+	$(a).append(createEl("img",{
+		src: pathToImg+"blablacar_top_950.gif",
+		style: "position: absolute; top: 0px; right: 0px; width: 950px; height: 60px;"
+	}));
+	return a;
+};
+
+function createSpanTopOras(oras, exA, exB) {
+	var spanParent = createEl("span", {
+		'id': 'oras',
+		'style': 'margin-top: -5px;'
+	});
+	var spanOrasMare = createEl("span", {
+		'id': 'oras_pg_orasului',
+		'style': 'margin-top: 5px;'
+	}, oras);
+	var spanOrasMic = createEl("span", {
+		'id': 'text-exemplu-oras',
+		'style': 'font-weight: bold;'
+	}, oras);
+	var spanExA = createEl("span", {
+		'id': 'text-exemplu-a'
+	}, exA);
+	var spanExB = createEl("span", {
+		'id': 'text-exemplu-b'
+	}, exB);
+	var imgA = createEl("img", {
+		'src': pathToImg + 'litere/a.png'
+	});
+	var imgB = createEl("img", {
+		'src': pathToImg + 'litere/b.png'
+	});
+	var br = createEl("br", {});
+	$(spanParent).append(spanOrasMare, createText(pageVars['texte']['string_top_oras']), spanOrasMic, createText(pageVars['texte']['ex_top_oras']), br, imgA, createSpace(), spanExA, createSpace(), imgB, createSpace(), spanExB);
+	return spanParent;
+};
+
+function createSpanTopOrasOrasLinieDreapta(plecare, sosire, distanta) {
+	var spanParent = createEl("span", {
+		'id': 'orase'
+	});
+	var spanPlecare = createEl("span", {
+		'id': 'plecare',
+		'title': plecare
+	}, shorterString(plecare, pageVars['generale']['limit_caractere_ruta']));
+	var spanSosire = createEl("span", {
+		'id': 'sosire',
+		'title': sosire
+	}, shorterString(sosire, pageVars['generale']['limit_caractere_ruta']));
+	var spanSpatiu = createEl("span", {}, '&nbsp;-&nbsp;');
+	var spanBg = createEl("span", {
+		'id': 'bg'
+	}, ":");
+	var spanKm = createEl("span", {
+		'id': 'km'
+	}, distanta);
+	$(spanParent).append(spanPlecare, spanSpatiu, spanSosire, spanBg, spanKm);
+	return spanParent;
+};
+
+function createSpanTopAutobuzeLinie(tipMijloc, numeAutobuz, oras) {
+	var spanParent = createEl("span", {
+		'id': 'orase',
+		'class': 'autobuze'
+	});
+	var span = createEl("span", {
+		'id': 'plecare'
+	}, tipMijloc + ' ' + numeAutobuz + ' ' + oras, pageVars['generale']['limit_caractere_ruta']);
+	$(spanParent).append(span);
+	return spanParent;
+};
+
+function createSpanTopOrasOras(plecare, sosire, distanta, timp) {
+	var spanParent = createEl("span", {
+		'id': 'orase'
+	});
+	var spanPlecare = createEl("span", {
+		'id': 'plecare',
+		'title': plecare
+	}, shorterString(plecare, pageVars['generale']['limit_caractere_ruta']));
+	var spanSosire = createEl("span", {
+		'id': 'sosire',
+		'title': sosire
+	}, shorterString(sosire, pageVars['generale']['limit_caractere_ruta']));
+	var spanSpatiu = createEl("span", {}, '&nbsp;-&nbsp;');
+	var spanBg = createEl("span", {
+		'id': 'bg'
+	}, ":");
+	var spanKm = createEl("span", {
+		'id': 'km'
+	}, distanta);
+	var spanTimp = createEl("span", {
+		'id': 'timp'
+	}, timp);
+	var spanSeparator = createEl("span", {
+		'id': 'separator'
+	}, "&#149;");
+	var imgCeas = createEl("img", {
+		'src': pathToImg + 'ceas.png',
+		'style': 'width: 25px; margin-top: -3px;'
+	});
+	$(spanParent).append(spanPlecare, spanSpatiu, spanSosire, spanBg, spanKm, spanSeparator, imgCeas, spanTimp);
+	return spanParent;
+};
+
+function createInputRuta(lit) {
+	var literaRuta = createEl("img", {
+		'src': pathToImg + 'litere/' + lit.toLowerCase() + '.png',
+		'class': 'litera',
+		'onclick': 'clickLiteraInput(this,\'' + lit.toLowerCase() + '\');'
+	});
+	var divInputRuta = createEl("div", {
+		'class': 'div-input-ruta'
+	});
+	var inputRuta = createEl("input", {
+		'type': 'text',
+		'name': 'dest[]',
+		'class': 'input-ruta',
+		'onkeydown': 'keyDownCalculRuta(this,event);',
+		'tabindex': 1
+	});
+	$(divInputRuta).append(inputRuta, createEl("span", {
+		'onclick': '$(this).parent().children("input").focus();'
+	}));
+	var trInputRuta = createEl("tr");
+	var trInputRutaTd1 = createEl("td", {}, literaRuta);
+	var trInputRutaTd2 = createEl("td", {}, divInputRuta);
+	var trInputRutaTd3 = createEl("td");
+	$(trInputRuta).append(trInputRutaTd1, trInputRutaTd2, trInputRutaTd3);
+	return trInputRuta;
+};
+
+function createSwitchLocalitati() {
+	var imgSwitchLocalitati = createEl("img", {
+		'src': pathToImg + 'switch-localitati.png',
+		'title': pageVars['texte']['inverseaza_localitatile']
+	});
+	var aSwitchLocalitati = createEl("a", {
+		'id': 'switch-localitati',
+		'href': 'javascript:void(0);',
+		'onclick': 'switchLocalitati();'
+	}, imgSwitchLocalitati);
+	return aSwitchLocalitati;
+};
+
+function createSelectSuggest(indexObjFor) {
+	$(".img_select_suggest").remove();
+	var img = createEl("img", {
+		'src': pathToImg + 'select-element.png',
+		'class': 'img_select_suggest',
+		'title': pageVars['texte']['selectati_o_statie']
+	});
+	return img;
+};
+
+function createDivAvansat() {
+	var divAvansat = createEl("div", {
+		'id': 'div_avansat'
+	});
+	var tableAvansat = createEl("table", {
+		'cellspacing': 0,
+		'cellpadding': 0,
+		'style': "width: 100%;"
+	});
+	var tableAvansatBody = createEl("tbody");
+	var tableAvansatTr1 = createEl("tr");
+	var tableAvansatTr1Td1 = createEl("td", {
+		'valign': 'top'
+	}, createDivTipTraseu());
+	var tableAvansatTr1Td2 = createEl("td", {
+		'valign': 'top',
+		'rowspan': '3',
+		'id': 'td_choose_color'
+	});
+	$(tableAvansatTr1Td2).append(createCuloriTraseu());
+	$(tableAvansatTr1).append(tableAvansatTr1Td1, tableAvansatTr1Td2);
+	var tableAvansatTr2 = createEl("tr");
+	var tableAvansatTr2Td1 = createEl("td", {
+		'valign': 'top',
+		'style': 'padding-top: 5px; overflow: hidden;'
+	});
+	$.each(pageVars['tip_rute'], function (key, value) {
+		$(tableAvansatTr2Td1).append(createOptiuni(value));
+	});
+	$(tableAvansatTr2).append(tableAvansatTr2Td1);
+	var tableAvansatTr3 = createEl("tr");
+	var tableAvansatTr3Td1 = createEl("td", {
+		'valign': 'bottom',
+		'style': 'text-align: right; padding: 2px 5px;'
+	});
+	var divKmMile = createEl("div", {
+		'id': 'div_unitati_masura_distante'
+	});
+	$(tableAvansatTr3Td1).append(divKmMile);
+	$.each(pageVars['generale']['unitati_masura_distante'], function (key, value) {
+		$(divKmMile).append(createInputUM(key), createLabelUM(key));
+	});
+	$(tableAvansatTr3).append(tableAvansatTr3Td1);
+	$(tableAvansatBody).append(tableAvansatTr1, tableAvansatTr2, tableAvansatTr3);
+	$(tableAvansat).append(tableAvansatBody);
+	$(divAvansat).append(tableAvansat);
+	var divBgLateralRuta = createEl("div", {
+		'class': 'bg-content-tab'
+	});
+	var divBgJosRuta = createEl("div", {
+		'class': 'bg-jos-content-tab'
+	});
+	$(divAvansat).append(divBgLateralRuta, divBgJosRuta);
+	return divAvansat;
+};
+
+function createInputUM(key) {
+	var inputUM = createEl("input", {
+		'type': 'radio',
+		'name': 'unitati_masura',
+		'value': pageVars['generale']['unitati_masura_distante'][key][2],
+		'id': 'unitati_masura_' + pageVars['generale']['unitati_masura_distante'][key][2],
+		'style': 'width: auto;',
+		'onclick': 'clickUnitatiMasura(this);'
+	});
+	return inputUM;
+};
+
+function createLabelUM(key) {
+	var labelUM = createEl("label", {
+		'for': 'unitati_masura_' + pageVars['generale']['unitati_masura_distante'][key][2]
+	}, pageVars['generale']['unitati_masura_distante'][key][1]);
+	return labelUM;
+};
+
+function createConsumAuto() {
+	var div = createEl("div", {
+		'id': 'optiuni-consum-auto'
+	}, createEl("span", {
+		'title': pageVars['texte']['string_consum_mediu'],
+		'id': 'consum_selector_optiuni'
+	}, returnNumberWithDecimals(calculateVolumCarburant(), 1) + ' ' + pageVars['generale']['unitati_masura_volum'][pageVars['generale']['default_um']][1] + '/100 ' + pageVars['generale']['unitati_masura_distante'][pageVars['generale']['default_um']][1]));
+	$(div).append(createEl("img", {
+		'src': pathToImg + 'minus-mic.png',
+		'style': 'cursor: pointer; margin-left: 10px; vertical-align: middle;',
+		'onclick': 'modificaConsumAutoOptiuni(\'minus\');',
+		'title': pageVars['texte']['micsorati_consumul']
+	}));
+	$(div).append(createEl("img", {
+		'src': pathToImg + 'plus-mic.png',
+		'style': 'cursor: pointer; margin-left: 5px; vertical-align: middle;',
+		'onclick': 'modificaConsumAutoOptiuni(\'plus\');',
+		'title': pageVars['texte']['mariti_consumul']
+	}));
+	return div;
+};
+
+function createSelectOras() {
+	var div = createEl("div", {
+		'id': 'select-oras-cautare',
+		'onclick': 'clickSelectOrasCautareAutobuz();'
+	});
+	$(div).append(pageVars[pageVars['generale']['tip_ruta']]['orase'][pageVars[pageVars['generale']['tip_ruta']]['id_oras_selected']]['nume']);
+	$(div).append(createEl("img", {
+		'src': pathToImg + 'arrow-down.gif'
+	}));
+	return div;
+};
+
+function createCuloareTraseu(culoare) {
+	var trCuloare = createEl("tr", {
+		'style': 'height: 18px;'
+	});
+	var tdSpanBeforeCuloare = createEl("td", {
+		'valign': 'top',
+		'style': 'width: 15px; text-align: right; padding: 2px 5px 0px 0px;'
+	}, createSpanBeforeCuloare());
+	var tdSpanCuloare = createEl("td", {}, createSpanCuloare(culoare));
+	$(trCuloare).append(tdSpanBeforeCuloare, tdSpanCuloare);
+	return trCuloare;
+};
+
+function createSpanBeforeCuloare() {
+	var spanBeforeCuloare = createEl("span", {
+		'class': 'before_culoare'
+	});
+	return spanBeforeCuloare;
+};
+
+function createSpanCuloare(culoare) {
+	var spanCuloare = createEl("span", {
+		'onclick': 'setCuloare(this);',
+		'class': 'culoare ' + culoare
+	}, '&nbsp;');
+	return spanCuloare;
+};
+
+function createImgCloseAvansat() {
+	var imgCloseAvansat = createEl("img", {
+		'src': pathToImg + 'inchide-avansat.png',
+		'class': 'inchide_avansat',
+		'id': 'img_inchide_avansat',
+		'onclick': 'ascundeAvansat();',
+		'title': pageVars['texte']['inchide_optiunile_avansate']
+	});
+	return imgCloseAvansat;
+};
+
+function createDivTipTraseu() {
+	var divTipTraseu = createEl("div", {
+		'id': 'tip_traseu'
+	});
+	$.each(pageVars['tip_rute'], function (key, value) {
+		$(divTipTraseu).append(createImgTabOptiune(value), createInputHiddenTabOptiune(value));
+	});
+	return divTipTraseu;
+};
+
+function createOptiuni(tip) {
+	var divOptiuni = createEl("div", {
+		'id': 'optiuni_' + tip,
+		'style': 'display: none; width: 100%;'
+	});
+	var spanTop = createEl("span", {
+		'class': 'submeniu_optiuni'
+	});
+	k = 0;
+	$.each(pageVars[tip]['orase'][pageVars[tip]['id_oras_selected']]['moduri_cautare'], function (key, tipCautare) {
+		spanTopInside = createEl("span", {
+			'title': pageVars[tip]['orase'][pageVars[tip]['id_oras_selected']][tipCautare]['optiuni']['title'],
+			'onclick': 'clickRutaLinieStatie(\'' + tip + '\',\'' + tipCautare + '\');'
+		}, pageVars[tip]['orase'][pageVars[tip]['id_oras_selected']][tipCautare]['optiuni']['nume']);
+		divTipCautare = createEl("div", {
+			'style': 'display: none;',
+			'id': 'div_' + tip + '_' + tipCautare
+		});
+		$.each(pageVars[tip]['orase'][pageVars[tip]['id_oras_selected']][tipCautare]['optiuni']['ui'], function (key2, optiuni) {
+			divOptiuniInside = createEl("div", {
+				'style': (pageVars[tip]['orase'][pageVars[tip]['id_oras_selected']][tipCautare]['optiuni']['ui'].length > 1) ? 'width: 49%; float: left;' : ''
+			});
+			$.each(optiuni, function (url, array) {
+				$(divOptiuniInside).append(createEl("input", {
+					'type': ((array[2] == 0) ? 'checkbox' : 'radio'),
+					'style': 'width: auto;',
+					'name': tip + '_' + tipCautare + '_' + ((array[2] == 0) ? url : array[2]),
+					'id': tip + '_' + tipCautare + '_' + url,
+					'onclick': 'clickOptiuniTipRuta(\'' + tip + '\',\'' + tipCautare + '\',\'' + url + '\',this);'
+				}), createEl("label", {
+					'for': tip + '_' + tipCautare + '_' + url
+				}, array[1]), (array[3]) ? createEl("img", {
+					'src': pathToImg + 'icon-help.png',
+					'class': 'icon-help-optiuni-cautare',
+					'title': array[3]
+				}) : {}, createEl("br"));
+			});
+			$(divTipCautare).append(divOptiuniInside);
+		});
+		k++;
+		$(divOptiuni).append(divTipCautare);
+		$(spanTop).append(spanTopInside);
+	});
+	if (k > 1) {
+		$(spanTop).append(createEl("img", {
+			'src': pathToImg + 'left-line.png',
+			'id': 'left-line',
+			'style': 'bottom: -2px;'
+		}), createEl("img", {
+			'src': pathToImg + 'right-line.png',
+			'id': 'right-line',
+			'style': 'bottom: -2px;'
+		}));
+		$(divOptiuni).prepend(spanTop);
+	};
+	if (pageVars[tip]['orase'][pageVars[tip]['id_oras_selected']][pageVars[tip]['orase'][pageVars[tip]['id_oras_selected']]['moduri_cautare'][pageVars[tip]['orase'][pageVars[tip]['id_oras_selected']]['moduri_cautare_selected']]]['optiuni']['warning']) {
+		var spanText = createEl("span", {
+			'style': 'font-size: 9px; font-family: Arial; font-style: italic; display: inline-block; margin-top: 10px;'
+		}, pageVars[tip]['orase'][pageVars[tip]['id_oras_selected']][pageVars[tip]['orase'][pageVars[tip]['id_oras_selected']]['moduri_cautare'][pageVars[tip]['orase'][pageVars[tip]['id_oras_selected']]['moduri_cautare_selected']]]['optiuni']['warning'][0]);
+		$(divOptiuni).append(spanText);
+		if (pageVars[tip]['orase'][pageVars[tip]['id_oras_selected']][pageVars[tip]['orase'][pageVars[tip]['id_oras_selected']]['moduri_cautare'][pageVars[tip]['orase'][pageVars[tip]['id_oras_selected']]['moduri_cautare_selected']]]['optiuni']['warning'][1]) {
+			$(divOptiuni).append(createEl("img", {
+				'src': pathToImg + 'icon-help.png',
+				'class': 'icon-help-optiuni-cautare',
+				'title': pageVars[tip]['orase'][pageVars[tip]['id_oras_selected']][pageVars[tip]['orase'][pageVars[tip]['id_oras_selected']]['moduri_cautare'][pageVars[tip]['orase'][pageVars[tip]['id_oras_selected']]['moduri_cautare_selected']]]['optiuni']['warning'][1]
+			}));
+		};
+	};
+	return divOptiuni;
+};
+
+function createCuloriTraseu() {
+	var tableCulori = createEl("table", {
+		'id': 'culori_traseu',
+		'cellspacing': 0,
+		'cellpadding': 0
+	});
+	var imgBgCulori = createEl("img", {
+		'src': pathToImg + 'bg-tbl-culori.png',
+		'style': 'position: absolute; top: -16px; left: -1px;, z-index: -1;'
+	});
+	var tableCuloriTr1 = createEl("tr", {
+		'style': 'height: 23px;'
+	});
+	var divTopCulori = createEl("div", {
+		'style': 'position: relative; overflow: visible;'
+	}, imgBgCulori);
+	$(divTopCulori).append(createEl("div", {
+		'class': 'culoare_traseu'
+	}, pageVars['texte']['culoare_traseu']));
+	var tableCuloriTr1Td = createEl("td", {
+		'colspan': 2,
+		'style': 'text-align: center;'
+	}, divTopCulori);
+	$(tableCuloriTr1).append(tableCuloriTr1Td);
+	$(tableCulori).append(tableCuloriTr1);
+	var i = 1;
+	$.each(pageVars[pageVars['generale']['tip_ruta']]['orase'][pageVars[pageVars['generale']['tip_ruta']]['id_oras_selected']]['culori'], function (key, value) {
+		$(tableCulori).append(createCuloareTraseu(key));
+	});
+	return tableCulori;
+};
+
+function createImgTabOptiune(tab) {
+	var imgTabOptiune = createEl("img", {
+		'id': 'tipuri_rute_' + tab,
+		'src': pathToImg + tab + '-off.png',
+		'onmouseover': 'mouseoverTabOptiune(\'' + tab + '\');',
+		'onmouseout': 'mouseoutTabOptiune(\'' + tab + '\');',
+		'title': pageVars[tab]['title'],
+		'onclick': 'clickTipTraseu(this,\'' + tab + '\')'
+	});
+	return imgTabOptiune;
+};
+
+function createInputHiddenTabOptiune(tab) {
+	var inputHiddenTabOptiune = createEl("input", {
+		'type': 'checkbox',
+		'style': 'display: none;',
+		'name': 'tipuri_rute',
+		'value': pageVars[tab]['google']
+	});
+	return inputHiddenTabOptiune;
+};
+
+function prepareLinksHarti(linksHTML, idObjFor) {
+	var as = $(linksHTML + " a");
+	var nrColoane = 6;
+	var nrRanduri = Math.ceil($(as).length / nrColoane);
+	for (i = 0; i < nrColoane; i++) {
+		div = createEl("div", {
+			'style': 'float: left; width: 120px;'
+		});
+		for (j = (i * nrRanduri); j < ((i + 1) * nrRanduri); j++) {
+			if (as[j]) {
+				$(div).append(as[j]);
+			};
+		};
+		$("#" + idObjFor).append(div);
+	};
+};
+
+function showAlert(delay) {
+	var divAlert = $('.div_alert');
+	if (isMobile) {
+		divAlert.css({
+			'top': ($(window).height() - $("#top").height() - $("#bottom").height() - $(divAlert).outerHeight()) / 2,
+			'left': ($(window).width() - $(divAlert).outerWidth()) / 2 + 20,
+			'right': 20
+		});
+	} else {
+		divAlert.css({
+			'top': ($(window).height() - $("#top").height() - $("#bottom").height() - $(divAlert).outerHeight()) / 2,
+			'left': ($(window).width() - $(divAlert).outerWidth()) / 2,
+		});
+	};
+	
+	if (delay) {
+		$(divAlert).show(100, function () {
+			$(this).delay(delay).hide(100);
+		});
+	} else {
+		$(divAlert).append(createEl("img", {
+			'src': pathToImg + 'inchide-avansat.png',
+			'style': 'cursor: pointer; position: absolute; top: -5px; right: -15px; z-index: 2;',
+			'onclick': 'inchideAlert();'
+		}));
+		$(divAlert).show(100);
+	};
+};
+
+function createAlert() {
+	var divAlert = createEl("div", {
+		'class': 'div_alert'
+	});
+	return divAlert;
+};
+
+function createContentTraseu() {
+	//$("#content_traseu").remove();
+	var divContentTraseu = createEl("div", {
+		'class': 'content_traseu'
+	});
+/*
+	if (tipRuta == 'auto') {
+		if (typeof localitatiGTD !== 'undefined' && localitatiGTD[pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare].urlsVarsInputs[pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare].urlsVarsInputs.length - 1]]) {
+			$(divContentTraseu).append($(createEl("div", {
+				'style': 'font-size: 12px; text-align: center; border-bottom: 1px dashed #CCCCCC; padding: 5px 0px;'
+			})).append(createEl("a", {
+				'href': localitatiGTD[pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare].urlsVarsInputs[pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare].urlsVarsInputs.length - 1]][0],
+				'target': '_blank',
+				'style': 'color: blue;',
+				'title': localitatiGTD[pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare].urlsVarsInputs[pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare].urlsVarsInputs.length - 1]][1]
+			}, localitatiGTD[pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare].urlsVarsInputs[pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare].urlsVarsInputs.length - 1]][1] )));
+		} else {
+			$(divContentTraseu).append($(createEl("div", {
+				'style': 'font-size: 12px; text-align: center; border-bottom: 1px dashed #CCCCCC; padding: 5px 0px;'
+			})).append(createEl("span", {}, 'Pleci ' + String.fromCharCode(238) + 'n vacan' + String.fromCharCode(355) + String.fromCharCode(259) + '?'), createEl("br"), createEl("span", {}, 'Inspir' + String.fromCharCode(259) + '-te de pe '), createEl("a", {
+				'href': 'http://blogdecalatorii.ro/',
+				'target': '_blank',
+				'style': 'color: blue;',
+				'title': 'Blog de c' + String.fromCharCode(259) + 'l' + String.fromCharCode(259) + 'torii'
+			}, 'blogdecalatorii.ro')));
+		};
+	};
+*/
+	if (pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['optiuni']['ruta_selected']]['cotituri'].length > 0) {
+		$.each(pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['optiuni']['ruta_selected']]['cotituri'], function (key, value) {
+			if (value[0] == 'cot') {
+				$(divContentTraseu).append(createCot(value[2], key+1, value[6]), createInterCot(value[1]));
+			} else if (value[0] == 'point') {};
+		});
+	};
+	return divContentTraseu;
+};
+
+function createDivPlecare() {
+	var divPlecare = createEl("div", {
+		'id': 'div_plecare',
+		'title': pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['textCoordVarsInputs'][0] + pageVars['texte']['click_derulare_ruta']
+	}, shorterString(pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['textCoordVarsInputs'][0], pageVars['generale']['limit_caractere_ruta']));
+	return divPlecare;
+};
+
+function createDivSosire() {
+	var divSosire = createEl("div", {
+		'id': 'div_sosire',
+		'title': pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['textCoordVarsInputs'][pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['textCoordVarsInputs'].length - 1] + pageVars['texte']['click_derulare_ruta']
+	}, shorterString(pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['textCoordVarsInputs'][pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['textCoordVarsInputs'].length - 1], pageVars['generale']['limit_caractere_ruta']));
+	return divSosire;
+};
+
+function createIconExplicatiiDis() {
+	var icon = createEl("img", {
+		'src': pathToImg + 'icon-help.png',
+		'alt': 'DIS',
+		'title': pageVars['texte']['detalii_dis'],
+		'style': 'vertical-align: middle; margin-left: 5px; margin-top: -4px;'
+	});
+	return icon;
+};
+
+function createTableConsum() {
+	var tr_de_la = createEl("tr",{class:"point"});
+	var tr_pana_la = createEl("tr",{class:"point"});
+	
+	$(tr_de_la).append(createEl("td",{colspan:2}));
+	$(tr_pana_la).append(createEl("td",{colspan:2}));
+	
+	var tr_viteza = createEl("tr");
+	$(tr_viteza).append(createEl("td", {
+		'style': 'width: 60px;'
+	}, pageVars['texte']['string_viteza'] + ':'), createEl("td", {
+		'id': 'td_viteza'
+	}));
+	var tr_timp = createEl("tr");
+	$(tr_timp).append(createEl("td", {}, pageVars['texte']['string_timp'] + ':'), createEl("td", {
+		'id': 'td_timp'
+	}));
+	var tr_consum = createEl("tr");
+	$(tr_consum).append(createEl("td", {}, pageVars['texte']['string_consum'] + ':'), createEl("td", {
+		'id': 'td_consum'
+	}));
+	var tr_combi = createEl("tr", {
+		'id': 'tr_combi'
+	});
+	var td_combi = createEl("td", {
+		'colspan': 2
+	});
+	var table_combi = createEl("table", {
+		'style': 'width: 100%; border-bottom: 1px solid #DEDEDE; margin-top: 3px;',
+		'cellspacing': 0,
+		'cellpadding': 0
+	});
+	var tr_combi_1 = createEl("tr", {
+		'style': 'background-color: #DEDEDE;'
+	});
+	$(tr_combi_1).append(createEl("td", {
+		'style': 'width: 80px;'
+	}, pageVars['texte']['string_consum_total']), createEl("td", {
+		'style': 'border-left: 2px solid white; border-right: 2px solid white; padding-left: 10px;'
+	}, pageVars['texte']['string_cost']), createEl("td", {
+		'style': 'padding-left: 10px; width: 50px;'
+	}, pageVars['texte']['string_dis']));
+	$(tr_combi_1).children("td:nth-child(3)").append(createIconExplicatiiDis());
+	var tr_combi_2 = createEl("tr");
+	$(tr_combi_2).append(createEl("td", {
+		'id': 'td_consum_total'
+	}), createEl("td", {
+		'style': 'font-weight: bold; color: #DD0000; padding-left: 10px;',
+		'id': 'td_cost'
+	}), createEl("td", {
+		'id': 'td_dis',
+		'style': 'padding-left: 10px;'
+	}));
+	$(table_combi).append(tr_combi_1, tr_combi_2);
+	$(td_combi).append(table_combi);
+	$(tr_combi).append(td_combi);
+	var tr_valori_medii = createEl("tr");
+	$(tr_valori_medii).append(createEl("td", {
+		'colspan': 2,
+		'style': 'text-align: right; font-style: italic; font-size: 80%;'
+	}, pageVars['texte']['valori_medii_aproximative']));
+	var table = createEl("table", {
+		'style': 'width: 100%;',
+		'id': 'consum',
+		'cellpadding': 1,
+		'cellspacing': 1
+	});
+	$(table).append(tr_de_la, tr_pana_la, tr_viteza, tr_timp, tr_consum, tr_combi, tr_valori_medii);
+	return table;
+};
+
+function createTabTaxi(title, pret) {
+	var aTaxi = createEl("a", {
+		'id': 'tab_alternativ_taxi',
+		'class': 'ruta_alternativa',
+		'onmouseover': 'mouseOverTabTaxi(' + pret + ');',
+		'onmouseout': 'mouseOutTabTaxi();',
+		'title': title
+	}, pageVars['texte']['string_taxi']);
+	return aTaxi;
+};
+
+function createTabRutaAlternativa(nr) {
+	var aRutaAlternativa = createEl("a", {
+		'class': 'ruta_alternativa' + ((nr - 1 == pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['optiuni']['ruta_selected']) ? '_selected' : ''),
+		'onmouseover': 'mouseOverTabRuta(this,' + nr + ');',
+		'onmouseout': 'mouseOutTabRuta(this,' + nr + ');',
+		'onclick': 'clickTabRutaServer(this,' + nr + ');',
+		'title': calculateDistanta(pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][nr - 1]['info']['distanta']) + ', ' + transformSecundeToText(pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['results'][nr - 1]['info']['durata'], 'simbol')
+	}, pageVars['texte']['ruta'] + ' ' + nr);
+	return aRutaAlternativa;
+};
+
+function createTabRuteAlternativeMobile(nr){
+	if (nr>1) {
+		for (i = 0; i < nr; i++) {
+			$("div.tabs_mobile").append(createTabRutaAlternativaMobile(i + 1));
+		};
+	};
+};
+
+function createTabRutaAlternativaMobile(nr) {
+	var divRutaAlternativa = createEl("div", {
+		'class': 'tab tab_mobile ruta_mobile' + ((nr - 1 == pageVars[tipRuta]['orase'][idOrasSelected][moduriCautare]['optiuni']['ruta_selected']) ? '_selected' : ''),
+		'onclick': 'clickTabRutaServer(this,' + nr + ');'
+	}, pageVars['texte']['ruta'] + ' ' + nr);
+	return divRutaAlternativa;
+};
+
+function createTabRuteAlternative(nr) {
+	var divRuteAlternative = createEl("div", {
+		'class': 'rute_alternative'
+	});
+	if (nr > 1) {
+		for (i = 0; i < nr; i++) {
+			$(divRuteAlternative).append(createTabRutaAlternativa(i + 1));
+		};
+	};
+	return divRuteAlternative;
+};
+
+function createContentInfoWindow(obj) {
+	var divInfoWindow = createEl("div", {
+		'id': 'div_info_window'
+	});
+	var divNr = createEl("div", {
+		'class': 'nr'
+	}, $(obj).children(".nr").html() + '.');
+	/* var imgPegman = createEl("img", {
+		'src': pathToImg + 'pegman-off.gif',
+		'title': pageVars['texte']['street_view_off'],
+		'id': 'pegman',
+		'onclick': 'wT.clickPegmanInfoWindow();'
+	}); */
+	// $(divInfoWindow).append(divNr, imgPegman);
+	$(divInfoWindow).append(divNr);
+	$(divInfoWindow).append($(obj).children(".text").html());
+	return divInfoWindow;
+};
+
+function createContentInfoWindowStradaObiectiv(content, contentComplet) {
+	var divInfoWindowStradaObiectiv = createEl("div", {
+		'id': 'div_info_window_strada_obiectiv'
+	});
+	/* var imgPegman = createEl("img", {
+		'src': pathToImg + 'pegman-off.gif',
+		'title': pageVars['texte']['street_view_off'],
+		'id': 'pegman',
+		'onclick': 'wT.clickPegmanInfoWindowStradaObiectiv();'
+	}); */
+	var aDeAici = createEl('a', {
+		'class': 'dela_panala',
+		'href': 'javascript:void(0);',
+		'onclick': 'wT.clickInfoWindowDeLa(\'' + contentComplet + '\');'
+	}, pageVars['texte']['de_aici']);
+	var aPanaAici = createEl('a', {
+		'class': 'dela_panala',
+		'href': 'javascript:void(0);',
+		'onclick': 'wT.clickInfoWindowPanaLa(\'' + contentComplet + '\');'
+	}, pageVars['texte']['pana_aici']);
+	//$(divInfoWindowStradaObiectiv).append(imgPegman);
+	$(divInfoWindowStradaObiectiv).append(content, createEl("br"), createEl("br"), createEl('span', {
+		'style': 'font-size: 11px;'
+	}, pageVars['texte']['ruta'] + ' '), aDeAici, createEl('span', {
+		'style': 'font-size: 11px;'
+	}, '/'), aPanaAici);
+	return divInfoWindowStradaObiectiv;
+};
+
+var bannerMapBlaBlaCar = function () {
+	var bgState1 = "state1.2.jpg";
+	var bgState2 = "state2.2.jpg";
+	var bgState3 = "state3.2.jpg";
+	
+	var ruta = "Bucure"+String.fromCharCode(351)+"ti - Bra"+String.fromCharCode(351)+"ov";
+	var totalSuma = 78;
+	var url = "http://blbl.cr/rodis01";
+	
+	var a = createEl("a",{class:"map",href:url,target:"_blank",onclick:"clickBannerMapBla(this);"});
+	var redSize = (totalSuma>=1000)?"mare":"mic";
+	var sumaMica = Math.round(totalSuma/4);
+	var timing = 3500;
+	var bannerTimeout;
+	
+	var imgClose = createEl("img",{
+		src: pathToImg+'inchide-avansat.png',
+		class: "close_banner"
+	});
+	
+	var elem = new Array();
+	
+	this.create = function () {
+		
+		elem[0] = new Array(
+			createEl("img",{src:pathToImg+bgState1,class:"bg"}),
+			createEl("span",{class:"titlu"},ruta),
+			createEl("div",{class:"red "+redSize},totalSuma+" Lei")
+		);
+		elem[1] = new Array(
+			createEl("img",{src:pathToImg+bgState2,class:"bg"}),
+			createEl("span",{class:"titlu"},ruta),
+			createEl("div",{class:"green mic pos1"},sumaMica+" Lei"),
+			createEl("div",{class:"green mic pos2"},sumaMica+" Lei"),
+			createEl("div",{class:"green mare pos3"},sumaMica+" Lei"),
+			createEl("div",{class:"green mare pos4"},sumaMica+" Lei")
+		);
+		elem[2] = new Array(
+			createEl("img",{src:pathToImg+bgState3,class:"bg"}),
+			createEl("span",{class:"mesaj"},"Ofer"+String.fromCharCode(259)+" locurile libere "+String.fromCharCode(351)+"i "+String.fromCharCode(238)+"mparte costurile"),
+			$(createEl("div",{class:"white"}," ")).append(
+				createEl("img",{src:pathToImg+"logoBla.png",class:"logo"}),
+				createEl("img",{src:pathToImg+"buton2.jpg",class:"buton"})
+			)
+		);
+		
+		//$("body").append(imgClose);
+		
+		return $(a).empty().append(
+			elem[0][0],
+			elem[0][1],
+			elem[0][2],
+			
+			elem[1][0],
+			elem[1][1],
+			elem[1][2],
+			elem[1][3],
+			elem[1][4],
+			elem[1][5],
+			
+			elem[2][0],
+			elem[2][1],
+			elem[2][2]
+		);
+	};
+	this.remove = function () {
+		clearTimeout(bannerTimeout);
+		$(a).remove();
+	};
+	this.update = function (vals) {
+		if (typeof vals !== 'undefined') {
+			// aici updatam toate variabilele la valorile din vals
+			ruta = vals['orase'][0]+" - "+vals['orase'][1];
+			totalSuma = vals['suma'];
+			//url = "https://www.blablacar.ro/ofera-locuri-noi?p=distanta&hide_map=1&from="+encodeURIComponent(vals['orase'][0])+"&to="+encodeURIComponent(vals['orase'][1])+"&waypoints="+((vals['waypoints'].length>0)?encodeURIComponent(vals['waypoints'].join("|")):"")+"&comuto_cmkt=RO_DISTANTA_DRVR_BIGB_FUNN&utm_source=DISTANTA&utm_medium=banner&utm_campaign=RO_DISTANTA_DRVR_BIGB_FUNN";
+			//url = "https://www.blablacar.ro/ridesharing-nou?p=distanta&hide_map=1&from="+encodeURIComponent(vals['orase'][0])+"&to="+encodeURIComponent(vals['orase'][1])+"&waypoints="+((vals['waypoints'].length>0)?encodeURIComponent(vals['waypoints'].join("|")):"")+"&comuto_cmkt=RO_DISTANTA_DRVR_BIGB_CARS2&utm_source=DISTANTA&utm_medium=banner&utm_campaign=RO_DISTANTA_DRVR_BIGB_CARS2";
+			//url = "https://www.blablacar.ro/inscriere-conducatori-auto?p=distanta&hide_map=1&from="+encodeURIComponent(vals['orase'][0])+"&to="+encodeURIComponent(vals['orase'][1])+"&waypoints="+((vals['waypoints'].length>0)?encodeURIComponent(vals['waypoints'].join("|")):"")+"&comuto_cmkt=RO_DISTANTA_DRVR_BIGB_EZDR&utm_source=DISTANTA&utm_medium=banner&utm_campaign=RO_DISTANTA_DRVR_BIGB_EZDR";
+			url = "https://www.blablacar.ro/lp/rodistanta?redirect_to=blablacar_trip_publication_step1&p=distanta&hide_map=1&from="+encodeURIComponent(vals['orase'][0])+"&to="+encodeURIComponent(vals['orase'][1])+"&waypoints="+((vals['waypoints'].length>0)?encodeURIComponent(vals['waypoints'].join("|")):"")+"&comuto_cmkt=RO_DISTANTA_DRVR_BIGB_NEWFUNN&utm_source=DISTANTA&utm_medium=banner&utm_campaign=RO_DISTANTA_DRVR_BIGB_NEWFUNN";
+			//url = "https://www.blablacar.ro/ofera-locuri-noi?p=distanta&hide_map=1&from="+encodeURIComponent(vals['orase'][0])+"&to="+encodeURIComponent(vals['orase'][1])+"&waypoints="+((vals['waypoints'].length>0)?encodeURIComponent(vals['waypoints'].join("|")):"")+"&comuto_cmkt=RO_DISTANTA_DRVR_BIGB_FUNN&utm_source=DISTANTA&utm_medium=banner&utm_campaign=RO_DISTANTA_DRVR_BIGB_FUNN";
+			redSize = (totalSuma>=1000)?"mare":"mic";
+			sumaMica = Math.round(totalSuma/4);
+		} else {
+			// aici resetam toate variabilele la cele default
+			ruta = "Bucure"+String.fromCharCode(351)+"ti - Bra"+String.fromCharCode(351)+"ov";
+			totalSuma = 78;
+			//url = "https://www.blablacar.ro/ofera-locuri-noi?p=distanta&hide_map=1&from=&to=&waypoints=&comuto_cmkt=RO_DISTANTA_DRVR_BIGB_FUNN&utm_source=DISTANTA&utm_medium=banner&utm_campaign=RO_DISTANTA_DRVR_BIGB_FUNN";
+			//url = "https://www.blablacar.ro/ridesharing-nou?p=distanta&hide_map=1&from=&to=&waypoints=&comuto_cmkt=RO_DISTANTA_DRVR_BIGB_CARS2&utm_source=DISTANTA&utm_medium=banner&utm_campaign=RO_DISTANTA_DRVR_BIGB_CARS2";
+			//url = "https://www.blablacar.ro/inscriere-conducatori-auto?p=distanta&hide_map=1&from=&to=&waypoints=&comuto_cmkt=RO_DISTANTA_DRVR_BIGB_EZDR&utm_source=DISTANTA&utm_medium=banner&utm_campaign=RO_DISTANTA_DRVR_BIGB_EZDR";
+			url = "http://blbl.cr/rodis01";
+			redSize = (totalSuma>=1000)?"mare":"mic";
+			sumaMica = Math.round(totalSuma/4);
+		};
+		$(a).attr({href:url});
+	};
+	var clearElem = function () {
+		var myTransition	=	($.browser.webkit)  ? '-webkit-transition' :
+						($.browser.mozilla) ? '-moz-transition' : 
+						($.browser.msie)    ? '-ms-transition' :
+						($.browser.opera)   ? '-o-transition' : 'transition',
+		myCSSObj		=	{opacity : 0};
+		myCSSObj[myTransition]	=	'opacity 1s ease-in-out';
+		
+		for (var i=0; i<elem.length; i++) {
+			for (var j=0; j<elem[i].length; j++) {
+				$(elem[i][j]).css(myCSSObj);
+				$(elem[i][j]).children().css(myCSSObj);
+			};
+		};
+	};
+	this.start = function () {
+		state1();
+	};
+	var state1 = function () {
+		var myTransition	=	($.browser.webkit)  ? '-webkit-transition' :
+						($.browser.mozilla) ? '-moz-transition' : 
+						($.browser.msie)    ? '-ms-transition' :
+						($.browser.opera)   ? '-o-transition' : 'transition',
+		myCSSObj		=	{opacity : 1};
+		myCSSObj[myTransition]	=	'opacity 1s ease-in-out';
+		
+		clearElem();
+		
+		for (var i=0; i<elem[0].length; i++) {
+			$(elem[0][i]).css(myCSSObj);
+			$(elem[0][i]).children().css(myCSSObj);
+		};
+		bannerTimeout = setTimeout(state2, timing);
+	};
+	var state2 = function () {
+		var myTransition	=	($.browser.webkit)  ? '-webkit-transition' :
+						($.browser.mozilla) ? '-moz-transition' : 
+						($.browser.msie)    ? '-ms-transition' :
+						($.browser.opera)   ? '-o-transition' : 'transition',
+		myCSSObj		=	{opacity : 1};
+		myCSSObj[myTransition]	=	'opacity 1s ease-in-out';
+		
+		clearElem();
+		
+		for (var i=0; i<elem[1].length; i++) {
+			$(elem[1][i]).css(myCSSObj);
+			$(elem[1][i]).children().css(myCSSObj);
+		};
+		bannerTimeout = setTimeout(state3, timing);
+	};
+	var state3 = function () {
+		var myTransition	=	($.browser.webkit)  ? '-webkit-transition' :
+						($.browser.mozilla) ? '-moz-transition' : 
+						($.browser.msie)    ? '-ms-transition' :
+						($.browser.opera)   ? '-o-transition' : 'transition',
+		myCSSObj		=	{opacity : 1};
+		myCSSObj[myTransition]	=	'opacity 1s ease-in-out';
+		
+		clearElem();
+		
+		for (var i=0; i<elem[2].length; i++) {
+			$(elem[2][i]).css(myCSSObj);
+			$(elem[2][i]).children().css(myCSSObj);
+		};
+		bannerTimeout = setTimeout(state1, timing);
+	};
+};
+
+var bannerMapUber = function () {
+	
+	var url = "https://get.uber.com/cl/ro/?utm_source=distanta&utm_campaign=distanta";
+	
+	var a = createEl("a",{class:"map_uber",href:url,target:"_blank",onclick:"clickBannerMapUber(this);"});
+	
+	this.create = function () {
+		var banners = ["uber-1.png", "uber-2.png", "uber-3.png", "uber-4.png"];
+		var imagine = banners[Math.floor(Math.random() * banners.length)];
+		return $(a).empty().append(
+			createEl("img",{src:pathToImg+imagine,class:"bg"})
+		);
+	};
+	this.remove = function () {
+		$(a).remove();
+	};
+};
+
+function createCookiePolicies(){
+	var divCookie = createEl('div');
+	var h1 = createEl('h1', {}, "info cookies");
+	var pCookie = $(createEl('p',{style:"height: 360px; border-top: 1px solid #DEDEDE; border-bottom: 1px solid #DEDEDE; overflow: auto;"})).append(
+		"<b>Cookie</b><br /><br />",
+		"Website-ul distanta.ro folose"+String.fromCharCode(351)+"te cookie-uri proprii "+String.fromCharCode(351)+"i de la ter"+String.fromCharCode(355)+"i pentru a furniza vizitatorilor o experien"+String.fromCharCode(355)+String.fromCharCode(259)+" de navigare superioar"+String.fromCharCode(259)+" "+String.fromCharCode(351)+"i servicii adaptate nevoilor specifice ale acestora.<br /><br />",
+		"Cu ajutorul cookie-urilor putem "+String.fromCharCode(238)+"mbun"+String.fromCharCode(259)+"t"+String.fromCharCode(259)+String.fromCharCode(355)+"i permanent navigarea "+String.fromCharCode(351)+"i performan"+String.fromCharCode(355)+"ele siteului, personaliza diverse set"+String.fromCharCode(259)+"ri, observa interac"+String.fromCharCode(355)+"iunile utilizatorului cu website-ul etc.<br /><br />",
+		"O vizit"+String.fromCharCode(259)+" pe website-ul distanta.ro poate plasa cookie-uri pentru (dar nerezum"+String.fromCharCode(226)+"ndu-se doar la) re"+String.fromCharCode(355)+"inerea preferin"+String.fromCharCode(355)+"elor utilizatorului, analiza vizitatorilor unici, a vizitelor, a rutelor "+String.fromCharCode(351)+"i a altor date ce rezult"+String.fromCharCode(259)+" din utilizarea siteului, oferirea de publicitate personalizat"+String.fromCharCode(259)+" (publicitate proprie sau a ter"+String.fromCharCode(355)+"ilor) precum "+String.fromCharCode(351)+"i geo targetare anonim"+String.fromCharCode(259)+": "+String.fromCharCode(238)+"nregistrarea "+String.fromCharCode(355)+String.fromCharCode(259)+"rii de provenien"+String.fromCharCode(355)+String.fromCharCode(259)+" a utilizatorului sau a loca"+String.fromCharCode(355)+"iei gps a device-ului.<br /><br />",
+		"<b>Ce este un cookie?</b><br /><br />",
+		"Cookie-ul este un fi"+String.fromCharCode(351)+"ier alfanumeric, de mici dimensiuni, care va fi stocat pe computerul, dispozitivele mobile sau alte echipamente ale unui utilizator de pe care se acceseaz"+String.fromCharCode(259)+" Internetul.<br /><br />",
+		"Cookie-ul este instalat prin solicitare a webserver-ului unui browser (ex: Internet Explorer, Chrome) "+String.fromCharCode(351)+"i este inofensiv (nu con"+String.fromCharCode(355)+"ine programe software, viru"+String.fromCharCode(351)+"i sau spyware "+String.fromCharCode(351)+"i nu poate accesa informa"+String.fromCharCode(355)+"iile de pe hard disk-ul utilizatorului). Doar webserver-ul care a trimis cookie-ul "+String.fromCharCode(238)+"l poate accesa din nou "+String.fromCharCode(238)+"n momentul "+String.fromCharCode(238)+"n care un utilizator revine pe website-ul asociat webserverului respectiv iar cookie-urile "+String.fromCharCode(238)+"n sine nu solicit"+String.fromCharCode(259)+" informa"+String.fromCharCode(355)+"ii cu caracter personal pentru a putea fi utilizate.<br /><br />",
+		"<b>Ce tip de informa"+String.fromCharCode(355)+"ii sunt stocate "+String.fromCharCode(351)+"i accesate prin intermediul cookie-urilor?</b><br /><br />",
+		"Cookie-urile p"+String.fromCharCode(259)+"streaz"+String.fromCharCode(259)+" informa"+String.fromCharCode(355)+"ii "+String.fromCharCode(238)+"ntr-un fi"+String.fromCharCode(351)+"ier text de mici dimensiuni care permit unui website s"+String.fromCharCode(259)+" recunoasc"+String.fromCharCode(259)+" un browser. Webserverul va recunoa"+String.fromCharCode(351)+"te browserul p"+String.fromCharCode(226)+"n"+String.fromCharCode(259)+" c"+String.fromCharCode(226)+"nd cookie-ul expir"+String.fromCharCode(259)+" sau este "+String.fromCharCode(351)+"ters. Cookie-ul stocheaz"+String.fromCharCode(259)+" informa"+String.fromCharCode(355)+"ii care "+String.fromCharCode(238)+"mbun"+String.fromCharCode(259)+"t"+String.fromCharCode(259)+String.fromCharCode(355)+"esc navigarea pe Internet<br /><br />",
+		"<b>Care sunt avantajele cookie-urilor?</b><br /><br />",
+		"Un cookie con"+String.fromCharCode(355)+"ine informa"+String.fromCharCode(355)+"ii care fac leg"+String.fromCharCode(259)+"tura "+String.fromCharCode(238)+"ntre utilizatori "+String.fromCharCode(351)+"i un anume website. Dac"+String.fromCharCode(259)+" un browser acceseaz"+String.fromCharCode(259)+" acel web-server din nou, acesta poate citi informa"+String.fromCharCode(355)+"ia deja stocat"+String.fromCharCode(259)+" "+String.fromCharCode(351)+"i reac"+String.fromCharCode(355)+"iona "+String.fromCharCode(238)+"n consecin"+String.fromCharCode(355)+String.fromCharCode(259)+". Cookie-urile asigur"+String.fromCharCode(259)+" userilor o experien"+String.fromCharCode(355)+String.fromCharCode(259)+" pl"+String.fromCharCode(259)+"cut"+String.fromCharCode(259)+" de navigare "+String.fromCharCode(351)+"i sus"+String.fromCharCode(355)+"in eforturile multor websiteuri pentru a oferi servicii confortabile utilizatorilor: ex - preferin"+String.fromCharCode(355)+"ele "+String.fromCharCode(238)+"n materie de confiden"+String.fromCharCode(355)+"ialitate online, op"+String.fromCharCode(355)+"iunile privind limba site-ului, co"+String.fromCharCode(351)+"uri de cump"+String.fromCharCode(259)+"r"+String.fromCharCode(259)+"turi sau publicitate relevant"+String.fromCharCode(259)+".<br /><br />",
+		"<b>Ce sunt cookie-urile plasate de ter"+String.fromCharCode(355)+"i?</b><br /><br />",
+		"Anumite p"+String.fromCharCode(259)+"r"+String.fromCharCode(355)+"i de con"+String.fromCharCode(355)+"inut de pe anumite site-uri pot fi plasate pe website-ul accesat, de c"+String.fromCharCode(259)+"tre ter"+String.fromCharCode(355)+"e p"+String.fromCharCode(259)+"r"+String.fromCharCode(355)+"i prin intermediul bannerelor, boxurilor sau linkurilor - iar toate aceste instrumente pot con"+String.fromCharCode(355)+"ine cookie-uri. Ele se numesc \"third party cookies\" pentru c"+String.fromCharCode(259)+" nu sunt plasate de proprietarul website-ului respectiv, iar furnizorii ter"+String.fromCharCode(355)+"i se supun legilor "+String.fromCharCode(238)+"n vigoare "+String.fromCharCode(351)+"i politicilor de confiden"+String.fromCharCode(355)+"ialitate ale de"+String.fromCharCode(355)+"in"+String.fromCharCode(259)+"torului site-ului.<br /><br />",
+		"<b>Cum pot fi oprite cookie-urile?</b><br /><br />",
+		"Este posibil"+String.fromCharCode(259)+" setarea din browser pentru ca aceste cookie-uri s"+String.fromCharCode(259)+" nu mai fie acceptate sau browser-ul poate fi setat astfel "+String.fromCharCode(238)+"nc"+String.fromCharCode(226)+"t s"+String.fromCharCode(259)+" accepte cookie-uri de la un site anume. Toate browserele moderne ofer"+String.fromCharCode(259)+" posibilitatea de a schimba set"+String.fromCharCode(259)+"rile cookie-urilor. Accesa"+String.fromCharCode(355)+"i op"+String.fromCharCode(355)+"iunea \"ajutor\" a browserului pentru mai multe detalii."
+	);
+	
+	$(divCookie).append(h1,pCookie);
+	return divCookie;
+};
+
+function createTabsMobile(){
+	var divOuter = createEl("div",{class:"tabs_mobile"});
+	var detalii = createEl("div",{class:"tab",id:"tab_mobile_detalii",onclick:"clickTabDetalii();"},"DETALII");
+	var retur = createEl("div",{class:"tab",id:"tab_mobile_retur",onclick:"clickTabRetur(this);"},pageVars.texte.string_retur_caps);
+	var schimba = createEl("div",{class:"tab",id:"tab_mobile_schimba",onclick:"changeLocalitati();"},"SCHIMB"+String.fromCharCode(258));
+	$(divOuter).append(detalii,retur,schimba);
+	return divOuter;
+};
+
+function createTabsMobileLinie(){
+	var divOuter = createEl("div",{class:"tabs_mobile_linie"});
+	var detalii = createEl("div",{class:"tab",id:"tab_mobile_detalii",onclick:"clickTabDetaliiLinie();"},"DETALII");
+	var schimba = createEl("div",{class:"tab",id:"tab_mobile_schimba",onclick:"changeLocalitati();"},"SCHIMB"+String.fromCharCode(258));
+	$(divOuter).append(detalii,schimba);
+	return divOuter;
+};
+
+function createTabsMobileStatie(){
+	var divOuter = createEl("div",{class:"tabs_mobile_statie"});
+	var detalii = createEl("div",{class:"tab",id:"tab_mobile_detalii",onclick:"clickTabDetaliiStatie();"},"DETALII");
+	var schimba = createEl("div",{class:"tab",id:"tab_mobile_schimba",onclick:"changeLocalitati();"},"SCHIMB"+String.fromCharCode(258));
+	$(divOuter).append(detalii,schimba);
+	return divOuter;
+};
+
+function createArrowTop(){
+	var divArrow = createEl("div",{id:"sageata_top",onclick:"toogleDetails();"});
+	var arrow = createEl("img",{src: pathToImg+'arrow-up.png'});
+	$(divArrow).append(arrow);
+	return divArrow;
+};
+
+function createTableInstructiuni(){
+	var table = createEl("div",{id:"table_instructiuni"});
+	var imgClose = createEl("img", {
+		'src': pathToImg + 'inchide-avansat.png',
+		'onclick': 'ascundeTableInstructiuni();',
+		'title': pageVars['texte']['inchide_optiunile_avansate']
+	});
+	$(table).append(imgClose);
+	return table;
+};
+
+function createTableInstructiuniLinie(){
+	var table = createEl("div",{id:"table_instructiuni_linie"});
+	var imgClose = createEl("img", {
+		'src': pathToImg + 'inchide-avansat.png',
+		'onclick': 'ascundeTableInstructiuniLinie();',
+		'title': pageVars['texte']['inchide_optiunile_avansate']
+	});
+	$(table).append(imgClose);
+	return table;
+};
+
+function createTableInstructiuniStatie(){
+	var table = createEl("div",{id:"table_instructiuni_statie"});
+	var imgClose = createEl("img", {
+		'src': pathToImg + 'inchide-avansat.png',
+		'onclick': 'ascundeTableInstructiuniStatie();',
+		'title': pageVars['texte']['inchide_optiunile_avansate']
+	});
+	$(table).append(imgClose);
+	return table;
+};ÇyOR+      \œf¼\œf¼@1iY\¥¡<   *    :https://distanta.ro/temp/js/template.js?9 necko:classified 1 strongly-framed 1 security-info FnhllAKWRHGAlo+ESXykKAAAAAAAAAAAwAAAAAAAAEaphjojH6pBabDSgSnsfLHeAAQAAgAAAAAAAAAAAAAAAAAAAAAB4vFIJp5wRkeyPxAQ9RJGKPqbqVvKO0mKuIl8ec8o/uhmCjImkVxP+7sgiYWmMt8FvcOXmlQiTNWFiWlrbpbqgwAAAAAAAAY2MIIGMjCCBRqgAwIBAgIQXQurbpxyEGFYj01EOsC30zANBgkqhkiG9w0BAQsFADByMQswCQYDVQQGEwJVUzELMAkGA1UECBMCVFgxEDAOBgNVBAcTB0hvdXN0b24xFTATBgNVBAoTDGNQYW5lbCwgSW5jLjEtMCsGA1UEAxMkY1BhbmVsLCBJbmMuIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MB4XDTE5MDMxOTAwMDAwMFoXDTE5MDYxNzIzNTk1OVowFjEUMBIGA1UEAxMLZGlzdGFudGEucm8wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCrBC0IWlvIKBkQZjsag+Iytwo49jS3pnYz7M/h9mYR2JJQGFJgVV1qxCad8aIvg7YWyX//kWl7HudFX9qi1NlrpJUbccx7AkEWHGCgu7JDRSKY51R14mtV5etZVbY7tK3qYFnUUifvAFnjIanTzUrkr/EN0WVWJXO69dMmnHa4fLB9D1c6u/xMTbXSdI7wOLQe7JJLoo4yHtY5S/iPfTw/n3/Cl0E3Mi2N0pwuv297p69JvxeAfl9sgs9P9+1wUWxmfSlvY30lkhL8AkRcQl/p3JW1rOuA5Sd7FJvQ9w5oa4RnM71pEVhsPBoJMcTIcdGL5QcPKn6PZsjGt6gIRUDjAgMBAAGjggMeMIIDGjAfBgNVHSMEGDAWgBR+A1plQWunfgrhuJ0I6h2OHWrHZTAdBgNVHQ4EFgQUSlm/tHXS6cl8+THeE+RCkW++uTMwDgYDVR0PAQH/BAQDAgWgMAwGA1UdEwEB/wQCMAAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCME8GA1UdIARIMEYwOgYLKwYBBAGyMQECAjQwKzApBggrBgEFBQcCARYdaHR0cHM6Ly9zZWN1cmUuY29tb2RvLmNvbS9DUFMwCAYGZ4EMAQIBMEwGA1UdHwRFMEMwQaA/oD2GO2h0dHA6Ly9jcmwuY29tb2RvY2EuY29tL2NQYW5lbEluY0NlcnRpZmljYXRpb25BdXRob3JpdHkuY3JsMH0GCCsGAQUFBwEBBHEwbzBHBggrBgEFBQcwAoY7aHR0cDovL2NydC5jb21vZG9jYS5jb20vY1BhbmVsSW5jQ2VydGlmaWNhdGlvbkF1dGhvcml0eS5jcnQwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3NwLmNvbW9kb2NhLmNvbTB3BgNVHREEcDBuggtkaXN0YW50YS5yb4ISY3BhbmVsLmRpc3RhbnRhLnJvghBtYWlsLmRpc3RhbnRhLnJvghN3ZWJkaXNrLmRpc3RhbnRhLnJvghN3ZWJtYWlsLmRpc3RhbnRhLnJvgg93d3cuZGlzdGFudGEucm8wggECBgorBgEEAdZ5AgQCBIHzBIHwAO4AdQC72d+8H4pxtZOUI5eqkntHOFeVCqtS6BqQlmQ2jh7RhQAAAWmUF6nTAAAEAwBGMEQCIBEWU4YfaHkUADrFRvwSSntiWxMDahLpiPIYosAtm3K8AiADzW1aEgJbY+K5apnJrI2HAGNM2Z+hFPdr+UJWw72DeAB1AHR+2oMxrTMQkSGcziVPQnDCv/1eQiAIxjc1eeYQe8xWAAABaZQXqhUAAAQDAEYwRAIgRj0YEojZJlanmMMsLLKMslPpPWy8EYVAX51O5yNMM+8CIGZ6s0r9ILCkVm3I0b1bb5fXVIlg9kE9SSCtJ2TrENarMA0GCSqGSIb3DQEBCwUAA4IBAQBOBAa2Y682qjYEFTL2JRS6AHMvnJLo6synX2KT7LinNj3mt3u70VrmDXOubdxHCzQ4QoygMTU3IWwO6DyOPHZaogUnZ1ktU03/LevhkMtUy12Tr6uZroYHoPzHn/pr144J/ZlFm3Xjl6UpyEn42oi5SbzqCzgCc08i/Jp7M/2Lhoon8sFQse/PCC2A8msw5Qm0aDBFhXPBJp8TlqU/Vk19ZNBNSjyNWEtKMTCI6fjZ1B9bLqrvktH25wsveIdn3MjTf5JRXvZnFwpv+9ZTEMbFQ9P91dshN9E0dmjLrHxaVegFOjgp5Phdhnkf/uq0zp9I+xxDuSEPaoTLKdabEp6pwC8DAwAAAAABAQAAAAAAAARub25lAAAAEFJTQS1QS0NTMS1TSEEyNTYAAAA= request-method GET response-head HTTP/1.1 200 OK
+Date: Thu, 28 Mar 2019 06:16:28 GMT
+Server: Apache
+Last-Modified: Sun, 26 Aug 2018 13:11:08 GMT
+Accept-Ranges: bytes
+Content-Length: 136625
+Content-Type: application/javascript
+ original-response-headers Date: Thu, 28 Mar 2019 06:16:28 GMT
+Server: Apache
+Last-Modified: Sun, 26 Aug 2018 13:11:08 GMT
+Accept-Ranges: bytes
+Content-Length: 136625
+Keep-Alive: timeout=5, max=100
+Connection: Keep-Alive
+Content-Type: application/javascript
+ uncompressed-len 0 net-response-time-onstart 61 net-response-time-onstop 123  ±

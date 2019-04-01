@@ -1,0 +1,8 @@
+{
+    "files.autoSave": "afterDelay",
+    "local-history.path": "/home/student/.vscode",
+    "local-history.treeLocation": "localHistory",
+    "local-history.absolute": true,
+    "local-history.maxDisplay": 100,
+    "local-history.saveDelay": 5
+}

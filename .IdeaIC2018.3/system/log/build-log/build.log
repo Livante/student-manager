@@ -1,0 +1,61 @@
+2019-04-01 12:32:16,189 [      0]   INFO - etbrains.jps.cmdline.BuildMain - ==================================================
+2019-04-01 12:32:16,190 [      1]   INFO - etbrains.jps.cmdline.BuildMain - Build process started. Classpath: /opt/idea-IC-183.5429.30/lib/jps-launcher.jar:/usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar:/opt/idea-IC-183.5429.30/lib/optimizedFileManager.jar
+2019-04-01 12:32:16,818 [    629]   INFO - etbrains.jps.cmdline.BuildMain - Connection to IDE established in 573 ms
+2019-04-01 12:32:17,708 [   1519]   INFO - jps.cmdline.JpsModelLoaderImpl - Loading model: project path = /home/student/IdeaProjects/StudentManager, global options path = /home/student/.IdeaIC2018.3/config/options
+2019-04-01 12:32:19,097 [   2908]   INFO - jps.cmdline.JpsModelLoaderImpl - Model loaded in 1390 ms
+2019-04-01 12:32:19,098 [   2909]   INFO - jps.cmdline.JpsModelLoaderImpl - Project has 1 modules, 0 libraries
+2019-04-01 12:32:19,756 [   3567]   INFO - ellij.util.io.PagedFileStorage - lower=100; upper=500; buffer=10; max=602
+2019-04-01 12:32:20,303 [   4114]   INFO - .incremental.IncProjectBuilder - Building project; isRebuild:true; isMake:false parallel compilation:false
+2019-04-01 12:32:20,314 [   4125]   INFO - kotlin.jps.build.KotlinBuilder - is Kotlin incremental compilation enabled for JVM: true
+2019-04-01 12:32:20,315 [   4126]   INFO - kotlin.jps.build.KotlinBuilder - is Kotlin incremental compilation enabled for JS: false
+2019-04-01 12:32:20,343 [   4154]   INFO - kotlin.jps.build.KotlinBuilder - is Kotlin compiler daemon enabled: true
+2019-04-01 12:32:20,343 [   4154]   INFO - kotlin.jps.build.KotlinBuilder - Label in local history: build started 2d735c52
+2019-04-01 12:32:20,384 [   4195]   INFO - s.index.CompilerReferenceIndex - backward reference index version differ due to: class java.io.FileNotFoundException
+2019-04-01 12:32:20,590 [   4401]   INFO - .incremental.IncProjectBuilder - Cleaned output directories in 19 ms
+2019-04-01 12:32:22,672 [   6483]   INFO - kotlin.jps.build.KotlinBuilder - KotlinTargetsIndex created in 1551 ms
+2019-04-01 12:32:22,693 [   6504]   INFO - kotlin.jps.build.KotlinBuilder - Total Kotlin global compile context initialization time: 1614 ms
+2019-04-01 12:32:22,715 [   6526]   INFO - s.incremental.java.JavaBuilder - Compiling 2 java files; module: StudentManager
+2019-04-01 12:32:24,078 [   7889]   INFO - s.incremental.java.JavaBuilder - javac 1.8.0_181 was used to compile [StudentManager]
+2019-04-01 12:32:25,367 [      0]   INFO - etbrains.jps.cmdline.BuildMain - ==================================================
+2019-04-01 12:32:25,368 [      1]   INFO - etbrains.jps.cmdline.BuildMain - Build process started. Classpath: /opt/idea-IC-183.5429.30/lib/jps-launcher.jar:/usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar:/opt/idea-IC-183.5429.30/lib/optimizedFileManager.jar
+2019-04-01 12:32:26,634 [   1267]   INFO - etbrains.jps.cmdline.BuildMain - Connection to IDE established in 1163 ms
+2019-04-01 12:32:27,186 [   1819]   INFO - jps.cmdline.JpsModelLoaderImpl - Loading model: project path = /home/student/IdeaProjects/StudentManager, global options path = /home/student/.IdeaIC2018.3/config/options
+2019-04-01 12:32:28,139 [   2772]   INFO - jps.cmdline.JpsModelLoaderImpl - Model loaded in 953 ms
+2019-04-01 12:32:28,157 [   2790]   INFO - jps.cmdline.JpsModelLoaderImpl - Project has 1 modules, 0 libraries
+2019-04-01 12:32:28,479 [   3112]   INFO - ellij.util.io.PagedFileStorage - lower=100; upper=500; buffer=10; max=602
+2019-04-01 12:32:28,663 [   3296]   INFO - etbrains.jps.cmdline.BuildMain - Pre-loaded process ready in 3299 ms
+2019-04-01 12:32:28,775 [   3408]   INFO - etbrains.jps.cmdline.BuildMain - Build canceled, but no build session is running. Exiting.
+2019-04-01 12:37:29,292 [      0]   INFO - etbrains.jps.cmdline.BuildMain - ==================================================
+2019-04-01 12:37:29,304 [     12]   INFO - etbrains.jps.cmdline.BuildMain - Build process started. Classpath: /opt/idea-IC-183.5429.30/lib/jps-launcher.jar:/usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar:/opt/idea-IC-183.5429.30/lib/optimizedFileManager.jar
+2019-04-01 12:37:30,418 [   1126]   INFO - etbrains.jps.cmdline.BuildMain - Connection to IDE established in 1077 ms
+2019-04-01 12:37:31,702 [   2410]   INFO - jps.cmdline.JpsModelLoaderImpl - Loading model: project path = /home/student/IdeaProjects/StudentManager, global options path = /home/student/.IdeaIC2018.3/config/options
+2019-04-01 12:37:33,124 [   3832]   INFO - jps.cmdline.JpsModelLoaderImpl - Model loaded in 1422 ms
+2019-04-01 12:37:33,124 [   3832]   INFO - jps.cmdline.JpsModelLoaderImpl - Project has 1 modules, 0 libraries
+2019-04-01 12:37:33,844 [   4552]   INFO - ellij.util.io.PagedFileStorage - lower=100; upper=500; buffer=10; max=602
+2019-04-01 12:37:35,576 [      0]   INFO - etbrains.jps.cmdline.BuildMain - ==================================================
+2019-04-01 12:37:35,577 [      1]   INFO - etbrains.jps.cmdline.BuildMain - Build process started. Classpath: /opt/idea-IC-183.5429.30/lib/jps-launcher.jar:/usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar:/opt/idea-IC-183.5429.30/lib/optimizedFileManager.jar
+2019-04-01 12:37:36,120 [    544]   INFO - etbrains.jps.cmdline.BuildMain - Connection to IDE established in 495 ms
+2019-04-01 12:37:36,516 [    940]   INFO - jps.cmdline.JpsModelLoaderImpl - Loading model: project path = /home/student/IdeaProjects/StudentManager, global options path = /home/student/.IdeaIC2018.3/config/options
+2019-04-01 12:37:37,495 [   1919]   INFO - jps.cmdline.JpsModelLoaderImpl - Model loaded in 979 ms
+2019-04-01 12:37:37,496 [   1920]   INFO - jps.cmdline.JpsModelLoaderImpl - Project has 1 modules, 0 libraries
+2019-04-01 12:37:37,661 [   2085]   INFO - ellij.util.io.PagedFileStorage - lower=100; upper=500; buffer=10; max=602
+2019-04-01 12:37:38,053 [   2477]   INFO - etbrains.jps.cmdline.BuildMain - Pre-loaded process ready in 2479 ms
+2019-04-01 12:44:48,644 [ 433068]   INFO - .incremental.IncProjectBuilder - Building project; isRebuild:false; isMake:true parallel compilation:false
+2019-04-01 12:44:48,700 [ 433124]   INFO - kotlin.jps.build.KotlinBuilder - is Kotlin incremental compilation enabled for JVM: true
+2019-04-01 12:44:48,701 [ 433125]   INFO - kotlin.jps.build.KotlinBuilder - is Kotlin incremental compilation enabled for JS: false
+2019-04-01 12:44:48,744 [ 433168]   INFO - kotlin.jps.build.KotlinBuilder - is Kotlin compiler daemon enabled: true
+2019-04-01 12:44:48,744 [ 433168]   INFO - kotlin.jps.build.KotlinBuilder - Label in local history: build started 49f91ce9
+2019-04-01 12:44:49,009 [ 433433]   INFO - .incremental.IncProjectBuilder - Cleaned output directories in 4 ms
+2019-04-01 12:44:50,768 [ 435192]   INFO - kotlin.jps.build.KotlinBuilder - KotlinTargetsIndex created in 1365 ms
+2019-04-01 12:44:50,811 [ 435235]   INFO - kotlin.jps.build.KotlinBuilder - Total Kotlin global compile context initialization time: 1411 ms
+2019-04-01 12:44:50,878 [ 435302]   INFO - s.incremental.java.JavaBuilder - Compiling 2 java files; module: StudentManager
+2019-04-01 12:44:52,668 [ 437092]   INFO - brains.jps.incremental.Builder - Dependency analysis found 0 affected files
+2019-04-01 12:44:52,793 [ 437217]   INFO - s.incremental.java.JavaBuilder - javac 1.8.0_181 was used to compile [StudentManager]
+2019-04-01 12:44:54,228 [      0]   INFO - etbrains.jps.cmdline.BuildMain - ==================================================
+2019-04-01 12:44:54,228 [      0]   INFO - etbrains.jps.cmdline.BuildMain - Build process started. Classpath: /opt/idea-IC-183.5429.30/lib/jps-launcher.jar:/usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar:/opt/idea-IC-183.5429.30/lib/optimizedFileManager.jar
+2019-04-01 12:44:55,019 [    791]   INFO - etbrains.jps.cmdline.BuildMain - Connection to IDE established in 606 ms
+2019-04-01 12:44:55,271 [   1043]   INFO - jps.cmdline.JpsModelLoaderImpl - Loading model: project path = /home/student/IdeaProjects/StudentManager, global options path = /home/student/.IdeaIC2018.3/config/options
+2019-04-01 12:44:56,176 [   1948]   INFO - jps.cmdline.JpsModelLoaderImpl - Model loaded in 905 ms
+2019-04-01 12:44:56,176 [   1948]   INFO - jps.cmdline.JpsModelLoaderImpl - Project has 1 modules, 0 libraries
+2019-04-01 12:44:56,542 [   2314]   INFO - ellij.util.io.PagedFileStorage - lower=100; upper=500; buffer=10; max=602
+2019-04-01 12:44:56,901 [   2673]   INFO - etbrains.jps.cmdline.BuildMain - Pre-loaded process ready in 2677 ms

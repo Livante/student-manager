@@ -1,0 +1,581 @@
+var map;
+var myLatLng;
+var myOptions;
+var objFor;
+var control;
+var drag=0;
+var wT = window.top;
+function initializeMap() {
+	myLatLng = L.latLng(wT.pageVars['map_options']['centerLat'], wT.pageVars['map_options']['centerLng']);
+	
+	// sa nu uit de el
+	wT.pageVars['generale']['geocoder'] = new geocoder();
+	
+	map = L.map('harta',{
+		zoomControl: false,
+		minZoom: 1,
+		maxZoom: 18
+	});
+	map.on({
+		load: function(e) {
+			initializeMarkers();
+			initializeDirections();
+			wT.onMapLoad();
+		},
+		mousemove: function(event) {
+			wT.document.getElementById('div_coords').getElementsByTagName("div")[1].innerHTML = wT.cutCoords(event.latlng.lat) + ', ' + wT.cutCoords(event.latlng.lng);
+		},
+		click: function(event) {
+			wT.document.getElementById('div_coords').getElementsByTagName("div")[0].innerHTML = wT.cutCoords(event.latlng.lat) + ', ' + wT.cutCoords(event.latlng.lng);
+			if (wT.pageVars['generale']['select_on_map_active'] >= 0) {
+				coords = event.latlng;
+				wT.geocode(coords, 'latLng');
+				wT.$(".litera:eq(" + wT.pageVars['generale']['select_on_map_active'] + ")").attr("src", wT.pathToImg + "loading-cerc.gif");
+				(function l() {
+					window.setTimeout(function() {
+						if (wT.pageVars['generale']['geocoding'][coords] != 'pending') {
+							wT.prelucreazaGeo(wT.$(".input-ruta:eq(" + wT.pageVars['generale']['select_on_map_active'] + ")"), coords, 'input');
+						} else if (wT.pageVars['generale']['geocoding'][coords] != {}) {
+							l();
+						};
+					}, 50);
+				})();
+			};
+		},
+		dragend: function(event) {
+			if (wT.pageVars['generale']['zoom_center_no_change'] == 0) {
+				wT.refreshVarsPageVars();
+				wT.pageVars[wT.tipRuta]['zoom_center_changed'] = 1;
+				wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected][wT.moduriCautare]['zoom'] = map.getZoom();
+				wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected][wT.moduriCautare]['center'] = map.getCenter();
+			};
+		},
+		zoom: function(event) {
+			if (wT.pageVars['generale']['zoom_center_no_change'] == 0) {
+				wT.refreshVarsPageVars();
+				wT.pageVars[wT.tipRuta]['zoom_center_changed'] = 1;
+				wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected][wT.moduriCautare]['zoom'] = map.getZoom();
+				wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected][wT.moduriCautare]['center'] = map.getCenter();
+			};
+		},
+		zoomend: function(event){
+			if (wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected][wT.moduriCautare]['results'].length == 0 || (wT.tipRuta == 'autobuz' && wT.moduriCautare == 'statii' && !wT.autobuzStatieIsShown)) {
+				showMarkersStatii();
+			};
+		},
+		moveend: function(event){
+			if (wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected][wT.moduriCautare]['results'].length == 0 || (wT.tipRuta == 'autobuz' && wT.moduriCautare == 'statii' && !wT.autobuzStatieIsShown)) {
+				showMarkersStatii();
+			};
+		}
+	});
+	//L.tileLayer('https://maps.distanta.ro/bright/{z}/{x}/{y}.png', {
+	//L.tileLayer('https://maps.distanta.ro/styles/bright-v9/rendered/{z}/{x}/{y}.png', {
+	//L.tileLayer('https://mapcdn.distanta.ro:7900/styles/bright-v9/rendered/{z}/{x}/{y}.png', {
+	L.tileLayer('https://mapscdn.distanta.ro/styles/osm-bright/rendered/{z}/{x}/{y}.png', {
+		attribution: 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, Imagery &copy; <a href="https://distanta.ro/">Distan&#355;a</a>',
+		maxZoom: 20
+	}).addTo(map);
+	map.setView(myLatLng,parseInt(wT.pageVars['map_options']['zoom']));
+	
+	wT.pageVars['map_options']['center'] = map.getCenter();
+	
+	for (var i = 0; i < wT.pageVars['tip_rute'].length; i++) {
+		for (var idOras in wT.pageVars[wT.pageVars['tip_rute'][i]]['orase']) {
+			if (wT.pageVars[wT.pageVars['tip_rute'][i]]['orase'].hasOwnProperty(idOras)) {
+				for (var j = 0; j < wT.pageVars[wT.pageVars['tip_rute'][i]]['orase'][idOras]['moduri_cautare'].length; j++) {
+					modCautare = wT.pageVars[wT.pageVars['tip_rute'][i]]['orase'][idOras]['moduri_cautare'][j];
+					wT.pageVars[wT.pageVars['tip_rute'][i]]['orase'][idOras][modCautare]['zoom'] = parseInt(wT.pageVars['map_options']['zoom']);
+					wT.pageVars[wT.pageVars['tip_rute'][i]]['orase'][idOras][modCautare]['center'] = myLatLng;
+				};
+			};
+		};
+	};
+	
+	
+};
+function initializeMarkers(){
+	markerImage = L.icon({iconUrl: wT.pathToImg + 'map_pointer.png',iconSize: [12, 20],iconAnchor: [6, 20],popupAnchor: [0, -20]});
+	markerRed = L.icon({iconUrl: wT.pathToImg + 'markere/marker_red_point.png',iconSize: [20, 34],iconAnchor: [10, 34],popupAnchor: [0, -34]});
+	markerGreen = L.icon({iconUrl: wT.pathToImg + 'markere/marker_green_point.png',iconSize: [20, 34],iconAnchor: [10, 34],popupAnchor: [0, -34]});
+	markerRedDot = L.icon({iconUrl: wT.pathToImg + 'red_dot.gif',iconSize: [10, 10],iconAnchor: [5, 10],popupAnchor: [0, -10]});
+	markerBlueDot = L.icon({iconUrl: wT.pathToImg + 'blue_dot.png',iconSize: [10, 10],iconAnchor: [5, 10],popupAnchor: [0, -10]});
+	markerRedDotBig = L.icon({iconUrl: wT.pathToImg + 'red_dot_big.png',iconSize: [16, 16],iconAnchor: [8, 16],popupAnchor: [0, -16]});
+	markerRedDotSmall = L.icon({iconUrl: wT.pathToImg + 'red_dot.png',iconSize: [8, 8],iconAnchor: [4, 8],popupAnchor: [0, -8]});
+	markerImagePoint = L.icon({iconUrl: wT.pathToImg + 'punct-negru.png',iconSize: [8, 8],iconAnchor: [4, 8],popupAnchor: [0, -8]});
+	markerGreenNewA = L.icon({iconUrl: wT.pathToImg + 'marker_green_newA.png',iconSize: [20, 34],iconAnchor: [10, 34],popupAnchor: [0, -34]});
+	markerGreenNewB = L.icon({iconUrl: wT.pathToImg + 'marker_green_newB.png',iconSize: [20, 34],iconAnchor: [10, 34],popupAnchor: [0, -34]});
+	wT.pageVars['generale']['marker'] = L.marker(null,{icon: markerImage});
+	wT.pageVars['generale']['markerVisible'] = L.marker(null,{icon: markerImage});
+	wT.pageVars['generale']['rutaAlternativa'] = L.polyline([],{opacity: 0.6,weight: 5});
+	wT.pageVars['generale']['lineInside'] = L.polyline([],{opacity: 1,color: 'white',weight: 1,zIndex: 6});
+	wT.pageVars['generale']['linieDreaptaGeodesic'] = L.geodesic([],{});
+	wT.pageVars['generale']['linieDreapta'] = L.polyline([],{});
+	wT.pageVars['generale']['markerPoint'] = L.marker(null,{icon: markerImagePoint});
+	wT.pageVars['generale']['oras']['markerStradaObiectiv'] = L.marker(null,{icon: markerRed});
+	wT.pageVars['generale']['oras']['markerVisible'] = L.marker(null,{icon: markerRed});
+	wT.pageVars['generale']['infoWindow'] = L.popup();
+	wT.pageVars['generale']['oras']['infoWindowStradaObiectiv'] = L.popup();
+	wT.pageVars['generale']['taxi']['obj'] = getPolylineTaxi();
+};
+
+function getPolylineTaxi(){
+	return L.polyline([],{opacity: 0.6,color: "#E01B4C",weight: 5,zIndex: 6});
+};
+
+function initializeDirections() {
+	control = L.Routing.control({
+		routeWhileDragging: true,
+		waypointMode: 'connect',
+		pointMarkerStyle: {radius: 5,color: '#000000',fillColor: 'white',opacity: 1,fillOpacity: 1},
+		lineOptions: {styles:[{color: wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['culori'][wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['nume_culoare_selected']], opacity: 0.7, weight: 5}]},
+		routeLine: function (route,options) {
+				var line = L.Routing.line(route,options);
+				line
+				.on("linetouched",function(e){
+					L.DomEvent.stopPropagation(e);
+					return;
+				});
+				return line;
+			},
+		altLineOptions: {styles:[{color: wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['culori'][wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['nume_culoare_selected']], opacity: 0.7, weight: 5}]},
+		//router: L.Routing.mapbox('pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw'),
+		//router: L.Routing.distanta({serviceUrl: "https://route.distanta.ro/car/route/v1/driving/"}),
+		router: L.Routing.osrmv1({serviceUrl: 'https://route.distanta.ro/car/route/v1'}),
+		show: false,
+		fitSelectedRoutes: true,
+		formatter: new L.Routing.Formatter({
+			language: "ro",
+			units: "metric"
+		}),
+		createMarker: function(i, wp) {
+			return L.marker(wp.latLng,{
+				draggable: true,
+				icon: L.icon({iconUrl: wT.pathToImg + 'markere/'+((control.getWaypoints().length==i+1)?'red_':'green_')+wT.pageVars.generale.litere[i].toUpperCase()+'.png',iconSize: [22, 40],iconAnchor: [11, 40],popupAnchor: [0, -40]})
+			}).on('click', function(e) {});
+		}
+	})
+	.on("routingstart",function(e){
+		L.Util.setOptions(
+			control,
+			{
+				lineOptions: {styles:[{color: wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['culori'][wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['nume_culoare_selected']],opacity: 0.7,weight: 5}]},
+				altLineOptions: {styles:[{color: wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['culori'][wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['nume_culoare_selected']],opacity: 0.7,weight: 5}]}
+			}
+		);
+	})
+	.on("routesfound",function(e){
+		wT.processRuta(e.routes,e.waypoints,e.type,e.target,drag);
+	})
+	.on("routingerror",function(e){
+		wT.showInfoAlert(wT.pageVars['texte']['error_directions']['UNKNOWN_ERROR']);
+	})
+	.addTo(map);
+};
+
+function showMarkersStatii(k) {
+	var z = map.getZoom();
+	var optiuni = wT.getOptiuniSelectate();
+	if (
+			k
+		&&	wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['optiuni_markers']
+		&&	wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['optiuni_markers'].length > 0
+		&&	wT.$(wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['optiuni_markers']).not(optiuni).length == 0
+		&&	wT.$(optiuni).not(wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['optiuni_markers']).length == 0
+	) {
+		return;
+	};
+	var este;
+	if (
+			wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['statii_incarcate']
+		&&	wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['statii_incarcate'].length > 0
+		&&	wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['icons_zoom'][z]
+	) {
+		var zz = wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['icons_zoom'][z];
+		for (var i = 0; i < wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['statii_incarcate'].length; i++) {
+			este = 0;
+			for (var j = 0; j < wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['statii_incarcate'][i]['tip_mijloace'].length; j++) {
+				if (wT.$.inArray(wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['statii_incarcate'][i]['tip_mijloace'][j], optiuni) > -1) {
+					este = 1;
+				};
+			};
+			if (
+				zz.length == 0 ||
+				map.getBounds().contains(wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['statii_incarcate'][i].getLatLng()) === false ||
+				este == 0
+			) {
+				wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['statii_incarcate'][i].remove();
+			} else {
+				// tre' sa vedem cum determinam daca un marker este pe harta sau nu
+				if (wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['statii_incarcate'][i]) {
+				//if (wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['statii_incarcate'][i].getMap() == null) {
+					wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['statii_incarcate'][i].addTo(map);
+				};
+				
+				
+				// nu stiu ce face bucata de cod de mai jos, urmeaza a fi analizata
+				/* if (wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['statii_incarcate'][i].getZIndex() >= 2) {
+					var markerImage = wT.pathToImg + zz[2];
+				} else {
+					var markerImage = wT.pathToImg + zz[0];
+				}; */
+				wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['statii_incarcate'][i].setIcon(markerImage);
+			};
+		};
+		wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['optiuni_markers'] = optiuni;
+	};
+};
+
+function setMarkerStatie(statie, i) {
+	var zz = wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['icons_zoom'][map.getZoom()];
+	if (statie[5] && statie[5].length > 0) {
+		for (var j = 0; j < statie[5].length; j++) {
+			if (statie[1] == 'M Gara de Nord' && j < 5) {
+				marker = L.marker([statie[5][j][0], statie[5][j][1]],{
+					icon: L.icon({
+						iconUrl: wT.pathToImg + zz[2],
+						/* iconSize: [20, 34],
+						iconAnchor: [10, 34],
+						popupAnchor: [0, -34] */
+					}),
+					title: statie[1] + '\n' + statie[2],
+					zIndexOffset: 3,
+					tip_mijloace: statie[6],
+					id: statie[0]
+				});
+				if (zz.length > 0) {
+					marker.addTo(map);
+				};
+			} else if (statie[1] == 'M Gara de Nord 2' && j >= 5) {
+				marker = L.marker([statie[5][j][0], statie[5][j][1]],{
+					icon: L.icon({iconUrl: wT.pathToImg + zz[2]}),
+					title: statie[1] + '\n' + statie[2],
+					zIndexOffset: 2,
+					tip_mijloace: statie[6],
+					id: statie[0]
+				});
+				if (zz.length > 0) {
+					marker.addTo(map);
+				};
+			} else {
+				marker = L.marker([statie[5][j][0], statie[5][j][1]],{
+					icon: L.icon({iconUrl: wT.pathToImg + zz[2]}),
+					title: statie[1] + '\n' + statie[2],
+					zIndexOffset: 2,
+					tip_mijloace: statie[6],
+					id: statie[0]
+				});
+				if (zz.length > 0) {
+					marker.addTo(map);
+				};
+			};
+			marker.on({
+				click: function () {
+					wT.refreshVarsPageVars();
+					if (wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected][wT.moduriCautare]['optiuni']['select_on_map'] == 0) {
+						return;
+					};
+					if (wT.pageVars['generale']['select_on_map_active'] == -1) {
+						if (wT.getFreeInput() > -1) {
+							wT.pageVars['generale']['select_on_map_active'] = wT.getFreeInput();
+						} else {
+							return;
+						};
+					};
+					wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected][wT.moduriCautare]['varsInputs'][wT.pageVars['generale']['select_on_map_active']] = statie[1];
+					wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected][wT.moduriCautare]['idsVarsInputs'][wT.pageVars['generale']['select_on_map_active']] = statie[0];
+					wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected][wT.moduriCautare]['coordVarsInputs'][wT.pageVars['generale']['select_on_map_active']] = statie[5];
+					wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected][wT.moduriCautare]['textCoordVarsInputs'][wT.pageVars['generale']['select_on_map_active']] = statie[1];
+					wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected][wT.moduriCautare]['urlsVarsInputs'][wT.pageVars['generale']['select_on_map_active']] = statie[3];
+					wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected][wT.moduriCautare]['markersVarsInputs'][wT.pageVars['generale']['select_on_map_active']] = marker;
+					wT.$(".input-ruta:eq(" + wT.pageVars['generale']['select_on_map_active'] + ")").parent().children("span").hide();
+					wT.$(".input-ruta:eq(" + wT.pageVars['generale']['select_on_map_active'] + ")").css({
+						'color': ''
+					});
+					wT.$(".input-ruta:eq(" + wT.pageVars['generale']['select_on_map_active'] + ")").val(statie[1]);
+					wT.pageVars['generale']['select_on_map_active'] = -1;
+					wT.clickVeziDirectii();
+				}
+			});
+			wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['statii_incarcate'].push(marker);
+		};
+	} else {
+		if (statie[4]) {
+			marker = L.marker([statie[4][0], statie[4][1]],{
+				icon: L.icon({iconUrl: wT.pathToImg + zz[0]}),
+				title: statie[1] + '\n' + statie[2],
+				zIndexOffset: 1,
+				tip_mijloace: statie[6],
+				id: statie[0]
+			});
+			if (zz.length > 0) {
+				marker.addTo(map);
+			};
+			marker.on({
+				click: function () {
+					wT.refreshVarsPageVars();
+					if (wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected][wT.moduriCautare]['optiuni']['select_on_map'] == 0) {
+						return;
+					};
+					if (wT.pageVars['generale']['select_on_map_active'] == -1) {
+						if (wT.getFreeInput() > -1) {
+							wT.pageVars['generale']['select_on_map_active'] = wT.getFreeInput();
+						} else {
+							return;
+						};
+					};
+					wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected][wT.moduriCautare]['varsInputs'][wT.pageVars['generale']['select_on_map_active']] = statie[1];
+					wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected][wT.moduriCautare]['idsVarsInputs'][wT.pageVars['generale']['select_on_map_active']] = statie[0];
+					wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected][wT.moduriCautare]['coordVarsInputs'][wT.pageVars['generale']['select_on_map_active']] = statie[4];
+					wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected][wT.moduriCautare]['textCoordVarsInputs'][wT.pageVars['generale']['select_on_map_active']] = statie[1];
+					wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected][wT.moduriCautare]['urlsVarsInputs'][wT.pageVars['generale']['select_on_map_active']] = statie[3];
+					wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected][wT.moduriCautare]['markersVarsInputs'][wT.pageVars['generale']['select_on_map_active']] = marker;
+					wT.$(".input-ruta:eq(" + wT.pageVars['generale']['select_on_map_active'] + ")").parent().children("span").hide();
+					wT.$(".input-ruta:eq(" + wT.pageVars['generale']['select_on_map_active'] + ")").css({
+						'color': ''
+					});
+					wT.$(".input-ruta:eq(" + wT.pageVars['generale']['select_on_map_active'] + ")").val(statie[1]);
+					wT.pageVars['generale']['select_on_map_active'] = -1;
+					wT.clickVeziDirectii();
+				}
+			});
+			wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['statii_incarcate'].push(marker);
+		};
+	};
+};
+
+function putStatiiIncarcateOnMap(iO) {
+	wT.refreshVarsPageVars();
+	if (wT.pageVars[wT.tipRuta]['orase'][iO]['statii_incarcate'] && wT.pageVars[wT.tipRuta]['orase'][iO]['statii_incarcate'].length > 0) {
+		for (var i = 0; i < wT.pageVars[wT.tipRuta]['orase'][iO]['statii_incarcate'].length; i++) {
+			wT.pageVars[wT.tipRuta]['orase'][iO]['statii_incarcate'][i].addTo(map);
+		};
+	};
+};
+
+function setPolyRutaAutobuz(poly, ret) {
+	var polyline = L.polyline(poly[1],{
+		opacity: (poly[0] == 0) ? 1 : 0.9,
+		weight: 4,
+		color: wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['culori'][wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['nume_culoare_selected']],
+		dashArray: (poly[0] == 0)?[15]:null
+	});
+	if (ret == true) {
+		return polyline;
+	};
+};
+
+function setMarkerRutaAutobuz(mark, ret) {
+	marker = L.marker([mark[0][0], mark[0][1]],{
+		title: mark[1],
+		icon: markerRedDot,
+		zIndex: (mark[2] == '/temp/img/marker_green_newA.png' || mark[2] == '/temp/img/marker_green_newB.png') ? 2 : 1
+	});
+	if (ret == true) {
+		return marker;
+	};
+};
+
+function setPolyServer(poly, ret) {
+	var polyline = L.polyline(poly,{
+		opacity: 0.9,
+		weight: 5,
+		color: wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['culori'][wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['nume_culoare_selected']]
+	});
+	if (ret == true) {
+		return polyline;
+	};
+};
+
+function returnPolyLinieDreapta() {
+	if (wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected][wT.moduriCautare]['optiuni']['ui'][0]['geodesic'][0]) {
+		// polyline geodesic
+		var polyline = L.geodesic([],{
+			opacity: 0.9,
+			weight: 5,
+			steps: 500,
+			wrap: false,
+			color: wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['culori'][wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['nume_culoare_selected']]
+		}).addTo(map);
+	} else {
+		// polyline drept
+		var polyline = L.polyline([],{
+			opacity: 0.9,
+			weight: 5,
+			color: wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['culori'][wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['nume_culoare_selected']]
+		}).addTo(map);
+	};
+	
+	return polyline;
+};
+
+function returnMarkerLinieDreapta(lat, lng, indexLitera, title) {
+	var markerImage = L.icon({
+		iconUrl: wT.pathToImg + 'markere/marker_green_new' + wT.pageVars['generale']['litere'][indexLitera].toUpperCase() + '.png',
+		iconSize: [20,34],
+		iconAnchor: [10,34]
+	});
+	marker = L.marker([lat,lng],{
+		icon: markerImage,
+		draggable: true,
+		title: title,
+		index: indexLitera,
+		riseOnHover: true
+	})
+	.on({
+		dragstart: raiseMarkerLinieDreapta,
+		dragend: releaseMarkerLinieDreapta,
+		drag: dragMarkerLinieDreapta
+	}).addTo(map);
+	return marker;
+};
+
+function raiseMarkerLinieDreapta(event) {
+	var path = [];
+	if (this.options.index > 0) {
+		path.push(wT.pageVars['generale']['markersLiniiDrepte'][this.options.index - 1].getLatLng());
+	};
+	path.push(event.target.getLatLng());
+	if (this.options.index < wT.pageVars['generale']['markersLiniiDrepte'].length - 1) {
+		path.push(wT.pageVars['generale']['markersLiniiDrepte'][this.options.index + 1].getLatLng());
+	};
+	if (wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected][wT.moduriCautare]['optiuni']['ui'][0]['geodesic'][0]) {
+		// linie geodesic
+		wT.pageVars['generale']['linieDreaptaGeodesic'].setStyle({
+			color: wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['culori'][wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['nume_culoare_selected']],
+			weight: 5,
+			opacity: 0.9,
+			dashArray: [15],
+			steps: 50,
+			noClip: true
+		}).addTo(map).setLatLngs([path]);
+	} else {
+		// linie dreapta
+		wT.pageVars['generale']['linieDreapta'].setStyle({
+			color: wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['culori'][wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected]['nume_culoare_selected']],
+			weight: 5,
+			opacity: 0.9,
+			dashArray: [15],
+			steps: 50,
+			noClip: true
+		}).addTo(map).setLatLngs(path);
+	};
+};
+
+function dragMarkerLinieDreapta(event) {
+	if (wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected][wT.moduriCautare]['optiuni']['ui'][0]['geodesic'][0]) {
+		// linie geodesic
+		var path = [];
+		if (this.options.index > 0) {
+			path.push(wT.pageVars['generale']['markersLiniiDrepte'][this.options.index - 1].getLatLng());
+		};
+		path.push(event.target.getLatLng());
+		if (this.options.index < wT.pageVars['generale']['markersLiniiDrepte'].length - 1) {
+			path.push(wT.pageVars['generale']['markersLiniiDrepte'][this.options.index + 1].getLatLng());
+		};
+		wT.pageVars['generale']['linieDreaptaGeodesic'].setLatLngs([path]);
+		
+	} else {
+		// linie dreapta
+		var path = wT.pageVars['generale']['linieDreapta'].getLatLngs();
+		path.splice((this.options.index == 0) ? 0 : 1, 1, this.getLatLng())
+		wT.pageVars['generale']['linieDreapta'].setLatLngs(path);
+	};
+};
+
+function releaseMarkerLinieDreapta(event) {
+	if (wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected][wT.moduriCautare]['optiuni']['ui'][0]['geodesic'][0]) {
+		// linie geodesic
+		wT.pageVars['generale']['linieDreaptaGeodesic'].setLatLngs([]);
+		wT.pageVars['generale']['linieDreaptaGeodesic'].remove();
+	} else {
+		// linie dreapta
+		wT.pageVars['generale']['linieDreapta'].setLatLngs([]);
+		wT.pageVars['generale']['linieDreapta'].remove();
+	};
+	wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected][wT.moduriCautare]['varsInputs'][this.options.index] = this.getLatLng().lat+","+this.getLatLng().lng;
+	wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected][wT.moduriCautare]['idsVarsInputs'][this.options.index] = 0;
+	wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected][wT.moduriCautare]['coordVarsInputs'][this.options.index] = [wT.cutCoords(this.getLatLng().lat), wT.cutCoords(this.getLatLng().lng)];
+	wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected][wT.moduriCautare]['textCoordVarsInputs'][this.options.index] = this.getLatLng().lat+","+this.getLatLng().lng;
+	wT.pageVars[wT.tipRuta]['orase'][wT.idOrasSelected][wT.moduriCautare]['urlsVarsInputs'][this.options.index] = '';
+	wT.prelucreazaWayPoint(this.options.index, this.getLatLng());
+	wT.clickVeziDirectii();
+};
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// Facute
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+window.onload = function() {
+	initializeMap();
+};
+function getPoint(lat, lng) {
+	return L.latLng(lat, lng);
+};
+
+function getBounds(arraySW, arrayNE) {
+	bounds = L.latLngBounds(getPoint(arraySW[0], arraySW[1]), getPoint(arrayNE[0], arrayNE[1]));
+	return bounds;
+};
+
+function setBounds(bounds) {
+	map.fitBounds(bounds);
+};
+
+function ascundeDivs() {
+	wT.$("#div-suggest").remove();
+	if (wT.pageVars['generale']['id_div_for_hidden'].length == 0) {
+		return;
+	};
+	wT.removeDivsInfo();
+};
+
+function setCenter(lat,lng) {
+	map.setView(L.latLng(lat,lng),map.getZoom());
+};
+
+function setZoom(zoom) {
+	map.setZoom(zoom);
+};
+
+function getMarkerRosu(pos, title) {
+	marker = L.marker(pos,{
+		title: title,
+		icon: L.icon({iconUrl: wT.pathToImg + 'red_dot.gif'})
+	}).addTo(map);
+	return marker;
+};
+
+function getPolyLinieAutobuz(path,culoare) {
+	var polyline = L.polyline(path,{
+		color: culoare,
+		opacity: 0.9,
+		weight: 4
+	}).addTo(map);
+	return polyline;
+};
+
+function setMarker(pos, icon, title) {
+	var marker = L.marker(pos,{
+		icon: icon,
+		title: title
+	});
+	return marker;
+};n™‡±xB      \œfÀ\œfÀ@1i\\¥¡@   /    :https://distanta.ro/temp/js/general-harta.js?9 necko:classified 1 strongly-framed 1 security-info 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 request-method GET response-head HTTP/1.1 200 OK
+Date: Thu, 28 Mar 2019 06:16:32 GMT
+Server: Apache
+Last-Modified: Sun, 26 Aug 2018 13:11:08 GMT
+Accept-Ranges: bytes
+Content-Length: 24024
+Content-Type: application/javascript
+ original-response-headers Date: Thu, 28 Mar 2019 06:16:32 GMT
+Server: Apache
+Last-Modified: Sun, 26 Aug 2018 13:11:08 GMT
+Accept-Ranges: bytes
+Content-Length: 24024
+Keep-Alive: timeout=5, max=93
+Connection: Keep-Alive
+Content-Type: application/javascript
+ uncompressed-len 0 net-response-time-onstart 77 net-response-time-onstop 77   ]Ø

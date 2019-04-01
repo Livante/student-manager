@@ -1,0 +1,3468 @@
+var pageVars = {
+	autohop: {
+		active: 0
+	},
+	blablacar: {
+		active: 0,
+		map: 0
+	},
+	uber: {
+		map: 0
+	},
+	"map_options": {
+		"type": 1,
+		"zoom": 6,
+		"centerLat": 46.0,
+		"centerLng": 24.978284,
+		"center": false
+	},
+	"generale": {
+		"click_vezi_directii": 0,
+		"map_types": ["SATELLITE", "ROADMAP", "HYBRID", "TERRAIN"],
+		"map_types_lang": ["SATELIT", "HARTA", "HYBRID", "TEREN"],
+		"butoane": ["TRAFIC", "STAREA DRUMURILOR"],
+		"browsers": ['MSIE', 'Firefox', 'Opera', 'Chrome', 'Safari'],
+		"unitati_masura_distante": [
+			["METRIC", "Km", "km", "Km/h", 1000],
+			["IMPERIAL", "Mile", "mile", "Mile/h", 1609.342713]
+		],
+		"unitati_masura_distante2": [
+			["METRIC", "M", "m", "m/s", 1],
+			["IMPERIAL", "Yards", "yd", "yd/s", 0.9144]
+		],
+		"unitati_masura_volum": [
+			["litri", "l", 1],
+			["galoane", "gal", 4.54609]
+		],
+		"dimensiuni_container": {
+			"sus": {
+				"colturi": [
+					[13, 23],
+					[13, 13],
+					[9, 13],
+					[9, 23]
+				],
+				"margini": [
+					[1, 23],
+					[13, 1],
+					[1, 13],
+					[9, 1]
+				],
+				"arrow": [29, 28, 'top: -16px; left: 25px;']
+			},
+			"jos": {
+				"colturi": [
+					[15, 11],
+					[15, 24],
+					[11, 24],
+					[11, 11]
+				],
+				"margini": [
+					[1, 11],
+					[15, 1],
+					[1, 24],
+					[11, 1]
+				],
+				"arrow": [33, 33, 'bottom: -19px; left: 20px;']
+			},
+			"dreapta": {
+				"colturi": [
+					[24, 11],
+					[24, 14],
+					[11, 14],
+					[11, 11]
+				],
+				"margini": [
+					[1, 11],
+					[24, 1],
+					[1, 14],
+					[11, 1]
+				],
+				"arrow": [32, 32, 'top: 20px; right: -18px;']
+			},
+			"stanga": {
+				"colturi": [
+					[12, 9],
+					[12, 16],
+					[24, 16],
+					[24, 9]
+				],
+				"margini": [
+					[1, 9],
+					[12, 1],
+					[1, 16],
+					[24, 1]
+				],
+				"arrow": [30, 29, 'top: 20px; left: -17px;']
+			}
+		},
+		"tabs": [],
+		"hash": "",
+		"default_um": 0,
+		"trafic": 0,
+		"drumuri": 0,
+		"viteza_pe_jos_m_s": 1.377,
+		"viteza_pieton_m_s": 1.377,
+		"viteza_bicicleta_m_s": 5,
+		"tipuri_ad": [
+			['LEADERBOARD', [728, 90],
+				[4447486230]
+			],
+			['BANNER', [468, 60],
+				[5140084104]
+			],
+			['LARGE_RECTANGLE', [336, 280],
+				[1712356103]
+			],
+			['MEDIUM_RECTANGLE', [300, 250],
+				[9364773836]
+			],
+			['SQUARE', [250, 250],
+				[5027097367]
+			],
+			['HALF_BANNER', [234, 60],
+				[0878950661]
+			],
+			['SMALL_SQUARE', [200, 200],
+				[3056331855]
+			],
+			['SMALL_RECTANGLE', [180, 150],
+				[8916789427]
+			],
+			['BUTTON', [125, 125],
+				[8762806163]
+			],
+			['VERTICAL_BANNER', [120, 240],
+				[0186629732]
+			]
+		],
+		tipuri_ad_new: [
+			[320,6858266015],
+			[360,8514445694],
+			[412,6447202474],
+			[480,4455463957],
+			[530,3709358499],
+			[560,2878975637],
+			[600,3038757738],
+			[640,5341595246],
+			[720,6698483912]
+		],
+		"pozitii_ad": ['RIGHT_BOTTOM'],
+		"divs_bottom": [],
+		"map_loaded": 0,
+		"geocoder": false,
+		"visualization_loaded": 0,
+		"show_options_on_return": 0,
+		"latime": 0,
+		"inaltime": 0,
+		"banner": {
+			"procent_ocupat": 25,
+			"procent_width_liber": 35,
+			"nr_bannere_diversitate": 3
+		},
+		"suprafete": [],
+		"nrBannerAd": -1,
+		"idDivAdSense": "aswift_0_anchor",
+		"reclama_la_schimb": {
+			'filename': 'ray-ban-1.jpg',
+			'url': 'https://bulevarde.ro/',
+			'target': '_blank'
+		},
+		"street_view": {
+			"view_meters_zoom_21": 50,
+			"view_step_meters": 25
+		},
+		"cod_harta_vizualizare": "",
+		"cod_harta_editare": "",
+		"timeout_save_configuratie": 0,
+		"region_tara": "ro",
+		"region_language": "ro",
+		"nume_tara": "Rom" + String.fromCharCode(226) + "nia",
+		"tip_ruta": "auto",
+		"limit_caractere_ruta": 22,
+		"litri_la_suta": 7.5,
+		"preturi_combustibil": {
+			"benzina": 6,
+			"motorina": 6,
+			"gpl": 2.45
+		},
+		"litere": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"],
+		"zoom_center_no_change": 0,
+		"width_optiuni": 46,
+		"select_on_map_active": -1,
+		"id_div_for_hidden": [],
+		"diacritice": {
+			258: 'A',
+			259: 'a',
+			194: 'A',
+			226: 'a',
+			206: 'I',
+			238: 'i',
+			350: 'S',
+			351: 's',
+			354: 'T',
+			355: 't'
+		},
+		"sugestii": {},
+		"id_sugestie_selected": 0,
+		"focusSuggest": false,
+		"clickSelectSuggest": false,
+		"geocoding": {},
+		"timeout": {},
+		"index_coords_inputs": {},
+		"pointsLinii": {},
+		"directionsService": null,
+		"directionsDisplay": {
+			"auto": null,
+			"bicicleta": null,
+			"pe-jos": null
+		},
+		"directionsServiceTaxi": null,
+		"directionsDisplayTaxi": {},
+		"rutaAlternativa": null,
+		"linieDreapta": null,
+		"liniiDrepte": [],
+		"markersLiniiDrepte": [],
+		"taxi": {
+			"path": [],
+			"durata": 0,
+			"distanta": 0,
+			"obj": {}
+		},
+		"marker": null,
+		"markerPoint": null,
+		"markerVisible": null,
+		"lineInside": null,
+		"infoWindow": null,
+		"streetViewStepMeters": 25,
+		"streetViewMetersZoom21": 50,
+		"sv": null,
+		"panorama": null,
+		"cotClicked": 0,
+		"visualizationLoaded": 0,
+		"elevator": null,
+		"chartElevator": null,
+		"dataChartElevator": null,
+		"markerElevatie": null,
+		"rutaGoogleInProcess": 0,
+		"pathToImg": "/temp/img/",
+		"pathToJs": "/temp/js/",
+		"oras": {
+			"nume": "",
+			"string_cautare_strada": "",
+			"markerStradaObiectiv": null,
+			"markerVisible": null,
+			"infoWindowStradaObiectiv": null
+		},
+		"io": 0
+	},
+	"orase": [{
+		"bounds": [
+			[null, null],
+			[null, null]
+		],
+		"center": [null, null],
+		"pret_taxi": 0,
+		"nume": "",
+		"string_cautare_strada": ""
+	}],
+	"tip_rute": ["auto", "bicicleta", "pe-jos", "autobuz", "linie-dreapta"],
+	"auto": {
+		"url": "rute-auto",
+		"title": "Cu ma" + String.fromCharCode(351) + "ina",
+		"id_oras_selected": 0,
+		"zoom_center_changed": 0,
+		"google": "DRIVING",
+		"orase": {
+			0: {
+				"url_sectiune": (history.pushState) ? "" : "rute-auto",
+				"moduri_cautare_selected": 0,
+				"moduri_cautare": ['rute'],
+				"culori": {
+					"rosu": "#E01B4C",
+					"albastru": "#1B63E0",
+					"mov": "#B91BE0",
+					"orange": "#D25F28",
+					"verde": "#519949"
+				},
+				"nume_culoare_selected": "rosu",
+				"rute": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"results": [],
+					"title": "Distan" + String.fromCharCode(355) + "e rutiere | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Rut" + String.fromCharCode(259),
+						"title": "Caut" + String.fromCharCode(259) + " o rut" + String.fromCharCode(259),
+						"text_buton": "vezi_directii",
+						"title_buton": "click_vezi_directii",
+						"nume_afisat_cautare": "Cu ma" + String.fromCharCode(351) + "ina",
+						"nr_maxim_orase": 10,
+						"nr_minim_orase": 2,
+						"de_la": "de_la",
+						"pana_la": "pana_la",
+						"prin_localitatea": "prin_localitatea",
+						"selectable": 0,
+						"select_on_map": 1,
+						"ui": [{
+							//"evitati_autostrazi": [false, "Evit" + String.fromCharCode(259) + " autostr" + String.fromCharCode(259) + "zi", 0],
+							//"evitati_taxa": [false, "Evit" + String.fromCharCode(259) + " trasee cu tax" + String.fromCharCode(259), 0],
+							"rute_alternative": [true, "Rute alternative", 0]
+						}, {
+							"benzina": [true, "Benzin" + String.fromCharCode(259), "combustibil"],
+							"motorina": [false, "Motorin" + String.fromCharCode(259), "combustibil"],
+							"gpl": [false, "GPL", "combustibil"]
+						}],
+						"ruta_selected": -1
+					},
+				}
+			}
+		}
+	},
+	"pe-jos": {
+		"url": "pe-jos",
+		"title": "Pe jos",
+		"id_oras_selected": 0,
+		"zoom_center_changed": 0,
+		"google": "WALKING",
+		"orase": {
+			0: {
+				"url_sectiune": "pe-jos",
+				"moduri_cautare_selected": 0,
+				"moduri_cautare": ['rute'],
+				"culori": {
+					"rosu": "#E01B4C",
+					"albastru": "#1B63E0",
+					"mov": "#B91BE0",
+					"orange": "#D25F28",
+					"verde": "#519949"
+				},
+				"nume_culoare_selected": "rosu",
+				"rute": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"results": [],
+					"title": "Rute pe Jos | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Rut" + String.fromCharCode(259),
+						"title": "Caut" + String.fromCharCode(259) + " o rut" + String.fromCharCode(259),
+						"text_buton": "vezi_directii",
+						"title_buton": "click_vezi_directii",
+						"nume_afisat_cautare": "Pe jos",
+						"nr_maxim_orase": 10,
+						"nr_minim_orase": 2,
+						"de_la": "de_la",
+						"pana_la": "pana_la",
+						"prin_localitatea": "prin_localitatea",
+						"selectable": 0,
+						"select_on_map": 1,
+						"ui": [{
+							"rute_alternative": [true, "Rute alternative", 0]
+						}],
+						"ruta_selected": -1,
+						"warning": ["Rutele pentru pietoni sunt " + String.fromCharCode(238) + "n versiune BETA.", "Merge" + String.fromCharCode(355) + "i cu aten" + String.fromCharCode(355) + "ie, de multe ori trotuarele sunt ocupate cu ma" + String.fromCharCode(351) + "ini parcate iar pe unele locuri lipsesc."]
+					},
+				}
+			}
+		}
+	},
+	"bicicleta": {
+		"url": "bicicleta",
+		"title": "Cu bicicleta",
+		"id_oras_selected": 0,
+		"zoom_center_changed": 0,
+		"google": "WALKING",
+		"orase": {
+			0: {
+				"url_sectiune": "bicicleta",
+				"moduri_cautare_selected": 0,
+				"moduri_cautare": ['rute'],
+				"culori": {
+					"rosu": "#E01B4C",
+					"albastru": "#1B63E0",
+					"mov": "#B91BE0",
+					"orange": "#D25F28",
+					"verde": "#519949"
+				},
+				"nume_culoare_selected": "rosu",
+				"rute": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"results": [],
+					"title": "Rute cu Bicicleta | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Rut" + String.fromCharCode(259),
+						"title": "Caut" + String.fromCharCode(259) + " o rut" + String.fromCharCode(259),
+						"text_buton": "vezi_directii",
+						"title_buton": "click_vezi_directii",
+						"nume_afisat_cautare": "Cu bicicleta",
+						"nr_maxim_orase": 10,
+						"nr_minim_orase": 2,
+						"de_la": "de_la",
+						"pana_la": "pana_la",
+						"prin_localitatea": "prin_localitatea",
+						"selectable": 0,
+						"select_on_map": 1,
+						"ui": [{
+							"rute_alternative": [true, "Rute alternative", 0]
+						}],
+						"ruta_selected": -1,
+						"warning": ["Rutele pentru bicicli" + String.fromCharCode(351) + "ti sunt " + String.fromCharCode(238) + "n versiune BETA.", "Merge" + String.fromCharCode(355) + "i cu aten" + String.fromCharCode(355) + "ie, pistele pentru bicicli" + String.fromCharCode(351) + "ti sunt aproape inexistente iar trotuarele pe unele por" + String.fromCharCode(355) + "iuni lipsesc."]
+					},
+				}
+			}
+		}
+	},
+	"linie-dreapta": {
+		"url": "linie-dreapta",
+		"title": String.fromCharCode(206) + "n linie dreapt" + String.fromCharCode(259),
+		"id_oras_selected": 0,
+		"zoom_center_changed": 0,
+		"orase": {
+			0: {
+				"url_sectiune": "linie-dreapta",
+				"moduri_cautare_selected": 0,
+				"moduri_cautare": ['rute'],
+				"culori": {
+					"rosu": "#E01B4C",
+					"albastru": "#1B63E0",
+					"mov": "#B91BE0",
+					"orange": "#D25F28",
+					"verde": "#519949"
+				},
+				"nume_culoare_selected": "rosu",
+				"rute": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"results": [],
+					"title": "Distan" + String.fromCharCode(355) + "e " + String.fromCharCode(238) + "n Linie Dreapt" + String.fromCharCode(259) + " | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Distan" + String.fromCharCode(355) + "a",
+						"title": "Caut" + String.fromCharCode(259) + " o distan" + String.fromCharCode(355) + String.fromCharCode(259),
+						"text_buton": "vezi_distanta",
+						"title_buton": "click_vezi_distanta",
+						"nume_afisat_cautare": String.fromCharCode(206) + "n linie dreapt" + String.fromCharCode(259),
+						"nr_maxim_orase": 14,
+						"nr_minim_orase": 2,
+						"de_la": "de_la",
+						"pana_la": "pana_la",
+						"prin_localitatea": "prin_localitatea",
+						"selectable": 0,
+						"select_on_map": 1,
+						"ui": [{
+							"geodesic": [true, "Geodezic", 0, "Dac" + String.fromCharCode(259) + " linia afi" + String.fromCharCode(351) + "at" + String.fromCharCode(259) + " s" + String.fromCharCode(259) + " urmeze\ncurbura P" + String.fromCharCode(259) + "m" + String.fromCharCode(226) + "ntului sau nu"]
+						}],
+						"ruta_selected": -1
+					},
+				}
+			}
+		}
+	},
+	"autobuz": {
+		"url": "transport-in-comun",
+		"title": "Cu transportul " + String.fromCharCode(238) + "n comun",
+		"id_oras_selected": 3642,
+		"zoom_center_changed": 0,
+		"ordine_orase": [8, 3483, 3642, 4709, 5085, 13734, 6218, 8030, 1898, 2366, 1397, 3988, 11398, 9410, 12384, 12540, 5006],
+		"orase": {
+			3642: {
+				"url_sectiune": "ratb-metrorex",
+				"nume": "Bucure" + String.fromCharCode(351) + "ti",
+				"url": "bucuresti",
+				"centerLat": 44.4374570,
+				"centerLng": 26.0976790,
+				"zoom": 14,
+				"moduri_cautare_selected": 0,
+				"moduri_cautare": ['rute', 'linii', 'statii'],
+				"culori": {
+					"negru": "#000000",
+					"rosu": "#E01B4C",
+					"albastru": "#1B63E0",
+					"maro": "#663300",
+					"portocaliu": "#FF6633"
+				},
+				"nume_culoare_selected": "negru",
+				"statii_incarcate": [],
+				"optiuni_markers": [],
+				"icons_zoom": [
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.gif', [10, 10]],
+					['red_dot.png', [8, 8], 'map_pointer.png', [12, 20]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]]
+				],
+				"rute": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Rute RATB + Metrorex Bucure" + String.fromCharCode(351) + "ti | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Rut" + String.fromCharCode(259),
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o rut" + String.fromCharCode(259),
+						"text_buton": "vezi_directii",
+						"title_buton": "click_vezi_directii",
+						"nume_afisat_cautare": "RATB + Metrorex",
+						"nr_maxim_orase": 2,
+						"nr_minim_orase": 2,
+						"de_la": "statie_de_la",
+						"pana_la": "statie_pana_la",
+						"prin_localitatea": "prin_statia",
+						"selectable": 15,
+						"select_on_map": 1,
+						"ui": [{
+							"autobuze": [true, "Autobuze", 0, '', 1],
+							"troleibuze": [true, "Troleibuze", 0, '', 2],
+							"tramvaie": [true, "Tramvaie", 0, '', 3],
+							"metrou": [true, "Metrou", 0, '', 4],
+							"noapte": [false, "Linii de noapte", 0, '', 6]
+						}, {
+							"preorasenesti": [true, "Preor" + String.fromCharCode(259) + String.fromCharCode(351) + "ene" + String.fromCharCode(351) + "ti", 0, '', 5],
+							"expres": [true, "Linii expres (ex.783)", 0, '', 7],
+							"tren": [true, "Tren Otopeni", 0, '', 9],
+							"city": [false, "City Tour", 0, '', 15]
+						}],
+						"ruta_selected": -1,
+						"buses": ""
+					},
+					"ora_selectata_user": [null, null, 0],
+					"dataFromAjax": [],
+					"results": []
+				},
+				"linii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Trasee RATB + Metrorex Bucure" + String.fromCharCode(351) + "ti | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Linie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o linie",
+						"text_buton": "vezi_linie",
+						"title_buton": "click_vezi_linie",
+						"nume_afisat_cautare": "RATB + Metrorex",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_linie_bucuresti",
+						"pana_la": "ex_linie_bucuresti",
+						"prin_localitatea": "ex_linie_bucuresti",
+						"selectable": 15,
+						"select_on_map": 0,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1],
+							"troleibuze": [true, "Troleibuz", 0, '', 2],
+							"tramvaie": [true, "Tramvai", 0, '', 3],
+							"metrou": [true, "Metrou", 0, '', 4],
+							"noapte": [true, "De noapte", 0, '', 6]
+						}, {
+							"preorasenesti": [true, "Preor" + String.fromCharCode(259) + String.fromCharCode(351) + "eneasc" + String.fromCharCode(259), 0, '', 5],
+							"expres": [true, "Expres", 0, '', 7],
+							"tren": [true, "Tren Otopeni", 0, '', 9],
+							"city": [true, "City Tour", 0, '', 15]
+						}],
+						"ruta_selected": -1
+					},
+					"results": []
+				},
+				"statii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Sta" + String.fromCharCode(355) + "ii RATB + Metrorex Bucure" + String.fromCharCode(351) + "ti | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Sta" + String.fromCharCode(355) + "ie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o sta" + String.fromCharCode(355) + "ie",
+						"text_buton": "vezi_statie",
+						"title_buton": "click_vezi_statie",
+						"nume_afisat_cautare": "RATB + Metrorex",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_statie_bucuresti",
+						"pana_la": "ex_statie_bucuresti",
+						"prin_localitatea": "ex_statie_bucuresti",
+						"selectable": 15,
+						"select_on_map": 2,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1],
+							"troleibuze": [true, "Troleibuz", 0, '', 2],
+							"tramvaie": [true, "Tramvai", 0, '', 3],
+							"metrou": [true, "Metrou", 0, '', 4],
+							"noapte": [true, "Pe linie de noapte", 0, '', 6]
+						}, {
+							"preorasenesti": [true, String.fromCharCode(206) + "n afara ora" + String.fromCharCode(351) + "ului", 0, '', 5],
+							"expres": [true, "Pe linie expres", 0, '', 7],
+							"tren": [true, "Tren Otopeni", 0, '', 9],
+							"city": [true, "City Tour", 0, '', 15]
+						}]
+					},
+					"results": []
+				}
+			},
+			12384: {
+				"url_sectiune": "ratt",
+				"nume": "Timi" + String.fromCharCode(351) + "oara",
+				"url": "timisoara",
+				"centerLat": 45.7548280,
+				"centerLng": 21.2297060,
+				"zoom": 14,
+				"moduri_cautare_selected": 0,
+				"moduri_cautare": ['rute', 'linii', 'statii'],
+				"culori": {
+					"negru": "#000000",
+					"rosu": "#E01B4C",
+					"albastru": "#1B63E0",
+					"maro": "#663300",
+					"portocaliu": "#FF6633"
+				},
+				"nume_culoare_selected": "negru",
+				"statii_incarcate": [],
+				"optiuni_markers": [],
+				"icons_zoom": [
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.gif', [10, 10]],
+					['red_dot.png', [8, 8], 'map_pointer.png', [12, 20]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]]
+				],
+				"rute": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Rute RATT Timi" + String.fromCharCode(351) + "oara | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Rut" + String.fromCharCode(259),
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o rut" + String.fromCharCode(259),
+						"text_buton": "vezi_directii",
+						"title_buton": "click_vezi_directii",
+						"nume_afisat_cautare": "RATT",
+						"nr_maxim_orase": 2,
+						"nr_minim_orase": 2,
+						"de_la": "statie_de_la",
+						"pana_la": "statie_pana_la",
+						"prin_localitatea": "prin_statia",
+						"selectable": 15,
+						"select_on_map": 1,
+						"ui": [{
+							"autobuze": [true, "Autobuze", 0, '', 1],
+							"troleibuze": [true, "Troleibuze", 0, '', 2],
+							"tramvaie": [true, "Tramvaie", 0, '', 3]
+						}, {
+							"expres": [true, "Linii expres", 0, '', 7],
+							"metropolitan": [false, "Metropolitan", 0, '', 8]
+						}],
+						"ruta_selected": -1,
+						"buses": ""
+					},
+					"ora_selectata_user": [null, null, 0],
+					"dataFromAjax": [],
+					"results": []
+				},
+				"linii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Trasee RATT Timi" + String.fromCharCode(351) + "oara | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Linie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o linie",
+						"text_buton": "vezi_linie",
+						"title_buton": "click_vezi_linie",
+						"nume_afisat_cautare": "RATT",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_linie_timisoara",
+						"pana_la": "ex_linie_timisoara",
+						"prin_localitatea": "ex_linie_timisoara",
+						"selectable": 15,
+						"select_on_map": 0,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1],
+							"troleibuze": [true, "Troleibuz", 0, '', 2],
+							"tramvaie": [true, "Tramvai", 0, '', 3]
+						}, {
+							"expres": [true, "Linii expres", 0, '', 7],
+							"metropolitan": [true, "Metropolitan", 0, '', 8]
+						}],
+						"ruta_selected": -1
+					},
+					"results": []
+				},
+				"statii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"title": "Sta" + String.fromCharCode(355) + "ii RATT Timi" + String.fromCharCode(351) + "oara | Distan" + String.fromCharCode(355) + "a RO",
+					"cotituri": [],
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Sta" + String.fromCharCode(355) + "ie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o sta" + String.fromCharCode(355) + "ie",
+						"text_buton": "vezi_statie",
+						"title_buton": "click_vezi_statie",
+						"nume_afisat_cautare": "RATT",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_statie_timisoara",
+						"pana_la": "ex_statie_timisoara",
+						"prin_localitatea": "ex_statie_timisoara",
+						"selectable": 15,
+						"select_on_map": 2,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1],
+							"troleibuze": [true, "Troleibuz", 0, '', 2],
+							"tramvaie": [true, "Tramvai", 0, '', 3]
+						}, {
+							"expres": [true, "Linii expres", 0, '', 7],
+							"metropolitan": [true, "Metropolitan", 0, '', 8]
+						}]
+					},
+					"results": []
+				}
+			},
+			8: {
+				"url_sectiune": "stp",
+				"nume": "Alba Iulia",
+				"url": "alba-iulia",
+				"centerLat": 46.0683780,
+				"centerLng": 23.5711670,
+				"zoom": 15,
+				"moduri_cautare_selected": 0,
+				"moduri_cautare": ['rute', 'linii', 'statii'],
+				"culori": {
+					"negru": "#000000",
+					"rosu": "#E01B4C",
+					"albastru": "#1B63E0",
+					"maro": "#663300",
+					"portocaliu": "#FF6633"
+				},
+				"nume_culoare_selected": "negru",
+				"statii_incarcate": [],
+				"optiuni_markers": [],
+				"icons_zoom": [
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.gif', [10, 10]],
+					['red_dot.png', [8, 8], 'map_pointer.png', [12, 20]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]]
+				],
+				"rute": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Rute STP Alba Iulia | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Rut" + String.fromCharCode(259),
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o rut" + String.fromCharCode(259),
+						"text_buton": "vezi_directii",
+						"title_buton": "click_vezi_directii",
+						"nume_afisat_cautare": "STP Alba Iulia",
+						"nr_maxim_orase": 2,
+						"nr_minim_orase": 2,
+						"de_la": "statie_de_la",
+						"pana_la": "statie_pana_la",
+						"prin_localitatea": "prin_statia",
+						"selectable": 15,
+						"select_on_map": 1,
+						"ui": [{
+							"autobuze": [true, "Autobuze", 0, '', 1]
+						}, {}],
+						"ruta_selected": -1,
+						"buses": ""
+					},
+					"ora_selectata_user": [null, null, 0],
+					"dataFromAjax": [],
+					"results": []
+				},
+				"linii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Trasee STP Alba Iulia | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Linie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o linie",
+						"text_buton": "vezi_linie",
+						"title_buton": "click_vezi_linie",
+						"nume_afisat_cautare": "STP Alba Iulia",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_linie_alba_iulia",
+						"pana_la": "ex_linie_alba_iulia",
+						"prin_localitatea": "ex_linie_alba_iulia",
+						"selectable": 15,
+						"select_on_map": 0,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1]
+						}, {}],
+						"ruta_selected": -1
+					},
+					"results": []
+				},
+				"statii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Sta" + String.fromCharCode(355) + "ii STP Alba Iulia | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Sta" + String.fromCharCode(355) + "ie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o sta" + String.fromCharCode(355) + "ie",
+						"text_buton": "vezi_statie",
+						"title_buton": "click_vezi_statie",
+						"nume_afisat_cautare": "STP Alba Iulia",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_statie_alba_iulia",
+						"pana_la": "ex_statie_alba_iulia",
+						"prin_localitatea": "ex_statie_alba_iulia",
+						"selectable": 15,
+						"select_on_map": 2,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1]
+						}, {}]
+					},
+					"results": []
+				}
+			},
+			5006: {
+				"url_sectiune": "stp",
+				"nume": "Turda",
+				"url": "turda",
+				"centerLat": 46.566267,
+				"centerLng": 23.790502,
+				"zoom": 15,
+				"moduri_cautare_selected": 0,
+				"moduri_cautare": ['rute', 'linii', 'statii'],
+				"culori": {
+					"negru": "#000000",
+					"rosu": "#E01B4C",
+					"albastru": "#1B63E0",
+					"maro": "#663300",
+					"portocaliu": "#FF6633"
+				},
+				"nume_culoare_selected": "negru",
+				"statii_incarcate": [],
+				"optiuni_markers": [],
+				"icons_zoom": [
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.gif', [10, 10]],
+					['red_dot.png', [8, 8], 'map_pointer.png', [12, 20]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]]
+				],
+				"rute": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Rute STP Turda | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Rut" + String.fromCharCode(259),
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o rut" + String.fromCharCode(259),
+						"text_buton": "vezi_directii",
+						"title_buton": "click_vezi_directii",
+						"nume_afisat_cautare": "STP Turda",
+						"nr_maxim_orase": 2,
+						"nr_minim_orase": 2,
+						"de_la": "statie_de_la",
+						"pana_la": "statie_pana_la",
+						"prin_localitatea": "prin_statia",
+						"selectable": 15,
+						"select_on_map": 1,
+						"ui": [{
+							"autobuze": [true, "Autobuze", 0, '', 1]
+						}, {}],
+						"ruta_selected": -1,
+						"buses": ""
+					},
+					"ora_selectata_user": [null, null, 0],
+					"dataFromAjax": [],
+					"results": []
+				},
+				"linii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Trasee STP Turda | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Linie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o linie",
+						"text_buton": "vezi_linie",
+						"title_buton": "click_vezi_linie",
+						"nume_afisat_cautare": "STP Turda",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_linie_turda",
+						"pana_la": "ex_linie_turda",
+						"prin_localitatea": "ex_linie_turda",
+						"selectable": 15,
+						"select_on_map": 0,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1]
+						}, {}],
+						"ruta_selected": -1
+					},
+					"results": []
+				},
+				"statii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Sta" + String.fromCharCode(355) + "ii STP Turda | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Sta" + String.fromCharCode(355) + "ie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o sta" + String.fromCharCode(355) + "ie",
+						"text_buton": "vezi_statie",
+						"title_buton": "click_vezi_statie",
+						"nume_afisat_cautare": "STP Turda",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_statie_turda",
+						"pana_la": "ex_statie_turda",
+						"prin_localitatea": "ex_statie_turda",
+						"selectable": 15,
+						"select_on_map": 2,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1]
+						}, {}]
+					},
+					"results": []
+				}
+			},
+			4709: {
+				"url_sectiune": "ratuc",
+				"nume": "Cluj Napoca",
+				"url": "cluj-napoca",
+				"centerLat": 46.7706740,
+				"centerLng": 23.5907360,
+				"zoom": 14,
+				"moduri_cautare_selected": 0,
+				"moduri_cautare": ['rute', 'linii', 'statii'],
+				"culori": {
+					"negru": "#000000",
+					"rosu": "#E01B4C",
+					"albastru": "#1B63E0",
+					"maro": "#663300",
+					"portocaliu": "#FF6633"
+				},
+				"nume_culoare_selected": "negru",
+				"statii_incarcate": [],
+				"optiuni_markers": [],
+				"icons_zoom": [
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.gif', [10, 10]],
+					['red_dot.png', [8, 8], 'map_pointer.png', [12, 20]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]]
+				],
+				"rute": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Rute RATUC Cluj Napoca | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Rut" + String.fromCharCode(259),
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o rut" + String.fromCharCode(259),
+						"text_buton": "vezi_directii",
+						"title_buton": "click_vezi_directii",
+						"nume_afisat_cautare": "RATUC",
+						"nr_maxim_orase": 2,
+						"nr_minim_orase": 2,
+						"de_la": "statie_de_la",
+						"pana_la": "statie_pana_la",
+						"prin_localitatea": "prin_statia",
+						"selectable": 15,
+						"select_on_map": 1,
+						"ui": [{
+							"autobuze": [true, "Autobuze", 0, '', 1],
+							"troleibuze": [true, "Troleibuze", 0, '', 2]
+						}, {
+							"tramvaie": [true, "Tramvaie", 0, '', 3]
+						}],
+						"ruta_selected": -1,
+						"buses": ""
+					},
+					"ora_selectata_user": [null, null, 0],
+					"dataFromAjax": [],
+					"results": []
+				},
+				"linii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Trasee RATUC Cluj Napoca | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Linie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o linie",
+						"text_buton": "vezi_linie",
+						"title_buton": "click_vezi_linie",
+						"nume_afisat_cautare": "RATUC",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_linie_cluj_napoca",
+						"pana_la": "ex_linie_cluj_napoca",
+						"prin_localitatea": "ex_linie_cluj_napoca",
+						"selectable": 15,
+						"select_on_map": 0,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1],
+							"troleibuze": [true, "Troleibuz", 0, '', 2]
+						}, {
+							"tramvaie": [true, "Tramvai", 0, '', 3]
+						}],
+						"ruta_selected": -1
+					},
+					"results": []
+				},
+				"statii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Sta" + String.fromCharCode(355) + "ii RATUC Cluj Napoca | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Sta" + String.fromCharCode(355) + "ie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o sta" + String.fromCharCode(355) + "ie",
+						"text_buton": "vezi_statie",
+						"title_buton": "click_vezi_statie",
+						"nume_afisat_cautare": "RATUC",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_statie_cluj_napoca",
+						"pana_la": "ex_statie_cluj_napoca",
+						"prin_localitatea": "ex_statie_cluj_napoca",
+						"selectable": 15,
+						"select_on_map": 2,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1],
+							"troleibuze": [true, "Troleibuz", 0, '', 2]
+						}, {
+							"tramvaie": [true, "Tramvai", 0, '', 3]
+						}]
+					},
+					"results": []
+				}
+			},
+			5085: {
+				"url_sectiune": "ratc",
+				"nume": "Constan" + String.fromCharCode(355) + "a",
+				"url": "constanta",
+				"centerLat": 44.1863890,
+				"centerLng": 28.6310580,
+				"zoom": 14,
+				"moduri_cautare_selected": 0,
+				"moduri_cautare": ['rute', 'linii', 'statii'],
+				"culori": {
+					"negru": "#000000",
+					"rosu": "#E01B4C",
+					"albastru": "#1B63E0",
+					"maro": "#663300",
+					"portocaliu": "#FF6633"
+				},
+				"nume_culoare_selected": "negru",
+				"statii_incarcate": [],
+				"optiuni_markers": [],
+				"icons_zoom": [
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.gif', [10, 10]],
+					['red_dot.png', [8, 8], 'map_pointer.png', [12, 20]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]]
+				],
+				"rute": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Rute RATC Constan" + String.fromCharCode(355) + "a | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Rut" + String.fromCharCode(259),
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o rut" + String.fromCharCode(259),
+						"text_buton": "vezi_directii",
+						"title_buton": "click_vezi_directii",
+						"nume_afisat_cautare": "RATC",
+						"nr_maxim_orase": 2,
+						"nr_minim_orase": 2,
+						"de_la": "statie_de_la",
+						"pana_la": "statie_pana_la",
+						"prin_localitatea": "prin_statia",
+						"selectable": 15,
+						"select_on_map": 1,
+						"ui": [{
+							"autobuze": [true, "Autobuze", 0, '', 1]
+						}, {}],
+						"ruta_selected": -1,
+						"buses": ""
+					},
+					"ora_selectata_user": [null, null, 0],
+					"dataFromAjax": [],
+					"results": []
+				},
+				"linii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Trasee RATC Constan" + String.fromCharCode(355) + "a | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Linie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o linie",
+						"text_buton": "vezi_linie",
+						"title_buton": "click_vezi_linie",
+						"nume_afisat_cautare": "RATC",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_linie_constanta",
+						"pana_la": "ex_linie_constanta",
+						"prin_localitatea": "ex_linie_constanta",
+						"selectable": 15,
+						"select_on_map": 0,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1]
+						}, {}],
+						"ruta_selected": -1
+					},
+					"results": []
+				},
+				"statii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Sta" + String.fromCharCode(355) + "ii RATC Constan" + String.fromCharCode(355) + "a | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Sta" + String.fromCharCode(355) + "ie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o sta" + String.fromCharCode(355) + "ie",
+						"text_buton": "vezi_statie",
+						"title_buton": "click_vezi_statie",
+						"nume_afisat_cautare": "RATC",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_statie_constanta",
+						"pana_la": "ex_statie_constanta",
+						"prin_localitatea": "ex_statie_constanta",
+						"selectable": 15,
+						"select_on_map": 2,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1]
+						}, {}]
+					},
+					"results": []
+				}
+			},
+			13734: {
+				"url_sectiune": "transport-public",
+				"nume": "Foc" + String.fromCharCode(351) + "ani",
+				"url": "focsani",
+				"centerLat": 45.6985670,
+				"centerLng": 27.1856690,
+				"zoom": 14,
+				"moduri_cautare_selected": 0,
+				"moduri_cautare": ['rute', 'linii', 'statii'],
+				"culori": {
+					"negru": "#000000",
+					"rosu": "#E01B4C",
+					"albastru": "#1B63E0",
+					"maro": "#663300",
+					"portocaliu": "#FF6633"
+				},
+				"nume_culoare_selected": "negru",
+				"statii_incarcate": [],
+				"optiuni_markers": [],
+				"icons_zoom": [
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.gif', [10, 10]],
+					['red_dot.png', [8, 8], 'map_pointer.png', [12, 20]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]]
+				],
+				"rute": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Rute Transport Public Foc" + String.fromCharCode(351) + "ani | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Rut" + String.fromCharCode(259),
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o rut" + String.fromCharCode(259),
+						"text_buton": "vezi_directii",
+						"title_buton": "click_vezi_directii",
+						"nume_afisat_cautare": "Transport Public",
+						"nr_maxim_orase": 2,
+						"nr_minim_orase": 2,
+						"de_la": "statie_de_la",
+						"pana_la": "statie_pana_la",
+						"prin_localitatea": "prin_statia",
+						"selectable": 15,
+						"select_on_map": 1,
+						"ui": [{
+							"autobuze": [true, "Autobuze", 0, '', 1]
+						}, {}],
+						"ruta_selected": -1,
+						"buses": ""
+					},
+					"ora_selectata_user": [null, null, 0],
+					"dataFromAjax": [],
+					"results": []
+				},
+				"linii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Trasee Transport Public Foc" + String.fromCharCode(351) + "ani | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Linie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o linie",
+						"text_buton": "vezi_linie",
+						"title_buton": "click_vezi_linie",
+						"nume_afisat_cautare": "Transport Public",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_linie_focsani",
+						"pana_la": "ex_linie_focsani",
+						"prin_localitatea": "ex_linie_focsani",
+						"selectable": 15,
+						"select_on_map": 0,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1]
+						}, {}],
+						"ruta_selected": -1
+					},
+					"results": []
+				},
+				"statii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Sta" + String.fromCharCode(355) + "ii RATC Constan" + String.fromCharCode(355) + "a | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Sta" + String.fromCharCode(355) + "ie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o sta" + String.fromCharCode(355) + "ie",
+						"text_buton": "vezi_statie",
+						"title_buton": "click_vezi_statie",
+						"nume_afisat_cautare": "Transport Public",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_statie_focsani",
+						"pana_la": "ex_statie_focsani",
+						"prin_localitatea": "ex_statie_focsani",
+						"selectable": 15,
+						"select_on_map": 2,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1]
+						}, {}]
+					},
+					"results": []
+				}
+			},
+			6218: {
+				"url_sectiune": "transurb",
+				"nume": "Gala" + String.fromCharCode(355) + "i",
+				"url": "galati",
+				"centerLat": 45.4391760,
+				"centerLng": 28.0384830,
+				"zoom": 14,
+				"moduri_cautare_selected": 0,
+				"moduri_cautare": ['rute', 'linii', 'statii'],
+				"culori": {
+					"negru": "#000000",
+					"rosu": "#E01B4C",
+					"albastru": "#1B63E0",
+					"maro": "#663300",
+					"portocaliu": "#FF6633"
+				},
+				"nume_culoare_selected": "negru",
+				"statii_incarcate": [],
+				"optiuni_markers": [],
+				"icons_zoom": [
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.gif', [10, 10]],
+					['red_dot.png', [8, 8], 'map_pointer.png', [12, 20]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]]
+				],
+				"rute": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Rute Transurb Gala" + String.fromCharCode(355) + "i | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Rut" + String.fromCharCode(259),
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o rut" + String.fromCharCode(259),
+						"text_buton": "vezi_directii",
+						"title_buton": "click_vezi_directii",
+						"nume_afisat_cautare": "Transurb",
+						"nr_maxim_orase": 2,
+						"nr_minim_orase": 2,
+						"de_la": "statie_de_la",
+						"pana_la": "statie_pana_la",
+						"prin_localitatea": "prin_statia",
+						"selectable": 15,
+						"select_on_map": 1,
+						"ui": [{
+							"autobuze": [true, "Autobuze", 0, '', 1],
+							"troleibuze": [true, "Troleibuze", 0, '', 2]
+						}, {
+							"tramvaie": [true, "Tramvaie", 0, '', 3]
+						}],
+						"ruta_selected": -1,
+						"buses": ""
+					},
+					"ora_selectata_user": [null, null, 0],
+					"dataFromAjax": [],
+					"results": []
+				},
+				"linii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Trasee Transurb Gala" + String.fromCharCode(355) + "i | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Linie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o linie",
+						"text_buton": "vezi_linie",
+						"title_buton": "click_vezi_linie",
+						"nume_afisat_cautare": "Transurb",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_linie_galati",
+						"pana_la": "ex_linie_galati",
+						"prin_localitatea": "ex_linie_galati",
+						"selectable": 15,
+						"select_on_map": 0,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1],
+							"troleibuze": [true, "Troleibuz", 0, '', 2]
+						}, {
+							"tramvaie": [true, "Tramvai", 0, '', 3]
+						}],
+						"ruta_selected": -1
+					},
+					"results": []
+				},
+				"statii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Sta" + String.fromCharCode(355) + "ii Transurb Gala" + String.fromCharCode(355) + "i | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Sta" + String.fromCharCode(355) + "ie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o sta" + String.fromCharCode(355) + "ie",
+						"text_buton": "vezi_statie",
+						"title_buton": "click_vezi_statie",
+						"nume_afisat_cautare": "Transurb",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_statie_galati",
+						"pana_la": "ex_statie_galati",
+						"prin_localitatea": "ex_statie_galati",
+						"selectable": 15,
+						"select_on_map": 2,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1],
+							"troleibuze": [true, "Troleibuz", 0, '', 2]
+						}, {
+							"tramvaie": [true, "Tramvai", 0, '', 3]
+						}]
+					},
+					"results": []
+				}
+			},
+			8030: {
+				"url_sectiune": "ratp-unistil",
+				"nume": "Ia" + String.fromCharCode(351) + "i",
+				"url": "iasi",
+				"centerLat": 47.1579720,
+				"centerLng": 27.5847820,
+				"zoom": 14,
+				"moduri_cautare_selected": 0,
+				"moduri_cautare": ['rute', 'linii', 'statii'],
+				"culori": {
+					"negru": "#000000",
+					"rosu": "#E01B4C",
+					"albastru": "#1B63E0",
+					"maro": "#663300",
+					"portocaliu": "#FF6633"
+				},
+				"nume_culoare_selected": "negru",
+				"statii_incarcate": [],
+				"optiuni_markers": [],
+				"icons_zoom": [
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.gif', [10, 10]],
+					['red_dot.png', [8, 8], 'map_pointer.png', [12, 20]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]]
+				],
+				"rute": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Rute RATP + Unistil Ia" + String.fromCharCode(351) + "i | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Rut" + String.fromCharCode(259),
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o rut" + String.fromCharCode(259),
+						"text_buton": "vezi_directii",
+						"title_buton": "click_vezi_directii",
+						"nume_afisat_cautare": "RATP + Unistil",
+						"nr_maxim_orase": 2,
+						"nr_minim_orase": 2,
+						"de_la": "statie_de_la",
+						"pana_la": "statie_pana_la",
+						"prin_localitatea": "prin_statia",
+						"selectable": 15,
+						"select_on_map": 1,
+						"ui": [{
+							"autobuze": [true, "Autobuze", 0, '', 1],
+							"tramvaie": [true, "Tramvaie", 0, '', 3]
+						}, {
+							"microbuze": [true, "Microbuze", 0, '', 13]
+						}],
+						"ruta_selected": -1,
+						"buses": ""
+					},
+					"ora_selectata_user": [null, null, 0],
+					"dataFromAjax": [],
+					"results": []
+				},
+				"linii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Trasee RATP + Unistil Ia" + String.fromCharCode(351) + "i | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Linie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o linie",
+						"text_buton": "vezi_linie",
+						"title_buton": "click_vezi_linie",
+						"nume_afisat_cautare": "RATP + Unistil",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_linie_iasi",
+						"pana_la": "ex_linie_iasi",
+						"prin_localitatea": "ex_linie_iasi",
+						"selectable": 15,
+						"select_on_map": 0,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1],
+							"tramvaie": [true, "Tramvai", 0, '', 3]
+						}, {
+							"microbuze": [true, "Microbuz", 0, '', 13]
+						}],
+						"ruta_selected": -1
+					},
+					"results": []
+				},
+				"statii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Sta" + String.fromCharCode(355) + "ii RATP + Unistil Ia" + String.fromCharCode(351) + "i | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Sta" + String.fromCharCode(355) + "ie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o sta" + String.fromCharCode(355) + "ie",
+						"text_buton": "vezi_statie",
+						"title_buton": "click_vezi_statie",
+						"nume_afisat_cautare": "RATP + Unistil",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_statie_iasi",
+						"pana_la": "ex_statie_iasi",
+						"prin_localitatea": "ex_statie_iasi",
+						"selectable": 15,
+						"select_on_map": 2,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1],
+							"tramvaie": [true, "Tramvai", 0, '', 3]
+						}, {
+							"microbuze": [true, "Microbuz", 0, '', 13]
+						}]
+					},
+					"results": []
+				}
+			},
+			3483: {
+				"url_sectiune": "ratbv",
+				"nume": "Bra" + String.fromCharCode(351) + "ov",
+				"url": "brasov",
+				"centerLat": 45.6526880,
+				"centerLng": 25.6058690,
+				"zoom": 14,
+				"moduri_cautare_selected": 0,
+				"moduri_cautare": ['rute', 'linii', 'statii'],
+				"culori": {
+					"negru": "#000000",
+					"rosu": "#E01B4C",
+					"albastru": "#1B63E0",
+					"maro": "#663300",
+					"portocaliu": "#FF6633"
+				},
+				"nume_culoare_selected": "negru",
+				"statii_incarcate": [],
+				"optiuni_markers": [],
+				"icons_zoom": [
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.gif', [10, 10]],
+					['red_dot.png', [8, 8], 'map_pointer.png', [12, 20]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]]
+				],
+				"rute": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Rute RATBV Bra" + String.fromCharCode(351) + "ov | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Rut" + String.fromCharCode(259),
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o rut" + String.fromCharCode(259),
+						"text_buton": "vezi_directii",
+						"title_buton": "click_vezi_directii",
+						"nume_afisat_cautare": "RATBV",
+						"nr_maxim_orase": 2,
+						"nr_minim_orase": 2,
+						"de_la": "statie_de_la",
+						"pana_la": "statie_pana_la",
+						"prin_localitatea": "prin_statia",
+						"selectable": 15,
+						"select_on_map": 1,
+						"ui": [{
+							"autobuze": [true, "Autobuze", 0, '', 1],
+							"troleibuze": [true, "Troleibuze", 0, '', 2]
+						}, {
+							"midi": [true, "Midi", 0, '', 11]
+						}],
+						"ruta_selected": -1,
+						"buses": ""
+					},
+					"ora_selectata_user": [null, null, 0],
+					"dataFromAjax": [],
+					"results": []
+				},
+				"linii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Trasee RATBV Bra" + String.fromCharCode(351) + "ov | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Linie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o linie",
+						"text_buton": "vezi_linie",
+						"title_buton": "click_vezi_linie",
+						"nume_afisat_cautare": "RATBV",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_linie_brasov",
+						"pana_la": "ex_linie_brasov",
+						"prin_localitatea": "ex_linie_brasov",
+						"selectable": 15,
+						"select_on_map": 0,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1],
+							"troleibuze": [true, "Troleibuz", 0, '', 2]
+						}, {
+							"midi": [true, "Midi", 0, '', 11]
+						}],
+						"ruta_selected": -1
+					},
+					"results": []
+				},
+				"statii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Sta" + String.fromCharCode(355) + "ii RATBV Bra" + String.fromCharCode(351) + "ov | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Sta" + String.fromCharCode(355) + "ie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o sta" + String.fromCharCode(355) + "ie",
+						"text_buton": "vezi_statie",
+						"title_buton": "click_vezi_statie",
+						"nume_afisat_cautare": "RATBV",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_statie_brasov",
+						"pana_la": "ex_statie_brasov",
+						"prin_localitatea": "ex_statie_brasov",
+						"selectable": 15,
+						"select_on_map": 2,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1],
+							"troleibuze": [true, "Troleibuz", 0, '', 2]
+						}, {
+							"midi": [true, "Midi", 0, '', 11]
+						}]
+					},
+					"results": []
+				}
+			},
+			11398: {
+				"url_sectiune": "tursib",
+				"nume": "Sibiu",
+				"url": "sibiu",
+				"centerLat": 45.7938610,
+				"centerLng": 24.1441730,
+				"zoom": 14,
+				"moduri_cautare_selected": 0,
+				"moduri_cautare": ['rute', 'linii', 'statii'],
+				"culori": {
+					"negru": "#000000",
+					"rosu": "#E01B4C",
+					"albastru": "#1B63E0",
+					"maro": "#663300",
+					"portocaliu": "#FF6633"
+				},
+				"nume_culoare_selected": "negru",
+				"statii_incarcate": [],
+				"optiuni_markers": [],
+				"icons_zoom": [
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.gif', [10, 10]],
+					['red_dot.png', [8, 8], 'map_pointer.png', [12, 20]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]]
+				],
+				"rute": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Rute TURSIB Sibiu | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Rut" + String.fromCharCode(259),
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o rut" + String.fromCharCode(259),
+						"text_buton": "vezi_directii",
+						"title_buton": "click_vezi_directii",
+						"nume_afisat_cautare": "TURSIB",
+						"nr_maxim_orase": 2,
+						"nr_minim_orase": 2,
+						"de_la": "statie_de_la",
+						"pana_la": "statie_pana_la",
+						"prin_localitatea": "prin_statia",
+						"selectable": 15,
+						"select_on_map": 1,
+						"ui": [{
+							"autobuze": [true, "Autobuze", 0, '', 1]
+						}, {
+							"trasee-profesionale": [false, "Trasee profesionale", 0, '', 12]
+						}],
+						"ruta_selected": -1,
+						"buses": ""
+					},
+					"ora_selectata_user": [null, null, 0],
+					"dataFromAjax": [],
+					"results": []
+				},
+				"linii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Trasee TURSIB Sibiu | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Linie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o linie",
+						"text_buton": "vezi_linie",
+						"title_buton": "click_vezi_linie",
+						"nume_afisat_cautare": "TURSIB",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_linie_sibiu",
+						"pana_la": "ex_linie_sibiu",
+						"prin_localitatea": "ex_linie_sibiu",
+						"selectable": 15,
+						"select_on_map": 0,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1]
+						}, {
+							"trasee-profesionale": [true, "Traseu profesional", 0, '', 12]
+						}],
+						"ruta_selected": -1
+					},
+					"results": []
+				},
+				"statii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Sta" + String.fromCharCode(355) + "ii TURSIB Sibiu | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Sta" + String.fromCharCode(355) + "ie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o sta" + String.fromCharCode(355) + "ie",
+						"text_buton": "vezi_statie",
+						"title_buton": "click_vezi_statie",
+						"nume_afisat_cautare": "TURSIB",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_statie_sibiu",
+						"pana_la": "ex_statie_sibiu",
+						"prin_localitatea": "ex_statie_sibiu",
+						"selectable": 15,
+						"select_on_map": 2,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1]
+						}, {
+							"trasee-profesionale": [true, "Traseu profesional", 0, '', 12]
+						}]
+					},
+					"results": []
+				}
+			},
+			1397: {
+				"url_sectiune": "publitrans",
+				"nume": "Pite" + String.fromCharCode(351) + "ti",
+				"url": "pitesti",
+				"centerLat": 44.8630480,
+				"centerLng": 24.8675540,
+				"zoom": 14,
+				"moduri_cautare_selected": 0,
+				"moduri_cautare": ['rute', 'linii', 'statii'],
+				"culori": {
+					"negru": "#000000",
+					"rosu": "#E01B4C",
+					"albastru": "#1B63E0",
+					"maro": "#663300",
+					"portocaliu": "#FF6633"
+				},
+				"nume_culoare_selected": "negru",
+				"statii_incarcate": [],
+				"optiuni_markers": [],
+				"icons_zoom": [
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.gif', [10, 10]],
+					['red_dot.png', [8, 8], 'map_pointer.png', [12, 20]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]]
+				],
+				"rute": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Rute Publitrans Pite" + String.fromCharCode(351) + "ti | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Rut" + String.fromCharCode(259),
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o rut" + String.fromCharCode(259),
+						"text_buton": "vezi_directii",
+						"title_buton": "click_vezi_directii",
+						"nume_afisat_cautare": "Publitrans",
+						"nr_maxim_orase": 2,
+						"nr_minim_orase": 2,
+						"de_la": "statie_de_la",
+						"pana_la": "statie_pana_la",
+						"prin_localitatea": "prin_statia",
+						"selectable": 15,
+						"select_on_map": 1,
+						"ui": [{
+							"autobuze": [true, "Autobuze", 0, '', 1]
+						}, {}],
+						"ruta_selected": -1,
+						"buses": ""
+					},
+					"ora_selectata_user": [null, null, 0],
+					"dataFromAjax": [],
+					"results": []
+				},
+				"linii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Trasee Publitrans Pite" + String.fromCharCode(351) + "ti | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Linie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o linie",
+						"text_buton": "vezi_linie",
+						"title_buton": "click_vezi_linie",
+						"nume_afisat_cautare": "Publitrans",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_linie_pitesti",
+						"pana_la": "ex_linie_pitesti",
+						"prin_localitatea": "ex_linie_pitesti",
+						"selectable": 15,
+						"select_on_map": 0,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1]
+						}, {}],
+						"ruta_selected": -1
+					},
+					"results": []
+				},
+				"statii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Sta" + String.fromCharCode(355) + "ii Publitrans Pite" + String.fromCharCode(351) + "ti | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Sta" + String.fromCharCode(355) + "ie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o sta" + String.fromCharCode(355) + "ie",
+						"text_buton": "vezi_statie",
+						"title_buton": "click_vezi_statie",
+						"nume_afisat_cautare": "Publitrans",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_statie_pitesti",
+						"pana_la": "ex_statie_pitesti",
+						"prin_localitatea": "ex_statie_pitesti",
+						"selectable": 15,
+						"select_on_map": 2,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1]
+						}, {}]
+					},
+					"results": []
+				}
+			},
+			3988: {
+				"url_sectiune": "tuc",
+				"nume": "R" + String.fromCharCode(226) + "mnicu S" + String.fromCharCode(259) + "rat",
+				"url": "ramnicu-sarat",
+				"centerLat": 45.3798840,
+				"centerLng": 27.0500560,
+				"zoom": 15,
+				"moduri_cautare_selected": 0,
+				"moduri_cautare": ['rute', 'linii', 'statii'],
+				"culori": {
+					"negru": "#000000",
+					"rosu": "#E01B4C",
+					"albastru": "#1B63E0",
+					"maro": "#663300",
+					"portocaliu": "#FF6633"
+				},
+				"nume_culoare_selected": "negru",
+				"statii_incarcate": [],
+				"optiuni_markers": [],
+				"icons_zoom": [
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.gif', [10, 10]],
+					['red_dot.png', [8, 8], 'map_pointer.png', [12, 20]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]]
+				],
+				"rute": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Rute TUC R" + String.fromCharCode(226) + "mnicu S" + String.fromCharCode(259) + "rat | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Rut" + String.fromCharCode(259),
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o rut" + String.fromCharCode(259),
+						"text_buton": "vezi_directii",
+						"title_buton": "click_vezi_directii",
+						"nume_afisat_cautare": "TUC",
+						"nr_maxim_orase": 2,
+						"nr_minim_orase": 2,
+						"de_la": "statie_de_la",
+						"pana_la": "statie_pana_la",
+						"prin_localitatea": "prin_statia",
+						"selectable": 15,
+						"select_on_map": 1,
+						"ui": [{
+							"autobuze": [true, "Autobuze", 0, '', 1]
+						}, {}],
+						"ruta_selected": -1,
+						"buses": ""
+					},
+					"ora_selectata_user": [null, null, 0],
+					"dataFromAjax": [],
+					"results": []
+				},
+				"linii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Trasee TUC R" + String.fromCharCode(226) + "mnicu S" + String.fromCharCode(259) + "rat | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Linie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o linie",
+						"text_buton": "vezi_linie",
+						"title_buton": "click_vezi_linie",
+						"nume_afisat_cautare": "TUC",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_linie_ramnicu_sarat",
+						"pana_la": "ex_linie_ramnicu_sarat",
+						"prin_localitatea": "ex_linie_ramnicu_sarat",
+						"selectable": 15,
+						"select_on_map": 0,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1]
+						}, {}],
+						"ruta_selected": -1
+					},
+					"results": []
+				},
+				"statii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Sta" + String.fromCharCode(355) + "ii TUC R" + String.fromCharCode(226) + "mnicu S" + String.fromCharCode(259) + "rat | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Sta" + String.fromCharCode(355) + "ie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o sta" + String.fromCharCode(355) + "ie",
+						"text_buton": "vezi_statie",
+						"title_buton": "click_vezi_statie",
+						"nume_afisat_cautare": "TUC",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_statie_ramnicu_sarat",
+						"pana_la": "ex_statie_ramnicu_sarat",
+						"prin_localitatea": "ex_statie_ramnicu_sarat",
+						"selectable": 15,
+						"select_on_map": 2,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1]
+						}, {}]
+					},
+					"results": []
+				}
+			},
+			9410: {
+				"url_sectiune": "siletina",
+				"nume": "T" + String.fromCharCode(226) + "rgu Mure" + String.fromCharCode(351),
+				"url": "targu-mures",
+				"centerLat": 46.5430410,
+				"centerLng": 24.5618250,
+				"zoom": 14,
+				"moduri_cautare_selected": 0,
+				"moduri_cautare": ['rute', 'linii', 'statii'],
+				"culori": {
+					"negru": "#000000",
+					"rosu": "#E01B4C",
+					"albastru": "#1B63E0",
+					"maro": "#663300",
+					"portocaliu": "#FF6633"
+				},
+				"nume_culoare_selected": "negru",
+				"statii_incarcate": [],
+				"optiuni_markers": [],
+				"icons_zoom": [
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.gif', [10, 10]],
+					['red_dot.png', [8, 8], 'map_pointer.png', [12, 20]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]]
+				],
+				"rute": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Rute Siletina T" + String.fromCharCode(226) + "rgu Mure" + String.fromCharCode(351) + " | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Rut" + String.fromCharCode(259),
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o rut" + String.fromCharCode(259),
+						"text_buton": "vezi_directii",
+						"title_buton": "click_vezi_directii",
+						"nume_afisat_cautare": "Siletina",
+						"nr_maxim_orase": 2,
+						"nr_minim_orase": 2,
+						"de_la": "statie_de_la",
+						"pana_la": "statie_pana_la",
+						"prin_localitatea": "prin_statia",
+						"selectable": 15,
+						"select_on_map": 1,
+						"ui": [{
+							"autobuze": [true, "Autobuze", 0, '', 1]
+						}, {}],
+						"ruta_selected": -1,
+						"buses": ""
+					},
+					"ora_selectata_user": [null, null, 0],
+					"dataFromAjax": [],
+					"results": []
+				},
+				"linii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Trasee Siletina T" + String.fromCharCode(226) + "rgu Mure" + String.fromCharCode(351) + " | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Linie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o linie",
+						"text_buton": "vezi_linie",
+						"title_buton": "click_vezi_linie",
+						"nume_afisat_cautare": "Siletina",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_linie_targu_mures",
+						"pana_la": "ex_linie_targu_mures",
+						"prin_localitatea": "ex_linie_targu_mures",
+						"selectable": 15,
+						"select_on_map": 0,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1]
+						}, {}],
+						"ruta_selected": -1
+					},
+					"results": []
+				},
+				"statii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Sta" + String.fromCharCode(355) + "ii Siletina T" + String.fromCharCode(226) + "rgu Mure" + String.fromCharCode(351) + " | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Sta" + String.fromCharCode(355) + "ie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o sta" + String.fromCharCode(355) + "ie",
+						"text_buton": "vezi_statie",
+						"title_buton": "click_vezi_statie",
+						"nume_afisat_cautare": "Siletina",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_statie_targu_mures",
+						"pana_la": "ex_statie_targu_mures",
+						"prin_localitatea": "ex_statie_targu_mures",
+						"selectable": 15,
+						"select_on_map": 2,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1]
+						}, {}]
+					},
+					"results": []
+				}
+			},
+			12540: {
+				"url_sectiune": "stp",
+				"nume": "Tulcea",
+				"url": "tulcea",
+				"centerLat": 45.1780440,
+				"centerLng": 28.8032340,
+				"zoom": 15,
+				"moduri_cautare_selected": 0,
+				"moduri_cautare": ['rute', 'linii', 'statii'],
+				"culori": {
+					"negru": "#000000",
+					"rosu": "#E01B4C",
+					"albastru": "#1B63E0",
+					"maro": "#663300",
+					"portocaliu": "#FF6633"
+				},
+				"nume_culoare_selected": "negru",
+				"statii_incarcate": [],
+				"optiuni_markers": [],
+				"icons_zoom": [
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.gif', [10, 10]],
+					['red_dot.png', [8, 8], 'map_pointer.png', [12, 20]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]]
+				],
+				"rute": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Rute STP Tulcea | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Rut" + String.fromCharCode(259),
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o rut" + String.fromCharCode(259),
+						"text_buton": "vezi_directii",
+						"title_buton": "click_vezi_directii",
+						"nume_afisat_cautare": "STP Tulcea",
+						"nr_maxim_orase": 2,
+						"nr_minim_orase": 2,
+						"de_la": "statie_de_la",
+						"pana_la": "statie_pana_la",
+						"prin_localitatea": "prin_statia",
+						"selectable": 15,
+						"select_on_map": 1,
+						"ui": [{
+							"autobuze": [true, "Autobuze", 0, '', 1]
+						}, {}],
+						"ruta_selected": -1,
+						"buses": ""
+					},
+					"ora_selectata_user": [null, null, 0],
+					"dataFromAjax": [],
+					"results": []
+				},
+				"linii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Trasee STP Tulcea | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Linie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o linie",
+						"text_buton": "vezi_linie",
+						"title_buton": "click_vezi_linie",
+						"nume_afisat_cautare": "STP Tulcea",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_linie_tulcea",
+						"pana_la": "ex_linie_tulcea",
+						"prin_localitatea": "ex_linie_tulcea",
+						"selectable": 15,
+						"select_on_map": 0,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1]
+						}, {}],
+						"ruta_selected": -1
+					},
+					"results": []
+				},
+				"statii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Sta" + String.fromCharCode(355) + "ii STP Tulcea | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Sta" + String.fromCharCode(355) + "ie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o sta" + String.fromCharCode(355) + "ie",
+						"text_buton": "vezi_statie",
+						"title_buton": "click_vezi_statie",
+						"nume_afisat_cautare": "STP Tulcea",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_statie_tulcea",
+						"pana_la": "ex_statie_tulcea",
+						"prin_localitatea": "ex_statie_tulcea",
+						"selectable": 15,
+						"select_on_map": 2,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1]
+						}, {}]
+					},
+					"results": []
+				}
+			},
+			1898: {
+				"url_sectiune": "transmoldova",
+				"nume": "One" + String.fromCharCode(351) + "ti",
+				"url": "onesti",
+				"centerLat": 46.2494370,
+				"centerLng": 26.7676730,
+				"zoom": 15,
+				"moduri_cautare_selected": 0,
+				"moduri_cautare": ['rute', 'linii', 'statii'],
+				"culori": {
+					"negru": "#000000",
+					"rosu": "#E01B4C",
+					"albastru": "#1B63E0",
+					"maro": "#663300",
+					"portocaliu": "#FF6633"
+				},
+				"nume_culoare_selected": "negru",
+				"statii_incarcate": [],
+				"optiuni_markers": [],
+				"icons_zoom": [
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.gif', [10, 10]],
+					['red_dot.png', [8, 8], 'map_pointer.png', [12, 20]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]]
+				],
+				"rute": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Rute Transmoldova One" + String.fromCharCode(351) + "ti | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Rut" + String.fromCharCode(259),
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o rut" + String.fromCharCode(259),
+						"text_buton": "vezi_directii",
+						"title_buton": "click_vezi_directii",
+						"nume_afisat_cautare": "Trans Moldova",
+						"nr_maxim_orase": 2,
+						"nr_minim_orase": 2,
+						"de_la": "statie_de_la",
+						"pana_la": "statie_pana_la",
+						"prin_localitatea": "prin_statia",
+						"selectable": 15,
+						"select_on_map": 1,
+						"ui": [{
+							"autobuze": [true, "Autobuze", 0, '', 1]
+						}, {}],
+						"ruta_selected": -1,
+						"buses": ""
+					},
+					"ora_selectata_user": [null, null, 0],
+					"dataFromAjax": [],
+					"results": []
+				},
+				"linii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Trasee Transmoldova One" + String.fromCharCode(351) + "ti | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Linie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o linie",
+						"text_buton": "vezi_linie",
+						"title_buton": "click_vezi_linie",
+						"nume_afisat_cautare": "Trans Moldova",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_linie_onesti",
+						"pana_la": "ex_linie_onesti",
+						"prin_localitatea": "ex_linie_onesti",
+						"selectable": 15,
+						"select_on_map": 0,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1]
+						}, {}],
+						"ruta_selected": -1
+					},
+					"results": []
+				},
+				"statii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Sta" + String.fromCharCode(355) + "ii Transmoldova One" + String.fromCharCode(351) + "ti | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Sta" + String.fromCharCode(355) + "ie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o sta" + String.fromCharCode(355) + "ie",
+						"text_buton": "vezi_statie",
+						"title_buton": "click_vezi_statie",
+						"nume_afisat_cautare": "Trans Moldova",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_statie_onesti",
+						"pana_la": "ex_statie_onesti",
+						"prin_localitatea": "ex_statie_onesti",
+						"selectable": 15,
+						"select_on_map": 2,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1]
+						}, {}]
+					},
+					"results": []
+				}
+			},
+			2366: {
+				"url_sectiune": "otl",
+				"nume": "Oradea",
+				"url": "oradea",
+				"centerLat": 47.0564410,
+				"centerLng": 21.9343760,
+				"zoom": 14,
+				"moduri_cautare_selected": 0,
+				"moduri_cautare": ['rute', 'linii', 'statii'],
+				"culori": {
+					"negru": "#000000",
+					"rosu": "#E01B4C",
+					"albastru": "#1B63E0",
+					"maro": "#663300",
+					"portocaliu": "#FF6633"
+				},
+				"nume_culoare_selected": "negru",
+				"statii_incarcate": [],
+				"optiuni_markers": [],
+				"icons_zoom": [
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['list-bullet.gif', [8, 8], 'list-bullet.gif', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.png', [8, 8]],
+					['red_dot.png', [8, 8], 'red_dot.gif', [10, 10]],
+					['red_dot.png', [8, 8], 'map_pointer.png', [12, 20]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['red_dot.gif', [10, 10], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]],
+					['markere/marker_red_point.png', [20, 34], 'markere/marker_redM.png', [20, 34]]
+				],
+				"rute": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Rute OTLRA Oradea | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Rut" + String.fromCharCode(259),
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o rut" + String.fromCharCode(259),
+						"text_buton": "vezi_directii",
+						"title_buton": "click_vezi_directii",
+						"nume_afisat_cautare": "OTLRA",
+						"nr_maxim_orase": 2,
+						"nr_minim_orase": 2,
+						"de_la": "statie_de_la",
+						"pana_la": "statie_pana_la",
+						"prin_localitatea": "prin_statia",
+						"selectable": 15,
+						"select_on_map": 1,
+						"ui": [{
+							"autobuze": [true, "Autobuze", 0, '', 1],
+							"tramvaie": [true, "Tramvaie", 0, '', 3]
+						}, {
+							"ro-hu": [true, "Ro-Hu", 0, '', 14]
+						}],
+						"ruta_selected": -1,
+						"buses": ""
+					},
+					"ora_selectata_user": [null, null, 0],
+					"dataFromAjax": [],
+					"results": []
+				},
+				"linii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Trasee OTLRA Oradea | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Linie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o linie",
+						"text_buton": "vezi_linie",
+						"title_buton": "click_vezi_linie",
+						"nume_afisat_cautare": "OTLRA",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_linie_oradea",
+						"pana_la": "ex_linie_oradea",
+						"prin_localitatea": "ex_linie_oradea",
+						"selectable": 15,
+						"select_on_map": 0,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1],
+							"tramvaie": [true, "Tramvai", 0, '', 3]
+						}, {
+							"ro-hu": [true, "Ro-Hu", 0, '', 14]
+						}],
+						"ruta_selected": -1
+					},
+					"results": []
+				},
+				"statii": {
+					"varsInputs": [],
+					"idsVarsInputs": [],
+					"coordVarsInputs": [],
+					"textCoordVarsInputs": [],
+					"urlsVarsInputs": [],
+					"markersVarsInputs": [],
+					"cotituri": [],
+					"title": "Statii OTLRA Oradea | Distan" + String.fromCharCode(355) + "a RO",
+					"cursor": 0,
+					"last_input_accessed": 0,
+					"zoom": 0,
+					"center": false,
+					"optiuni": {
+						"nume": "Sta" + String.fromCharCode(355) + "ie",
+						"title": "Click pentru a c" + String.fromCharCode(259) + "uta o sta" + String.fromCharCode(355) + "ie",
+						"text_buton": "vezi_statie",
+						"title_buton": "click_vezi_statie",
+						"nume_afisat_cautare": "OTLRA",
+						"nr_maxim_orase": 1,
+						"nr_minim_orase": 1,
+						"de_la": "ex_statie_oradea",
+						"pana_la": "ex_statie_oradea",
+						"prin_localitatea": "ex_statie_oradea",
+						"selectable": 15,
+						"select_on_map": 2,
+						"ui": [{
+							"autobuze": [true, "Autobuz", 0, '', 1],
+							"tramvaie": [true, "Tramvai", 0, '', 3]
+						}, {
+							"ro-hu": [true, "Ro-Hu", 0, '', 14]
+						}]
+					},
+					"results": []
+				}
+			},
+		}
+	},
+	"desen": {
+		"colors_markers": ["red", "white", "yellow", "orange", "green", "purple", "grey", "brown"],
+		"colors_pickers": ["#FFFFFF", "#FF00FF", "#FFFF00", "#0000FF", "#990066", "#CC0099", "#6600CC", "#00CC00", "#FF3366", "#660066", "#999900", "#006666", "#FFFF99", "#999966", "#336699", "#CC99FF", "#339900", "#990000", "#669900", "#3399CC", "#000000"],
+		"tools": ["marker", "linie", "poligon", "dreptunghi", "cerc"],
+		"stari": {
+			"marker_editing": false,
+			"polygon_editing": false,
+			"line_editing": false,
+			"rectangle_editing": false,
+			"circle_editing": false
+		},
+		"sliders": {
+			"slider_linie": false,
+			"slider_poligon": false,
+			"slider_poligon_arie": false,
+			"slider_dreptunghi": false,
+			"slider_dreptunghi_arie": false,
+			"slider_cerc": false,
+			"slider_cerc_arie": false
+		},
+		"markers": [],
+		"linii": [],
+		"poligoane": [],
+		"dreptunghiuri": [],
+		"cercuri": []
+	},
+	"ceasuri": {
+		"viteza": {
+			"default": {
+				"from": {
+					"green": 35,
+					"yellow": 75,
+					"red": 90
+				},
+				"to": {
+					"green": 55,
+					"yellow": 90,
+					"red": 150
+				}
+			},
+			"procente": {
+				"from": {
+					"green": 20,
+					"yellow": 35,
+					"red": 60
+				},
+				"to": {
+					"yellow": 60
+				}
+			}
+		},
+		"timp": {
+			"default": {
+				"from": {
+					"green": 2,
+					"yellow": 9,
+					"red": 10
+				},
+				"to": {
+					"green": 3,
+					"yellow": 10,
+					"red": 12
+				}
+			},
+			"procente": {
+				"from": {
+					"green": 20,
+					"yellow": 35,
+					"red": 55
+				},
+				"to": {
+					"green": 15,
+					"yellow": 55,
+					"red": 100
+				}
+			}
+		},
+		"consum": {
+			"default": {
+				"from": {
+					"green": 30,
+					"yellow": 75,
+					"red": 90
+				},
+				"to": {
+					"green": 50,
+					"yellow": 90,
+					"red": 150
+				}
+			},
+			"procente": {
+				"from": {
+					"green": 15,
+					"yellow": 40,
+					"red": 60
+				},
+				"to": {
+					"green": 20,
+					"yellow": 60,
+					"red": 100
+				}
+			}
+		}
+	},
+	"credits": [{
+		"url": "https://www.srv.ro/",
+		"target": "_blank",
+		"imgOff": "it-asistenta-off.png",
+		"imgOn": "it-asistenta-on.png",
+		"title": "Hosted by: SRV"
+	}, {
+		"url": "http://www.woobicha.ro/",
+		"target": "_blank",
+		"imgOff": "woobicha-off.png",
+		"imgOn": "woobicha-on.png",
+		"title": "Design by: Woobicha"
+	}],
+	"taburi": {
+		"ruta": {
+			0: "Rut" + String.fromCharCode(259)
+		},
+		"viteza_consum": {
+			0: "Vitez" + String.fromCharCode(259) + "/Consum"
+		},
+		"elevatia": {
+			0: "Eleva" + String.fromCharCode(355) + "ia traseului"
+		},
+		"strada_obiectiv": {
+			0: "Strad" + String.fromCharCode(259) + "/Obiectiv"
+		},
+		"linie": {
+			0: "Linie"
+		},
+		"statie": {
+			0: "Sta" + String.fromCharCode(355) + "ie"
+		},
+		"orar": {
+			0: "Orar"
+		}
+	},
+	"texte": {
+		"info": "info",
+		"contact": "contact",
+		"termeni": "termeni",
+		"alte_orase": "alte ora" + String.fromCharCode(351) + "e",
+		"chestionare": "chestionare: mai " + String.fromCharCode(351) + "tii?",
+		"kfea": "Tr" + String.fromCharCode(259) + "ie" + String.fromCharCode(351) + "te fiecare clip" + String.fromCharCode(259) + "<br />cu cea mai bun" + String.fromCharCode(259) + " kfea.ro",
+		"instructiuni": "instruc" + String.fromCharCode(355) + "iuni",
+		"inchide": String.fromCharCode(206) + "nchide",
+		"distante_rutiere": "Distan" + String.fromCharCode(355) + "e rutiere",
+		"title_save": "Salveaz" + String.fromCharCode(259) + " aceast" + String.fromCharCode(259) + " configura" + String.fromCharCode(355) + "ie a h" + String.fromCharCode(259) + "r" + String.fromCharCode(355) + "ii",
+		"alt_save": "Salveaz" + String.fromCharCode(259),
+		"title_tools": "Instrumente. Marcheaz" + String.fromCharCode(259) + "-" + String.fromCharCode(355) + "i propria hart" + String.fromCharCode(259) + "!",
+		"title_printer": "Printeaz" + String.fromCharCode(259) + " rut" + String.fromCharCode(259) + "/hart" + String.fromCharCode(259),
+		"alt_printer": "Printeaz" + String.fromCharCode(259),
+		"title_share": "Share/Embed la tine " + String.fromCharCode(238) + "n blog",
+		"alt_share": "Share/Embed",
+		"title_zoom_in": "Zoom In",
+		"title_zoom_out": "Zoom Out",
+		"click_derulare_ruta": ": Click pentru a derula lista",
+		"schimba_localitatile": {
+			"auto": {
+				"rute": ["Schimb" + String.fromCharCode(259) + " localit" + String.fromCharCode(259) + String.fromCharCode(355) + "ile", 135, -150]
+			},
+			"pe-jos": {
+				"rute": ["Schimb" + String.fromCharCode(259) + " localit" + String.fromCharCode(259) + String.fromCharCode(355) + "ile", 135, -150]
+			},
+			"bicicleta": {
+				"rute": ["Schimb" + String.fromCharCode(259) + " localit" + String.fromCharCode(259) + String.fromCharCode(355) + "ile", 135, -150]
+			},
+			"autobuz": {
+				"rute": ["Schimb" + String.fromCharCode(259) + " sta" + String.fromCharCode(355) + "iile", 120, -135],
+				"linii": ["Schimb" + String.fromCharCode(259) + " linia", 105, -120],
+				"statii": ["Schimb" + String.fromCharCode(259) + " sta" + String.fromCharCode(355) + "ia", 115, -130]
+			},
+			"linie-dreapta": {
+				"rute": ["Schimb" + String.fromCharCode(259) + " localit" + String.fromCharCode(259) + String.fromCharCode(355) + "ile", 135, -150]
+			}
+		},
+		"afiseaza_mai_multe_optiuni": "Afi" + String.fromCharCode(351) + "eaz" + String.fromCharCode(259) + " mai multe op" + String.fromCharCode(355) + "iuni",
+		"optiuni": "op" + String.fromCharCode(355) + "iuni",
+		"adauga_destinatie": "Adaug" + String.fromCharCode(259) + " destina" + String.fromCharCode(355) + "ie",
+		"title_adauga_destinatie": "Adaug" + String.fromCharCode(259) + " destina" + String.fromCharCode(355) + "ie. Po" + String.fromCharCode(355) + "i ad" + String.fromCharCode(259) + "uga p" + String.fromCharCode(226) + "n" + String.fromCharCode(259) + " la 10 localit" + String.fromCharCode(259) + String.fromCharCode(355) + "i",
+		"vezi_directii": "Direc" + String.fromCharCode(355) + "ii",
+		"vezi_distanta": "Distan" + String.fromCharCode(355) + "a",
+		"vezi_linie": "Linie",
+		"vezi_statie": "Sta" + String.fromCharCode(355) + "ie",
+		"click_vezi_directii": "Click pentru a vedea ruta",
+		"click_vezi_distanta": "Click pentru a vedea distan" + String.fromCharCode(355) + "a",
+		"click_vezi_linie": "Click pentru a vedea linia",
+		"click_vezi_statie": "Click pentru a vedea sta" + String.fromCharCode(355) + "ia",
+		"string_viteza": "Vitez" + String.fromCharCode(259),
+		"string_timp": "Timp",
+		"string_consum": "Consum",
+		"string_consum_total": "Consum total",
+		"string_consum_mediu": "Consumul mediu",
+		"string_cost": "Cost",
+		"string_dis": "DIS",
+		"string_distanta": "Distan" + String.fromCharCode(355) + "a",
+		"string_tur_retur": "Tur/Retur",
+		"string_tur": "Tur",
+		"string_retur": "Retur",
+		"string_tur_caps": "TUR",
+		"string_retur_caps": "RETUR",
+		"moneda": "RON",
+		"string_taxi": "Taxi",
+		"valori_medii_aproximative": "* unele valori pot fi aproximative",
+		"micsorati_consumul": "Mic" + String.fromCharCode(351) + "ora" + String.fromCharCode(355) + "i consumul\n(consumul nu este corelat cu viteza)",
+		"mariti_consumul": "M" + String.fromCharCode(259) + "ri" + String.fromCharCode(355) + "i consumul\n(consumul nu este corelat cu viteza)",
+		"micsorati_viteza": "Mic" + String.fromCharCode(351) + "ora" + String.fromCharCode(355) + "i viteza\n(viteza nu este corelat" + String.fromCharCode(259) + " cu consumul)",
+		"mariti_viteza": "M" + String.fromCharCode(259) + "ri" + String.fromCharCode(355) + "i viteza\n(viteza nu este corelat" + String.fromCharCode(259) + " cu consumul)",
+		"micsorati_timpul": "Mic" + String.fromCharCode(351) + "ora" + String.fromCharCode(355) + "i timpul",
+		"mariti_timpul": "M" + String.fromCharCode(259) + "ri" + String.fromCharCode(355) + "i timpul",
+		"cauta_strada_obiectiv": "Caut" + String.fromCharCode(259) + " strad" + String.fromCharCode(259) + "/obiectiv din ",
+		"contact_contact": "Contact",
+		"nume_contact": "Nume:",
+		"mesaj_contact": "Mesaj:",
+		"email_contact": "Email:",
+		"telefon_contact": "Telefon:",
+		"trimite_contact": "Trimite",
+		"mesaje_top": {
+			"auto": ["Dup" + String.fromCharCode(259) + " ce cau" + String.fromCharCode(355) + "i un traseu, " + String.fromCharCode(238) + "l po" + String.fromCharCode(355) + "i ajusta tr" + String.fromCharCode(259) + "g" + String.fromCharCode(226) + "nd de dung" + String.fromCharCode(259) + " sau de markere", "Po" + String.fromCharCode(355) + "i ad" + String.fromCharCode(259) + "uga p" + String.fromCharCode(226) + "n" + String.fromCharCode(259) + " la 10 localit" + String.fromCharCode(259) + String.fromCharCode(355) + "i " + String.fromCharCode(238) + "n calcularea rutei. Apas" + String.fromCharCode(259) + " \"Adaug" + String.fromCharCode(259) + " destina" + String.fromCharCode(355) + "ie\" " + String.fromCharCode(238) + "n caseta de c" + String.fromCharCode(259) + "utare", "Butonul \"op" + String.fromCharCode(355) + "iuni\" " + String.fromCharCode(238) + String.fromCharCode(355) + "i permite s" + String.fromCharCode(259) + " calculezi distan" + String.fromCharCode(355) + "e cu ma" + String.fromCharCode(351) + "ina, pe jos, cu bicicleta sau cu transportul " + String.fromCharCode(238) + "n comun", "Po" + String.fromCharCode(355) + "i c" + String.fromCharCode(259) + "uta rute " + String.fromCharCode(351) + "i " + String.fromCharCode(238) + "n interiorul ora" + String.fromCharCode(351) + "elor, ob" + String.fromCharCode(355) + "in" + String.fromCharCode(226) + "nd " + String.fromCharCode(351) + "i pre" + String.fromCharCode(355) + "ul taxiului pe ruta respectiv" + String.fromCharCode(259), "Paginile ora" + String.fromCharCode(351) + "elor (de ex. https://distanta.ro/bucuresti/) permit c" + String.fromCharCode(259) + "utarea str" + String.fromCharCode(259) + "zilor sau a obiectivelor din ora" + String.fromCharCode(351) + "ul respectiv", "Po" + String.fromCharCode(355) + "i c" + String.fromCharCode(259) + "uta " + String.fromCharCode(351) + "i rute cu TRANSPORTUL " + String.fromCharCode(206) + "N COMUN. Acceseaz" + String.fromCharCode(259) + " butonul \"op" + String.fromCharCode(355) + "iuni\"", String.fromCharCode(206) + String.fromCharCode(355) + "i po" + String.fromCharCode(355) + "i selecta consumul ma" + String.fromCharCode(351) + "inii " + String.fromCharCode(351) + "i tipul de carburant " + String.fromCharCode(238) + "nainte de a calcula o rut" + String.fromCharCode(259) + ". Acceseaz" + String.fromCharCode(259) + " butonul \"op" + String.fromCharCode(355) + "iuni\"", "Po" + String.fromCharCode(355) + "i vedea traficul " + String.fromCharCode(238) + "n timp real " + String.fromCharCode(238) + "n unele ora" + String.fromCharCode(351) + "e din " + String.fromCharCode(355) + "ar" + String.fromCharCode(259) + ". Apas" + String.fromCharCode(259) + " pe butonul \"TRAFIC\" din dreapta h" + String.fromCharCode(259) + "r" + String.fromCharCode(355) + "ii", "Po" + String.fromCharCode(355) + "i stabili tipul de CARBURANT " + String.fromCharCode(351) + "i CONSUMUL ma" + String.fromCharCode(351) + "inii " + String.fromCharCode(238) + "nainte de a calcula o rut" + String.fromCharCode(259) + ". Acceseaz" + String.fromCharCode(259) + " butonul \"op" + String.fromCharCode(355) + "iuni\""],
+			"pe-jos": ["Po" + String.fromCharCode(355) + "i c" + String.fromCharCode(259) + "uta acum " + String.fromCharCode(351) + "i rute cu bicicleta. Acceseaz" + String.fromCharCode(259) + " butonul \"op" + String.fromCharCode(355) + "iuni\""],
+			"bicicleta": ["Timpul de mers cu bicicleta este ajustat la viteza bicicletei", "Po" + String.fromCharCode(355) + "i ajusta viteza cu care vei merge, dup" + String.fromCharCode(259) + " calcularea rutei", "Vezi eleva" + String.fromCharCode(355) + "ia traseului ca s" + String.fromCharCode(259) + " " + String.fromCharCode(351) + "tii pe unde ai s" + String.fromCharCode(259) + " tragi din greu la pedale " + String.fromCharCode(351) + "i unde vei merge la vale :)"],
+			"autobuz": ["Po" + String.fromCharCode(355) + "i c" + String.fromCharCode(259) + "uta o rut" + String.fromCharCode(259) + ", o linie sau o sta" + String.fromCharCode(355) + "ie", "Acceseaz" + String.fromCharCode(259) + " butonul \"op" + String.fromCharCode(355) + "iuni\" " + String.fromCharCode(351) + "i alege (sau elimin" + String.fromCharCode(259) + ") tipurile de mijloace de transport cu care vrei s" + String.fromCharCode(259) + " c" + String.fromCharCode(259) + "l" + String.fromCharCode(259) + "tore" + String.fromCharCode(351) + "ti", "C" + String.fromCharCode(226) + "nd cau" + String.fromCharCode(355) + "i o linie po" + String.fromCharCode(355) + "i afla " + String.fromCharCode(351) + "i ORARUL acesteia, de Luni p" + String.fromCharCode(226) + "n" + String.fromCharCode(259) + " Vineri sau " + String.fromCharCode(238) + "n weekend", "Click pe iconi" + String.fromCharCode(355) + "a din st" + String.fromCharCode(226) + "nga c" + String.fromCharCode(226) + "mpurilor de c" + String.fromCharCode(259) + "utare pentru a selecta loca" + String.fromCharCode(355) + "ia prin click pe hart" + String.fromCharCode(259), "Po" + String.fromCharCode(355) + "i afla ce mijloace de transport trec printr-o sta" + String.fromCharCode(355) + "ie " + String.fromCharCode(351) + "i unde po" + String.fromCharCode(355) + "i ajunge de acolo", "La c" + String.fromCharCode(259) + "utarea unei rute vezi " + String.fromCharCode(351) + "i eleva" + String.fromCharCode(355) + "ia traseului, " + String.fromCharCode(238) + "n cazul " + String.fromCharCode(238) + "n care vrei s" + String.fromCharCode(259) + " mergi cu bicicleta pe acel traseu", "La fiecare rut" + String.fromCharCode(259) + " c" + String.fromCharCode(259) + "utat" + String.fromCharCode(259) + " se va calcula " + String.fromCharCode(351) + "i traseul/timpul/pre" + String.fromCharCode(355) + "ul cu taxiul, pentru cazurile c" + String.fromCharCode(226) + "nd te gr" + String.fromCharCode(259) + "be" + String.fromCharCode(351) + "ti"],
+			"linie-dreapta": ["Distan" + String.fromCharCode(355) + "ele " + String.fromCharCode(238) + "n linie dreapt" + String.fromCharCode(259) + " te ajut" + String.fromCharCode(259) + " s" + String.fromCharCode(259) + " faci simple calcule geodezice " + String.fromCharCode(238) + "ntre diferite puncte de pe P" + String.fromCharCode(259) + "m" + String.fromCharCode(226) + "nt", "Dup" + String.fromCharCode(259) + " calculul unei distan" + String.fromCharCode(355) + "e " + String.fromCharCode(238) + "n linie dreapt" + String.fromCharCode(259) + " po" + String.fromCharCode(355) + "i trage de markere pentru a ajusta pozi" + String.fromCharCode(355) + "ia acestora", "Acceseaz" + String.fromCharCode(259) + " butonul \"op" + String.fromCharCode(355) + "iuni\" " + String.fromCharCode(351) + "i po" + String.fromCharCode(355) + "i alege modalitatea de trasare a dungii pe hart" + String.fromCharCode(259)]
+		},
+		"string_top_oras": "Po&#355;i c&#259;uta &#351;i rute locale, din",
+		"ex_top_oras": ". Ex.:",
+		"string_zi": "zi",
+		"string_zile": "zile",
+		"string_ora": "or" + String.fromCharCode(259),
+		"string_ore": "ore",
+		"string_simbol_ore": "h",
+		"string_simbol_minute": "min",
+		"string_termeni_conditii": "Termeni &#351;i condi&#355;ii",
+		"string_elevatia_traseului": "Eleva" + String.fromCharCode(355) + "ia traseului de-a lungul rutei (click pe grafic pentru a vedea valori exacte)",
+		"termeni_conditii": "Aceste indica" + String.fromCharCode(355) + "ii au ca scop unic planificarea. Se poate s" + String.fromCharCode(259) + " constata" + String.fromCharCode(355) + "i c" + String.fromCharCode(259) + " proiectele de construc" + String.fromCharCode(355) + "ie, traficul, vremea sau alte evenimente pot determina condi" + String.fromCharCode(355) + "iile de trafic s" + String.fromCharCode(259) + " difere fa" + String.fromCharCode(355) + String.fromCharCode(259) + " de rezultatele oferite de hart" + String.fromCharCode(259) + "; prin urmare, planificarea traseului trebuie efectuat" + String.fromCharCode(259) + " " + String.fromCharCode(355) + "in" + String.fromCharCode(226) + "nd cont de cele men" + String.fromCharCode(355) + "ionate. Trebuie s" + String.fromCharCode(259) + " respecta" + String.fromCharCode(355) + "i toate semnele de circula" + String.fromCharCode(355) + "ie " + String.fromCharCode(351) + "i anun" + String.fromCharCode(355) + "urile referitoare la traseul dvs.<br /><br />Acest site folose" + String.fromCharCode(351) + "te cookies. Prin navigarea pe acest site, v" + String.fromCharCode(259) + " exprima" + String.fromCharCode(355) + "i <a href=\"javascript:void(0);\" onclick=\"showCookiePolicies();\">acordul asupra folosirii cookie-urilor</a>.",
+		"string_harti_distante": "H" + String.fromCharCode(259) + "r" + String.fromCharCode(355) + "i " + String.fromCharCode(351) + "i distan" + String.fromCharCode(355) + "e c" + String.fromCharCode(259) + "tre alte ora" + String.fromCharCode(351) + "e",
+		"string_harti_transport_in_comun": "Transport " + String.fromCharCode(238) + "n comun " + String.fromCharCode(238) + "n alte ora" + String.fromCharCode(351) + "e",
+		"de_la": "De la:",
+		"pana_la": "P" + String.fromCharCode(226) + "n" + String.fromCharCode(259) + " la:",
+		"prin_localitatea": "Prin localitatea:",
+		"statie_de_la": "Sta" + String.fromCharCode(355) + "ie sau reper:",
+		"statie_pana_la": "Sta" + String.fromCharCode(355) + "ie sau reper:",
+		"prin_statia": "Prin sta" + String.fromCharCode(355) + "ia:",
+		"ex_linie_bucuresti": "Ex: 104",
+		"ex_linie_timisoara": "Ex: 16",
+		"ex_linie_alba_iulia": "Ex: 101",
+		"ex_linie_onesti": "Ex: 1",
+		"ex_linie_turda": "Ex: 10",
+		"ex_linie_cluj_napoca": "Ex: 29",
+		"ex_linie_ramnicu_sarat": "Ex: 4",
+		"ex_linie_targu_mures": "Ex: 19",
+		"ex_linie_tulcea": "Ex: 4",
+		"ex_linie_oradea": "Ex: 15",
+		"ex_linie_galati": "Ex: 22",
+		"ex_linie_braila": "Ex: 21",
+		"ex_linie_constanta": "Ex: 43",
+		"ex_linie_focsani": "Ex: 4",
+		"ex_linie_iasi": "Ex: 13",
+		"ex_linie_brasov": "Ex: 22",
+		"ex_linie_sibiu": "Ex: 11",
+		"ex_linie_craiova": "Ex: 5B",
+		"ex_linie_ploiesti": "Ex: 22",
+		"ex_linie_pitesti": "Ex: 7B",
+		"ex_linie_roman": "Ex: 5",
+		"ex_linie_arad": "Ex: 31",
+		"ex_linie_sfantu_gheorghe": "Ex: 6",
+		"ex_linie_miercurea_ciuc": "Ex: Verde",
+		"ex_linie_satu_mare": "Ex: 13",
+		"ex_statie_bucuresti": "Ex: Luigi Galvani",
+		"ex_statie_timisoara": "Ex: Carmen Silva",
+		"ex_statie_alba_iulia": "Ex: Casa Armatei",
+		"ex_statie_turda": "Ex: Spitalul Municipal",
+		"ex_statie_cluj_napoca": "Ex: Pia" + String.fromCharCode(355) + "a Cipariu",
+		"ex_statie_ramnicu_sarat": "Ex: Eminescu",
+		"ex_statie_targu_mures": "Ex: Pia" + String.fromCharCode(355) + "a Teatrului",
+		"ex_statie_tulcea": "Ex: Pia" + String.fromCharCode(355) + "a Veche",
+		"ex_statie_oradea": "Ex: Perla",
+		"ex_statie_galati": "Ex: Parfumul Teilor",
+		"ex_statie_braila": "Ex: Spitalul Jude" + String.fromCharCode(355) + "ean",
+		"ex_statie_constanta": "Ex: Tomis III",
+		"ex_statie_focsani": "Ex: Capel" + String.fromCharCode(259),
+		"ex_statie_iasi": "Ex: T" + String.fromCharCode(259) + "t" + String.fromCharCode(259) + "ra" + String.fromCharCode(351) + "i",
+		"ex_statie_brasov": "Ex: Onix",
+		"ex_statie_sibiu": "Ex: Turni" + String.fromCharCode(351) + "or",
+		"ex_statie_craiova": "Ex: Macedonski",
+		"ex_statie_ploiesti": "Ex: Ana Ip" + String.fromCharCode(259) + "tescu",
+		"ex_statie_pitesti": "Ex: Casa C" + String.fromCharCode(259) + "r" + String.fromCharCode(355) + "ii",
+		"ex_statie_roman": "Ex: Celibidache",
+		"ex_statie_arad": "Ex: Banu M" + String.fromCharCode(259) + "r" + String.fromCharCode(259) + "cine",
+		"ex_statie_sfantu_gheorghe": "Ex: Casa cu Arcade",
+		"ex_statie_miercurea_ciuc": "Ex: Casa cu Arcade",
+		"ex_statie_satu_mare": "Ex: Ceasul Electric",
+		"ex_statie_onesti": "Ex: Mihai Eminescu",
+		"inverseaza_localitatile": "Inverseaz" + String.fromCharCode(259) + " localit" + String.fromCharCode(259) + String.fromCharCode(355) + "ile",
+		"inverseaza_statiile": "Inverseaz" + String.fromCharCode(259) + " sta" + String.fromCharCode(355) + "iile/loca" + String.fromCharCode(355) + "iile",
+		"sterge_destinatia": String.fromCharCode(350) + "terge destina" + String.fromCharCode(355) + "ia",
+		"selectati_o_statie": "Selecteaz" + String.fromCharCode(259) + " o sta" + String.fromCharCode(355) + "ie",
+		"inchide_optiunile_avansate": String.fromCharCode(206) + "nchide op" + String.fromCharCode(355) + "iunile",
+		"culoare_traseu": "Culoare:",
+		"adresa_nu_a_fost_gasita": "Adresa introdus" + String.fromCharCode(259) + " de dumneavoastr" + String.fromCharCode(259) + " nu a putut fi g" + String.fromCharCode(259) + "sit" + String.fromCharCode(259) + ".",
+		"selectati_locatia_click_harta": "Selecta" + String.fromCharCode(355) + "i loca" + String.fromCharCode(355) + "ia prin click pe hart" + String.fromCharCode(259),
+		"click_pe_harta": "Click pe hart" + String.fromCharCode(259) + " pentru a selecta loca" + String.fromCharCode(355) + "ia",
+		"se_incarca_statiile": "Se " + String.fromCharCode(238) + "ncarc" + String.fromCharCode(259) + " sta" + String.fromCharCode(355) + "iile...",
+		"error_directions": {
+			"NOT_FOUND": "Nu s-au g" + String.fromCharCode(259) + "sit coordonatele",
+			"ZERO_RESULTS": "Nu a fost g" + String.fromCharCode(259) + "sit" + String.fromCharCode(259) + " nicio rut" + String.fromCharCode(259),
+			"MAX_WAYPOINTS_EXCEEDED": "A&#355;i pus prea multe localit" + String.fromCharCode(259) + String.fromCharCode(355) + "i intermediare",
+			"INVALID_REQUEST": "Nu am " + String.fromCharCode(238) + "n" + String.fromCharCode(355) + "eles cererea",
+			"OVER_QUERY_LIMIT": "A" + String.fromCharCode(355) + "i dep" + String.fromCharCode(259) + String.fromCharCode(351) + "it limita de interog" + String.fromCharCode(259) + "ri",
+			"REQUEST_DENIED": "Momentan nu mai ave" + String.fromCharCode(355) + "i acces la acest serviciu",
+			"UNKNOWN_ERROR": "A intervenit o eroare necunoscut" + String.fromCharCode(259)
+		},
+		"si": String.fromCharCode(351) + "i",
+		"ruta": "Rut" + String.fromCharCode(259),
+		"legaturi": "Leg" + String.fromCharCode(259) + "turi",
+		"detalii_dis": "DIS este un indice calculat " + String.fromCharCode(238) + "ntre distan" + String.fromCharCode(355) + "a, timpul " + String.fromCharCode(351) + "i costul unei rute.\nCu c" + String.fromCharCode(226) + "t indicele este mai mic, cu at" + String.fromCharCode(226) + "t o rut" + String.fromCharCode(259) + " este mai eficient" + String.fromCharCode(259) + ".",
+		"street_view_off": "Aceast" + String.fromCharCode(259) + " loca" + String.fromCharCode(355) + "ie nu are vedere stradal" + String.fromCharCode(259) + " disponibil" + String.fromCharCode(259),
+		"street_view_on": "Vedere stradal" + String.fromCharCode(259) + " disponibil" + String.fromCharCode(259),
+		"copyright": "Date prelucrate de distanta.ro.<br />Folosirea lor este permis" + String.fromCharCode(259) + " doar " + String.fromCharCode(238) + "n scop personal.",
+		"click_derulare": "Click pentru derulare",
+		"ati_ajuns": "apoi ajunge" + String.fromCharCode(355) + "i la destina" + String.fromCharCode(355) + "ie",
+		"disclaimer_orar_linii_autobuz": "* Unele ore din acest tabel pot fi generate automat " + String.fromCharCode(238) + "n func" + String.fromCharCode(355) + "ie de programul de la capetele de linie.<br />* Condi" + String.fromCharCode(355) + "iile de trafic, vremea sau alte evenimente pot influen" + String.fromCharCode(355) + "a programul de mers al liniilor de transport.",
+		"ora": "Ora: ",
+		"spre": "Spre ",
+		"spre_mic": "spre",
+		"asteptati": "A" + String.fromCharCode(351) + "tepta" + String.fromCharCode(355) + "i",
+		"statia": "Sta" + String.fromCharCode(355) + "ia",
+		"linii": "Linii",
+		"statii_apropiate": "Sta" + String.fromCharCode(355) + "ii apropiate",
+		"legaturi": "Leg" + String.fromCharCode(259) + "turi",
+		"distanta": "distan" + String.fromCharCode(355) + String.fromCharCode(259),
+		"nr_mijloace_zilnic": "Nr. mijloace zilnic",
+		"mijloace": "mijloace",
+		"mijloc": "mijloc",
+		"pe_jos": "Pe jos",
+		"statii": "sta" + String.fromCharCode(355) + "ii",
+		"statie": "sta" + String.fromCharCode(355) + "ie",
+		"plecati_la": "Pleca" + String.fromCharCode(355) + "i la: ",
+		"ajungeti_la": "Ajunge" + String.fromCharCode(355) + "i la: ",
+		"plecati_mai_tarziu": "Pleca" + String.fromCharCode(355) + "i mai t" + String.fromCharCode(226) + "rziu",
+		"plecati_mai_devreme": "Pleca" + String.fromCharCode(355) + "i mai devreme",
+		"ajungeti_mai_tarziu": "Ajunge" + String.fromCharCode(355) + "i mai t" + String.fromCharCode(226) + "rziu",
+		"ajungeti_mai_devreme": "Ajunge" + String.fromCharCode(355) + "i mai devreme",
+		"rute_autobuz": {
+			"luati": "Lua" + String.fromCharCode(355) + "i",
+			"sau": "sau",
+			"si_mergeti": String.fromCharCode(351) + "i merge" + String.fromCharCode(355) + "i",
+			"pana_la_statia": "p" + String.fromCharCode(226) + "n" + String.fromCharCode(259) + " la sta" + String.fromCharCode(355) + "ia",
+			"de_destinatie": "de destina" + String.fromCharCode(355) + "ie",
+			"statie": "sta" + String.fromCharCode(355) + "ie",
+			"statii": "sta" + String.fromCharCode(355) + "ii",
+			"mergeti_pe_jos": "Merge" + String.fromCharCode(355) + "i pe jos p" + String.fromCharCode(226) + "n" + String.fromCharCode(259) + " la sta" + String.fromCharCode(355) + "ia"
+		},
+		"nr_linii_pe_zi": "Num" + String.fromCharCode(259) + "r linii",
+		"nr_statii_apropiate": "Sta" + String.fromCharCode(355) + "ii apropiate",
+		"no_station": "Nu am g" + String.fromCharCode(259) + "sit nicio sta" + String.fromCharCode(355) + "ie " + String.fromCharCode(238) + "n apropiere.",
+		"linii_si_statii": "Linii " + String.fromCharCode(351) + "i sta" + String.fromCharCode(355) + "ii",
+		"mesaj_after_contact": "Mesajul a fost transmis. Mul" + String.fromCharCode(355) + "umim pentru timpul acordat!",
+		"mesaj_after_no_contact": "A intervenit o eroare, mesajul NU a fost transmis. " + String.fromCharCode(206) + "ncearc" + String.fromCharCode(259) + " peste c" + String.fromCharCode(226) + "teva minute.",
+		"click_retur": "Click pentru a calcula ruta de retur",
+		"de_aici": "De aici",
+		"pana_aici": "P" + String.fromCharCode(226) + "n" + String.fromCharCode(259) + " aici",
+		"error_strada_obiectiv": {
+			"ZERO_RESULTS": "Adresa nu a fost g" + String.fromCharCode(259) + "sit" + String.fromCharCode(259) + " pe raza ora" + String.fromCharCode(351) + "ului",
+			"OVER_QUERY_LIMIT": "Serviciu suprasolicitat. " + String.fromCharCode(206) + "ncearc" + String.fromCharCode(259) + " peste c" + String.fromCharCode(226) + "teva secunde",
+			"REQUEST_DENIED": "Serviciu suprasolicitat. " + String.fromCharCode(206) + "ncearc" + String.fromCharCode(259) + " peste c" + String.fromCharCode(226) + "teva secunde",
+			"INVALID_REQUEST": "Adresa nu a fost g" + String.fromCharCode(259) + "sit" + String.fromCharCode(259),
+			"UNKNOWN_ERROR": "Adresa nu a fost g" + String.fromCharCode(259) + "sit" + String.fromCharCode(259),
+			"ERROR": "Adresa nu a fost g" + String.fromCharCode(259) + "sit" + String.fromCharCode(259)
+		}
+	}
+};
+pageVars['texte']['mesaj_info_one_time'] = "<span style=\"color: #0033FF; font-weight: bold;\">RUTE CU AUTOBUZUL</span><img src=\"" + pageVars['generale']['pathToImg'] + "info-optiuni.jpg\" style=\"float:right;\" /><div style=\"font-size:18px;width:550px;\"><br />Po" + String.fromCharCode(355) + "i c" + String.fromCharCode(259) + "uta rute cu transportul " + String.fromCharCode(238) + "n comun<br />" + String.fromCharCode(238) + "n <u>Bucure" + String.fromCharCode(351) + "ti</u> " + String.fromCharCode(351) + "i alte " + (pageVars.autobuz.ordine_orase.length - 1) + " " + ((pageVars.autobuz.ordine_orase.length - 1 >= 20) ? "de" : "") + " ora" + String.fromCharCode(351) + "e din " + String.fromCharCode(355) + "ar" + String.fromCharCode(259) + ".<br /><br />Verific" + String.fromCharCode(259) + " butonul op" + String.fromCharCode(355) + "iuni din caseta de c" + String.fromCharCode(259) + "utare.</div>";
+pageVars['texte']['mesaj_thank_you'] = "<span style=\"color: #0033FF; font-weight: bold;\">Plata a fost " + String.fromCharCode(238) + "nregistrat" + String.fromCharCode(259) + ".</span><div style=\"font-size:18px;width:550px;\"><br />Bannerul din dreapta nu se va mai afi" + String.fromCharCode(351) + "a timp de 30 de zile.</div>";`Ø#i±S      \œf¼\œf¼@1iY\¥¡<   *    :https://distanta.ro/temp/js/pageVars.js?9 necko:classified 1 strongly-framed 1 security-info FnhllAKWRHGAlo+ESXykKAAAAAAAAAAAwAAAAAAAAEaphjojH6pBabDSgSnsfLHeAAQAAgAAAAAAAAAAAAAAAAAAAAAB4vFIJp5wRkeyPxAQ9RJGKPqbqVvKO0mKuIl8ec8o/uhmCjImkVxP+7sgiYWmMt8FvcOXmlQiTNWFiWlrbpbqgwAAAAAAAAY2MIIGMjCCBRqgAwIBAgIQXQurbpxyEGFYj01EOsC30zANBgkqhkiG9w0BAQsFADByMQswCQYDVQQGEwJVUzELMAkGA1UECBMCVFgxEDAOBgNVBAcTB0hvdXN0b24xFTATBgNVBAoTDGNQYW5lbCwgSW5jLjEtMCsGA1UEAxMkY1BhbmVsLCBJbmMuIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MB4XDTE5MDMxOTAwMDAwMFoXDTE5MDYxNzIzNTk1OVowFjEUMBIGA1UEAxMLZGlzdGFudGEucm8wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCrBC0IWlvIKBkQZjsag+Iytwo49jS3pnYz7M/h9mYR2JJQGFJgVV1qxCad8aIvg7YWyX//kWl7HudFX9qi1NlrpJUbccx7AkEWHGCgu7JDRSKY51R14mtV5etZVbY7tK3qYFnUUifvAFnjIanTzUrkr/EN0WVWJXO69dMmnHa4fLB9D1c6u/xMTbXSdI7wOLQe7JJLoo4yHtY5S/iPfTw/n3/Cl0E3Mi2N0pwuv297p69JvxeAfl9sgs9P9+1wUWxmfSlvY30lkhL8AkRcQl/p3JW1rOuA5Sd7FJvQ9w5oa4RnM71pEVhsPBoJMcTIcdGL5QcPKn6PZsjGt6gIRUDjAgMBAAGjggMeMIIDGjAfBgNVHSMEGDAWgBR+A1plQWunfgrhuJ0I6h2OHWrHZTAdBgNVHQ4EFgQUSlm/tHXS6cl8+THeE+RCkW++uTMwDgYDVR0PAQH/BAQDAgWgMAwGA1UdEwEB/wQCMAAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCME8GA1UdIARIMEYwOgYLKwYBBAGyMQECAjQwKzApBggrBgEFBQcCARYdaHR0cHM6Ly9zZWN1cmUuY29tb2RvLmNvbS9DUFMwCAYGZ4EMAQIBMEwGA1UdHwRFMEMwQaA/oD2GO2h0dHA6Ly9jcmwuY29tb2RvY2EuY29tL2NQYW5lbEluY0NlcnRpZmljYXRpb25BdXRob3JpdHkuY3JsMH0GCCsGAQUFBwEBBHEwbzBHBggrBgEFBQcwAoY7aHR0cDovL2NydC5jb21vZG9jYS5jb20vY1BhbmVsSW5jQ2VydGlmaWNhdGlvbkF1dGhvcml0eS5jcnQwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3NwLmNvbW9kb2NhLmNvbTB3BgNVHREEcDBuggtkaXN0YW50YS5yb4ISY3BhbmVsLmRpc3RhbnRhLnJvghBtYWlsLmRpc3RhbnRhLnJvghN3ZWJkaXNrLmRpc3RhbnRhLnJvghN3ZWJtYWlsLmRpc3RhbnRhLnJvgg93d3cuZGlzdGFudGEucm8wggECBgorBgEEAdZ5AgQCBIHzBIHwAO4AdQC72d+8H4pxtZOUI5eqkntHOFeVCqtS6BqQlmQ2jh7RhQAAAWmUF6nTAAAEAwBGMEQCIBEWU4YfaHkUADrFRvwSSntiWxMDahLpiPIYosAtm3K8AiADzW1aEgJbY+K5apnJrI2HAGNM2Z+hFPdr+UJWw72DeAB1AHR+2oMxrTMQkSGcziVPQnDCv/1eQiAIxjc1eeYQe8xWAAABaZQXqhUAAAQDAEYwRAIgRj0YEojZJlanmMMsLLKMslPpPWy8EYVAX51O5yNMM+8CIGZ6s0r9ILCkVm3I0b1bb5fXVIlg9kE9SSCtJ2TrENarMA0GCSqGSIb3DQEBCwUAA4IBAQBOBAa2Y682qjYEFTL2JRS6AHMvnJLo6synX2KT7LinNj3mt3u70VrmDXOubdxHCzQ4QoygMTU3IWwO6DyOPHZaogUnZ1ktU03/LevhkMtUy12Tr6uZroYHoPzHn/pr144J/ZlFm3Xjl6UpyEn42oi5SbzqCzgCc08i/Jp7M/2Lhoon8sFQse/PCC2A8msw5Qm0aDBFhXPBJp8TlqU/Vk19ZNBNSjyNWEtKMTCI6fjZ1B9bLqrvktH25wsveIdn3MjTf5JRXvZnFwpv+9ZTEMbFQ9P91dshN9E0dmjLrHxaVegFOjgp5Phdhnkf/uq0zp9I+xxDuSEPaoTLKdabEp6pwC8DAwAAAAABAQAAAAAAAARub25lAAAAEFJTQS1QS0NTMS1TSEEyNTYAAAA= request-method GET response-head HTTP/1.1 200 OK
+Date: Thu, 28 Mar 2019 06:16:28 GMT
+Server: Apache
+Last-Modified: Wed, 26 Sep 2018 05:25:28 GMT
+Accept-Ranges: bytes
+Content-Length: 125544
+Content-Type: application/javascript
+ original-response-headers Date: Thu, 28 Mar 2019 06:16:28 GMT
+Server: Apache
+Last-Modified: Wed, 26 Sep 2018 05:25:28 GMT
+Accept-Ranges: bytes
+Content-Length: 125544
+Keep-Alive: timeout=5, max=100
+Connection: Keep-Alive
+Content-Type: application/javascript
+ uncompressed-len 0 net-response-time-onstart 63 net-response-time-onstop 112  êh

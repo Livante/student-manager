@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conversion>
+  <applied-converters>
+    <converter id="android-module-to-java-module" />
+    <converter id="android-proguard-options" />
+    <converter id="android-sdk-library" />
+    <converter id="groovy-modules-to-facets" />
+    <converter id="groovy-script-run-configurations" />
+    <converter id="junit-to-android-junit-configurations" />
+    <converter id="kotlin-non-jvm-source-roots" />
+  </applied-converters>
+  <project-files>
+    <file path="/home/student/IdeaProjects/StudentManager/.idea/artifacts/JavaFXApp.xml" timestamp="1554110983000" />
+    <file path="/home/student/IdeaProjects/StudentManager/.idea/compiler.xml" timestamp="1554110981000" />
+    <file path="/home/student/IdeaProjects/StudentManager/.idea/encodings.xml" timestamp="1554111132000" />
+    <file path="/home/student/IdeaProjects/StudentManager/.idea/gradle.xml" timestamp="1554110981000" />
+    <file path="/home/student/IdeaProjects/StudentManager/.idea/misc.xml" timestamp="1554111132000" />
+    <file path="/home/student/IdeaProjects/StudentManager/.idea/modules.xml" timestamp="1554111132000" />
+    <file path="/home/student/IdeaProjects/StudentManager/.idea/uiDesigner.xml" timestamp="1554110981000" />
+    <file path="/home/student/IdeaProjects/StudentManager/.idea/vcs.xml" timestamp="1554110981000" />
+    <file path="/home/student/IdeaProjects/StudentManager/.idea/workspace.xml" timestamp="1554111219000" />
+    <file path="/home/student/IdeaProjects/StudentManager/StudentManager.iml" timestamp="1554110981000" />
+  </project-files>
+</conversion>
+

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html  dir="ltr" lang="ro" xml:lang="ro">
+<head>
+    <title>Campus Virtual: Autentificare</title>
+    <link rel="icon" href="//cv.upt.ro/pluginfile.php/1/theme_adaptable/favicon/1553583530/favicon.ico" />
+
+<meta name="apple-itunes-app" content="app-id=633359593, app-argument=https://cv.upt.ro/login/index.php"/><link rel="manifest" href="https://cv.upt.ro/admin/tool/mobile/mobile.webmanifest.php" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="moodle, Campus Virtual: Autentificare" />
+<link rel="stylesheet" type="text/css" href="https://cv.upt.ro/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple-min.css" /><script id="firstthemesheet" type="text/css">/** Required in order to fix style inclusion problems in IE with YUI **/</script><link rel="stylesheet" type="text/css" href="https://cv.upt.ro/theme/styles.php/adaptable/1553583530_1/all" />
+<script type="text/javascript">
+//<![CDATA[
+var M = {}; M.yui = {};
+M.pageloadstarttime = new Date();
+M.cfg = {"wwwroot":"https:\/\/cv.upt.ro","sesskey":"lHSTXxPjIA","themerev":"1553583530","slasharguments":1,"theme":"adaptable","iconsystemmodule":"core\/icon_system_standard","jsrev":"1553583530","admin":"admin","svgicons":true,"usertimezone":"Europe\/Bucharest","contextid":1};var yui1ConfigFn = function(me) {if(/-skin|reset|fonts|grids|base/.test(me.name)){me.type='css';me.path=me.path.replace(/\.js/,'.css');me.path=me.path.replace(/\/yui2-skin/,'/assets/skins/sam/yui2-skin')}};
+var yui2ConfigFn = function(me) {var parts=me.name.replace(/^moodle-/,'').split('-'),component=parts.shift(),module=parts[0],min='-min';if(/-(skin|core)$/.test(me.name)){parts.pop();me.type='css';min=''}
+if(module){var filename=parts.join('-');me.path=component+'/'+module+'/'+filename+min+'.'+me.type}else{me.path=component+'/'+component+'.'+me.type}};
+YUI_config = {"debug":false,"base":"https:\/\/cv.upt.ro\/lib\/yuilib\/3.17.2\/","comboBase":"https:\/\/cv.upt.ro\/theme\/yui_combo.php?","combine":true,"filter":null,"insertBefore":"firstthemesheet","groups":{"yui2":{"base":"https:\/\/cv.upt.ro\/lib\/yuilib\/2in3\/2.9.0\/build\/","comboBase":"https:\/\/cv.upt.ro\/theme\/yui_combo.php?","combine":true,"ext":false,"root":"2in3\/2.9.0\/build\/","patterns":{"yui2-":{"group":"yui2","configFn":yui1ConfigFn}}},"moodle":{"name":"moodle","base":"https:\/\/cv.upt.ro\/theme\/yui_combo.php?m\/1553583530\/","combine":true,"comboBase":"https:\/\/cv.upt.ro\/theme\/yui_combo.php?","ext":false,"root":"m\/1553583530\/","patterns":{"moodle-":{"group":"moodle","configFn":yui2ConfigFn}},"filter":null,"modules":{"moodle-core-formchangechecker":{"requires":["base","event-focus","moodle-core-event"]},"moodle-core-chooserdialogue":{"requires":["base","panel","moodle-core-notification"]},"moodle-core-tooltip":{"requires":["base","node","io-base","moodle-core-notification-dialogue","json-parse","widget-position","widget-position-align","event-outside","cache-base"]},"moodle-core-actionmenu":{"requires":["base","event","node-event-simulate"]},"moodle-core-popuphelp":{"requires":["moodle-core-tooltip"]},"moodle-core-languninstallconfirm":{"requires":["base","node","moodle-core-notification-confirm","moodle-core-notification-alert"]},"moodle-core-maintenancemodetimer":{"requires":["base","node"]},"moodle-core-lockscroll":{"requires":["plugin","base-build"]},"moodle-core-dragdrop":{"requires":["base","node","io","dom","dd","event-key","event-focus","moodle-core-notification"]},"moodle-core-notification":{"requires":["moodle-core-notification-dialogue","moodle-core-notification-alert","moodle-core-notification-confirm","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-core-notification-dialogue":{"requires":["base","node","panel","escape","event-key","dd-plugin","moodle-core-widget-focusafterclose","moodle-core-lockscroll"]},"moodle-core-notification-alert":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-confirm":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-exception":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-ajaxexception":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-handlebars":{"condition":{"trigger":"handlebars","when":"after"}},"moodle-core-blocks":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification"]},"moodle-core-dock":{"requires":["base","node","event-custom","event-mouseenter","event-resize","escape","moodle-core-dock-loader","moodle-core-event"]},"moodle-core-dock-loader":{"requires":["escape"]},"moodle-core-checknet":{"requires":["base-base","moodle-core-notification-alert","io-base"]},"moodle-core-event":{"requires":["event-custom"]},"moodle-core_availability-form":{"requires":["base","node","event","event-delegate","panel","moodle-core-notification-dialogue","json"]},"moodle-backup-confirmcancel":{"requires":["node","node-event-simulate","moodle-core-notification-confirm"]},"moodle-backup-backupselectall":{"requires":["node","event","node-event-simulate","anim"]},"moodle-course-categoryexpander":{"requires":["node","event-key"]},"moodle-course-util":{"requires":["node"],"use":["moodle-course-util-base"],"submodules":{"moodle-course-util-base":{},"moodle-course-util-section":{"requires":["node","moodle-course-util-base"]},"moodle-course-util-cm":{"requires":["node","moodle-course-util-base"]}}},"moodle-course-modchooser":{"requires":["moodle-core-chooserdialogue","moodle-course-coursebase"]},"moodle-course-dragdrop":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification","moodle-course-coursebase","moodle-course-util"]},"moodle-course-management":{"requires":["base","node","io-base","moodle-core-notification-exception","json-parse","dd-constrain","dd-proxy","dd-drop","dd-delegate","node-event-delegate"]},"moodle-course-formatchooser":{"requires":["base","node","node-event-simulate"]},"moodle-form-shortforms":{"requires":["node","base","selector-css3","moodle-core-event"]},"moodle-form-passwordunmask":{"requires":[]},"moodle-form-dateselector":{"requires":["base","node","overlay","calendar"]},"moodle-form-showadvanced":{"requires":["node","base","selector-css3"]},"moodle-question-chooser":{"requires":["moodle-core-chooserdialogue"]},"moodle-question-searchform":{"requires":["base","node"]},"moodle-question-preview":{"requires":["base","dom","event-delegate","event-key","core_question_engine"]},"moodle-question-qbankmanager":{"requires":["node","selector-css3"]},"moodle-availability_completion-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_date-form":{"requires":["base","node","event","io","moodle-core_availability-form"]},"moodle-availability_grade-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_group-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_grouping-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_profile-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-mod_assign-history":{"requires":["node","transition"]},"moodle-mod_attendance-groupfilter":{"requires":["base","node"]},"moodle-mod_forum-subscriptiontoggle":{"requires":["base-base","io-base"]},"moodle-mod_oublog-savecheck":{"requires":["base","node","io","panel","moodle-core-notification-alert"]},"moodle-mod_oublog-tagselector":{"requires":["base","node","autocomplete","autocomplete-filters","autocomplete-highlighters"]},"moodle-mod_quiz-util":{"requires":["node","moodle-core-actionmenu"],"use":["moodle-mod_quiz-util-base"],"submodules":{"moodle-mod_quiz-util-base":{},"moodle-mod_quiz-util-slot":{"requires":["node","moodle-mod_quiz-util-base"]},"moodle-mod_quiz-util-page":{"requires":["node","moodle-mod_quiz-util-base"]}}},"moodle-mod_quiz-toolboxes":{"requires":["base","node","event","event-key","io","moodle-mod_quiz-quizbase","moodle-mod_quiz-util-slot","moodle-core-notification-ajaxexception"]},"moodle-mod_quiz-quizbase":{"requires":["base","node"]},"moodle-mod_quiz-questionchooser":{"requires":["moodle-core-chooserdialogue","moodle-mod_quiz-util","querystring-parse"]},"moodle-mod_quiz-dragdrop":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification","moodle-mod_quiz-quizbase","moodle-mod_quiz-util-base","moodle-mod_quiz-util-page","moodle-mod_quiz-util-slot","moodle-course-util"]},"moodle-mod_quiz-modform":{"requires":["base","node","event"]},"moodle-mod_quiz-repaginate":{"requires":["base","event","node","io","moodle-core-notification-dialogue"]},"moodle-mod_quiz-autosave":{"requires":["base","node","event","event-valuechange","node-event-delegate","io-form"]},"moodle-message_airnotifier-toolboxes":{"requires":["base","node","io"]},"moodle-filter_glossary-autolinker":{"requires":["base","node","io-base","json-parse","event-delegate","overlay","moodle-core-event","moodle-core-notification-alert","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-filter_mathjaxloader-loader":{"requires":["moodle-core-event"]},"moodle-editor_atto-editor":{"requires":["node","transition","io","overlay","escape","event","event-simulate","event-custom","node-event-html5","node-event-simulate","yui-throttle","moodle-core-notification-dialogue","moodle-core-notification-confirm","moodle-editor_atto-rangy","handlebars","timers","querystring-stringify"]},"moodle-editor_atto-plugin":{"requires":["node","base","escape","event","event-outside","handlebars","event-custom","timers","moodle-editor_atto-menu"]},"moodle-editor_atto-menu":{"requires":["moodle-core-notification-dialogue","node","event","event-custom"]},"moodle-editor_atto-rangy":{"requires":[]},"moodle-report_eventlist-eventfilter":{"requires":["base","event","node","node-event-delegate","datatable","autocomplete","autocomplete-filters"]},"moodle-report_loglive-fetchlogs":{"requires":["base","event","node","io","node-event-delegate"]},"moodle-gradereport_grader-gradereporttable":{"requires":["base","node","event","handlebars","overlay","event-hover"]},"moodle-gradereport_history-userselector":{"requires":["escape","event-delegate","event-key","handlebars","io-base","json-parse","moodle-core-notification-dialogue"]},"moodle-tool_capability-search":{"requires":["base","node"]},"moodle-tool_lp-dragdrop-reorder":{"requires":["moodle-core-dragdrop"]},"moodle-tool_monitor-dropdown":{"requires":["base","event","node"]},"moodle-assignfeedback_editpdf-editor":{"requires":["base","event","node","io","graphics","json","event-move","event-resize","transition","querystring-stringify-simple","moodle-core-notification-dialog","moodle-core-notification-alert","moodle-core-notification-warning","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-atto_accessibilitychecker-button":{"requires":["color-base","moodle-editor_atto-plugin"]},"moodle-atto_accessibilityhelper-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_align-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_bold-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_charmap-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_clear-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_collapse-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_emoticon-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_equation-button":{"requires":["moodle-editor_atto-plugin","moodle-core-event","io","event-valuechange","tabview","array-extras"]},"moodle-atto_html-button":{"requires":["promise","moodle-editor_atto-plugin","moodle-atto_html-beautify","moodle-atto_html-codemirror","event-valuechange"]},"moodle-atto_html-codemirror":{"requires":["moodle-atto_html-codemirror-skin"]},"moodle-atto_html-beautify":{},"moodle-atto_image-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_indent-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_italic-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_justify-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_link-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_managefiles-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_managefiles-usedfiles":{"requires":["node","escape"]},"moodle-atto_media-button":{"requires":["moodle-editor_atto-plugin","moodle-form-shortforms"]},"moodle-atto_noautolink-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_orderedlist-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_recordrtc-button":{"requires":["moodle-editor_atto-plugin","moodle-atto_recordrtc-recording"]},"moodle-atto_recordrtc-recording":{"requires":["moodle-atto_recordrtc-button"]},"moodle-atto_rtl-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_strike-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_subscript-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_superscript-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_table-button":{"requires":["moodle-editor_atto-plugin","moodle-editor_atto-menu","event","event-valuechange"]},"moodle-atto_title-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_underline-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_undo-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_unorderedlist-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_wordimport-button":{"requires":["moodle-editor_atto-plugin"]}}},"gallery":{"name":"gallery","base":"https:\/\/cv.upt.ro\/lib\/yuilib\/gallery\/","combine":true,"comboBase":"https:\/\/cv.upt.ro\/theme\/yui_combo.php?","ext":false,"root":"gallery\/1553583530\/","patterns":{"gallery-":{"group":"gallery"}}}},"modules":{"core_filepicker":{"name":"core_filepicker","fullpath":"https:\/\/cv.upt.ro\/lib\/javascript.php\/1553583530\/repository\/filepicker.js","requires":["base","node","node-event-simulate","json","async-queue","io-base","io-upload-iframe","io-form","yui2-treeview","panel","cookie","datatable","datatable-sort","resize-plugin","dd-plugin","escape","moodle-core_filepicker","moodle-core-notification-dialogue"]},"core_comment":{"name":"core_comment","fullpath":"https:\/\/cv.upt.ro\/lib\/javascript.php\/1553583530\/comment\/comment.js","requires":["base","io-base","node","json","yui2-animation","overlay","escape"]},"mathjax":{"name":"mathjax","fullpath":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/mathjax\/2.7.5\/MathJax.js?delayStartupUntil=configured"}}};
+M.yui.loader = {modules: {}};
+
+//]]>
+</script>
+
+<meta name="robots" content="noindex" /><meta name="robots" content="noindex" /><meta name="robots" content="noindex" />    <!-- CSS print media -->
+    <link rel="stylesheet" type="text/css" href="https://cv.upt.ro/theme/adaptable/style/print.css" media="print">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" value="summary">
+    <meta name="twitter:site" value="Campus Virtual" />
+    <meta name="twitter:title" value="Campus Virtual: Autentificare" />
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="Campus Virtual: Autentificare" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://cv.upt.ro" />
+    <meta name="og:site_name" value="Campus Virtual" />
+
+    <!-- Chrome, Firefox OS and Opera on Android -->
+    <meta name="theme-color" content="#0362aa" />
+
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#0362aa" />
+
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="#0362aa" />
+
+    <!-- Load FA icons -->
+    <link rel="stylesheet" href="https://cv.upt.ro/theme/adaptable/style/font-awesome.min.css">
+
+        <!-- Load Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Hind:400,400i&subset=latin-ext'
+    rel='stylesheet'
+    type='text/css'>
+    
+            <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,400i&subset=latin-ext'
+        rel='stylesheet'
+        type='text/css'>
+    
+            <link href='https://fonts.googleapis.com/css?family=Audiowide:400,400i&subset=latin-ext'
+        rel='stylesheet'
+        type='text/css'>
+    </head>
+
+<body  id="page-login-index" class="format-site  path-login gecko dir-ltr lang-ro yui-skin-sam yui3-skin-sam cv-upt-ro pagelayout-login course-1 context-1 notloggedin two-column  content-only layout-option-langmenu layout-option-nonavbar">
+
+<div class="skiplinks">
+    <a href="#maincontent" class="skip">Salt la conţinutul principal</a>
+</div><script type="text/javascript" src="https://cv.upt.ro/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple-min.js"></script><script type="text/javascript" src="https://cv.upt.ro/theme/jquery.php/core/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="https://cv.upt.ro/theme/jquery.php/theme_adaptable/pace-min.js"></script>
+<script type="text/javascript" src="https://cv.upt.ro/theme/jquery.php/theme_adaptable/jquery-flexslider-min.js"></script>
+<script type="text/javascript" src="https://cv.upt.ro/theme/jquery.php/theme_adaptable/tickerme.js"></script>
+<script type="text/javascript" src="https://cv.upt.ro/theme/jquery.php/theme_adaptable/jquery-easing-min.js"></script>
+<script type="text/javascript" src="https://cv.upt.ro/theme/jquery.php/theme_adaptable/adaptable.js"></script>
+<script type="text/javascript" src="https://cv.upt.ro/lib/javascript.php/1553583530/lib/javascript-static.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+document.body.className += ' jsenabled';
+//]]>
+</script>
+
+
+<div id="page" class="container-fluid fullin showblockicons">
+
+    <header id="page-header-wrapper"  style="background-image: url(//cv.upt.ro/pluginfile.php/1/theme_adaptable/headerbgimage/1553583530/bg6.png);
+                         background-position: 0 0; background-repeat: no-repeat; background-size: cover;" >
+    <div id="above-header">
+        <div class="clearfix container userhead">
+            <div class="pull-left">
+                <ul class="usermenu2 nav navbar-nav navbar-right"></ul>            </div>
+
+            <div class="headermenu row">
+        <form action="https://cv.upt.ro/login/index.php" method="post">
+            <input type="hidden" name="logintoken" value="OETsBaOECFkdXR6zLHJ3LTL3bElKizOc" />
+            <button class="btn-login" type="submit">
+                Autentificare            </button>
+        </form>
+</div>
+
+<div style="float: right; position: relative; display: inline; margin-left: 15px; height:20px;">
+<ul class="nav navbar-nav"><li class="dropdown langmenu"><a href="https://cv.upt.ro/login/index.php" class="dropdown-toggle" data-toggle="dropdown" title="Limba"><i class="fa fa-globe fa-lg"></i><span class="langdesc">Română ‎(ro)‎</span></a><ul class="dropdown-menu"><li><a title="English ‎(en)‎" href="https://cv.upt.ro/login/index.php?lang=en">English ‎(en)‎</a></li><li><a title="Română ‎(ro)‎" href="https://cv.upt.ro/login/index.php?lang=ro">Română ‎(ro)‎</a></li></ul></ul></div>
+
+    </div>
+</div>
+
+
+
+<div id="page-header" class="clearfix container">
+
+<div id="logocontainer"><a href=https://cv.upt.ro><img src=//cv.upt.ro/pluginfile.php/1/theme_adaptable/logo/1553583530/logo_cv.png alt="logo" id="logo" /></a></div>
+            <div class="socialbox pull-right">
+                <div class="socialbox"></div>            </div>
+            
+    
+        <div id="course-header">
+                    </div>
+    </div>
+
+
+
+</header>
+
+
+<div class="container outercont">
+    <div id="page-content" class="row-fluid">
+            <div id="page-navbar" class="span12"><nav class="breadcrumb-button"></nav><ul class="breadcrumb"><li><a href="https://cv.upt.ro/"><i title="Home" class="fa fa-home fa-lg"></i></a></li><span class="separator"><i class="fa-angle-right fa"></i>
+                             </span><li><span tabindex="0">Autentificare</span></li></ul></div>        <section id="region-main" class="span12">
+            <span class="notifications" id="user-notifications"></span><div role="main"><span id="maincontent"></span><div class="loginbox clearfix onecolumn">
+
+    <div class="loginpanel">
+
+        <h2>Autentificare</h2>
+
+        <div class="subcontent loginsub">
+            <form action="https://cv.upt.ro/login/index.php" method="post" id="login">
+                <div class="loginform">
+                    <div class="form-label">
+                        <label for="username">
+                                Utilizator
+                        </label>
+                    </div>
+                    <div class="form-input">
+                        <input type="text" name="username" id="username" size="15" value="" autocomplete="username">
+                    </div>
+                    <div class="clearer"><!-- --></div>
+                    <div class="form-label">
+                        <label for="password">Parolă</label>
+                    </div>
+                    <div class="form-input">
+                        <input type="password" name="password" id="password" size="15" value="" autocomplete="current-password">
+                    </div>
+                </div>
+
+                <div class="clearer"><!-- --></div>
+                    <div class="rememberpass">
+                        <input type="checkbox" name="rememberusername" id="rememberusername" value="1"  />
+                        <label for="rememberusername">Ține minte numele de utilizator</label>
+                    </div>
+                <div class="clearer"><!-- --></div>
+                <input id="anchor" type="hidden" name="anchor" value="" />
+                <script>document.getElementById('anchor').value = location.hash;</script>
+                <input type="hidden" name="logintoken" value="OETsBaOECFkdXR6zLHJ3LTL3bElKizOc">
+                <input type="submit" id="loginbtn" value="Autentificare" />
+                <div class="forgetpass">
+                    <a href="https://cv.upt.ro/login/forgot_password.php">Resetarea automata a parolei</a>
+                </div>
+            </form>
+
+            <div class="desc">
+                Trebuie activate cookie-urile în browserul Dvs.
+                <span class="helptooltip">
+    <a href="https://cv.upt.ro/help.php?component=moodle&amp;identifier=cookiesenabled&amp;lang=ro" title="Ajutor în privinţa Trebuie activate cookie-urile în browserul Dvs" aria-haspopup="true" target="_blank"><img class="icon iconhelp" alt="Ajutor în privinţa Trebuie activate cookie-urile în browserul Dvs" title="Ajutor în privinţa Trebuie activate cookie-urile în browserul Dvs" src="https://cv.upt.ro/theme/image.php/adaptable/core/1553583530/help" /></a>
+</span>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="signuppanel">
+
+    </div>
+</div></div>        </section>
+    </div>
+</div>
+
+
+<footer id="page-footer">
+
+<div id="course-footer"></div>
+                <div class="container blockplace1"><div class="row-fluid"><div class="left-col span3"><span style="display:block; width: 100%; height: 1px;"></span></div><div class="left-col span3"><p style="text-align: right; line-height: 8px; height: 8px;"><br></p><p style="text-align: right;"><a href="http://elearning.upt.ro/" target="_blank"><img src="https://cv.upt.ro/pluginfile.php/1/theme_adaptable/adaptablemarketingimages/0/cellogo.png" alt="" width="150" height="34" role="presentation" style="vertical-align:text-bottom; margin: 0 .5em;" class="img-responsive"></a><br></p></div><div class="left-col span3"><p style="text-align: left;"><a href="http://moodle.org/" target="_blank"><img src="https://cv.upt.ro/pluginfile.php/1/theme_adaptable/adaptablemarketingimages/0/moodlelogo.png" alt="" width="100" height="50" role="presentation" style="vertical-align:text-bottom; margin: 0 .5em;" class="img-responsive"></a><br></p></div><div class="left-col span3"><p style="text-align: left;"><a href="https://play.google.com/store/apps/details?id=ro.upt.campusvirtual" target="_blank"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" style="height: 70px;"></a><a href="https://itunes.apple.com/us/app/campus-virtual-upt/id1397170074?l=ro&amp;ls=1&amp;mt=8" target="_blank" style=""><img src="https://cv.upt.ro/pluginfile.php/1/theme_adaptable/adaptablemarketingimages/0/Download_on_the_App_Store_Badge_US-UK_blk_092917.png" alt="" style="height:48px; margin-left: 10px;"></a></p></div></div><div class="row-fluid"><div class="left-col span12"><p style="text-align: center;"><a href="https://elearning.upt.ro/" target="_blank">Ajutor</a>&nbsp;|&nbsp;<a href="mailto:suport@cv.upt.ro">Contact</a>&nbsp;|&nbsp;<a href="https://elearning.upt.ro/" target="_blank">Regulament</a>&nbsp;|&nbsp;<a href="https://www.upt.ro/" target="_blank">UPT</a><br></p></div></div></div>    <div class="info container2 clearfix">
+        <div class="container">
+            <div class="row-fluid">
+                <div class="span8">
+                </div>
+
+                <div class="span4">
+                    <div class="tool_dataprivacy"><a href="https://cv.upt.ro/admin/tool/dataprivacy/summary.php">Data retention summary</a></div><a href="https://play.google.com/store/apps/details?id=ro.upt.campusvirtual&amp;version=2018120303.04&amp;lang=ro&amp;iosappid=633359593&amp;androidappid=ro.upt.campusvirtual">Get the mobile app</a><div class="policiesfooter"><a href="https://cv.upt.ro/admin/tool/policy/viewall.php?returnurl=https%3A%2F%2Fcv.upt.ro%2Flogin%2Findex.php">Policies</a></div>                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<a class="back-to-top" href="#top" ><i class="fa fa-angle-up "></i></a>
+
+
+<script type="text/javascript">
+//<![CDATA[
+var require = {
+    baseUrl : 'https://cv.upt.ro/lib/requirejs.php/1553583530/',
+    // We only support AMD modules with an explicit define() statement.
+    enforceDefine: true,
+    skipDataMain: true,
+    waitSeconds : 0,
+
+    paths: {
+        jquery: 'https://cv.upt.ro/lib/javascript.php/1553583530/lib/jquery/jquery-3.2.1.min',
+        jqueryui: 'https://cv.upt.ro/lib/javascript.php/1553583530/lib/jquery/ui-1.12.1/jquery-ui.min',
+        jqueryprivate: 'https://cv.upt.ro/lib/javascript.php/1553583530/lib/requirejs/jquery-private'
+    },
+
+    // Custom jquery config map.
+    map: {
+      // '*' means all modules will get 'jqueryprivate'
+      // for their 'jquery' dependency.
+      '*': { jquery: 'jqueryprivate' },
+      // Stub module for 'process'. This is a workaround for a bug in MathJax (see MDL-60458).
+      '*': { process: 'core/first' },
+
+      // 'jquery-private' wants the real jQuery module
+      // though. If this line was not here, there would
+      // be an unresolvable cyclic dependency.
+      jqueryprivate: { jquery: 'jquery' }
+    }
+};
+
+//]]>
+</script>
+<script type="text/javascript" src="https://cv.upt.ro/lib/javascript.php/1553583530/lib/requirejs/require.min.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+require(['core/first'], function() {
+;
+require(["media_videojs/loader"], function(loader) {
+    loader.setUp(function(videojs) {
+        videojs.options.flash.swf = "https://cv.upt.ro/media/player/videojs/videojs/video-js.swf";
+
+    });
+});;
+require(["theme_adaptable/bsoptions"], function(amd) { amd.init(true); });;
+
+
+require(['jquery', 'tool_policy/jquery-eu-cookie-law-popup', 'tool_policy/policyactions'], function($, Popup, ActionsMod) {
+        // Initialise the guest popup.
+        $(document).ready(function() {
+            // Only show message if there is some policy related to guests.
+                // Get localised messages.
+                var textmessage = "If you continue browsing this website, you agree to our policies:" +
+                   "<ul>" +
+                   "<li>" +
+                   "<a href=\"https://cv.upt.ro/admin/tool/policy/view.php?versionid=1&amp;returnurl=https%3A%2F%2Fcv.upt.ro%2Flogin%2Findex.php\" " +
+                   "   data-action=\"view\" data-versionid=\"1\" data-behalfid=\"1\" >" +
+                   "Politica de confidentialitate a datelor " +
+                   "</a>" +
+                   "</li>" +
+                   "" +
+                   "</ul>";
+                var continuemessage = "Continue";
+
+                // Initialize popup.
+                $(document.body).addClass('eupopup');
+                if ($(".eupopup").length > 0) {
+                    $(document).euCookieLawPopup().init({
+                        popupPosition: 'bottom',
+                        popupTitle: '',
+                        popupText: textmessage,
+                        buttonContinueTitle: continuemessage,
+                        buttonLearnmoreTitle: '',
+                        compactStyle: true,
+                    });
+                }
+
+            // Initialise the JS for the modal window which displays the policy versions.
+            ActionsMod.init();
+        });
+});
+
+;
+
+require(['core/yui'], function(Y) {
+    M.util.init_skiplink(Y);
+});
+;
+
+;
+require(["core/log"], function(amd) { amd.setConfig({"level":"warn"}); });;
+require(["core/page_global"], function(amd) { amd.init(); });
+});
+//]]>
+</script>
+<script type="text/javascript" src="https://cv.upt.ro/theme/javascript.php/adaptable/1553583530/footer"></script>
+<script type="text/javascript">
+//<![CDATA[
+M.str = {"moodle":{"lastmodified":"Ultima modificare","name":"Nume","error":"Eroare","info":"Informa\u0163ii","yes":"Da","no":"Nu","morehelp":"Mai mult ajutor","loadinghelp":"Se \u00eencarc\u0103...","cancel":"Anuleaz\u0103","confirm":"Confirm\u0103 utilizator","areyousure":"E\u0219ti sigur?","closebuttontitle":"\u00cenchide","unknownerror":"Eroare necunoscut\u0103"},"repository":{"type":"Tip","size":"Dimensiune","invalidjson":"\u0218ir de caractere JSON invalid","nofilesattached":"Nu exist\u0103 fi\u0219iere ata\u0219ate","filepicker":"Selector de fi\u0219iere","logout":"Ie\u0219ire","nofilesavailable":"Nu exista fisiere disponibile","norepositoriesavailable":"Ne pare r\u0103u, niciunul dintre depozitele dumneavoastr\u0103 curente nu pot returna fi\u0219iere \u00een formatul cerut.","fileexistsdialogheader":"Fi\u0219ierul exist\u0103","fileexistsdialog_editor":"Un fi\u0219ier cu acest nume a fost deja ata\u0219at textului pe care \u00eel edita\u021bi","fileexistsdialog_filemanager":"Un fi\u0219ier cu acest nume a fost deja ata\u0219at.","renameto":"Redenumi\u021bi ca \"{$a}\"","referencesexist":"Exist\u0103 {$a} fi\u0219iere alias\/short-uri care folosesc acest fi\u0219ier ca surs\u0103 a lor.","select":"Selectare"},"admin":{"confirmdeletecomments":"Sunte\u021bi pe cale s\u0103 \u0219terge\u021bi comentariile, sunte\u021bi sigur?","confirmation":"Confirmare"},"block":{"addtodock":"Mut\u0103 asta pe doc","undockitem":"Deandocheaz\u0103 acest obiect","dockblock":"Block {$a} bar\u0103 lateral\u0103","undockblock":"Mut\u0103 block-ul {$a} din bara lateral\u0103","undockall":"Deandocheaz\u0103 tot","hidedockpanel":"Ascunde panel bar\u0103 lateral\u0103","hidepanel":"Ascunde panel"},"langconfig":{"thisdirectionvertical":"btt"}};
+//]]>
+</script>
+<script type="text/javascript">
+//<![CDATA[
+(function() {Y.use("moodle-core-dock-loader",function() {M.core.dock.loader.initLoader();
+});
+Y.use("moodle-filter_mathjaxloader-loader",function() {M.filter_mathjaxloader.configure({"mathjaxconfig":"MathJax.Hub.Config({\r\n    config: [\"Accessible.js\", \"Safe.js\"],\r\n    errorSettings: { message: [\"!\"] },\r\n    skipStartupTypeset: true,\r\n    messageStyle: \"none\"\r\n});\r\n","lang":"en"});
+});
+Y.use("moodle-core-popuphelp",function() {M.core.init_popuphelp();
+});
+M.util.help_popups.setup(Y);
+ M.util.js_pending('random5ca1b4c1b5c1f2'); Y.on('domready', function() { M.util.js_complete("init");  M.util.js_complete('random5ca1b4c1b5c1f2'); });
+})();
+//]]>
+</script>
+
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+
+$("#ticker-wrap").empty();
+
+$("div.info.container2").remove();
+
+$(".userhead").prepend("<div class='pull-left officiallinks'><a href='https://elearning.upt.ro' target='_blank' title='Centrul de ID/IFR si eLearning' alt='Centrul de ID/IFR si eLearning'>CeL</a> | <a href='https://www.upt.ro' target='_blank' title='Universitatea Politehnica Timisoara' alt='Universitatea Politehnica Timisoara'>UPT</a></div>");
+
+$("#cv_footer").parents(".span8").removeClass("span8").addClass("span12");
+$("a[title='UPT'],a[title='CeL']").attr("target","_blank");
+
+var u = window.location.href;
+u = u.toString();
+if(u.indexOf("/user/editadvanced.php?id=")){
+    $("#fitem_id_institution").insertAfter("#fitem_id_username");
+}
+
+if(u.indexOf('/user/editadvanced.php?id=-1')){
+    $("<input type='text' name='cv_fake_username' id='cv_fake_username' /><input type='password' name='cv_fake_password' id='cv_fake_password' />").insertBefore("#fitem_id_username").css({"position":"fixed","bottom":"-100px"});
+    window.setTimeout("$('#cv_fake_username,#cv_fake_password').remove();",5000);
+}
+
+});
+
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                        ga('create', 'UA-5051933-4', 'auto');
+                        ga('send', 'pageview');
+                        ga('set', 'anonymizeIp', 1);
+
+</script>
+
+</body>
+</html>
+b%4��      \���\���@5�       "    :https://cv.upt.ro/login/index.php necko:classified 1 strongly-framed 1 security-info FnhllAKWRHGAlo+ESXykKAAAAAAAAAAAwAAAAAAAAEaphjojH6pBabDSgSnsfLHeAAQAAgAAAAAAAAAAAAAAAAAAAAAB4vFIJp5wRkeyPxAQ9RJGKPqbqVvKO0mKuIl8ec8o/uhmCjImkVxP+7sgiYWmMt8FvcOXmlQiTNWFiWlrbpbqgwAAAAAAAAZCMIIGPjCCBSagAwIBAgIQD/5DyfSiwkJVqt9ybPssBDANBgkqhkiG9w0BAQsFADBkMQswCQYDVQQGEwJOTDEWMBQGA1UECBMNTm9vcmQtSG9sbGFuZDESMBAGA1UEBxMJQW1zdGVyZGFtMQ8wDQYDVQQKEwZURVJFTkExGDAWBgNVBAMTD1RFUkVOQSBTU0wgQ0EgMzAeFw0xODAyMjgwMDAwMDBaFw0xOTA1MDgxMjAwMDBaMIGDMQswCQYDVQQGEwJSTzESMBAGA1UEBxMJVGltaXNvYXJhMSwwKgYDVQQKEyNVbml2ZXJzaXRhdGVhIFBvbGl0ZWhuaWNhIFRpbWlzb2FyYTEeMBwGA1UECxMVQ2VudHJ1bCBkZSBlLUxlYXJuaW5nMRIwEAYDVQQDEwljdi51cHQucm8wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDrHLxQGUVP3FEbkGswEpfD25cvSQ3/p9+HzfGFAkJarXpnVukF+h0Jx8k8FblGG1/XijzWkddGv9GHFl1OzDLj4hAEODggy3yvvxEcoUh88e3GKDRlYFpmFK7reqhP+xocJw/YRL+nSEtsQPQRTT1rf/b8D6NJ3r09tWZ3+Xx9br9F4vxHzsVuSizkl3Yfw+c6Re7u+EjKxQqY6jFq0Pw/rEQ00lPBDytlqGMSSPmcyVqoLIc8+1n1P2wOsgNULp3ra34MGK0KQzIiwqa1Yfs39y4MWT+Uajllgh9RjRT63kvzLvQEZxde2M4x1Taa7ONuKRMQKh/ci78o0MjG65G7AgMBAAGjggLKMIICxjAfBgNVHSMEGDAWgBRn/YggFCeYxwnSJRm76VERY3VQYjAdBgNVHQ4EFgQUlLY5U4Z95TnL8NPQ9IoCh7fg5/QwFAYDVR0RBA0wC4IJY3YudXB0LnJvMA4GA1UdDwEB/wQEAwIFoDAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwawYDVR0fBGQwYjAvoC2gK4YpaHR0cDovL2NybDMuZGlnaWNlcnQuY29tL1RFUkVOQVNTTENBMy5jcmwwL6AtoCuGKWh0dHA6Ly9jcmw0LmRpZ2ljZXJ0LmNvbS9URVJFTkFTU0xDQTMuY3JsMEwGA1UdIARFMEMwNwYJYIZIAYb9bAEBMCowKAYIKwYBBQUHAgEWHGh0dHBzOi8vd3d3LmRpZ2ljZXJ0LmNvbS9DUFMwCAYGZ4EMAQICMG4GCCsGAQUFBwEBBGIwYDAkBggrBgEFBQcwAYYYaHR0cDovL29jc3AuZGlnaWNlcnQuY29tMDgGCCsGAQUFBzAChixodHRwOi8vY2FjZXJ0cy5kaWdpY2VydC5jb20vVEVSRU5BU1NMQ0EzLmNydDAMBgNVHRMBAf8EAjAAMIIBBAYKKwYBBAHWeQIEAgSB9QSB8gDwAHYApLkJkLQYWBSHuxOizGdwCjw1mAT5G9+443fNDsgN3BAAAAFh276KagAABAMARzBFAiEAuijn4hGIPvieQ1zDuvfgWsHsQy5onynrGaniVgwFKEICIFb9LSGGb12sXlADrA9U9rAiWNRp3WHT1T1mgiCxzgARAHYAh3W/51l8+IxDmV+9827/Vo1HVjb/SrVgwbTq/16ggw8AAAFh276KxgAABAMARzBFAiBrySO2kpXBCMUhW5OhdJuXS1r9sjzaDnyeIzm4UGMmSQIhAMWLS2k4blAfpDIX9f9PgBpp6V5uBWlDffs/Hkgl8CELMA0GCSqGSIb3DQEBCwUAA4IBAQBy4PcePw9SxT+P0/Mytk6V1WIMqP7sB6WwUDVRivoHsyIKEaTEuH3BV/YjA9y/ifoQ0EcJcZ9TCZF2sssm7TLOuxbOnBaxU+7sg8Mix/uPc/7tjlIUMUy27DdtaXhtUehZ3J+MPOR4lQ5BdFSs8zIxf7m4UXFd0k0fDY9LYahk3LqSwQ+RLnI7bWx4tXbO7lumFu4rK2TuH3wKw+5ZR6pT9B9td8rgb44BR0EMiZ4bc6H+jIyYXjpOz0AWX6VdsQw9V9YCWONrC9eXgbBoew+tRbwujp5l9Yd9irYD2R76VhBOHcGJ5n2RQuiPu+HJXfYdaTTJVoHcicwzC65Xd4rQwC8DAwAAAAABAQAAAAAAAARQMjU2AAAAEFJTQS1QS0NTMS1TSEEyNTYBlZ+xZWUXSH+rm9iRO+Uxl650zaXNL0c/lvXwt//2LGgAAAADZgoyJpFcT/u7IImFpjLfBb3Dl5pUIkzVhYlpa26W6oMAAAAAAAAGQjCCBj4wggUmoAMCAQICEA/+Q8n0osJCVarfcmz7LAQwDQYJKoZIhvcNAQELBQAwZDELMAkGA1UEBhMCTkwxFjAUBgNVBAgTDU5vb3JkLUhvbGxhbmQxEjAQBgNVBAcTCUFtc3RlcmRhbTEPMA0GA1UEChMGVEVSRU5BMRgwFgYDVQQDEw9URVJFTkEgU1NMIENBIDMwHhcNMTgwMjI4MDAwMDAwWhcNMTkwNTA4MTIwMDAwWjCBgzELMAkGA1UEBhMCUk8xEjAQBgNVBAcTCVRpbWlzb2FyYTEsMCoGA1UEChMjVW5pdmVyc2l0YXRlYSBQb2xpdGVobmljYSBUaW1pc29hcmExHjAcBgNVBAsTFUNlbnRydWwgZGUgZS1MZWFybmluZzESMBAGA1UEAxMJY3YudXB0LnJvMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6xy8UBlFT9xRG5BrMBKXw9uXL0kN/6ffh83xhQJCWq16Z1bpBfodCcfJPBW5Rhtf14o81pHXRr/RhxZdTswy4+IQBDg4IMt8r78RHKFIfPHtxig0ZWBaZhSu63qoT/saHCcP2ES/p0hLbED0EU09a3/2/A+jSd69PbVmd/l8fW6/ReL8R87Fbkos5Jd2H8PnOkXu7vhIysUKmOoxatD8P6xENNJTwQ8rZahjEkj5nMlaqCyHPPtZ9T9sDrIDVC6d62t+DBitCkMyIsKmtWH7N/cuDFk/lGo5ZYIfUY0U+t5L8y70BGcXXtjOMdU2muzjbikTECof3Iu/KNDIxuuRuwIDAQABo4ICyjCCAsYwHwYDVR0jBBgwFoAUZ/2IIBQnmMcJ0iUZu+lREWN1UGIwHQYDVR0OBBYEFJS2OVOGfeU5y/DT0PSKAoe34Of0MBQGA1UdEQQNMAuCCWN2LnVwdC5ybzAOBgNVHQ8BAf8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMGsGA1UdHwRkMGIwL6AtoCuGKWh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9URVJFTkFTU0xDQTMuY3JsMC+gLaArhilodHRwOi8vY3JsNC5kaWdpY2VydC5jb20vVEVSRU5BU1NMQ0EzLmNybDBMBgNVHSAERTBDMDcGCWCGSAGG/WwBATAqMCgGCCsGAQUFBwIBFhxodHRwczovL3d3dy5kaWdpY2VydC5jb20vQ1BTMAgGBmeBDAECAjBuBggrBgEFBQcBAQRiMGAwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3NwLmRpZ2ljZXJ0LmNvbTA4BggrBgEFBQcwAoYsaHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL1RFUkVOQVNTTENBMy5jcnQwDAYDVR0TAQH/BAIwADCCAQQGCisGAQQB1nkCBAIEgfUEgfIA8AB2AKS5CZC0GFgUh7sTosxncAo8NZgE+RvfuON3zQ7IDdwQAAABYdu+imoAAAQDAEcwRQIhALoo5+IRiD74nkNcw7r34FrB7EMuaJ8p6xmp4lYMBShCAiBW/S0hhm9drF5QA6wPVPawIljUad1h09U9ZoIgsc4AEQB2AId1v+dZfPiMQ5lfvfNu/1aNR1Y2/0q1YMG06v9eoIMPAAABYdu+isYAAAQDAEcwRQIga8kjtpKVwQjFIVuToXSbl0ta/bI82g58niM5uFBjJkkCIQDFi0tpOG5QH6QyF/X/T4AaaelebgVpQ337Px5IJfAhCzANBgkqhkiG9w0BAQsFAAOCAQEAcuD3Hj8PUsU/j9PzMrZOldViDKj+7AelsFA1UYr6B7MiChGkxLh9wVf2IwPcv4n6ENBHCXGfUwmRdrLLJu0yzrsWzpwWsVPu7IPDIsf7j3P+7Y5SFDFMtuw3bWl4bVHoWdyfjDzkeJUOQXRUrPMyMX+5uFFxXdJNHw2PS2GoZNy6ksEPkS5yO21seLV2zu5bphbuKytk7h98CsPuWUeqU/QfbXfK4G+OAUdBDImeG3Oh/oyMmF46Ts9AFl+lXbEMPVfWAljjawvXl4GwaHsPrUW8Lo6eZfWHfYq2A9ke+lYQTh3BieZ9kULoj7vhyV32HWk0yVaB3InMMwuuV3eK0GYKMiaRXE/7uyCJhaYy3wW9w5eaVCJM1YWJaWtuluqDAAAAAAAABP8wggT7MIID46ADAgECAhAIcLzFrz/blZqRy2ru7+RlMA0GCSqGSIb3DQEBCwUAMGUxCzAJBgNVBAYTAlVTMRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMxGTAXBgNVBAsTEHd3dy5kaWdpY2VydC5jb20xJDAiBgNVBAMTG0RpZ2lDZXJ0IEFzc3VyZWQgSUQgUm9vdCBDQTAeFw0xNDExMTgxMjAwMDBaFw0yNDExMTgxMjAwMDBaMGQxCzAJBgNVBAYTAk5MMRYwFAYDVQQIEw1Ob29yZC1Ib2xsYW5kMRIwEAYDVQQHEwlBbXN0ZXJkYW0xDzANBgNVBAoTBlRFUkVOQTEYMBYGA1UEAxMPVEVSRU5BIFNTTCBDQSAzMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxXYPD9lDKTtsbdFHrd4QvyPCeKhKdzXxI1vgTB5B58IxAL2IN0V13bkCEIAej+1kIwRFp6A5O4FNz2M/wkn/Ip6IsNKWuVyKdB+SKiryEsi3aFS1WEGBQGgGGk+FKfu1TTwPTz9AlhvOqMxeNf9kmPV13XRUBaA2EQQSJFVj75R3LnfxFXbu06RZRSGfqL7RJ+0K6Ks4yj+H0drxj7kLH0Tn4K3zlcIWTeyEozqS1M/Gfea9yxpAT7NUsfOPbw0e475Jo1bkB7yNp84dsFtXVtHEHPyYZdHNRi+RlL9FhUn4bVKHHAJWAScWq3Iu9HHkYbUgoPomaWoK8aufbbfPJQIDAQABo4IBpjCCAaIwEgYDVR0TAQH/BAgwBgEB/wIBADAOBgNVHQ8BAf8EBAMCAYYweQYIKwYBBQUHAQEEbTBrMCQGCCsGAQUFBzABhhhodHRwOi8vb2NzcC5kaWdpY2VydC5jb20wQwYIKwYBBQUHMAKGN2h0dHA6Ly9jYWNlcnRzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydEFzc3VyZWRJRFJvb3RDQS5jcnQwgYEGA1UdHwR6MHgwOqA4oDaGNGh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydEFzc3VyZWRJRFJvb3RDQS5jcmwwOqA4oDaGNGh0dHA6Ly9jcmw0LmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydEFzc3VyZWRJRFJvb3RDQS5jcmwwPQYDVR0gBDYwNDAyBgRVHSAAMCowKAYIKwYBBQUHAgEWHGh0dHBzOi8vd3d3LmRpZ2ljZXJ0LmNvbS9DUFMwHQYDVR0OBBYEFGf9iCAUJ5jHCdIlGbvpURFjdVBiMB8GA1UdIwQYMBaAFEXroq/0ksuCMS1Ri6enIZ3zbcgPMA0GCSqGSIb3DQEBCwUAA4IBAQCpKDV6xHvW2icerJjPJzZPETJ0dOZA3R3N8mh3Na+zjF3GBL8V9CNni7lvlwTrRp3CzcnRpK6BLsm6seiA0BzJOcFWdllsnH3jqfDT0TTYPElZixqYzr/G8tgwNf/pb12grzruZlOuqoxpyL6ap6B72IJLMxPIB/N31/NkzZ5j+UInU64QM4lyNxXxvvceNaLOwy3y17LmC8dpwOUfX3xpm37OJhozRMO6dwU7ul0/QYn6FjvuBG5brFZL74xw8kp7V70Zbos2B1QmLYYJlB9fN6vwIz+PLF+WnkdxqETeqbmFL7U0YKVfCaCaQx3Uvy1E1o3a/XXLXxagDmHCcD02ZgoyJpFcT/u7IImFpjLfBb3Dl5pUIkzVhYlpa26W6oMAAAAAAAADuzCCA7cwggKfoAMCAQICEAzn4OUX2Eb+j+Vg/BvwMDkwDQYJKoZIhvcNAQEFBQAwZTELMAkGA1UEBhMCVVMxFTATBgNVBAoTDERpZ2lDZXJ0IEluYzEZMBcGA1UECxMQd3d3LmRpZ2ljZXJ0LmNvbTEkMCIGA1UEAxMbRGlnaUNlcnQgQXNzdXJlZCBJRCBSb290IENBMB4XDTA2MTExMDAwMDAwMFoXDTMxMTExMDAwMDAwMFowZTELMAkGA1UEBhMCVVMxFTATBgNVBAoTDERpZ2lDZXJ0IEluYzEZMBcGA1UECxMQd3d3LmRpZ2ljZXJ0LmNvbTEkMCIGA1UEAxMbRGlnaUNlcnQgQXNzdXJlZCBJRCBSb290IENBMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArQ4VzuRDgFyxh/O3YPlxEqWu3CaUiKr0zvUgOShYYAz4gNqpFZUyYTy1sSiEiorcnwoMgxd6j5Csiud5U1wxhCr2D5gyNnbM3t08qKLvavsh8lJh358g1x/isdn+GGTSEltf+VgYNbxHzaE2+Wt/1LA4PsEbw4wz2dgvGP4oD7Ong9bDbkTAYTWWFv5ZnIt2bdfxoksNK/8LctqeYNCOkDXGeFWHIKHP5W0KyEl8MZgzbCLph9AyWqK6E4IR7TkXnZk6cqHm+qTZ1Rcxda6FfSKuPwFGhvYoecix2uRXF8R+HA6wtJKmVrO9spftqqfwt8WoP5UW0P+hlusIXxh3TwIDAQABo2MwYTAOBgNVHQ8BAf8EBAMCAYYwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUReuir/SSy4IxLVGLp6chnfNtyA8wHwYDVR0jBBgwFoAUReuir/SSy4IxLVGLp6chnfNtyA8wDQYJKoZIhvcNAQEFBQADggEBAKIOvN/i7fDjcnN6ZJS/93Jm2DLkQnVirofr8tXZ3lazn8zOFCi5DZdgXBJMWOTTPYNJRViXNWkaqEfqVsZ5qxLYZ4GE338JPJTmuCYsIL09syiJ91//IuKXhB/pZe+H4N/BZ0mzXeuyCSrrJu14vn0/K/O3JjVtX4kBtklbnwEFm6s9JcHMtn/C8W+GxvpkaOuBLZTrQrf6jB7dYvG+UGe3bL3z8R9rDDYHFn83fKlbbXrxEkZgg9cnBL5Lzpe+w2cqaBHfgOcMM2a/Ew0UbvN/H2MQHvqNGyVtbI+lt2EBsdKjJqEQcZ2t4sP5w5lRtysHCM4u5lCyp/oKRS+i8PIAAA== request-method GET response-head HTTP/1.1 200 OK
+Server: nginx/1.10.2
+Date: Mon, 01 Apr 2019 06:50:41 GMT
+Content-Type: text/html; charset=utf-8
+X-Powered-By: PHP/7.1.14
+Content-Language: ro
+Content-Script-Type: text/javascript
+Content-Style-Type: text/css
+X-UA-Compatible: IE=edge
+Cache-Control: private, pre-check=0, post-check=0, max-age=0, no-transform
+Pragma: no-cache
+Accept-Ranges: none
+X-Frame-Options: sameorigin
+ original-response-headers Server: nginx/1.10.2
+Date: Mon, 01 Apr 2019 06:50:41 GMT
+Content-Type: text/html; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+X-Powered-By: PHP/7.1.14
+Content-Language: ro
+Content-Script-Type: text/javascript
+Content-Style-Type: text/css
+X-UA-Compatible: IE=edge
+Cache-Control: private, pre-check=0, post-check=0, max-age=0, no-transform
+Pragma: no-cache
+Expires: 
+Accept-Ranges: none
+X-Frame-Options: sameorigin
+ uncompressed-len 0 net-response-time-onstart 115 net-response-time-onstop 128 predictor::resource-count 27 predictor::https://cv.upt.ro/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple-min.css 1,1,1554101441,4096 predictor::https://cv.upt.ro/theme/styles.php/adaptable/1553583530_1/all 1,1,1554101441,4096 predictor::https://cv.upt.ro/theme/adaptable/style/print.css 1,1,1554101441,4097 predictor::https://cv.upt.ro/theme/adaptable/style/font-awesome.min.css 1,1,1554101441,4096 predictor::https://fonts.googleapis.com/css?family=Hind:400,400i&subset=latin-ext 1,1,1554101441,4096 predictor::https://fonts.googleapis.com/css?family=Roboto+Slab:400,400i&subset=latin-ext 1,1,1554101441,4096 predictor::https://fonts.googleapis.com/css?family=Audiowide:400,400i&subset=latin-ext 1,1,1554101441,4096 predictor::https://cv.upt.ro/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple-min.js 1,1,1554101441,4096 predictor::https://cv.upt.ro/theme/jquery.php/core/jquery-3.2.1.min.js 1,1,1554101441,4096 predictor::https://cv.upt.ro/theme/jquery.php/theme_adaptable/pace-min.js 1,1,1554101441,4096 predictor::https://cv.upt.ro/theme/jquery.php/theme_adaptable/jquery-flexslider-min.js 1,1,1554101441,4096 predictor::https://cv.upt.ro/theme/jquery.php/theme_adaptable/tickerme.js 1,1,1554101441,4096 predictor::https://cv.upt.ro/theme/jquery.php/theme_adaptable/jquery-easing-min.js 1,1,1554101441,4096 predictor::https://cv.upt.ro/theme/jquery.php/theme_adaptable/adaptable.js 1,1,1554101441,4096 predictor::https://cv.upt.ro/lib/javascript.php/1553583530/lib/javascript-static.js 1,1,1554101441,4096 predictor::https://cv.upt.ro/theme/image.php/adaptable/core/1553583530/help 1,1,1554101441,4096 predictor::https://cv.upt.ro/lib/javascript.php/1553583530/lib/requirejs/require.min.js 1,1,1554101441,4096 predictor::https://cv.upt.ro/theme/javascript.php/adaptable/1553583530/footer 1,1,1554101441,4096 predictor::https://cv.upt.ro/theme/yui_combo.php?m/1553583530/core/dock/dock-loader-min.js 1,1,1554101441,4096 predictor::https://www.google-analytics.com/analytics.js 1,1,1554101441,4096 predictor::https://cv.upt.ro/lib/requirejs.php/1553583530/core/first.js 1,1,1554101441,4096 predictor::https://cv.upt.ro/theme/yui_combo.php?m/1553583530/core/event/event-min.js&m/1553583530/filter_mathjaxloader/loader/loader-min.js 1,1,1554101441,4096 predictor::https://www.google-analytics.com/r/collect?v=1&_v=j73&a=378136663&t=pageview&_s=1&dl=https%3A%2F%2Fcv.upt.ro%2Flogin%2Findex.php&ul=en-us&de=UTF-8&dt=Campus%20Virtual%3A%20Autentificare&sd=24-bit&sr=1280x1024&vp=1280x841&je=0&_u=AACAAEAB~&jid=537165238&gjid=1577926811&cid=791578573.1553154673&tid=UA-5051933-4&_gid=1737247604.1554097007&_r=1&z=1362231591 1,1,1554101441,4096 predictor::https://cv.upt.ro/lib/javascript.php/1553583530/lib/jquery/jquery-3.2.1.min.js 1,1,1554101441,4096 predictor::https://cv.upt.ro/theme/yui_combo.php?3.17.2/cssbutton/cssbutton-min.css 1,1,1554101441,4096 predictor::https://cv.upt.ro/theme/yui_combo.php?m/1553583530/core/widget/widget-focusafterclose-min.js&3.17.2/plugin/plugin-min.js&m/1553583530/core/lockscroll/lockscroll-min.js&m/1553583530/core/notification/notification-dialogue-min.js&m/1553583530/core/tooltip/tooltip-min.js&m/1553583530/core/popuphelp/popuphelp-min.js 1,1,1554101441,4096 predictor::https://cv.upt.ro/theme/yui_combo.php?3.17.2/event-mousewheel/event-mousewheel-min.js&3.17.2/event-resize/event-resize-min.js&3.17.2/event-hover/event-hover-min.js&3.17.2/event-touch/event-touch-min.js&3.17.2/event-move/event-move-min.js&3.17.2/event-flick/event-flick-min.js&3.17.2/event-valuechange/event-valuechange-min.js&3.17.2/event-tap/event-tap-min.js 1,1,1554101441,4096   �Q

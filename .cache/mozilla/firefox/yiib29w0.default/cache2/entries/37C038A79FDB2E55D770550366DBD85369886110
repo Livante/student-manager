@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="ISO-8859-1"?><xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<xsl:output method="html" standalone="yes" omit-xml-declaration="yes" doctype-public="-//W3C//DTD XHTML 1.0 Frameset//EN" doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd" version="1.0" encoding="ISO-8859-1" indent="yes" media-type="text/html" />
+	<xsl:template match="html">
+		<xsl:element name="html">
+			<xsl:apply-templates select="head" />
+			<xsl:apply-templates select="body" />
+		</xsl:element>
+	</xsl:template>
+	<xsl:template match="head">
+		<xsl:element name="head">
+			<xsl:apply-templates select="title" />
+			<xsl:element name="meta">
+				<xsl:attribute name="name">viewport</xsl:attribute>
+				<xsl:attribute name="content">user-scalable=no, width=device-width, maximum-scale=1, initial-scale=1.0</xsl:attribute>
+			</xsl:element>
+			<xsl:element name="meta">
+				<xsl:attribute name="http-equiv">imagetoolbar</xsl:attribute>
+				<xsl:attribute name="content">no</xsl:attribute>
+			</xsl:element>
+			<xsl:element name="link">
+				<xsl:attribute name="rel">shortcut icon</xsl:attribute>
+				<xsl:attribute name="href">/favicon.ico</xsl:attribute>
+			</xsl:element>
+			<xsl:element name="link">
+				<xsl:attribute name="type">text/css</xsl:attribute>
+				<xsl:attribute name="href">/temp/css/general.css?9</xsl:attribute>
+				<xsl:attribute name="rel">stylesheet</xsl:attribute>
+			</xsl:element>
+			<xsl:element name="script">
+				<xsl:attribute name="type">text/javascript</xsl:attribute>
+				<xsl:attribute name="src">/temp/js/pageVars.js?9</xsl:attribute>
+			</xsl:element>
+			<xsl:element name="script">
+				<xsl:attribute name="type">text/javascript</xsl:attribute>
+				<xsl:attribute name="src">/temp/js/config.js?9</xsl:attribute>
+			</xsl:element>
+			<xsl:element name="script">
+				<xsl:attribute name="type">text/javascript</xsl:attribute>
+				var idUnit = 'BLwGVSabveiH';
+				var idMesajUnit = 'HievbaSVGwLB';
+				var page = '<xsl:value-of select="//pagina/@tip" />';
+				var unitate = null;
+				var mesajUnit = null;
+				var ses = '';
+				var pathToImg = "/temp/img/";
+				<xsl:if test="//*[@id='links']">
+					pageVars['texte']['string_harti_distante']='<xsl:value-of select="//*[@id='links']//caption" />';
+				</xsl:if>
+				<xsl:if test="//pagina[@tip='autobuze']">
+					pageVars['texte']['string_harti_distante']=pageVars['texte']['string_harti_transport_in_comun'];
+				</xsl:if>
+				<xsl:if test="//pagina/@io">
+					pageVars['generale']['io']=<xsl:value-of select="//pagina/@io" />;
+				</xsl:if>
+				<xsl:if test="//pagina/@s1 and //pagina/@s2">
+					var oras1='<xsl:value-of select="//pagina/@s1" />';
+					var oras2='<xsl:value-of select="//pagina/@s2" />';
+					var _ids="<xsl:value-of select="//pagina/@i" />";
+					var _c="<xsl:value-of select="//pagina/@c" />";
+					var _u="<xsl:value-of select="//pagina/@u" />";
+					var product = {
+						category : [ 'Driver', '<xsl:value-of select="//pagina/@s1" />', '<xsl:value-of select="//pagina/@s2" />' ]
+					};
+				</xsl:if>
+				<xsl:if test="//pagina/@s">
+					var oras='<xsl:value-of select="//pagina/@s" />';
+					pageVars['generale']['oras']['nume']=oras;
+					var _u="<xsl:value-of select="//pagina/@u" />";
+				</xsl:if>
+				<xsl:if test="//pagina/@st">
+					var orase='<xsl:value-of select="//pagina/@st" />';
+				</xsl:if>
+				<xsl:if test="//pagina/@ts">
+					pageVars['generale']['nume_tara']='<xsl:value-of select="//pagina/@ts" />';
+				</xsl:if>
+			</xsl:element>
+			<xsl:element name="script">
+				<xsl:attribute name="type">text/javascript</xsl:attribute>
+				<xsl:attribute name="src">/temp/js/jquery-1.6.2.min.js</xsl:attribute>
+			</xsl:element>
+			<xsl:element name="script">
+				<xsl:attribute name="type">text/javascript</xsl:attribute>
+				<xsl:attribute name="src">/temp/js/template.js?9</xsl:attribute>
+			</xsl:element>
+			<xsl:element name="script">
+				<xsl:attribute name="type">text/javascript</xsl:attribute>
+				<xsl:attribute name="src">/temp/js/logic.js?9</xsl:attribute>
+			</xsl:element>
+			<xsl:element name="script">
+				<xsl:attribute name="type">text/javascript</xsl:attribute>
+				<xsl:attribute name="src">/temp/js/general.js?9</xsl:attribute>
+			</xsl:element>
+			<xsl:element name="script">
+				<xsl:attribute name="type">text/javascript</xsl:attribute>
+				var _gaq = _gaq || [];
+				_gaq.push(['_setAccount', 'UA-519434-9']);
+				_gaq.push(['_trackPageview']);(function() {var ga = document.createElement('script');ga.type = 'text/javascript';ga.async = true;ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();
+			</xsl:element>
+		</xsl:element>
+	</xsl:template>
+	<xsl:template match="body">
+		<xsl:element name="body">
+			<xsl:attribute name="onclick">ascundeDivs(event);</xsl:attribute>
+			<xsl:element name="div">
+				<xsl:attribute name="id">info</xsl:attribute>
+				<xsl:element name="h1"><xsl:apply-templates select="h1[1]" /></xsl:element>
+				<xsl:apply-templates select="p[1]" />
+			</xsl:element>
+			<xsl:element name="div">
+				<xsl:attribute name="id">links-harti</xsl:attribute>z<xsl:if test="//*[@id='harti' or @id='distante' or @id='links']//a"><xsl:for-each select="//*[@id='harti' or @id='distante' or @id='links']//a"><xsl:sort select="." data-type="text" order="ascending" /><xsl:if test="not(position() > 100)"><xsl:element name="a"><xsl:attribute name="href"><xsl:value-of select="@href" /></xsl:attribute><xsl:attribute name="title"><xsl:value-of select="@title" /></xsl:attribute><xsl:value-of select="@name" /></xsl:element></xsl:if></xsl:for-each></xsl:if>
+			</xsl:element>
+			
+			<xsl:element name="div">
+				<xsl:attribute name="id">main</xsl:attribute>
+			</xsl:element>
+			<xsl:element name="div">
+				<xsl:attribute name="style"></xsl:attribute>
+				<xsl:attribute name="id">add_desktop</xsl:attribute>
+				<xsl:element name="table">
+					<xsl:attribute name="style">width: 100%; height: 100%;</xsl:attribute>
+					<xsl:attribute name="cellspacing">0</xsl:attribute>
+					<xsl:attribute name="cellpadding">0</xsl:attribute>
+					<xsl:element name="tr">
+						<xsl:element name="td">
+							<xsl:attribute name="style">text-align: center;</xsl:attribute>
+							<script async="true" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+							<!-- Distanta Receptiv -->
+							<ins class="adsbygoogle"
+							     style="display:block"
+							     data-ad-client="ca-pub-6075443944137975"
+							     data-ad-slot="3272369797"
+							     data-ad-format="auto"
+							     data-full-width-responsive="true"></ins>
+							<script>
+							(adsbygoogle = window.adsbygoogle || []).push({});
+							</script>
+						</xsl:element>
+					</xsl:element>
+				</xsl:element>
+			</xsl:element>
+			
+			<xsl:element name="script">
+				<xsl:attribute name="type">text/javascript</xsl:attribute>
+				
+				$(document).ready(function(){
+					prepareInterface(page);
+					if (history &amp;&amp; history.pushState){
+						window.addEventListener("popstate",function(e){
+							popState(e.state);
+						});
+					};
+					checkMobile();
+					$(window).resize(function(){checkMobile();});
+					
+					//$("#add_desktop > table > tbody > tr > td").append(createEl("ins",{class:"adsbygoogle",style:"display: block;","data-ad-client":"ca-pub-6075443944137975","data-ad-slot":"3272369797","data-ad-format":"auto","data-full-width-responsive":"true"}));
+				});
+				window.onload=function(){
+					//(adsbygoogle = window.adsbygoogle || []).requestNonPersonalizedAds=1;
+					//(adsbygoogle = window.adsbygoogle || []).push({google_ad_client: "ca-pub-6075443944137975"});
+				};
+			</xsl:element>
+		</xsl:element>
+	</xsl:template>
+	<xsl:template match="div|iframe|b|span|small|strong|script|img|input|style|a|br|p|u|i|ol|ul|li|table|tr|td|select|option|label|title">
+		<xsl:element name="{name()}">
+			<xsl:for-each select="current()/@*">
+				<xsl:attribute name="{local-name()}"><xsl:value-of select="." /></xsl:attribute>
+			</xsl:for-each>
+			<xsl:apply-templates />
+		</xsl:element>
+	</xsl:template>
+</xsl:stylesheet>/³ËUã&      \œf¼\œf¼@1iY       *    :https://distanta.ro/temp/xsl/template.xsl strongly-framed 1 security-info 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 request-method GET response-head HTTP/1.1 200 OK
+Date: Thu, 28 Mar 2019 06:16:28 GMT
+Server: Apache
+Content-Type: text/xsl;charset=UTF-8
+ original-response-headers Date: Thu, 28 Mar 2019 06:16:28 GMT
+Server: Apache
+Keep-Alive: timeout=5, max=99
+Connection: Keep-Alive
+Transfer-Encoding: chunked
+Content-Type: text/xsl;charset=UTF-8
+ net-response-time-onstart 45 net-response-time-onstop 48   ä

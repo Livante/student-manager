@@ -1,0 +1,17 @@
+opam-version: "1.2"
+maintainer: "Daniel Bünzli <daniel.buenzl i@erratique.ch>"
+authors: "Daniel Bünzli <daniel.buenzl i@erratique.ch>"
+homepage: "http://erratique.ch/software/cmdliner"
+bug-reports: "https://github.com/dbuenzli/cmdliner/issues"
+license: "ISC"
+doc: "http://erratique.ch/software/cmdliner/doc/Cmdliner"
+tags: ["cli" "system" "declarative" "org:erratique"]
+dev-repo: "http://erratique.ch/repos/cmdliner.git"
+build: ["ocaml" "pkg/pkg.ml" "build" "--pinned" "%{pinned}%"]
+depends: [
+  "ocamlfind" {build}
+  "ocamlbuild" {build}
+  "topkg" {build}
+  "result"
+]
+available: [ocaml-version >= "4.01.0"]

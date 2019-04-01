@@ -1,0 +1,1229 @@
+
+	<!doctype html>
+<!--[if lt IE 7]>
+<html lang="en" ng-app="wikiwand" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://ogp.me/ns#" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html lang="en" ng-app="wikiwand" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://ogp.me/ns#" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html lang="en" ng-app="wikiwand" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://ogp.me/ns#" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="wikiwand" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://ogp.me/ns#" class="no-js"> <!--<![endif]-->
+<head>
+
+    <!--header generic -->
+    
+    <!--this is the original url for google fonts-->
+    <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic|Lora:400,700,400italic,700italic|Merriweather:400italic,400,300italic,300,700,700italic|Open+Sans:300italic,400italic,700italic,700,300,400&subset=latin,cyrillic-ext,greek-ext,greek,devanagari,vietnamese,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/emffkefkbkpkgpdeeooapgaicgmcbolj">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <!--<script type="text/javascript"  src="//assets.wikiwand.com/ads.js"></script>-->
+    <link rel="apple-touch-icon" href="//assets.wikiwand.com/img/wikiwand_icon_apple.png"/>
+    
+
+    
+
+
+    
+
+    
+    <!--BEGIN FIRSTIMPRESSION TAG - wikiwand.com -->
+    <script data-cfasync='false' type='text/javascript'>
+        window.disableAdLayout = true;
+        window.apd_options = { 'websiteId': 7350, 'runFromFrame': false };
+        (function() {
+            var w = window.apd_options.runFromFrame ? window.top : window;
+            if(window.apd_options.runFromFrame && w!==window.parent) w=window.parent;
+            if (w.location.hash.indexOf('apdAdmin') !== -1){if(typeof(Storage) !== 'undefined') {w.localStorage.apdAdmin = 1;}}
+            var adminMode = ((typeof(Storage) == 'undefined') || (w.localStorage.apdAdmin == 1));
+            w.apd_options=window.apd_options;
+            var apd = w.document.createElement('script'); apd.type = 'text/javascript'; apd.async = true;
+            apd.src = '//' + (adminMode ? 'cdn' : 'ecdn') + '.firstimpression.io/' + (adminMode ? 'fi.js?id=' + window.apd_options.websiteId : 'fi_client.js') ;
+            var s = w.document.getElementsByTagName('head')[0]; s.appendChild(apd);
+        })();
+    </script>
+    <!-- END FIRSTIMPRESSION TAG -->
+    
+
+
+    
+    <img id="imagePlaceHolder" src="" height="0" width="0" style="opacity:0;position:fixed">
+    <script>
+
+        console.time('time up to showArticleContents');
+        var precache_from_extension = false;
+        if (window.location.hash.indexOf('precache_from_extension=true') > -1) {
+            precache_from_extension = true;
+        }
+        var pageLoadStart = new Date().getTime();
+        var pageHTMLReceived = (new Date()).getTime();
+        var genericData = {
+            debug: {
+                pageLoadedTimestamp: (new Date()).getTime()
+            }
+        };
+        var localContentHtml;
+        var localContentHtmlPartial;
+        var attempts = 0;
+        function tempConditioning(mystring) {
+            //this is to migrate old article contents until we do a database recaching (advance version)
+            //replace old pic-placeholder with one which supports both protocols
+            if (location.protocol == 'https:') {
+                var newstring = mystring.split('http://assets.cdn.wikiwand.com/img/pic-placeholder.gif').join('//assets.wikiwand.com/img/pic-placeholder.gif');
+            } else {
+                newstring = mystring;
+            }
+            return newstring;
+        }
+
+        function httpGet(theUrl, type) {
+            var xmlHttp = null;
+            xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function() {
+                if (xmlHttp.readyState == 4) // Finished
+                {
+                    if (xmlHttp.status == 200) {
+                        if (theUrl.indexOf('_PARTIAL_DOWNLOAD') == -1) {
+                            //console.log('got full text');
+                            localContentHtml = xmlHttp.responseText;
+                        } else {
+                            //console.log('got partial text');
+                            localContentHtmlPartial = xmlHttp.responseText;
+                        }
+                    }
+                    else {
+                        console.log('failed with status ',xmlHttp.status);
+                        attempts++;
+                        if (attempts < 10 && (theUrl.indexOf('_PARTIAL_DOWNLOAD') == -1)) {
+                            console.log("DOWNLOAD FAILED, TRYING AGAIN ", theUrl);
+                            if (xmlHttp.status == 0) {
+                                if (theUrl.indexOf('s3.amazonaws.com') != -1) {
+                                    if (attempts==9) {
+
+                                        setTimeout(function() {
+                                            var element;
+                                            if (typeof(noAdblock) == 'undefined') {
+                                                element = '#adblockNotice';
+                                            } else {
+                                                element = '#httpsEverywhereNotice';
+                                            }
+                                            if ($(element).length > 0) {
+                                                console.log(' element exists');
+                                                $(element).show();
+                                                $(element).css('opacity', 1);
+                                                $(element).detach().prependTo('#content');
+                                            }
+                                        }, 6000);
+                                    }
+                                }
+                                var urlOnS3 = 'https://s3.amazonaws.com/ww-article-cache-1/en/Instructions_per_second';
+                                urlOnS3 = urlOnS3.replace('http://', '//').replace('https://', '//');
+                                urlOnS3 = urlOnS3.replace(/\+/g, '%2B');
+                                httpGet(urlOnS3, 'html');
+                                httpGet(urlOnS3, 'html');
+                            } else {
+                                //console.log('status ', xmlHttp);
+                                setTimeout(function() {
+                                    httpGet(theUrl, 'html');
+                                }, 500);
+                            }
+                        }
+                    }
+                }
+            };
+            xmlHttp.open("GET", theUrl, true);
+            xmlHttp.send(null);
+        }
+    </script>
+    
+    <script>
+        //console.log('have cdn file in generic header, this is cached');
+        var loadedFromCache = true;
+        var urlOnCdn = 'https://db0nus869y26v.cloudfront.net/en/Instructions_per_second?rev=1553652704742';
+        urlOnCdn = urlOnCdn.replace('http://', '//').replace('https://', '//');
+        urlOnCdn = urlOnCdn.replace(/\+/g, '%2B');
+        httpGet(urlOnCdn, 'html');
+        //var partialDownloadUrl=urlOnCdn.replace('?rev','_PARTIAL_DOWNLOAD?rev');
+        //httpGet(partialDownloadUrl,'html');
+        try {
+            var mainImageUrl = '';
+            mainImageUrl = mainImageUrl.replace('https://', '//').replace('http://', '//');
+            var image = document.getElementById("imagePlaceHolder");
+            image.src = mainImageUrl;
+        }
+        catch (e) {console.log('error predownloading image', e);}
+    </script>
+    
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
+
+    <!--
+    
+    <link rel="stylesheet" href="//assets.wikiwand.com/css/fonts.92ff4698.css" type="text/css" media="screen"/>
+    
+    -->
+
+    
+
+    
+    <script> var CURRENT_USER_ID=null; </script>
+    
+
+     
+
+    
+
+    <link rel="stylesheet" href="//assets.wikiwand.com/css/wikiwand.early.min.fd1a9197.css" type="text/css" media="screen"/>
+    <script type="text/javascript" src="//assets.wikiwand.com/js/wikiwand.early.min.d470c7d7.js"></script>
+    
+    
+
+    
+
+    
+
+
+
+    <!-- BEGIN TRACKJS -->
+    <script type="text/javascript">
+        var LOAD_TRACKJS = false;
+        if (LOAD_TRACKJS && !precache_from_extension) {
+            window._trackJs = {
+                token: '9bcd9b3d130a4b8eb9f58ff06e6781b5',
+                callback: {enabled: false},
+                console: {enabled: true, display: true, error: false},
+                network: {enabled: false},
+                visitor: {enabled: false},
+                window: {enabled: false},
+                onError: function(payload, error) {
+
+                    // List borrowed from the awesome @pamelafox
+                    // https://gist.github.com/pamelafox/1878283
+                    var i, commonCrypticExtensionErrors = [
+                        "top.GLOBALS",
+                        "originalCreateNotification",
+                        "canvas.contentDocument",
+                        "MyApp_RemoveAllHighlights",
+                        "http://tt.epicplay.com",
+                        "Can't find variable: ZiteReader",
+                        "jigsaw is not defined",
+                        "ComboSearch is not defined",
+                        "http://loading.retry.widdit.com/",
+                        "atomicFindClose",
+                        "fb_xd_fragment",
+                        "Script error",
+                        "__adg_gm_commands_api",
+                        "A Chrome Web Store installation is already pending.",
+                        "‘-×´]/: Range out of order in character class"
+                    ];
+                    for (i = 0; i < commonCrypticExtensionErrors.length; i++) {
+                        if (payload.message.indexOf(commonCrypticExtensionErrors[i]) > -1) {
+                            // returning any kind of falsy value will reject error
+                            return false;
+                        }
+                    }
+                    return true; // Return any kind of truthy value here to allow transmission of error
+                }
+            };
+            var fileref = document.createElement('script');
+            fileref.setAttribute("type", "text/javascript");
+            fileref.setAttribute("src", "//d2zah9y47r7bi2.cloudfront.net/releases/current/tracker.js");
+            if (typeof fileref != "undefined")    document.getElementsByTagName("head")[0].appendChild(fileref);
+        }
+    </script>
+
+
+
+
+
+
+	
+	
+
+	
+	<script>
+		// disable all logs
+		if (document.location.search.indexOf('debug_logs=1') == -1) {
+			console.log = function() {};
+			console.time = function() {};
+			console.timeEnd = function() {};
+		}
+	</script>
+
+
+	
+
+	<script>
+		
+		
+			var serverData={"fromSearchEngine":true,"layout":"wikiwand","publisherMonetization":"false","showTOC":"true","agent":{"string":"Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0","ua":{"family":"Firefox","major":"60","minor":"0","patch":null},"userAgent":{"family":"Firefox","major":"60","minor":"0","patch":null},"os":{"family":"Linux","major":null,"minor":null,"patch":null,"patchMinor":null},"device":{"family":"Other"},"family":"Firefox","major":60,"minor":0,"isMobileRes":false,"clientLanguages":"en-US,en;q=0.5","extensionInstalled":false,"fromSearchWidget":false,"isBot":false,"isHuman":true},"config":{"environment":"production","features":{"news":false,"map":true,"toc":true,"gallery":true,"partials":true,"apiCache":true,"invites":false,"articlePromo":true,"classification":false,"moduleYouTubeVideo":false,"webSocket":false,"snippet":true,"userManagement":false,"comments":false,"reportBoardActions":true,"paywall":false,"boards":false,"comparisons":false},"agent":{"string":"Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0","ua":{"family":"Firefox","major":"60","minor":"0","patch":null},"userAgent":{"family":"Firefox","major":"60","minor":"0","patch":null},"os":{"family":"Linux","major":null,"minor":null,"patch":null,"patchMinor":null},"device":{"family":"Other"},"family":"Firefox","major":60,"minor":0,"isMobileRes":false,"clientLanguages":"en-US,en;q=0.5","extensionInstalled":false,"fromSearchWidget":false,"isBot":false,"isHuman":true},"facebook":{"appId":"823404911083396"}},"cpu":null,"callToInstallExtension":true,"settings":{"tests":{},"monPlus":false}};
+		
+		
+		
+
+		
+			var articleData={"cache":{"cacheDBVer":54,"cacheDate":1553652704742,"hash":"7ac9f76c979fde0f0135e841b430952d","key":"/en/Instructions_per_second","wikiRevision":"887031941","canonical":"/en/Instructions_per_second","isCanonical":true,"S3FileUrl":"https://s3.amazonaws.com/ww-article-cache-1/en/Instructions_per_second","CDNFileUrl":"https://db0nus869y26v.cloudfront.net/en/Instructions_per_second?rev=1553652704742"},"langCodeUrl":"en","rawArticlePath":"Instructions_per_second","fonts":{},"bodyClasses":["lg_latin"],"hasInfobox":false,"facts":[],"photos":[],"title":"Instructions per second","geo":null,"TOC":{"type":"ul","id":"toc_btn_article-root-section","href":"article-root-section","text":"","children":[{"type":"od","classesHtml":"","special":false,"id":"toc_btn_overview","href":"overview","text":"Introduction","children":[]},{"type":"od","classesHtml":"","special":false,"id":"toc_btn_Computing","href":"Computing","text":"Computing","children":[{"type":"li","classesHtml":"","special":false,"id":"toc_btn_Instructions_per_cycle","href":"Instructions_per_cycle","text":"Instructions per cycle","children":[]}],"hasChildren":true},{"type":"od","classesHtml":"","special":false,"id":"toc_btn_Thousand_instructions_per_second_(TIPS/KIPS)","href":"Thousand_instructions_per_second_(TIPS/KIPS)","text":"Thousand instructions per second (TIPS/KIPS)","children":[]},{"type":"od","classesHtml":"","special":false,"id":"toc_btn_Millions_of_instructions_per_second_(MIPS)","href":"Millions_of_instructions_per_second_(MIPS)","text":"<span id=\"MIPS\"></span> Millions of instructions per second (MIPS)","children":[]},{"type":"od","classesHtml":"","special":false,"id":"toc_btn_Timeline_of_instructions_per_second","href":"Timeline_of_instructions_per_second","text":"Timeline of instructions per second","children":[]},{"type":"od","classesHtml":" class='special'","special":true,"id":"toc_btn_See_also","href":"See_also","text":"See also","children":[]},{"type":"od","classesHtml":" class='special'","special":true,"id":"toc_btn_References","href":"References","text":"References","children":[]}],"hasChildren":true},"pageIsArticle":true,"links":{"selfRead":"http://wikiwand.com/en/Instructions_per_second","wikipediaRead":"https://en.wikipedia.org/wiki/Instructions_per_second?oldformat=true","wikipediaEdit":"https://en.wikipedia.org/w/index.php?title=Instructions_per_second&action=edit","wikipediaHistory":"https://en.wikipedia.org/w/index.php?title=Instructions_per_second&action=history","wikipediaPrint":"https://en.wikipedia.org/w/index.php?title=Instructions_per_second&printable=yes","wikipediaTalk":"https://en.wikipedia.org/wiki/Talk:Instructions_per_second?oldformat=true","wikipediaDownload":"https://en.wikipedia.org/w/index.php?title=Special:Book&bookcmd=render_article&arttitle=Instructions_per_second&writer=rl"},"meta":{"title":"Instructions per second | Wikiwand","keywords":"qw, Instructions per second, English","description":"Instructions per second is a measure of a computer's processor speed. For \nCISC computers different instructions take different amounts of time, so the value measured depends on the instruction mix; even for comparing processors in the same family the IPS measurement can be problematic.  Many reported IPS values have represented \"peak\" execution rates on artificial instruction sequences with few branches and no cache contention, whereas realistic workloads typically lead to significantly lower IPS values. Memory hierarchy also greatly affects processor performance, an issue barely considered in IPS calculations. Because of these problems, synthetic benchmarks such as Dhrystone are now generally used to estimate computer performance in commonly used applications, and raw IPS has fallen into disuse.","robots":"index,follow","url":"http://www.wikiwand.com/en/Instructions_per_second","image":"//assets.wikiwand.com/img/wikiwand_icon.png"},"fromWikipedia":"From Wikipedia, the free encyclopedia","disambiguations":[],"searchTranslation":"Search Wikipedia","mainImage":{"mode":"none"},"availableLanguages":[{"langEnglishName":"Afrikaans","langNativeName":"Afrikaans","langAbberviation":"af","langCodeHTML":0,"langCodeURL":"af","articleTitle":"Miljoen instruksies per sekonde","articleLink":"/af/Miljoen_instruksies_per_sekonde","score":0},{"langEnglishName":"Bosnian","langNativeName":"bosanski","langAbberviation":"bs","langCodeHTML":0,"langCodeURL":"bs","articleTitle":"MIPS","articleLink":"/bs/MIPS","score":0},{"langEnglishName":"Catalan; Valencian","langNativeName":"català","langAbberviation":"ca","langCodeHTML":0,"langCodeURL":"ca","articleTitle":"Instruccions per segon","articleLink":"/ca/Instruccions_per_segon","score":0},{"langEnglishName":"Chinese","langNativeName":"中文","langAbberviation":"zh","langCodeHTML":0,"langCodeURL":"zh","articleTitle":"每秒指令","articleLink":"/zh/%E6%AF%8F%E7%A7%92%E6%8C%87%E4%BB%A4","score":0},{"langEnglishName":"Czech","langNativeName":"česky","langAbberviation":"cs","langCodeHTML":0,"langCodeURL":"cs","articleTitle":"MIPS","articleLink":"/cs/MIPS","score":0},{"langEnglishName":"Danish","langNativeName":"dansk","langAbberviation":"da","langCodeHTML":0,"langCodeURL":"da","articleTitle":"MIPS","articleLink":"/da/MIPS","score":0},{"langEnglishName":"Dutch","langNativeName":"Nederlands","langAbberviation":"nl","langCodeHTML":0,"langCodeURL":"nl","articleTitle":"MIPS (eenheid)","articleLink":"/nl/MIPS_(eenheid)","score":0},{"langEnglishName":"English","langNativeName":"English","langAbberviation":"en","langCodeHTML":0,"langCodeURL":"en","articleTitle":"Instructions per second","articleLink":"/en/Instructions_per_second","score":1},{"langEnglishName":"Esperanto","langNativeName":"Esperanto","langAbberviation":"eo","langCodeHTML":0,"langCodeURL":"eo","articleTitle":"MIPS","articleLink":"/eo/MIPS","score":0},{"langEnglishName":"Finnish","langNativeName":"suomi","langAbberviation":"fi","langCodeHTML":0,"langCodeURL":"fi","articleTitle":"MIPS","articleLink":"/fi/MIPS","score":0},{"langEnglishName":"French","langNativeName":"français","langAbberviation":"fr","langCodeHTML":0,"langCodeURL":"fr","articleTitle":"Instructions par seconde","articleLink":"/fr/Instructions_par_seconde","score":1},{"langEnglishName":"German","langNativeName":"Deutsch","langAbberviation":"de","langCodeHTML":0,"langCodeURL":"de","articleTitle":"Instruktionen pro Sekunde","articleLink":"/de/Instruktionen_pro_Sekunde","score":1},{"langEnglishName":"Hebrew","langNativeName":"עברית","langAbberviation":"he","langCodeHTML":0,"langCodeURL":"he","articleTitle":"MIPS","articleLink":"/he/MIPS","score":0},{"langEnglishName":"Hungarian","langNativeName":"magyar","langAbberviation":"hu","langCodeHTML":0,"langCodeURL":"hu","articleTitle":"Instructions per second","articleLink":"/hu/Instructions_per_second","score":0},{"langEnglishName":"Indonesian","langNativeName":"Bahasa Indonesia","langAbberviation":"id","langCodeHTML":0,"langCodeURL":"id","articleTitle":"Instruksi per detik","articleLink":"/id/Instruksi_per_detik","score":0},{"langEnglishName":"Irish","langNativeName":"Gaeilge","langAbberviation":"ga","langCodeHTML":0,"langCodeURL":"ga","articleTitle":"Milliún treoir sa soicind","articleLink":"/ga/Milli%C3%BAn_treoir_sa_soicind","score":0},{"langEnglishName":"Italian","langNativeName":"italiano","langAbberviation":"it","langCodeHTML":0,"langCodeURL":"it","articleTitle":"MIPS (unità di misura)","articleLink":"/it/MIPS_(unit%C3%A0_di_misura)","score":0},{"langEnglishName":"Japanese","langNativeName":"日本語","langAbberviation":"ja","langCodeHTML":0,"langCodeURL":"ja","articleTitle":"MIPS","articleLink":"/ja/MIPS","score":0},{"langEnglishName":"Korean","langNativeName":"한국어","langAbberviation":"ko","langCodeHTML":0,"langCodeURL":"ko","articleTitle":"초당 명령 수","articleLink":"/ko/%EC%B4%88%EB%8B%B9_%EB%AA%85%EB%A0%B9_%EC%88%98","score":0},{"langEnglishName":"Latvian","langNativeName":"latviešu","langAbberviation":"lv","langCodeHTML":0,"langCodeURL":"lv","articleTitle":"Instrukcijas sekundē","articleLink":"/lv/Instrukcijas_sekund%C4%93","score":0},{"langEnglishName":"Lithuanian","langNativeName":"lietuvių","langAbberviation":"lt","langCodeHTML":0,"langCodeURL":"lt","articleTitle":"Instrukcijos per sekundę","articleLink":"/lt/Instrukcijos_per_sekund%C4%99","score":0},{"langEnglishName":"Malay","langNativeName":"Bahasa Melayu","langAbberviation":"ms","langCodeHTML":0,"langCodeURL":"ms","articleTitle":"Arahan per saat","articleLink":"/ms/Arahan_per_saat","score":0},{"langEnglishName":"Norwegian (Bokmål)","langNativeName":"norsk (bokmål)","langAbberviation":"no","langCodeHTML":0,"langCodeURL":"no","articleTitle":"MIPS","articleLink":"/no/MIPS","score":0},{"langEnglishName":"Polish","langNativeName":"polski","langAbberviation":"pl","langCodeHTML":0,"langCodeURL":"pl","articleTitle":"Million instructions per second","articleLink":"/pl/Million_instructions_per_second","score":0},{"langEnglishName":"Portuguese","langNativeName":"português","langAbberviation":"pt","langCodeHTML":0,"langCodeURL":"pt","articleTitle":"MIPS (medida)","articleLink":"/pt/MIPS_(medida)","score":1},{"langEnglishName":"Russian","langNativeName":"русский","langAbberviation":"ru","langCodeHTML":0,"langCodeURL":"ru","articleTitle":"MIPS (быстродействие)","articleLink":"/ru/MIPS_(%D0%B1%D1%8B%D1%81%D1%82%D1%80%D0%BE%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D0%B5)","score":0},{"langEnglishName":"Serbian","langNativeName":"српски / srpski","langAbberviation":"sr","langCodeHTML":0,"langCodeURL":"sr","articleTitle":"MIPS","articleLink":"/sr/MIPS","score":0},{"langEnglishName":"Simplified Chinese","langNativeName":"中文（简体)","langAbberviation":"zh","langCodeHTML":0,"langCodeURL":"zh-hans","articleTitle":"每秒指令","articleLink":"/zh-hans/%E6%AF%8F%E7%A7%92%E6%8C%87%E4%BB%A4","score":0},{"langEnglishName":"Simplified Chinese (China)","langNativeName":"中文（中国大陆)","langAbberviation":"zh","langCodeHTML":0,"langCodeURL":"zh-cn","articleTitle":"每秒指令","articleLink":"/zh-cn/%E6%AF%8F%E7%A7%92%E6%8C%87%E4%BB%A4","score":0},{"langEnglishName":"Simplified Chinese (Singapore)","langNativeName":"中文（新加坡）","langAbberviation":"zh","langCodeHTML":0,"langCodeURL":"zh-sg","articleTitle":"每秒指令","articleLink":"/zh-sg/%E6%AF%8F%E7%A7%92%E6%8C%87%E4%BB%A4","score":0},{"langEnglishName":"Slovak","langNativeName":"slovenčina","langAbberviation":"sk","langCodeHTML":0,"langCodeURL":"sk","articleTitle":"MIPS","articleLink":"/sk/MIPS","score":0},{"langEnglishName":"Spanish","langNativeName":"español","langAbberviation":"es","langCodeHTML":0,"langCodeURL":"es","articleTitle":"Millones de instrucciones por segundo","articleLink":"/es/Millones_de_instrucciones_por_segundo","score":1},{"langEnglishName":"Swedish","langNativeName":"svenska","langAbberviation":"sv","langCodeHTML":0,"langCodeURL":"sv","articleTitle":"MIPS (prestandamått)","articleLink":"/sv/MIPS_(prestandam%C3%A5tt)","score":0},{"langEnglishName":"Traditional Chinese","langNativeName":"中文（繁體）","langAbberviation":"zh","langCodeHTML":0,"langCodeURL":"zh-hant","articleTitle":"每秒指令","articleLink":"/zh-hant/%E6%AF%8F%E7%A7%92%E6%8C%87%E4%BB%A4","score":0},{"langEnglishName":"Traditional Chinese (Hong Kong)","langNativeName":"中文（香港）","langAbberviation":"zh","langCodeHTML":0,"langCodeURL":"zh-hk","articleTitle":"每秒指令","articleLink":"/zh-hk/%E6%AF%8F%E7%A7%92%E6%8C%87%E4%BB%A4","score":0},{"langEnglishName":"Traditional Chinese (Macau)","langNativeName":"中文（澳門）","langAbberviation":"zh","langCodeHTML":0,"langCodeURL":"zh-mo","articleTitle":"每秒指令","articleLink":"/zh-mo/%E6%AF%8F%E7%A7%92%E6%8C%87%E4%BB%A4","score":0},{"langEnglishName":"Traditional Chinese (Taiwan)","langNativeName":"中文（台灣）","langAbberviation":"zh","langCodeHTML":0,"langCodeURL":"zh-tw","articleTitle":"每秒指令","articleLink":"/zh-tw/%E6%AF%8F%E7%A7%92%E6%8C%87%E4%BB%A4","score":0},{"langEnglishName":"Turkish","langNativeName":"Türkçe","langAbberviation":"tr","langCodeHTML":0,"langCodeURL":"tr","articleTitle":"Saniye başına komut","articleLink":"/tr/Saniye_ba%C5%9F%C4%B1na_komut","score":0},{"langEnglishName":"Ukranian","langNativeName":"українська","langAbberviation":"uk","langCodeHTML":0,"langCodeURL":"uk","articleTitle":"MIPS (швидкодія)","articleLink":"/uk/MIPS_(%D1%88%D0%B2%D0%B8%D0%B4%D0%BA%D0%BE%D0%B4%D1%96%D1%8F)","score":0},{"langEnglishName":"Vietnamese","langNativeName":"Tiếng Việt","langAbberviation":"vi","langCodeHTML":0,"langCodeURL":"vi","articleTitle":"Số chỉ thị mỗi giây","articleLink":"/vi/S%E1%BB%91_ch%E1%BB%89_th%E1%BB%8B_m%E1%BB%97i_gi%C3%A2y","score":0}]};
+		
+
+	</script>
+	<script>
+		if (location.host=='translate.googleusercontent.com' && location.search){
+
+			var requestedLang=location.search.split('tl=')[1];
+			if (requestedLang) {
+				requestedLang = requestedLang.split('&')[0];
+				var desiredLink = articleData.links.selfRead.replace('http://', 'https://');
+				for (idx in articleData.availableLanguages) {
+					var lang = articleData.availableLanguages[idx];
+					if (lang.langCodeURL == requestedLang) {
+						desiredLink = 'https://www.wikiwand.com' + lang.articleLink;
+						break;
+					}
+				}
+				window.location = desiredLink;
+				var dontReport=true;
+			}
+		}
+	</script>
+
+	<title>Instructions per second - Wikiwand</title>
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@wikiwand">
+	<meta name="twitter:app:url:iphone" content="wikiwand-article://en/Instructions_per_second" />
+	<meta name="twitter:app:url:ipad" content="wikiwand-article://en/Instructions_per_second" />
+	<meta property="fb:app_id" content="823404911083396" />
+
+	<meta name="robots" content="index,follow" />
+
+	
+		<meta property="og:type" content="article" />
+		<meta property="og:site_name" content="Wikiwand" />
+		<meta property="og:url" content="http://www.wikiwand.com/en/Instructions_per_second" />
+
+		<meta property="og:title" content="Instructions per second | Wikiwand" />
+		<meta property="twitter:title" content="Instructions per second | Wikiwand" />
+
+		<meta property="og:description" content="Instructions per second is a measure of a computer&#39;s processor speed. For 
+CISC computers different instructions take different amounts of time, so the value measured depends on the instruction mix; even for comparing processors in the same family the IPS measurement can be problematic.  Many reported IPS values have represented &quot;peak&quot; execution rates on artificial instruction sequences with few branches and no cache contention, whereas realistic workloads typically lead to significantly lower IPS values. Memory hierarchy also greatly affects processor performance, an issue barely considered in IPS calculations. Because of these problems, synthetic benchmarks such as Dhrystone are now generally used to estimate computer performance in commonly used applications, and raw IPS has fallen into disuse." />
+		<meta name="description" content="Instructions per second is a measure of a computer&#39;s processor speed. For 
+CISC computers different instructions take different amounts of time, so the value measured depends on the instruction mix; even for comparing processors in the same family the IPS measurement can be problematic.  Many reported IPS values have represented &quot;peak&quot; execution rates on artificial instruction sequences with few branches and no cache contention, whereas realistic workloads typically lead to significantly lower IPS values. Memory hierarchy also greatly affects processor performance, an issue barely considered in IPS calculations. Because of these problems, synthetic benchmarks such as Dhrystone are now generally used to estimate computer performance in commonly used applications, and raw IPS has fallen into disuse." />
+		<meta name="twitter:description" content="Instructions per second is a measure of a computer&#39;s processor speed. For 
+CISC computers different instructions take different amounts of time, so the value measured depends on the instruction mix; even for comparing processors in the same family the IPS measurement can be problematic.  Many reported IPS values have represented &quot;peak&quot; execution rates on artificial instruction sequences with few branches and no cache contention, whereas realistic workloads typically lead to significantly lower IPS values. Memory hierarchy also greatly affects processor performance, an issue barely considered in IPS calculations. Because of these problems, synthetic benchmarks such as Dhrystone are now generally used to estimate computer performance in commonly used applications, and raw IPS has fallen into disuse." />
+		
+		<link rel="image_src" href="//assets.wikiwand.com/img/wikiwand_icon.png"/>
+		<meta property="og:image" content="//assets.wikiwand.com/img/wikiwand_icon.png" />
+		<meta property="twitter:image:src" content="//assets.wikiwand.com/img/wikiwand_icon.png" />
+		
+
+		<meta name="keywords" content="qw, Instructions per second, English" />
+	
+
+    
+
+</head>
+
+
+<body class="lg_latin bsp1 bsp2 lang_en bsp3"
+	ng-class="$root.userBodyStyle" ng-controller="ShellController"
+
+	ng-init="initializeShellController()">
+
+
+
+
+
+	<div id="body_wrapp"
+		ng-click="clickedOutside()" ng-mousedown="clickedAnywhere($event)">
+
+	
+<div ng-cloak ng-if="precache_from_extension">For faster navigation, this Iframe is preloading the Wikiwand page for <b>Instructions per second</b>.
+
+</div>
+
+<nav ng-if="!hideToolbar"
+	ng-cloak ng-hide="$root.serverData.agent.iOSWebView"
+	ng-class="{active:!$root.tocShow}"
+	ng-controller='ToolbarController' id="header"
+	class=" unselectable"
+	>
+		<ul id="main_menu" ng-class="{ios_focus: $root.iosFocus}" class="menu  navbar_opaque ">
+			
+			<li class="toc_folded" ng-class="{activated:!$root.tocShow, gone: searchFocus}"  ng-click="$root.tocFold(); $root.userClick(true, 'toolbar-toc-show');"><i></i></li>
+			
+			<li class="article_btn article" ng-class="{active:showWikiwandMenu, gone: searchFocus}" ng-click="toggleWikiwandMenu($event); $root.userClick(showWikiwandMenu, 'toolbar-mainmenu');" >
+				<img class="logo_img unselectable" src="/img/logo_new.svg" alt="wikiwand logo"/>
+				<img class="hide logo_w unselectable" src="/img/w.svg" alt="wikiwand w"/>
+				<i></i>
+				<div class="drop_down" ng-show="showWikiwandMenu" ng-click="clickedInside($event)">
+
+					<ul id="feadback_list" ng-show="!showUserVoice && !showCoverReport">
+						<li><a href="/"><i class="home_icon"></i>Home</a></li>
+						<li><a href="/news"><i class="news_icon"></i>News</a></li>
+
+						
+						<li><a href="/random/en"><i class="random_icon"></i>Random Article</a></li>
+						
+
+						<li ng-if="!activation.extensionInstalled"><a href="#" ng-click="$root.showInstall = true" onclick="event.preventDefault();"><i class="install_icon"></i>Install Wikiwand</a></li>
+						<li><a href="#" ng-click="$root.showFollow = true; loadGplusScript()" onclick="event.preventDefault();"><i class="follow_icon"></i>Follow Us</a></li>
+
+						<!--<li><a href="http://wikiwand.uservoice.com" target="_blank"><i class="support_icon"></i>Support</a></li>-->
+						<!---->
+						<!--<!<li><a href="javascript:void(0);" ng-click="showUserVoice=true; openUserVoiceDialog()" onclick="event.preventDefault()"><i class="report_icon"></i>Report a problem</a></li>-->
+
+						<li><a ng-click="closeAllMenus()" href="http://wikiwand.uservoice.com/forums/247843-wikiwand-website-extensions" target="_blank"><i class="idea_icon"></i>Send a suggestion</a></li>
+						<li ng-if="activation.extensionInstalled"><a href="/extension/uninstall/menu" target="_blank"><i class="uninstall_icon"></i>Uninstall Wikiwand</a></li>
+
+						<!--<li ng-if="$root.activation.showSwitchToWikipedia"><a href="javascript:void(0);" ng-click="closeAllMenus(); $root.walkthroughs['switch_to_wp'].showWalkthrough=true;" onclick="event.preventDefault()"><i class="wiki_icon"></i>Switch to Wikipedia</a></li>-->
+						<!--<li ng-if="!$root.activation.showSwitchToWikipedia"><a href="javascript:void(0);" ng-click="closeAllMenus()" ng-href="{{::articleData.links.wikipediaRead }}" target="_blank"><i class="wiki_icon"></i>Switch to Wikipedia</a></li>-->
+
+					</ul>
+
+					<div id="user_voice_wrapper" ng-show="showUserVoice">
+
+					</div>
+
+
+					<div id="cover_report" ng-show="showCoverReport">
+						<article ng-cloak ng-show="$root.showReportCoverImageText1">
+							<h3>Our magic isn't perfect</h3>
+							<p>You can help our automatic cover photo selection by reporting an unsuitable photo.</p>
+							<div ng-click="$root.reportImage($event,'disturbing',articleData.mainImage.full.originalUrl)">The cover is visually disturbing</div>
+							<div ng-click="$root.reportImage($event,'irrelevant',articleData.mainImage.full.originalUrl)">The cover is not a good choice</div>
+						</article>
+
+						<article ng-cloak ng-show="$root.showReportCoverImageText2">
+							<h4>Thank you for helping!</h4>
+							<br>
+							<p>Your input will affect cover photo selection, along with input from other users.<br>
+						</article>
+
+					</div>
+
+					<div id="feadback_back" ng-show="showUserVoice || showCoverReport" ng-click="showUserVoice=false;showCoverReport=false;$root.showReportCoverImageText1=true;$root.showReportCoverImageText2=false;">&#60; back</div>
+
+
+				</div>
+
+			</li>
+
+
+			<li class="search_btn menu-tooltip"  title="Search" ng-click="$root.openSearch('open'); $root.userClick(true, 'toolbar-search');">
+				<i></i>
+			</li>
+
+
+
+			
+			<li class="per_btn menu-tooltip" ng-class="{active:showPerMenu, gone: searchFocus}" ng-click="togglePerMenu($event); $root.userClick(showPerMenu, 'toolbar-pers');" title="Personalize">
+				<i ></i>
+				<div class="drop_down menu_per" id="pref_drop_down" ng-if="showPerMenu" ng-show="preMenuReady" ng-controller="UserPrefsController" ng-init="initPrefsController()" ng-click="prefClick(); clickedInside($event)">
+
+					<ul class="main_theme">
+						<li ng-click="$root.layoutHandler('rich')" ng-class="{active: $root.minimalStyle == false}">Rich</li>
+						<li ng-click="$root.layoutHandler('minimal')" ng-class="{active: $root.minimalStyle == true}">Minimal</li>
+					</ul>
+
+					<div class="per_slider two style per_serif">
+						<span class="hover" ng-click="$root.fontStyleHandler(0, true)">Serif</span>
+						<div id="font_style_slider" class="toggle_slider"></div>
+						<span class="hover" ng-click="$root.fontStyleHandler(1, true)">Sans</span>
+					</div>
+
+					<div class="per_slider two theme">
+						<span class="hover" ng-click="$root.themesHandler(0, true)"></span>
+						<div id="theme_slider" class="toggle_slider"></div>
+						<span class="hover" ng-click="$root.themesHandler(1, true)"></span>
+					</div>
+
+					<div class="per_slider three size">
+						<span class="hover" ng-click="fontSizeSlider =  Math.max(fontSizeSlider - 1, 0); $root.txtSizeHandler(fontSizeSlider, true);"></span>
+						<div id="font_size_slider" class="step_slider"></div>
+						<span class="hover" ng-click="fontSizeSlider =  Math.min(fontSizeSlider + 1, 2); $root.txtSizeHandler(fontSizeSlider, true);"></span>
+					</div>
+
+					<div class="per_slider three column">
+						<span class="hover" ng-click="columnWidthSlider =  Math.max(columnWidthSlider - 1, 0); $root.columnWidthHandler(columnWidthSlider, true)"></span>
+						<div id="column_slider" class="step_slider"></div>
+						<span class="hover" ng-click="columnWidthSlider =  Math.min(columnWidthSlider + 1, 2); $root.columnWidthHandler(columnWidthSlider, true)"></span>
+					</div>
+
+
+					<div class="per_justify" ng-click="$root.justifyHandler(!$root.justifyTxt)"><i ng-class="{active: $root.justifyTxt}"></i>Justify Text</div>
+
+					<a href="javascript:void(0);" ng-cloak ng-if="$root.callToPersonalize && $root.prefsTouched"
+						ng-class="{active: btnHover}"
+                        ng-mouseenter="$root.activationHover('enter')"
+                        ng-mouseleave="$root.activationHover('leave')"
+						ng-click="hidePerMenu($event); $root.reportClick('fromPrefs');$root.activationButtonClicked('');$root.extensionPopup('click');"
+						class="upgrade_button small activation_install preferences_install" >
+						Get Wikiwand
+                        <i></i>
+					</a>
+
+
+					<!--<div class="per_reset" ng-click="$root.resetPreferences();">Reset</div>-->
+					<div class="per_httpsnotice" ng-if="::isHttps">Note: preferences and languages are saved separately in https mode</div>
+				</div>
+			</li>
+			
+
+			<!--
+			<li class="find_btn menu-tooltip" title="Find in article" ng-class="{active: showFindMenu}">
+				<i></i>
+			</li>
+			-->
+
+			
+			<li class="lang_btn menu-tooltip" ng-class="{active:showLanguageMenu, gone: searchFocus}" title="Other Languages" ng-click="toggleLanguageMenu($event); $root.userClick(showLanguageMenu, 'toolbar-lang');" >
+				<i ng-cloak>{{::langAbbreviation}}</i>
+
+				<ul  ng-cloak class="drop_down" ng-show="showLanguageMenu"
+					ng-controller="PreferredLanguagesController">
+					<li ng-cloak class="favourite_lang" ng-class="{current_lang: lang.lang == articleData, no_lang: !lang.hasArticle}" ng-repeat="lang in list">
+						<a href="{{::lang.articleLink}}" rel="alternate" ng-if="::lang.fav"
+							title="{{::lang.tooltip}}"
+						hreflang="{{::lang.CodeHTML}}"><i>{{::lang.langAbberviation}}</i>{{::lang.NameEnglish}}
+						<span>{{::lang.articleTitle}}</span></a></li>
+					<li class="favourite_lang lang_open" ng-if="articleData.availableLanguages.length > numOfAvailablePreferredLanguages"><a href="javascript:void(0);" ng-click="$root.$broadcast('showAllArticleLanguagesFunc')">
+						<i>∙∙∙</i>40 other languages</a></li>
+					<li class="lang_pref"><a href="javascript:void(0);" ng-click="$root.$broadcast('showAllWikipediaLanguagesFunc')">
+						<i></i>Language preferences</a></li>
+				</ul>
+			</li>
+			
+
+
+
+
+			<li class="share_btn article menu-tooltip" ng-class="{active:showShareMenu, gone: searchFocus}" ng-click="toggleShareMenu($event); $root.userClick(showShareMenu, 'toolbar-share');"  title="Share Article ">
+				<i></i>
+				<div class="drop_down menu_share" id="share_drop_down" ng-show="showShareMenu" ng-click="clickedInside($event)">
+					<ul class="share_links">
+						<li class="share-facebook"><a class="hover" href="#" target="_blank" ng-click="$root.userClick(showShareMenu, 'toolbar-share-facebook');"></a></li>
+						<li class="share-gplus"><a class="hover" href="#" target="_blank" ng-click="$root.userClick(showShareMenu, 'toolbar-share-gplus');"></a></li>
+						<!--<li class="share-reddit"><a class="hover" href="#" target="_blank" ng-click="$root.userClick(showShareMenu, 'toolbar-share-reddit');"></a></li>-->
+						<li class="share-twitter"><a class="hover" href="#" target="_blank" ng-click="$root.userClick(showShareMenu, 'toolbar-share-twitter');"></a></li>
+						<li class="share-gmail"><a class="hover" href="#" target="_blank" ng-click="$root.userClick(showShareMenu, 'toolbar-share-gmail');"></a></li>
+					</ul>
+				</div>
+			</li>
+
+
+
+
+			<li class="feedback_btn article menu-tooltip" ng-class="{active:showFeedbackMenu, gone: searchFocus}" ng-click="toggleFeedbackMenu($event); $root.userClick(showFeedbackMenu, 'toolbar-report');" title="Wikipedia Tools">
+				<i></i>
+				<ul class="drop_down menu_feedback" id="feedback_drop_down" ng-show="showFeedbackMenu" >
+					<li class="wikipedia_list"><a ng-href="{{::articleData.links.wikipediaRead }}" target="_blank"><i class="read_w_icon"></i>Read On Wikipedia</a></li>
+					<li class="wikipedia_list"><a ng-href="{{::articleData.links.wikipediaEdit }}" target="_blank"><i class="edit_w_icon"></i>Edit</a></li>
+					<li class="wikipedia_list"><a ng-href="{{::articleData.links.wikipediaHistory }}" target="_blank"><i class="history_w_icon"></i>History</a></li>
+					<li class="wikipedia_list"><a ng-href="{{::articleData.links.wikipediaTalk }}" target="_blank"><i class="talk_w_icon"></i>Talk Page</a></li>
+					<li class="wikipedia_list"><a ng-href="{{::articleData.links.wikipediaPrint }}" target="_blank"><i class="print_w_icon"></i>Print</a></li>
+					<li class="wikipedia_list"><a ng-href="{{::articleData.links.wikipediaDownload }}" target="_blank"><i class="download_w_icon"></i>Download PDF</a></li>
+					<!--<li class="wikipedia_list"><a ng-href="https://en.wikipedia.org/wiki/Special:Watchlist" target="_blank"><i class="watch_icon"></i>Your Watchlist</a></li>-->
+					<!--<li class="wikipedia_list"><a ng-href="https://{{::articleData.langCodeUrl }}.wikipedia.org" target="_blank"><i class="home_icon"></i>Wikipedia Home Page</a></li>-->
+				</ul>
+			</li>
+
+
+			
+
+
+
+
+
+			<span class="menu_line"></span>
+
+
+			
+
+
+
+
+<li  ng-cloak
+	class="upgrade_btn menu-tooltip {{::$root.activation.nextAction}}"
+	title="{{::$root.activation.tooltip}}"
+	ng-if="$root.activation.nextAction != ''"
+	ng-class="{active: hover}"
+	ng-mouseenter="hover = true; $root.extensionPopup('enter');" ng-mouseleave="hover = false; $root.extensionPopup('leave');"
+	ng-click="$root.reportClick('toolbar');$root.activationButtonClicked();  $root.extensionPopup('click');">
+
+	<span ng-if="$root.activation.nextAction != 'activation_share'" class="upgrade_txt">{{::$root.activation.text}}</span>
+	<span ng-if="$root.activation.nextAction == 'activation_share'" class="upgrade_txt">{{::$root.activation.toolbarText}}</span>
+	<i>
+		
+	</i>
+
+</li>
+<!--
+<a href="javascript:void(0);" ng-cloak ng-class="{active: hover}"
+	ng-mouseenter="hover = true"  ng-mouseleave="hover = false"
+	ng-click="activationButtonClicked();" class="upgrade_button activation_button_toolbar small {{::activation.action}}" >
+	<span>{{activation.text}}</span><i></i>
+</a>
+-->
+
+		</ul>
+
+
+
+
+	</nav>
+
+
+
+
+
+
+
+<!--*************************** content  *************************-->
+<div id="content" ng-class="{limit: $root.limitPage, active:!$root.tocShow}" class=" small_image">
+
+
+	<!--************ news Article section ************-->
+	
+
+
+	
+
+	
+	
+
+	<!--************ main_image ************-->
+		
+	<!--************ main_image ENDS ************-->
+	
+	
+
+	
+
+<article ng-cloak id="article_content_wrapper" ng-controller="ArticleContentController"
+	ng-class="{withGist: $root.gistOn, minimal_margin: $root.minimalStyle, loaded: showArticleContents, narrow_column: $root.columnWidth=='narrow', wide_column: $root.columnWidth=='wide',
+	full_column: $root.columnWidth=='full', no_cover: articleMarginTop=='noCover', margin_initial: articleMarginTop=='initial', margin_low: articleMarginTop=='low', margin_middle: articleMarginTop=='middle', margin_high: articleMarginTop=='high'}"
+
+	class=" ">
+
+	
+
+	<section class="title_wrapper">
+
+		<h1 class="firstHeading">
+			<span class="">Instructions per second</span>
+
+
+			
+
+			<a href='{{::articleData.links.wikipediaEdit }}' target='_blank' class='title_icon edit_article edit_section tooltip_top' title='Edit Article'></a>
+
+			<!--<span class="title_icon geo-location tooltip_top" title="Browse map" ng-if="$root.map.exists" ng-class="{loading: $root.mapLoading}" onClick="loadGoogleMaps();"></span>
+
+			<span class="title_icon like_buttons unselectable" onclick="event.stopPropagation()"></span>-->
+
+			
+		</h1>
+
+
+		<!-- READ MORE SECTION-->
+		<nav id="read_more" ng-style="{opacity:showReadMore}">
+
+			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="25px" height="25px">
+				<path d="M9.512,8.692L8.073,7.331C8.24,7.026,8.344,6.682,8.344,6.31c0-1.179-0.956-2.135-2.135-2.135	c-1.18,0-2.137,0.955-2.137,2.135s0.957,2.136,2.137,2.136c0.416,0,0.801-0.124,1.129-0.33l1.438,1.359	C8.993,9.188,9.238,8.924,9.512,8.692z"/>
+				<path d="M15.603,8.522l1.912-3.22c0.188,0.054,0.384,0.093,0.589,0.093c1.182,0,2.138-0.956,2.138-2.136 c0-1.179-0.956-2.134-2.138-2.134c-1.18,0-2.135,0.955-2.135,2.134c0,0.586,0.236,1.115,0.618,1.501l-1.907,3.21	C15.008,8.119,15.316,8.305,15.603,8.522z"/>
+				<path d="M22.199,11.217c-0.918,0-1.696,0.583-1.998,1.397l-2.657-0.262c0,0.02,0.003,0.039,0.003,0.059 c0,0.346-0.039,0.685-0.107,1.012l2.657,0.263c0.16,1.019,1.038,1.801,2.103,1.801c1.18,0,2.135-0.955,2.135-2.135	C24.334,12.173,23.379,11.217,22.199,11.217z"/>
+				<path d="M14.865,19.612l-0.594-2.597c-0.336,0.117-0.685,0.201-1.049,0.243l0.596,2.596c-0.683,0.357-1.153,1.063-1.153,1.887 c0,1.18,0.954,2.134,2.137,2.134c1.179,0,2.134-0.954,2.134-2.134C16.937,20.584,16.015,19.646,14.865,19.612z"/>
+				<path d="M7.896,13.441L4.587,14.55c-0.382-0.583-1.039-0.97-1.787-0.97c-1.18,0-2.135,0.955-2.135,2.135 c0,1.181,0.955,2.136,2.135,2.136c1.179,0,2.136-0.955,2.136-2.136c0-0.049-0.011-0.095-0.015-0.144l3.319-1.111	C8.092,14.138,7.973,13.798,7.896,13.441z"/>
+				<circle cx="12.666" cy="12.411" r="3.662"/>
+			</svg>
+
+
+			<h4 ng-if="showTextEnglish">Connected to:</h4>
+
+			<a class="read_more_link int-link"
+				ng-mouseenter="reportReadMore('hover')"
+				ng-mousedown="reportReadMore('click')"
+				ng-repeat="readMoreArticle in readMoreArticles | limitTo:3" href="{{::readMoreArticle.link}}" ng-class="{no_thumb: readMoreArticle.thumb == 'none'}">
+				<span class="title">{{::readMoreArticle.title}}</span>
+			</a>
+
+		</nav>
+
+		
+
+
+		<h2>From Wikipedia, the free encyclopedia</h2>
+
+	</section>
+
+
+	
+
+	
+	<!-- the styling below is used for the smooth transition between the partial content and the final content -->
+	<style>
+		.content-absolute {
+			position: absolute;
+			z-index: 200;
+		}
+		#partialContent {
+			min-height: 1000px;
+		}
+	</style>
+
+	<!--<div id='partialContent'></div>-->
+	
+	<div id='fullContent'></div>
+	
+	<a ng-href="{{bottomLinkUrl}}" target="_blank" ng-click="onBottomLinkClick()">
+		<span id="bottom_link" ng-cloak ng-if="showBottomLink" style="display: block; text-align:center; font-family: 'Lora', serif; line-height: 1.5em; font-size: 24px; padding: 20px 15px; border-radius: 5px; box-shadow:0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); background: linear-gradient(to bottom, #40bbe1 -100%, #1559b5 100%); direction: ltr;">
+			<span style="display:block; font-size: 0.8em; color: rgba(255,255,255,0.85)">{{bottomLinkPreText}}</span>
+			<span style="display:block; font-size: 1em; color: white">{{bottomLinkText}}</span>
+		</span>
+	</a>
+
+	
+
+
+	<section ng-cloak ng-show="$root.showArticleContents" class="page_copyright" ng-init="mainImage = articleData.mainImage">
+		
+		This page is based on a <a ng-href="http://www.wikipedia.org" target="_blank" rel="nofollow">Wikipedia</a> article written by
+		<a href="{{::articleData.links.wikipediaHistory }}" target="_blank" rel="nofollow">contributors</a> (<a ng-href="{{::articleData.links.wikipediaRead }}" target="_blank" rel="nofollow">read</a>/<a href="{{::articleData.links.wikipediaEdit }}" target="_blank" rel="nofollow">edit</a>).<BR>
+		Text is available under the
+		<a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license,nofollow">CC BY-SA 4.0</a> license; additional terms may apply.<BR>
+		Images, videos and audio are available under their respective licenses.<BR>
+
+		<div ng-if="mainImage.wikipediaPageFullUrl">
+			<span ng-show="mainImage.info.license.url">Cover photo is available under <a href="{{::mainImage.info.license.url}}" target="_blank">{{::mainImage.info.license.name || 'Unknown'}}</a> license.</span>
+			<span ng-show="!mainImage.info.license.url">Cover photo is available under {{::mainImage.info.license.name || 'Unknown'}} license.</span>
+			Credit:
+			<span ng-bind-html="mainImage.info.license.artist"></span> (<a target="_blank" href="{{::mainImage.wikipediaPageFullUrl}}">see original file</a>).
+		</div>
+		
+		<div class="line"></div>
+	</section>
+
+	
+
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+	
+
+
+			<!--************ wikiwand_footer ************-->
+			<footer class="wikiwand_footer" ng-cloak ng-show="$root.showArticleContents || !articleData.pageIsArticle">
+
+
+				
+				<div ng-if="$root.activation.nextAction != ''">
+
+					<!-- touch devices footer share -->
+					<div ng-if="$root.touchDevice"  class="mobile_share">
+						<div class="footer_icon"></div>
+						<div class="h2">Enjoying Wikiwand?</div>
+						<div ng-cloak ng-if="!activation.extensionInstalled" class="h3">Give good old Wikipedia a great new look:</div>
+						
+
+<a href="javascript:void(0);" ng-cloak
+	ng-class="{active: btnHover}"
+	ng-mouseenter="$root.activationHover('enter')" ng-mouseleave="$root.activationHover('leave')"
+	ng-click="$root.reportClick('footer');$root.activationButtonClicked(''); $root.extensionPopup('click');" class="upgrade_button {{::$root.activation.nextAction}}" >
+	<span>{{::$root.activation.text}}</span><i></i>
+</a>
+
+					</div>
+
+					<!-- desktop upsale -->
+					<div ng-if="!$root.touchDevice" class="desktop_upsale">
+
+						<!-- desktop: rate -->
+						<div ng-if="$root.activation.extensionInstalled && $root.activation.nextAction == 'activation_rate'">
+							<div class="footer_icon"></div>
+							<div class="h2">Enjoying Wikiwand?</div>
+							
+
+<a href="javascript:void(0);" ng-cloak
+	ng-class="{active: btnHover}"
+	ng-mouseenter="$root.activationHover('enter')" ng-mouseleave="$root.activationHover('leave')"
+	ng-click="$root.reportClick('footer');$root.activationButtonClicked(''); $root.extensionPopup('click');" class="upgrade_button {{::$root.activation.nextAction}}" >
+	<span>{{::$root.activation.text}}</span><i></i>
+</a>
+
+							<div class="stars" ng-bind-html="activation.ratedText"></div>
+						</div>
+						<!-- desktop: share -->
+						<div ng-if="$root.activation.extensionInstalled && $root.activation.nextAction == 'activation_share'">
+							<div class="footer_invite_wrapper" class="hide_before_angular">
+								<div class="invite_box footer_invite_box active anim">
+									
+									<h4>Tell your friends about Wikiwand!</h4>
+
+<a style="background-color:#bb0000" target="_blank" ng-click="$root.pressedTellAFriendLink('gmail','footer')" href="http://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su=Have you seen Wikiwand%3F&body=Check out Wikiwand - it's an awesome new interface for Wikipedia:%0Ahttp://www.wikiwand.com/{{::$root.refString}}%0AGive it a try, you'll thank me later :)"><i style="background-position: 0 -96px"></i> Gmail</a>
+
+<a style="background-color:#3B5999" target="_blank" ng-click="$root.pressedTellAFriendLink('facebook','footer')" target="_blank" href="http://www.facebook.com/sharer.php?u=http://www.wikiwand.com/{{::$root.refString}}"><i style="background-position: -120px -96px"></i> Facebook</a>
+
+<a style="background-color:#0084b4" target="_blank" ng-click="$root.pressedTellAFriendLink('twitter','footer')" target="_blank" href="http://twitter.com/share?text=Wikiwand gives good old Wikipedia a great new look - check it out:&hashtags=wikipedia,ux,design&url=http://www.wikiwand.com/{{::$root.refString}}&related=wikiwand"><i style="background-position: -150px -96px"></i> Twitter</a>
+
+<a class="link" ng-click="$root.pressedTellAFriendLink('link','footer')" ng-class="{wide: wideLink}"  style="background-color:#615a5f" href="javascript:void(0);"><i style="background-position: -90px -97px"></i><input type="text" value="http://www.wikiwand.com/" ng-focus="wideLink = true" ng-blur="wideLink = false" onClick="this.setSelectionRange(0, this.value.length)"/> Link</a>
+
+
+	<br><br>
+
+
+								</div>
+							</div>
+						</div>
+						<!-- desktop: install -->
+						<div ng-if="!$root.activation.extensionInstalled && $root.activation.nextAction == 'activation_install'">
+							<div class="footer_icon"></div>
+							<div class="h2">Enjoying Wikiwand?</div>
+							<div class="h3">Give good old Wikipedia a great new look:</div>
+							
+
+<a href="javascript:void(0);" ng-cloak
+	ng-class="{active: btnHover}"
+	ng-mouseenter="$root.activationHover('enter')" ng-mouseleave="$root.activationHover('leave')"
+	ng-click="$root.reportClick('footer');$root.activationButtonClicked(''); $root.extensionPopup('click');" class="upgrade_button {{::$root.activation.nextAction}}" >
+	<span>{{::$root.activation.text}}</span><i></i>
+</a>
+
+						</div>
+
+					</div>
+				</div>
+				
+
+
+
+				<ul class="social_links" ng-show="(!activation.extensionInstalled || activation.nextAction != 'activation_share') && !$root.showContentRecommendations">
+					<li class="facebook"><a class="hover" href="https://www.facebook.com/wikiwandapp" target="_blank"></a></li>
+					<li class="twitter"><a class="hover" href="https://twitter.com/wikiwand" target="_blank"></a></li>
+					<li class="gplus"><a class="hover" href="https://plus.google.com/+Wikiwand" target="_blank"></a></li>
+					<li class="linkedin"><a class="hover" href="http://www.linkedin.com/company/wikiwand" target="_blank"></a></li>
+				</ul>
+
+
+				<ul class="footer_links">
+					<li><a href="/">Home</a></li>
+					<li><a href="/about">About Us</a></li>
+					<li><a href="/press">Press</a></li>
+					<li><a href="/sitemap">Site Map</a></li>
+					<li><a href="/terms">Terms Of Service</a></li>
+					<li><a href="/privacy">Privacy Policy</a></li>
+					<!--<li style="font-weight: 400"><a href="javascript:void(0);" ng-mouseenter="loadUserVoice()"  data-uv-trigger="contact">Send Feedback</a></li>-->
+				</ul>
+			</footer>
+			<!--************ wikiwand_footer ENDS ************-->
+
+
+
+		</div>
+		<!--**************************** content ENDS *****************************-->
+		
+
+
+		<!--************ gallery & lang  ************-->
+		
+
+		<!--************ TOC  ************-->
+		
+			
+
+<div ng-cloak id="toc_wrapper" ng-controller="TableOfContentsController" ng-swipe-left="$root.tocFold('swipeLeft')" ng-swipe-right="$root.tocFold('swipeRight')" ng-class="{active: $root.tocShow}" ng-show="$root.tocShow">
+
+	<div id="toc_swipe" ng-cloak ng-show="$root.tocShow" ng-swipe-left="$root.tocFold('swipeLeft')" ng-swipe-right="$root.tocFold('swipeRight')" ng-click="$root.tocFold()"></div>
+
+	<div id="toc_btn">
+		<span ng-cloak>Instructions per second</span><i id="content_icon" ng-click="tocFold(); $root.userClick(true, 'toolbar-toc-hide');"></i></div>
+	<aside id="wikiwand_toc" class="unselectable lang_en" ng-cloak>
+		
+		<ul class="toc_list">
+			
+			<li class="{special:line.special}"
+				ng-click="tocMobileFold()" id="toc_btn_overview">
+				<a href='#overview' ng-click='button.doClick($event)'>
+					Introduction
+				</a>
+				
+				<ol class="sub_toc_list">
+					
+				</ol>
+				
+			</li>
+
+			
+			<li class="{special:line.special}"
+				ng-click="tocMobileFold()" id="toc_btn_Computing">
+				<a href='#Computing' ng-click='button.doClick($event)'>
+					Computing
+				</a>
+				
+				<ol class="sub_toc_list">
+					
+					<li id="toc_btn_Instructions_per_cycle" class="">
+						<a href='#Instructions_per_cycle' ng-click='button.doClick($event)'>
+							Instructions per cycle
+						</a>
+					</li>
+					
+				</ol>
+				
+			</li>
+
+			
+			<li class="{special:line.special}"
+				ng-click="tocMobileFold()" id="toc_btn_Thousand_instructions_per_second_(TIPS/KIPS)">
+				<a href='#Thousand_instructions_per_second_(TIPS/KIPS)' ng-click='button.doClick($event)'>
+					Thousand instructions per second (TIPS/KIPS)
+				</a>
+				
+				<ol class="sub_toc_list">
+					
+				</ol>
+				
+			</li>
+
+			
+			<li class="{special:line.special}"
+				ng-click="tocMobileFold()" id="toc_btn_Millions_of_instructions_per_second_(MIPS)">
+				<a href='#Millions_of_instructions_per_second_(MIPS)' ng-click='button.doClick($event)'>
+					<span id=&quot;MIPS&quot;></span> Millions of instructions per second (MIPS)
+				</a>
+				
+				<ol class="sub_toc_list">
+					
+				</ol>
+				
+			</li>
+
+			
+			<li class="{special:line.special}"
+				ng-click="tocMobileFold()" id="toc_btn_Timeline_of_instructions_per_second">
+				<a href='#Timeline_of_instructions_per_second' ng-click='button.doClick($event)'>
+					Timeline of instructions per second
+				</a>
+				
+				<ol class="sub_toc_list">
+					
+				</ol>
+				
+			</li>
+
+			
+			<li class="{special:line.special}"
+				ng-click="tocMobileFold()" id="toc_btn_See_also">
+				<a href='#See_also' ng-click='button.doClick($event)'>
+					See also
+				</a>
+				
+				<ol class="sub_toc_list">
+					
+				</ol>
+				
+			</li>
+
+			
+			<li class="{special:line.special}"
+				ng-click="tocMobileFold()" id="toc_btn_References">
+				<a href='#References' ng-click='button.doClick($event)'>
+					References
+				</a>
+				
+				<ol class="sub_toc_list">
+					
+				</ol>
+				
+			</li>
+
+			
+		</ul>
+		
+	</aside>
+</div>
+
+		
+		
+
+
+
+
+<div ng-controller="BookmarkController">
+	<!-- gist -->
+	
+	<!-- bookmark -->
+	
+</div>
+
+<!--************ gallery ************-->
+<div id="gallery" ng-cloak ng-controller="GalleryController" ng-show="galleryActive"
+	 class="hide_before_angular" ng-class="{full: galleryFull}">
+	<div class="bg" ng-click="closeGallery()"></div>
+	<div id="gallery_bg">
+		<!--************ gallery image ************-->
+		<div ng-cloak id="gallery_img" class="unselectable" ng-class="{active: infoOpen}">
+
+			<div id="gallery_img_placeholder"  ng-mouseenter="hoveredImg = true"  ng-mouseleave="hoveredImg = false" class="loadThumb unselectable" ng-swipe-right="onPrevClick()" ng-swipe-left="onNextClick()">
+				<div id="img_loading" ng-if="!current.bucket.loaded" class="loaderAnim unselectable"></div>
+				<img ng-show="current.info.type == 'image'" class="gallery_main bucket unselectable" ng-src="{{::current.bucket.src}}" ng-class="{active:current.bucket.loaded}" alt=""/>
+
+				<div ng-show="current.info.type == 'video'" class="gallery_main bucket video unselectable" ng-class="{active:current.bucket.loaded}">
+					<div class="payload_container"></div>
+				</div>
+
+			</div>
+
+			<div class="gallery_arrow next unselectable" ng-show="current.index != items.length-1" ng-click="onNextClick()"><i></i></div>
+			<div class="gallery_arrow prev unselectable" ng-show="current.index != 0" ng-click="onPrevClick()"><i></i></div>
+
+			<div ng-cloak ng-mouseenter="hoveredImg = true" ng-mouseleave="hoveredImg = false" id="img_counter">
+				{{current.index+1}} of {{items.length}}
+
+				<a ng-show="current.info.type == 'image'" ng-class="{active: hoveredImg}" class="pin_btn tooltip_top" title="Pin it" href="http://www.pinterest.com/pin/create/button/?url={{articleData.links.selfRead}}&media={{current.bucket.src}}&description=From Wikiwand:%20{{current.titleTxt}}" target="_blank"></a>
+				<div class="report tooltip_top" ng-show="current.info.type == 'image'" ng-class="{active: hoveredImg}" title="Suggest as cover photo"
+					ng-click="$root.showCoverImageSuggestPopup=true;$root.showSuggestImageText1=true;$root.showSuggestImageText2=false;"></div>
+			</div>
+			<div id="img_title" ng-bind-html="current.title"></div>
+
+
+			<!--************ gallery thumbs ************-->
+			<div id="gallery_thumbs_con" class="unselectable">
+				<!--<div id="gallery_thumbs_pull" class="unselectable"></div>-->
+				<div id="gallery_thumbs_scroll" class="unselectable">
+					<ul id="gallery_thumbs" class="unselectable">
+						<li class="unselectable" ng-click="onThumbClick($event, item)" ng-class="{active:item.active, video:item.info.type == 'video'}" ng-repeat="item in items" ng-style="{'background-image': item.urlString}"></li>
+					</ul>
+				</div>
+			</div>
+
+
+			<!--************ gallery btns ************-->
+			<ul id="gallery_btn">
+				<li id="gallery_info_pull" ng-click="infoOpen = !infoOpen" ng-class="{active: infoOpen}"></li>
+				<li id="gallery_close" ng-click="closeGallery()"></li>
+				<li id="full_screen" ng-click="toggleFullScreen()" ng-class="{active:fullScreenActive, unactive:!fullScreenActive}"></li>
+			</ul>
+		</div>
+		<!--************ gallery info  ************-->
+		<div id="gallery_info"  ng-swipe-right="infoOpen = false" ng-show="infoOpen">
+			<div id="gallery_info_wrap">
+				<div ng-if="current.title" class="image_caption" ng-bind-html="current.title"></div>
+                <ul>
+					<li ng-show="current.info.description" class="unselectable img_desc"><i></i>
+						<div class="description_text" ng-bind-html="current.info.descriptionSafe"></div>
+					</li>
+
+					<li class="img_date" ng-show="current.info.dateOriginal"><i></i>Date: {{current.info.dateOriginal || 'Unknown'}}</li>
+					<li class="img_date" ng-show="!current.info.dateOriginal"><i></i>Date: {{(current.info.date | date:'mediumDate') || 'Unknown'}}</li>
+					<li ng-show="current.info.license.artist" class="with-child unselectable img_credit" ng-click="subInfoOpen1 = !subInfoOpen1"><i></i>Credit: <span ng-bind-html="current.info.license.artist"></span>
+						<ul ng-show="subInfoOpen1">
+							<li>Uploaded by: {{current.info.uploadUser}} on {{current.info.uploadDate | date:'mediumDate'}}</li>
+							<li><span ng-bind-html="current.info.license.credit"></span></li>
+						</ul>
+					</li>
+					<li ng-show="current.info.license.url"  class="img_license"><i></i>License: <a href="{{current.info.license.url}}" target="_blank">{{current.info.license.usageTerms || current.info.license.name || current.info.license.detected || 'Unknown'}}</a></li>
+					<li ng-show="!current.info.license.url" class="img_license"><i></i>License: {{current.info.license.usageTerms || current.info.license.name || current.info.license.detected || 'Unknown'}}</li>
+					<li class="img_original"><i></i><a target="_blank" href="{{current.wikipediaPageFullUrl}}">View file on Wikipedia</a></li>
+				</ul>
+			</div>
+		</div>
+
+
+	</div>
+
+
+	<div ng-show="$root.showCoverImageSuggestPopup" class="report_popup_wrapp suggest">
+		<div class="bg" ng-click="$root.showCoverImageSuggestPopup = false"></div>
+		<div class="report_popup">
+
+			<div ng-show="$root.showSuggestImageText1">
+				<h3>Suggest as cover photo</h3>
+				<p>Would you like to suggest this photo as the cover photo for this article?</p>
+				<a href="" target="_blank" ng-click="$root.suggestImage($event,'recommended',current.original.url);" ></i>Yes, this would make a good choice</a>
+				<a href="" target="_blank" ng-click="$root.showCoverImageSuggestPopup=false" ></i>No, never mind</a>
+			</div>
+
+			<div ng-show="$root.showSuggestImageText2">
+				<h3>Thank you for helping!</h3>
+				<br>
+				<p>Your input will affect cover photo selection, along with input from other users.<br>
+			</div>
+			<div class="ex" ng-click="$root.showCoverImageSuggestPopup = false"></div>
+		</div>
+	</div>
+
+
+</div>
+<!--************ gallery ENDS ************-->
+
+
+<!-- fixed_btns at the bottom -->
+
+<div id="fixed_btns">
+
+	<!-- audio_player  -->
+	<div id="audio_player" class="unselectable"><i class="unselectable"></i>
+
+		<div class="unselectable"></div>
+		<span class="listen hide">Listen to this article</span></div>
+
+
+	
+
+	<div class="dialog_wrapper follow_dialog hide_before_angular" ng-cloak ng-if="$root.showVidReport">
+		<div class="bg" ng-click="$root.showVidReport = false"></div>
+		<div class="dialog_box  round active" style="height: auto;padding: 20px" ng-class="{active: $root.showVidReport}">
+			<p>Thanks for reporting this video!</p>
+		</div>
+	</div>
+
+
+	
+
+
+</div>
+
+
+
+
+<script>
+	if (!precache_from_extension) {
+		if (typeof (analytics) != 'undefined') {
+			analytics.gaVirtualPageView('virtualpageview/impression-article-page');
+		}
+	} else {
+		if (typeof (analytics) != 'undefined') {
+			analytics.gaVirtualPageView('virtualpageview/iframe-precache-article');
+		}
+	}
+</script>
+
+
+
+
+
+<!--*************************** search  *************************-->
+
+
+
+<!--*************************** search  *************************-->
+<div ng-cloak id="wikiwand_search" ng-init="initSearch()" ng-controller="ArticleSearchControllerRev2" ng-show="$root.showSearch">
+	<div class="bg darkBlack" ng-click="$root.openSearch('close')"></div>
+
+
+	<div id="search_list" ng-class="{on: search.query.length}">
+
+		<input id="queryinput" autocomplete="off" class="toolbar-search" type="text" ng-class="{selectedResult: noSelection, loading:waiting}"
+			ng-model="search.query" ng-keyup="testKeyboard($event)" placeholder="Search"/>
+
+		<div id="articleSearch"  ng-show="search.query.length">
+
+			<ul class="results-container"  ng-show="search.results.length">
+				<li class='searchResult'  ng-repeat="result in search.results" ng-click='resultClicked($event,"{{result.linkEncoded}}");'
+					desc-attr="{{result.desc}}" id='result_{{$index}}'  ng-class="{selectedResult:result.selected, rtl: result.rtl}">
+					<span class="thumbicon" ng-style="{'background-image' :result.backgroundImageSring}"></span>
+					<span ng-if="result.firstInlang" class='langtag'><i>{{result.lang}}</i></span>
+					<span class='value'>{{result.T}}</span>
+					<div class='suggestion-type-icon {{result.c}}'></div>
+				</li>
+			</ul>
+
+			<div id="no_results" ng-if="noResults && search.query && !waiting">
+				No matching articles found
+			</div>
+			<a ng-show="search.query && !waiting" class='searchResult containing' href="/en/{{search.query}}?fullSearch=true"
+				ng-class="{selectedResult:fullSearch}">
+
+				<span class='value'>Search for articles containing: <i>{{search.query}}</i></span>
+			</a>
+		</div>
+		<img src="/img/search_ctrl.svg"  ng-if="!$root.touchDevices" id="search-hint" style="display: block; margin: 20px auto"/>
+
+	</div>
+
+
+
+
+	<div id="search_description">
+
+	</div>
+
+</div>
+<!--*************************** search ENDS *************************-->
+
+<!--*************************** search ENDS *************************-->
+
+<popups ng-if="$root.loadVariousPopups" ng-include="'/api/various_popups'"></popups>
+<!--************ follow dialog ************-->
+
+
+	
+
+
+	
+
+
+	</div>
+<div id="error_message" style="display:none;width:500px;padding: 20px;margin: 30vh auto;font-size:16px;text-align:center;">
+<h1>Oh no, there's been an error</h1>
+Please help us solve this error by emailing us at <a href="http://mail.google.com/mail/?view=cm&fs=1&tf=1&to=support@wikiwand.com&su=Encountered an error on Wikiwand" target='_blank'>support@wikiwand.com</a><br>
+Let us know what you've done that caused this error, what browser you're using, and whether you have any special extensions/add-ons installed.<br>
+Thank you!
+</div>
+</body>
+
+
+
+</html>
+
+
+
+<script>var totalServingTime=0;</script>^�I�R�      \��\��j@5�\���   3    :http://www.wikiwand.com/en/Instructions_per_second necko:classified 1 strongly-framed 1 request-method GET response-head HTTP/1.1 200 OK
+Cache-Control: public, max-age=120
+Content-Type: text/html
+Date: Mon, 01 Apr 2019 06:09:19 GMT
+Server: nginx/1.15.10
+X-App-Version: 1.0.0
+X-Device: desktop
+X-Powered-By: Express
+X-Upstream: nodejs
+Content-Length: 66902
+X-Cache: MISS from gateway
+X-Cache-Lookup: MISS from gateway:3128
+Via: 1.1 gateway (squid/3.5.23)
+ original-response-headers Cache-Control: public, max-age=120
+Content-Type: text/html
+Date: Mon, 01 Apr 2019 06:09:19 GMT
+Server: nginx/1.15.10
+Set-Cookie: i18next=en; path=/; expires=Wed, 01 Apr 2020 06:09:19 GMT
+Set-Cookie: wikiwand.activation.article_promo=23; Max-Age=2592000; Path=/; Expires=Wed, 01 May 2019 06:09:19 GMT
+Set-Cookie: wikiwand.activation.article_promo_name=search_lightbox; Max-Age=2592000; Path=/; Expires=Wed, 01 May 2019 06:09:19 GMT
+X-App-Version: 1.0.0
+X-Device: desktop
+X-Powered-By: Express
+X-Upstream: nodejs
+Content-Length: 66902
+X-Cache: MISS from gateway
+X-Cache-Lookup: MISS from gateway:3128
+Via: 1.1 gateway (squid/3.5.23)
+Connection: keep-alive
+ uncompressed-len 0 predictor::resource-count 46 predictor::http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic|Lora:400,700,400italic,700italic|Merriweather:400italic,400,300italic,300,700,700italic|Open+Sans:300italic,400italic,700italic,700,300,400&subset=latin,cyrillic-ext,greek-ext,greek,devanagari,vietnamese,latin-ext,cyrillic 1,1,1554098959,4096 predictor::http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js 1,1,1554098959,4096 predictor::http://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js 1,1,1554098959,4096 predictor::http://assets.wikiwand.com/css/wikiwand.early.min.fd1a9197.css 1,1,1554098959,4096 predictor::http://assets.wikiwand.com/js/wikiwand.early.min.d470c7d7.js 1,1,1554098959,4096 predictor::http://www.wikiwand.com/img/logo_new.svg 1,1,1554098959,4097 predictor::http://www.wikiwand.com/img/w.svg 1,1,1554098959,4097 predictor::http://ecdn.firstimpression.io/fi_client.js 1,1,1554098959,4096 net-response-time-onstart 324 net-response-time-onstop 596 predictor::http://www.wikiwand.com/img/search_ctrl.svg 1,1,1554098959,4097 predictor::http://www.google-analytics.com/analytics.js 1,1,1554098959,4096 predictor::http://assets.wikiwand.com/css/img/sprite.609db4c4.svg 1,1,1554098959,4096 predictor::http://connect.facebook.net/en_US/sdk.js 1,1,1554098959,4096 predictor::http://assets.wikiwand.com/css/img/fold_down.e838f9c6.svg 1,1,1554098959,4096 predictor::https://fonts.gstatic.com/s/opensans/v16/mem5YaGs126MiZpBA-UN_r8OUuhp.woff2 1,1,1554098959,4096 predictor::https://fonts.gstatic.com/s/lora/v13/0QIvMX1D_JOuMwr7Iw.woff2 1,1,1554098959,4096 predictor::https://fonts.gstatic.com/s/opensans/v16/mem8YaGs126MiZpBA-UFVZ0b.woff2 1,1,1554098959,4096 predictor::https://fonts.gstatic.com/s/lora/v13/0QIhMX1D_JOuMw_LIftL.woff2 1,1,1554098959,4096 predictor::http://assets.wikiwand.com/css/img/gallery_loader.36819481.gif 1,1,1554098959,4096 predictor::http://cdn.firstimpression.io/delivery/spc_fi.php?id=7350&url=%2Fen%2FInstructions_per_second&charset=UTF-8&wrapto=firstSpcFetch&ch=9&referer=https://www.google.com/&_firid=48188755&fiodpe= 1,1,1554098959,4096 predictor::https://wikimedia.org/api/rest_v1/media/math/render/svg/720710a1e11cfb9dfd87f4e11df7906f6c27ec3c 1,1,1554098959,4096 predictor::http://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Internet_map_1024.jpg/56px-Internet_map_1024.jpg 1,1,1554098959,4096 predictor::http://assets.wikiwand.com/css/img/app_icon.67d13f24.svg 1,1,1554098959,4096 predictor::http://assets.wikiwand.com/css/img/wand.8ec49974.png 1,1,1554098959,4096 predictor::https://fonts.gstatic.com/s/lora/v13/0QIgMX1D_JOuO7HeNtxumg.woff2 1,1,1554098959,4096 predictor::https://fonts.gstatic.com/s/lora/v13/0QIiMX1D_JOuMw_Dmt5emNGr.woff2 1,1,1554098959,4096 predictor::http://www.google-analytics.com/collect?v=1&_v=j73&a=210374880&t=pageview&_s=1&dl=http%3A%2F%2Fwww.wikiwand.com%2Fen%2FInstructions_per_second&dr=https%3A%2F%2Fwww.google.com%2F&ul=en-us&de=UTF-8&dt=Instructions%20per%20second%20-%20Wikiwand&sd=24-bit&sr=1280x1024&vp=1268x841&je=0&_u=IGDAgAAB~&jid=593107489&gjid=1722755827&cid=969466222.1554098961&tid=UA-49207730-1&_gid=1656506962.1554098961&z=729888358 1,1,1554098959,4096 predictor::https://stats.g.doubleclick.net/r/collect?t=dc&aip=1&_r=3&v=1&_v=j73&tid=UA-49207730-1&cid=969466222.1554098961&jid=593107489&gjid=1722755827&_gid=1656506962.1554098961&_u=IGDAgAAB~&z=1573898871 1,1,1554098959,4096 predictor::http://www.google-analytics.com/r/collect?v=1&_v=j73&a=210374880&t=pageview&_s=1&dl=http%3A%2F%2Fwww.wikiwand.com%2Fen%2FInstructions_per_second&dr=https%3A%2F%2Fwww.google.com%2F&dp=virtualpageview%2Fimpression-article-page&ul=en-us&de=UTF-8&dt=Instructions%20per%20second%20-%20Wikiwand&sd=24-bit&sr=1280x1024&vp=1268x841&je=0&_u=IGDAAAAB~&jid=2024687532&gjid=1464708046&cid=969466222.1554098961&tid=UA-49207730-5&_gid=1656506962.1554098961&_r=1&z=34191313 1,1,1554098959,4096 predictor::http://www.google-analytics.com/collect?v=1&_v=j73&a=210374880&t=pageview&_s=2&dl=http%3A%2F%2Fwww.wikiwand.com%2Fen%2FInstructions_per_second&dr=https%3A%2F%2Fwww.google.com%2F&dp=%2Fvirtualpageview%2Flanding%2Freferrer%2Fimpression%2Fsearch&ul=en-us&de=UTF-8&dt=Instructions%20per%20second%20-%20Wikiwand&sd=24-bit&sr=1280x1024&vp=1268x841&je=0&_u=IGDAAAAB~&jid=&gjid=&cid=969466222.1554098961&tid=UA-49207730-5&_gid=1656506962.1554098961&z=261702807 1,1,1554098959,4096 predictor::http://www.google-analytics.com/collect?v=1&_v=j73&a=210374880&t=pageview&_s=3&dl=http%3A%2F%2Fwww.wikiwand.com%2Fen%2FInstructions_per_second&dr=https%3A%2F%2Fwww.google.com%2F&dp=%2Fvirtualpageview%2Flanding%2Fpage%2Fimpression%2Farticle_page&ul=en-us&de=UTF-8&dt=Instructions%20per%20second%20-%20Wikiwand&sd=24-bit&sr=1280x1024&vp=1268x841&je=0&_u=IGDAAAAB~&jid=&gjid=&cid=969466222.1554098961&tid=UA-49207730-5&_gid=1656506962.1554098961&z=1808251451 1,1,1554098959,4096 predictor::http://www.google-analytics.com/collect?v=1&_v=j73&a=210374880&t=pageview&_s=4&dl=http%3A%2F%2Fwww.wikiwand.com%2Fen%2FInstructions_per_second&dr=https%3A%2F%2Fwww.google.com%2F&dp=virtualpageview%2Fpreferences%2FfontStyle%2Fundefined&ul=en-us&de=UTF-8&dt=Instructions%20per%20second%20-%20Wikiwand&sd=24-bit&sr=1280x1024&vp=1268x841&je=0&_u=IGDAAAAB~&jid=&gjid=&cid=969466222.1554098961&tid=UA-49207730-5&_gid=1656506962.1554098961&z=892641211 1,1,1554098959,4096 predictor::http://www.google-analytics.com/collect?v=1&_v=j73&a=210374880&t=pageview&_s=5&dl=http%3A%2F%2Fwww.wikiwand.com%2Fen%2FInstructions_per_second&dr=https%3A%2F%2Fwww.google.com%2F&dp=%2Fvirtualpageview%2Farticle-promo%2Fimpression%2Fpromo_search_lightbox&ul=en-us&de=UTF-8&dt=Instructions%20per%20second%20-%20Wikiwand&sd=24-bit&sr=1280x1024&vp=1268x841&je=0&_u=IGDAAAAB~&jid=&gjid=&cid=969466222.1554098961&tid=UA-49207730-5&_gid=1656506962.1554098961&z=1079881256 1,1,1554098959,4096 predictor::http://www.google-analytics.com/collect?v=1&_v=j73&a=210374880&t=pageview&_s=6&dl=http%3A%2F%2Fwww.wikiwand.com%2Fen%2FInstructions_per_second&dr=https%3A%2F%2Fwww.google.com%2F&dp=virtualpageview%2Flanding%2Farticle-page&ul=en-us&de=UTF-8&dt=Instructions%20per%20second%20-%20Wikiwand&sd=24-bit&sr=1280x1024&vp=1268x841&je=0&_u=IGDAAAAB~&jid=&gjid=&cid=969466222.1554098961&tid=UA-49207730-5&_gid=1656506962.1554098961&z=593118803 1,1,1554098959,4096 predictor::http://www.google-analytics.com/collect?v=1&_v=j73&a=210374880&t=pageview&_s=7&dl=http%3A%2F%2Fwww.wikiwand.com%2Fen%2FInstructions_per_second&dr=https%3A%2F%2Fwww.google.com%2F&dp=virtualpageview%2Finstall-impression%2FGet-Wikiwand&ul=en-us&de=UTF-8&dt=Instructions%20per%20second%20-%20Wikiwand&sd=24-bit&sr=1280x1024&vp=1268x841&je=0&_u=IGDAAAAB~&jid=&gjid=&cid=969466222.1554098961&tid=UA-49207730-5&_gid=1656506962.1554098961&z=1972642118 1,1,1554098959,4096 predictor::https://connect.facebook.net/en_US/sdk.js?hash=a83d4db7084ca8a22c678177b6fd7f6b 1,1,1554098959,4096 predictor::http://assets.wikiwand.com/css/img/feedback_loader.93a54cf2.gif 1,1,1554098959,4096 predictor::http://assets.wikiwand.com/css/img/logo.c9506f0f.png 1,1,1554098959,4096 predictor::https://en.wikipedia.org/w/api.php?action=query&prop=revisions&format=json&rvprop=ids%7Cflags%7Ctimestamp&rvlimit=1&titles=Instructions_per_second&redirects=1&continue=&callback=angular.callbacks._0 1,1,1554098959,4096 predictor::http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js 1,1,1554098959,4096 predictor::https://adservice.google.ro/adsid/integrator.js?domain=www.wikiwand.com 1,1,1554098959,4096 predictor::https://adservice.google.com/adsid/integrator.js?domain=www.wikiwand.com 1,1,1554098959,4096 predictor::http://pagead2.googlesyndication.com/pagead/js/r20190327/r20190131/show_ads_impl.js 1,1,1554098959,4096 predictor::https://pagead2.googlesyndication.com/pub-config/r20160913/ca-pub-3622156405313063.js 1,1,1554098959,4096 predictor::https://www.googletagservices.com/activeview/js/current/osd.js?cb=%2Fr20100101 1,1,1554098959,4096 predictor::http://assets.wikiwand.com/css/img/bg.50a4257e.svg 1,1,1554098959,4096 predictor::https://en.wikipedia.org/w/api.php?action=query&prop=revisions&format=json&rvprop=ids%7Cflags%7Ctimestamp&rvlimit=1&titles=Instructions_per_second&redirects=1&continue=&callback=angular.callbacks._1 1,1,1554098959,4096  V

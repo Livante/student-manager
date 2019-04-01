@@ -1,0 +1,14 @@
+<application>
+  <component name="DimensionService">
+    <location key="FileChooserDialogImpl.0.0.1280.1024" x="207" y="420" />
+    <location key="WELCOME_SCREEN.0.0.1280.1024" x="450" y="729" />
+    <location key="com.intellij.ide.util.TipDialog.0.0.1280.1024" x="311" y="330" />
+    <location key="GitCloneDialog.0.0.1280.1024" x="375" y="361" />
+    <location key="new project wizard.0.0.1280.1024" x="71" y="142" />
+    <location key="#com.intellij.fileTypes.FileTypeChooser.0.0.1280.1024" x="355" y="310" />
+    <size key="FileChooserDialogImpl.0.0.1280.1024" width="430" height="486" />
+    <size key="GitCloneDialog.0.0.1280.1024" width="534" height="156" />
+    <size key="new project wizard.0.0.1280.1024" width="732" height="775" />
+    <size key="#com.intellij.fileTypes.FileTypeChooser.0.0.1280.1024" width="565" height="391" />
+  </component>
+</application>

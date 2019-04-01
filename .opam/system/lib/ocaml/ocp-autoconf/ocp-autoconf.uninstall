@@ -1,0 +1,8 @@
+OCP 1
+TYP program
+VER 1.99.20-beta
+REG /home/student/.opam/system/lib/META.ocp-autoconf
+REG /home/student/.opam/system/bin/ocp-autoconf
+REG /home/student/.opam/system/bin/ocp-autoconf.byte
+REG /home/student/.opam/system/lib/ocaml/ocp-autoconf/ocp-autoconf.uninstall
+DIR /home/student/.opam/system/lib/ocaml/ocp-autoconf

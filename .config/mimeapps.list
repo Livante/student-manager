@@ -1,0 +1,7 @@
+[Added Associations]
+text/x-java=code.desktop;org.kde.kate.desktop;vim.desktop;
+application/zip=xarchiver.desktop;code-url-handler.desktop;code.desktop;
+application/x-shellscript=vim.desktop;
+application/x-ms-dos-executable=panel-desktop-handler.desktop;
+text/plain=org.gnome.gedit.desktop;code.desktop;org.kde.kate.desktop;vim.desktop;
+text/x-csrc=vim.desktop;

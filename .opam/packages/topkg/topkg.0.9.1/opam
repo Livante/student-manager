@@ -1,0 +1,18 @@
+opam-version: "1.2"
+maintainer: "Daniel Bünzli <daniel.buenzl i@erratique.ch>"
+authors: "Daniel Bünzli <daniel.buenzl i@erratique.ch>"
+homepage: "http://erratique.ch/software/topkg"
+bug-reports: "https://github.com/dbuenzli/topkg/issues"
+license: "ISC"
+doc: "http://erratique.ch/software/topkg/doc"
+tags: ["packaging" "ocamlbuild" "org:erratique"]
+dev-repo: "http://erratique.ch/repos/topkg.git"
+build: [
+  "ocaml" "pkg/pkg.ml" "build" "--pkg-name" name "--dev-pkg" "%{pinned}%"
+]
+depends: [
+  "ocamlfind" {build & >= "1.6.1"}
+  "ocamlbuild"
+  "result"
+]
+available: [ocaml-version >= "4.01.0"]

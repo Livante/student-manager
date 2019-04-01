@@ -1,0 +1,13 @@
+OCP 1
+TYP library
+VER 1.99.20-beta
+REG /home/student/.opam/system/lib/META.ocplib-debug
+REG /home/student/.opam/system/lib/ocaml/ocplib-debug/ocpDebug.cmi
+REG /home/student/.opam/system/lib/ocaml/ocplib-debug/ocpDebug.cmx
+REG /home/student/.opam/system/lib/ocaml/ocplib-debug/ocpDebug.cmi
+REG /home/student/.opam/system/lib/ocaml/ocplib-debug/ocplib-debug.cmxs
+REG /home/student/.opam/system/lib/ocaml/ocplib-debug/ocplib-debug.a
+REG /home/student/.opam/system/lib/ocaml/ocplib-debug/ocplib-debug.cmxa
+REG /home/student/.opam/system/lib/ocaml/ocplib-debug/ocplib-debug.cma
+REG /home/student/.opam/system/lib/ocaml/ocplib-debug/ocplib-debug.uninstall
+DIR /home/student/.opam/system/lib/ocaml/ocplib-debug

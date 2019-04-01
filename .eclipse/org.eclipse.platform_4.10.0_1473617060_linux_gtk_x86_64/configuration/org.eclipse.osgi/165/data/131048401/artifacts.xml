@@ -1,0 +1,2970 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?artifactRepository version='1.1.0'?>
+<repository name='/opt/eclipse/.eclipseextension' type='org.eclipse.equinox.p2.artifact.repository.simpleRepository' version='1.0.0'>
+  <properties size='3'>
+    <property name='p2.timestamp' value='1551099481744'/>
+    <property name='org.eclipse.update.site.policy' value='USER-EXCLUDE'/>
+    <property name='org.eclipse.update.site.list' value=''/>
+  </properties>
+  <mappings size='3'>
+    <rule filter='(&amp; (classifier=osgi.bundle))' output='${repoUrl}/plugins/${id}_${version}.jar'/>
+    <rule filter='(&amp; (classifier=binary))' output='${repoUrl}/binary/${id}_${version}'/>
+    <rule filter='(&amp; (classifier=org.eclipse.update.feature))' output='${repoUrl}/features/${id}_${version}.jar'/>
+  </mappings>
+  <artifacts size='296'>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tm.terminal.connector.local' version='4.5.1.201811011621'>
+      <properties size='2'>
+        <property name='artifact.size' value='28288'/>
+        <property name='download.size' value='28288'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tm.terminal.connector.local_4.5.1.201811011621.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tm.terminal.connector.local_4.5.1.201811011621.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.autotools.core' version='2.0.2.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='127601'/>
+        <property name='download.size' value='127601'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.autotools.core_2.0.2.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.autotools.core_2.0.2.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.changelog.doc' version='2.7.1.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='737689'/>
+        <property name='download.size' value='737689'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.changelog.doc_2.7.1.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.changelog.doc_2.7.1.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.ui' version='6.4.0.201811241855'>
+      <properties size='2'>
+        <property name='artifact.size' value='6379002'/>
+        <property name='download.size' value='6379002'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.ui_6.4.0.201811241855.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.ui_6.4.0.201811241855.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.analysis.lami.core' version='1.0.5.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='117305'/>
+        <property name='download.size' value='117305'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.analysis.lami.core_1.0.5.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.analysis.lami.core_1.0.5.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.debug.ui' version='8.3.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='1107189'/>
+        <property name='download.size' value='1107189'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.debug.ui_8.3.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.debug.ui_8.3.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.remote.console' version='3.0.0.201803121903'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.remote.console_3.0.0.201803121903/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.remote.console_3.0.0.201803121903'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.cdt.debug.ui.memory' version='9.6.0.201811241055'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.cdt.debug.ui.memory_9.6.0.201811241055/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.cdt.debug.ui.memory_9.6.0.201811241055'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.rpm.core' version='3.1.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='47581'/>
+        <property name='download.size' value='47581'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.rpm.core_3.1.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.rpm.core_3.1.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.analysis.graph.ui' version='1.0.7.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='31498'/>
+        <property name='download.size' value='31498'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.analysis.graph.ui_1.0.7.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.analysis.graph.ui_1.0.7.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.launch' version='9.2.1.201811291831'>
+      <properties size='2'>
+        <property name='artifact.size' value='246823'/>
+        <property name='download.size' value='246823'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.launch_9.2.1.201811291831.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.launch_9.2.1.201811291831.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.statesystem.core' version='4.2.0.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='137779'/>
+        <property name='download.size' value='137779'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.statesystem.core_4.2.0.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.statesystem.core_4.2.0.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.analysis.counters.core' version='2.0.1.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='30841'/>
+        <property name='download.size' value='30841'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.analysis.counters.core_2.0.1.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.analysis.counters.core_2.0.1.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.managedbuilder.core' version='8.6.1.201812040412'>
+      <properties size='2'>
+        <property name='artifact.size' value='1375853'/>
+        <property name='download.size' value='1375853'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.managedbuilder.core_8.6.1.201812040412.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.managedbuilder.core_8.6.1.201812040412.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.lttng2.control.core' version='1.2.1.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='119542'/>
+        <property name='download.size' value='119542'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.lttng2.control.core_1.2.1.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.lttng2.control.core_1.2.1.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='com.fasterxml.jackson.jaxrs.jackson-jaxrs-json-provider' version='2.9.2.v20180207-1730'>
+      <properties size='2'>
+        <property name='artifact.size' value='28389'/>
+        <property name='download.size' value='28389'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/com.fasterxml.jackson.jaxrs.jackson-jaxrs-json-provider_2.9.2.v20180207-1730.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/com.fasterxml.jackson.jaxrs.jackson-jaxrs-json-provider_2.9.2.v20180207-1730.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.linuxtools.gcov' version='7.1.0.201812121718'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.linuxtools.gcov_7.1.0.201812121718/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.linuxtools.gcov_7.1.0.201812121718'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.tracecompass.lttng2.control' version='4.2.0.201812120704'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.tracecompass.lttng2.control_4.2.0.201812120704/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.tracecompass.lttng2.control_4.2.0.201812120704'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.remote.ui' version='2.1.0.201803121903'>
+      <properties size='2'>
+        <property name='artifact.size' value='158902'/>
+        <property name='download.size' value='158902'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.remote.ui_2.1.0.201803121903.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.remote.ui_2.1.0.201803121903.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='com.github.jnr.jffi' version='1.2.15.v20180207-1730'>
+      <properties size='2'>
+        <property name='artifact.size' value='173685'/>
+        <property name='download.size' value='173685'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/com.github.jnr.jffi_1.2.15.v20180207-1730.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/com.github.jnr.jffi_1.2.15.v20180207-1730.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.epp.package.cpp' version='4.10.0.20181214-0600'>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.epp.package.cpp_4.10.0.20181214-0600/'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.epp.package.cpp_4.10.0.20181214-0600'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.cdt.libhover.library.docs' version='1.0.2.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='21441'/>
+        <property name='download.size' value='21441'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.cdt.libhover.library.docs_1.0.2.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.cdt.libhover.library.docs_1.0.2.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.debug.application.doc' version='1.1.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='6899443'/>
+        <property name='download.size' value='6899443'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.debug.application.doc_1.1.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.debug.application.doc_1.1.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.joni' version='2.1.11.v20170306-1742'>
+      <properties size='2'>
+        <property name='artifact.size' value='214690'/>
+        <property name='download.size' value='214690'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.joni_2.1.11.v20170306-1742.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.joni_2.1.11.v20170306-1742.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.glassfish.hk2.api' version='2.5.0.v20161103-0227'>
+      <properties size='2'>
+        <property name='artifact.size' value='206567'/>
+        <property name='download.size' value='206567'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.glassfish.hk2.api_2.5.0.v20161103-0227.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.glassfish.hk2.api_2.5.0.v20161103-0227.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.cdt.launch.serial.feature' version='9.6.0.201811241055'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.cdt.launch.serial.feature_9.6.0.201811241055/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.cdt.launch.serial.feature_9.6.0.201811241055'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.debug.ui.memory.memorybrowser' version='1.3.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='69467'/>
+        <property name='download.size' value='69467'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.debug.ui.memory.memorybrowser_1.3.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.debug.ui.memory.memorybrowser_1.3.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.dataviewers' version='6.1.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='91951'/>
+        <property name='download.size' value='91951'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.dataviewers_6.1.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.dataviewers_6.1.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.rpm.ui.editor.doc' version='1.0.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='1919910'/>
+        <property name='download.size' value='1919910'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.rpm.ui.editor.doc_1.0.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.rpm.ui.editor.doc_1.0.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.analysis.counters.ui' version='0.0.4.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='24556'/>
+        <property name='download.size' value='24556'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.analysis.counters.ui_0.0.4.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.analysis.counters.ui_0.0.4.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.analysis.graph.core' version='2.1.1.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='73478'/>
+        <property name='download.size' value='73478'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.analysis.graph.core_2.1.1.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.analysis.graph.core_2.1.1.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.arduino.core' version='2.1.1.201812061530'>
+      <properties size='2'>
+        <property name='artifact.size' value='96608'/>
+        <property name='download.size' value='96608'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.arduino.core_2.1.1.201812061530.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.arduino.core_2.1.1.201812061530.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.systemtap.graphing.core' version='2.1.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='106971'/>
+        <property name='download.size' value='106971'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.systemtap.graphing.core_2.1.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.systemtap.graphing.core_2.1.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.linuxtools.profiling' version='7.1.0.201812121718'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.linuxtools.profiling_7.1.0.201812121718/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.linuxtools.profiling_7.1.0.201812121718'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.man.core' version='1.5.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='28664'/>
+        <property name='download.size' value='28664'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.man.core_1.5.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.man.core_1.5.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.debug.ui.memory.floatingpoint' version='1.0.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='148573'/>
+        <property name='download.size' value='148573'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.debug.ui.memory.floatingpoint_1.0.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.debug.ui.memory.floatingpoint_1.0.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.debug.ui.memory.search' version='1.3.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='66528'/>
+        <property name='download.size' value='66528'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.debug.ui.memory.search_1.3.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.debug.ui.memory.search_1.3.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.launchbar.remote.core' version='1.0.2.201811071421'>
+      <properties size='2'>
+        <property name='artifact.size' value='15792'/>
+        <property name='download.size' value='15792'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.launchbar.remote.core_1.0.2.201811071421.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.launchbar.remote.core_1.0.2.201811071421.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.analysis.timing.ui' version='3.1.0.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='127761'/>
+        <property name='download.size' value='127761'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.analysis.timing.ui_3.1.0.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.analysis.timing.ui_3.1.0.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.glassfish.jersey.ext.entityfiltering' version='2.22.1.v20161103-0227'>
+      <properties size='2'>
+        <property name='artifact.size' value='94606'/>
+        <property name='download.size' value='94606'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.glassfish.jersey.ext.entityfiltering_2.22.1.v20161103-0227.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.glassfish.jersey.ext.entityfiltering_2.22.1.v20161103-0227.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.glassfish.hk2.utils' version='2.5.0.v20160210-1508'>
+      <properties size='2'>
+        <property name='artifact.size' value='138684'/>
+        <property name='download.size' value='138684'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.glassfish.hk2.utils_2.5.0.v20160210-1508.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.glassfish.hk2.utils_2.5.0.v20160210-1508.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tm.terminal.connector.process' version='4.5.1.201811011621'>
+      <properties size='2'>
+        <property name='artifact.size' value='31779'/>
+        <property name='download.size' value='31779'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tm.terminal.connector.process_4.5.1.201811011621.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tm.terminal.connector.process_4.5.1.201811011621.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.linuxtools.rpm' version='7.1.0.201812121718'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.linuxtools.rpm_7.1.0.201812121718/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.linuxtools.rpm_7.1.0.201812121718'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.oprofile.ui' version='2.2.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='59123'/>
+        <property name='download.size' value='59123'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.oprofile.ui_2.2.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.oprofile.ui_2.2.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.debug.ui.memory.transport' version='2.1.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='126471'/>
+        <property name='download.size' value='126471'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.debug.ui.memory.transport_2.1.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.debug.ui.memory.transport_2.1.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.glassfish.jersey.apache.connector' version='2.22.1.v20161103-1916'>
+      <properties size='2'>
+        <property name='artifact.size' value='44912'/>
+        <property name='download.size' value='44912'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.glassfish.jersey.apache.connector_2.22.1.v20161103-1916.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.glassfish.jersey.apache.connector_2.22.1.v20161103-1916.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.tmf.remote.core' version='2.0.2.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='38787'/>
+        <property name='download.size' value='38787'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.tmf.remote.core_2.0.2.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.tmf.remote.core_2.0.2.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='javax.ws.rs' version='2.0.1.v201504171603'>
+      <properties size='2'>
+        <property name='artifact.size' value='156366'/>
+        <property name='download.size' value='156366'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/javax.ws.rs_2.0.1.v201504171603.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/javax.ws.rs_2.0.1.v201504171603.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.tmf.filter.parser' version='1.0.2.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='33903'/>
+        <property name='download.size' value='33903'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.tmf.filter.parser_1.0.2.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.tmf.filter.parser_1.0.2.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.cdt.launch.remote' version='9.6.0.201811241055'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.cdt.launch.remote_9.6.0.201811241055/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.cdt.launch.remote_9.6.0.201811241055'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.valgrind.ui.editor' version='1.0.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='47356'/>
+        <property name='download.size' value='47356'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.valgrind.ui.editor_1.0.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.valgrind.ui.editor_1.0.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.cdt.gnu.build' version='9.6.0.201811241055'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.cdt.gnu.build_9.6.0.201811241055/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.cdt.gnu.build_9.6.0.201811241055'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.cdt.autotools' version='9.6.0.201812111211'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.cdt.autotools_9.6.0.201812111211/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.cdt.autotools_9.6.0.201812111211'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.testsrunner.gtest' version='7.0.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='30329'/>
+        <property name='download.size' value='30329'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.testsrunner.gtest_7.0.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.testsrunner.gtest_7.0.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.cdt.libhover' version='1.2.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='63088'/>
+        <property name='download.size' value='63088'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.cdt.libhover_1.2.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.cdt.libhover_1.2.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.meson.ui' version='1.0.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='69052'/>
+        <property name='download.size' value='69052'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.meson.ui_1.0.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.meson.ui_1.0.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.remote.telnet.core' version='1.0.0.201803121903'>
+      <properties size='2'>
+        <property name='artifact.size' value='76199'/>
+        <property name='download.size' value='76199'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.remote.telnet.core_1.0.0.201803121903.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.remote.telnet.core_1.0.0.201803121903.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.cdt.libhover.devhelp' version='1.1.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='54597'/>
+        <property name='download.size' value='54597'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.cdt.libhover.devhelp_1.1.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.cdt.libhover.devhelp_1.1.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tm.terminal.view.ui' version='4.5.1.201811011621'>
+      <properties size='2'>
+        <property name='artifact.size' value='259122'/>
+        <property name='download.size' value='259122'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tm.terminal.view.ui_4.5.1.201811011621.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tm.terminal.view.ui_4.5.1.201811011621.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.bouncycastle.bcpkix' version='1.52.0.v20161004-1854'>
+      <properties size='2'>
+        <property name='artifact.size' value='661628'/>
+        <property name='download.size' value='661628'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.bouncycastle.bcpkix_1.52.0.v20161004-1854.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.bouncycastle.bcpkix_1.52.0.v20161004-1854.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.autotools.docs' version='2.0.3.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='1937111'/>
+        <property name='download.size' value='1937111'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.autotools.docs_2.0.3.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.autotools.docs_2.0.3.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.linuxtools.gprof.feature' version='7.1.0.201812121718'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.linuxtools.gprof.feature_7.1.0.201812121718/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.linuxtools.gprof.feature_7.1.0.201812121718'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.tm.terminal.connector.cdtserial.feature' version='4.5.1.201811011802'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.tm.terminal.connector.cdtserial.feature_4.5.1.201811011802/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.tm.terminal.connector.cdtserial.feature_4.5.1.201811011802'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.glassfish.jersey.core.jersey-client' version='2.22.1.v20161103-1916'>
+      <properties size='2'>
+        <property name='artifact.size' value='190636'/>
+        <property name='download.size' value='190636'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.glassfish.jersey.core.jersey-client_2.22.1.v20161103-1916.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.glassfish.jersey.core.jersey-client_2.22.1.v20161103-1916.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.codan.checkers.ui' version='3.2.2.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='53779'/>
+        <property name='download.size' value='53779'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.codan.checkers.ui_3.2.2.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.codan.checkers.ui_3.2.2.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.callgraph.core' version='3.1.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='60701'/>
+        <property name='download.size' value='60701'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.callgraph.core_3.1.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.callgraph.core_3.1.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.objectweb.asm.analysis' version='6.2.1.v20181030-2244'>
+      <properties size='2'>
+        <property name='artifact.size' value='44667'/>
+        <property name='download.size' value='44667'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.objectweb.asm.analysis_6.2.1.v20181030-2244.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.objectweb.asm.analysis_6.2.1.v20181030-2244.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.linuxtools.valgrind' version='7.1.0.201812121718'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.linuxtools.valgrind_7.1.0.201812121718/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.linuxtools.valgrind_7.1.0.201812121718'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.valgrind.launch' version='3.0.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='68490'/>
+        <property name='download.size' value='68490'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.valgrind.launch_3.0.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.valgrind.launch_3.0.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.analysis.os.linux.ui' version='3.0.2.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='161182'/>
+        <property name='download.size' value='161182'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.analysis.os.linux.ui_3.0.2.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.analysis.os.linux.ui_3.0.2.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.debug.gdbjtag' version='7.0.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='12997'/>
+        <property name='download.size' value='12997'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.debug.gdbjtag_7.0.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.debug.gdbjtag_7.0.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.callgraph.launch' version='2.1.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='77860'/>
+        <property name='download.size' value='77860'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.callgraph.launch_2.1.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.callgraph.launch_2.1.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.dsf.gdb.ui' version='2.6.2.201811262127'>
+      <properties size='2'>
+        <property name='artifact.size' value='864219'/>
+        <property name='download.size' value='864219'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.dsf.gdb.ui_2.6.2.201811262127.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.dsf.gdb.ui_2.6.2.201811262127.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.datastore.core' version='1.1.3.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='86865'/>
+        <property name='download.size' value='86865'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.datastore.core_1.1.3.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.datastore.core_1.1.3.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.cyberneko.html' version='1.9.14.v201105210654'>
+      <properties size='2'>
+        <property name='artifact.size' value='134821'/>
+        <property name='download.size' value='134821'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.cyberneko.html_1.9.14.v201105210654.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.cyberneko.html_1.9.14.v201105210654.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.tmf.ctf.core' version='4.1.1.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='66832'/>
+        <property name='download.size' value='66832'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.tmf.ctf.core_4.1.1.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.tmf.ctf.core_4.1.1.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.cdt.libhover.glibc' version='1.2.1.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='494330'/>
+        <property name='download.size' value='494330'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.cdt.libhover.glibc_1.2.1.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.cdt.libhover.glibc_1.2.1.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.dataviewers.charts' version='6.0.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='37593'/>
+        <property name='download.size' value='37593'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.dataviewers.charts_6.0.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.dataviewers.charts_6.0.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.launchbar.ui.controls' version='1.0.2.201811071421'>
+      <properties size='2'>
+        <property name='artifact.size' value='142726'/>
+        <property name='download.size' value='142726'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.launchbar.ui.controls_1.0.2.201811071421.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.launchbar.ui.controls_1.0.2.201811071421.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='com.github.jnr.unixsocket' version='0.18.0.v20180207-1730'>
+      <properties size='2'>
+        <property name='artifact.size' value='52881'/>
+        <property name='download.size' value='52881'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/com.github.jnr.unixsocket_0.18.0.v20180207-1730.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/com.github.jnr.unixsocket_0.18.0.v20180207-1730.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.zest.layouts' version='1.1.300.201606061308'>
+      <properties size='2'>
+        <property name='artifact.size' value='133142'/>
+        <property name='download.size' value='133142'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.zest.layouts_1.1.300.201606061308.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.zest.layouts_1.1.300.201606061308.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='com.github.jnr.posix' version='3.0.35.v20180207-1730'>
+      <properties size='2'>
+        <property name='artifact.size' value='255384'/>
+        <property name='download.size' value='255384'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/com.github.jnr.posix_3.0.35.v20180207-1730.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/com.github.jnr.posix_3.0.35.v20180207-1730.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.profiling.docs' version='1.0.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='444942'/>
+        <property name='download.size' value='444942'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.profiling.docs_1.0.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.profiling.docs_1.0.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.launch.remote' version='2.5.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='73472'/>
+        <property name='download.size' value='73472'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.launch.remote_2.5.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.launch.remote_2.5.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.codan.checkers' version='3.2.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='96475'/>
+        <property name='download.size' value='96475'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.codan.checkers_3.2.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.codan.checkers_3.2.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tm4e.registry' version='0.3.0.201812041257'>
+      <properties size='2'>
+        <property name='artifact.size' value='31106'/>
+        <property name='download.size' value='31106'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tm4e.registry_0.3.0.201812041257.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tm4e.registry_0.3.0.201812041257.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='javax.xml.bind' version='2.2.0.v201105210648'>
+      <properties size='2'>
+        <property name='artifact.size' value='118750'/>
+        <property name='download.size' value='118750'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/javax.xml.bind_2.2.0.v201105210648.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/javax.xml.bind_2.2.0.v201105210648.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.remote.core' version='1.0.2.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='21552'/>
+        <property name='download.size' value='21552'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.remote.core_1.0.2.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.remote.core_1.0.2.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='javassist' version='3.13.0.GA_v201209210905'>
+      <properties size='2'>
+        <property name='artifact.size' value='678890'/>
+        <property name='download.size' value='678890'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/javassist_3.13.0.GA_v201209210905.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/javassist_3.13.0.GA_v201209210905.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.core' version='6.6.0.201812101042'>
+      <properties size='2'>
+        <property name='artifact.size' value='5986195'/>
+        <property name='download.size' value='5986195'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.core_6.6.0.201812101042.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.core_6.6.0.201812101042.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.tmf.chart.core' version='1.0.2.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='43907'/>
+        <property name='download.size' value='43907'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.tmf.chart.core_1.0.2.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.tmf.chart.core_1.0.2.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.perf' version='1.3.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='128800'/>
+        <property name='download.size' value='128800'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.perf_1.3.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.perf_1.3.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.docker.launcher' version='1.2.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='214728'/>
+        <property name='download.size' value='214728'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.docker.launcher_1.2.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.docker.launcher_1.2.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.managedbuilder.ui' version='9.1.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='507145'/>
+        <property name='download.size' value='507145'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.managedbuilder.ui_9.1.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.managedbuilder.ui_9.1.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.tm.terminal.control.feature' version='4.5.1.201811011802'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.tm.terminal.control.feature_4.5.1.201811011802/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.tm.terminal.control.feature_4.5.1.201811011802'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.rpm.rpmlint' version='1.1.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='60554'/>
+        <property name='download.size' value='60554'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.rpm.rpmlint_1.1.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.rpm.rpmlint_1.1.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.testsrunner.qttest' version='7.0.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='20897'/>
+        <property name='download.size' value='20897'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.testsrunner.qttest_7.0.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.testsrunner.qttest_7.0.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.tm.terminal.connector.ssh.feature' version='4.5.1.201811011802'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.tm.terminal.connector.ssh.feature_4.5.1.201811011802/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.tm.terminal.connector.ssh.feature_4.5.1.201811011802'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.callgraph.docs' version='1.0.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='444467'/>
+        <property name='download.size' value='444467'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.callgraph.docs_1.0.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.callgraph.docs_1.0.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.launchbar.ui' version='2.2.2.201811071421'>
+      <properties size='2'>
+        <property name='artifact.size' value='82102'/>
+        <property name='download.size' value='82102'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.launchbar.ui_2.2.2.201811071421.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.launchbar.ui_2.2.2.201811071421.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.valgrind.memcheck' version='1.1.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='26868'/>
+        <property name='download.size' value='26868'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.valgrind.memcheck_1.1.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.valgrind.memcheck_1.1.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.cdt.mylyn' version='5.20.0.v20180905-0014'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.cdt.mylyn_5.20.0.v20180905-0014/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.cdt.mylyn_5.20.0.v20180905-0014'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.build.crossgcc' version='1.1.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='31539'/>
+        <property name='download.size' value='31539'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.build.crossgcc_1.1.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.build.crossgcc_1.1.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.callgraph' version='2.0.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='101087'/>
+        <property name='download.size' value='101087'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.callgraph_2.0.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.callgraph_2.0.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.cmake.ui' version='1.2.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='50174'/>
+        <property name='download.size' value='50174'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.cmake.ui_1.2.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.cmake.ui_1.2.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.launchbar' version='2.2.2.201811071421'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.launchbar_2.2.2.201811071421/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.launchbar_2.2.2.201811071421'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.launchbar.remote.ui' version='1.0.1.201811071421'>
+      <properties size='2'>
+        <property name='artifact.size' value='11196'/>
+        <property name='download.size' value='11196'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.launchbar.remote.ui_1.0.1.201811071421.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.launchbar.remote.ui_1.0.1.201811071421.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.gdb' version='7.0.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='16925'/>
+        <property name='download.size' value='16925'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.gdb_7.0.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.gdb_7.0.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.dsf.ui' version='2.5.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='1520786'/>
+        <property name='download.size' value='1520786'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.dsf.ui_2.5.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.dsf.ui_2.5.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.zest.core' version='1.5.300.201606061308'>
+      <properties size='2'>
+        <property name='artifact.size' value='150762'/>
+        <property name='download.size' value='150762'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.zest.core_1.5.300.201606061308.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.zest.core_1.5.300.201606061308.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.gprof' version='5.1.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='90211'/>
+        <property name='download.size' value='90211'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.gprof_5.1.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.gprof_5.1.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='jnr.x86asm' version='1.0.2.v201505052040'>
+      <properties size='2'>
+        <property name='artifact.size' value='235326'/>
+        <property name='download.size' value='235326'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/jnr.x86asm_1.0.2.v201505052040.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/jnr.x86asm_1.0.2.v201505052040.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.valgrind.helgrind' version='1.1.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='22813'/>
+        <property name='download.size' value='22813'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.valgrind.helgrind_1.1.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.valgrind.helgrind_1.1.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='com.fasterxml.jackson.datatype.jackson-datatype-guava' version='2.9.2.v20180207-1730'>
+      <properties size='2'>
+        <property name='artifact.size' value='92751'/>
+        <property name='download.size' value='92751'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/com.fasterxml.jackson.datatype.jackson-datatype-guava_2.9.2.v20180207-1730.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/com.fasterxml.jackson.datatype.jackson-datatype-guava_2.9.2.v20180207-1730.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.gdb.ui' version='7.0.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='11583'/>
+        <property name='download.size' value='11583'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.gdb.ui_7.0.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.gdb.ui_7.0.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.tmf.analysis.xml.ui' version='2.1.7.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='106997'/>
+        <property name='download.size' value='106997'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.tmf.analysis.xml.ui_2.1.7.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.tmf.analysis.xml.ui_2.1.7.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.tmf.chart.ui' version='1.0.5.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='116375'/>
+        <property name='download.size' value='116375'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.tmf.chart.ui_1.0.5.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.tmf.chart.ui_1.0.5.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='com.fasterxml.jackson.core.jackson-core' version='2.9.2.v20180207-1730'>
+      <properties size='2'>
+        <property name='artifact.size' value='338092'/>
+        <property name='download.size' value='338092'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/com.fasterxml.jackson.core.jackson-core_2.9.2.v20180207-1730.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/com.fasterxml.jackson.core.jackson-core_2.9.2.v20180207-1730.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.testsrunner.tap' version='1.0.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='16870'/>
+        <property name='download.size' value='16870'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.testsrunner.tap_1.0.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.testsrunner.tap_1.0.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.glassfish.jersey.core.jersey-server' version='2.22.1.v20161103-1916'>
+      <properties size='2'>
+        <property name='artifact.size' value='1018963'/>
+        <property name='download.size' value='1018963'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.glassfish.jersey.core.jersey-server_2.22.1.v20161103-1916.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.glassfish.jersey.core.jersey-server_2.22.1.v20161103-1916.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.doc.user' version='5.4.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='15644709'/>
+        <property name='download.size' value='15644709'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.doc.user_5.4.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.doc.user_5.4.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.cdt.cmake' version='9.6.0.201812111211'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.cdt.cmake_9.6.0.201812111211/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.cdt.cmake_9.6.0.201812111211'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.gcov.core' version='6.0.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='124975'/>
+        <property name='download.size' value='124975'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.gcov.core_6.0.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.gcov.core_6.0.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='com.fasterxml.jackson.core.jackson-annotations' version='2.9.2.v20180207-1730'>
+      <properties size='2'>
+        <property name='artifact.size' value='83842'/>
+        <property name='download.size' value='83842'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/com.fasterxml.jackson.core.jackson-annotations_2.9.2.v20180207-1730.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/com.fasterxml.jackson.core.jackson-annotations_2.9.2.v20180207-1730.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.systemtap.ui.consolelog' version='4.0.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='56478'/>
+        <property name='download.size' value='56478'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.systemtap.ui.consolelog_4.0.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.systemtap.ui.consolelog_4.0.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.binutils' version='6.0.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='49592'/>
+        <property name='download.size' value='49592'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.binutils_6.0.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.binutils_6.0.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tm.terminal.connector.telnet' version='4.5.1.201811011621'>
+      <properties size='2'>
+        <property name='artifact.size' value='54281'/>
+        <property name='download.size' value='54281'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tm.terminal.connector.telnet_4.5.1.201811011621.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tm.terminal.connector.telnet_4.5.1.201811011621.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.build.gcc.core' version='1.0.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='38447'/>
+        <property name='download.size' value='38447'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.build.gcc.core_1.0.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.build.gcc.core_1.0.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt' version='9.6.0.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='38736'/>
+        <property name='download.size' value='38736'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt_9.6.0.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt_9.6.0.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.freemarker' version='2.3.22.v20160210-1233'>
+      <properties size='2'>
+        <property name='artifact.size' value='1385723'/>
+        <property name='download.size' value='1385723'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.freemarker_2.3.22.v20160210-1233.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.freemarker_2.3.22.v20160210-1233.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.cdt.arduino' version='9.6.0.201812111211'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.cdt.arduino_9.6.0.201812111211/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.cdt.arduino_9.6.0.201812111211'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.tmf.analysis.xml.core' version='3.2.0.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='330458'/>
+        <property name='download.size' value='330458'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.tmf.analysis.xml.core_3.2.0.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.tmf.analysis.xml.core_3.2.0.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.common.core' version='3.2.0.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='89490'/>
+        <property name='download.size' value='89490'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.common.core_3.2.0.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.common.core_3.2.0.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.cdt' version='9.6.0.201812111211'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.cdt_9.6.0.201812111211/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.cdt_9.6.0.201812111211'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.gcov.launch' version='1.2.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='20268'/>
+        <property name='download.size' value='20268'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.gcov.launch_1.2.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.gcov.launch_1.2.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.dsf.gdb' version='5.6.0.201812061011'>
+      <properties size='2'>
+        <property name='artifact.size' value='1932669'/>
+        <property name='download.size' value='1932669'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.dsf.gdb_5.6.0.201812061011.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.dsf.gdb_5.6.0.201812061011.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.analysis.profiling.core' version='1.1.1.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='100030'/>
+        <property name='download.size' value='100030'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.analysis.profiling.core_1.1.1.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.analysis.profiling.core_1.1.1.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tm.terminal.control' version='4.5.1.201811011621'>
+      <properties size='2'>
+        <property name='artifact.size' value='190215'/>
+        <property name='download.size' value='190215'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tm.terminal.control_4.5.1.201811011621.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tm.terminal.control_4.5.1.201811011621.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.glassfish.hk2.osgi-resource-locator' version='2.5.0.v20161103-1916'>
+      <properties size='2'>
+        <property name='artifact.size' value='34297'/>
+        <property name='download.size' value='34297'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.glassfish.hk2.osgi-resource-locator_2.5.0.v20161103-1916.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.glassfish.hk2.osgi-resource-locator_2.5.0.v20161103-1916.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.systemtap.ui.ide' version='2.3.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='350258'/>
+        <property name='download.size' value='350258'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.systemtap.ui.ide_2.3.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.systemtap.ui.ide_2.3.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.make.core' version='7.4.1.201812021701'>
+      <properties size='2'>
+        <property name='artifact.size' value='464806'/>
+        <property name='download.size' value='464806'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.make.core_7.4.1.201812021701.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.make.core_7.4.1.201812021701.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.remote' version='3.0.0.201803121903'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.remote_3.0.0.201803121903/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.remote_3.0.0.201803121903'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.remote.jsch.ui' version='1.0.0.201803121903'>
+      <properties size='2'>
+        <property name='artifact.size' value='43750'/>
+        <property name='download.size' value='43750'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.remote.jsch.ui_1.0.0.201803121903.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.remote.jsch.ui_1.0.0.201803121903.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.valgrind.massif' version='1.1.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='80311'/>
+        <property name='download.size' value='80311'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.valgrind.massif_1.1.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.valgrind.massif_1.1.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.rpmstubby' version='1.2.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='68360'/>
+        <property name='download.size' value='68360'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.rpmstubby_1.2.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.rpmstubby_1.2.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.ctf.parser' version='1.0.2.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='131727'/>
+        <property name='download.size' value='131727'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.ctf.parser_1.0.2.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.ctf.parser_1.0.2.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.valgrind.core' version='1.1.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='24857'/>
+        <property name='download.size' value='24857'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.valgrind.core_1.1.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.valgrind.core_1.1.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.tm.terminal.feature' version='4.5.1.201811011802'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.tm.terminal.feature_4.5.1.201811011802/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.tm.terminal.feature_4.5.1.201811011802'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.cdt.debug.gdbjtag' version='9.6.0.201811241055'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.cdt.debug.gdbjtag_9.6.0.201811241055/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.cdt.debug.gdbjtag_9.6.0.201811241055'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.tools.launch.core' version='3.3.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='24555'/>
+        <property name='download.size' value='24555'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.tools.launch.core_3.3.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.tools.launch.core_3.3.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.profiling.launch' version='3.3.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='132610'/>
+        <property name='download.size' value='132610'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.profiling.launch_3.3.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.profiling.launch_3.3.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.remote.serial.ui' version='1.0.0.201803121903'>
+      <properties size='2'>
+        <property name='artifact.size' value='75339'/>
+        <property name='download.size' value='75339'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.remote.serial.ui_1.0.0.201803121903.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.remote.serial.ui_1.0.0.201803121903.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.docker.editor' version='1.0.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='52280'/>
+        <property name='download.size' value='52280'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.docker.editor_1.0.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.docker.editor_1.0.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.tmf.remote.ui' version='1.0.4.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='140106'/>
+        <property name='download.size' value='140106'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.tmf.remote.ui_1.0.4.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.tmf.remote.ui_1.0.4.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.epp.package.cpp.feature' version='4.10.0.20181214-0600'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.epp.package.cpp.feature_4.10.0.20181214-0600/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.epp.package.cpp.feature_4.10.0.20181214-0600'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.valgrind.doc' version='1.0.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='1360775'/>
+        <property name='download.size' value='1360775'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.valgrind.doc_1.0.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.valgrind.doc_1.0.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.aopalliance' version='1.0.0.v201105210816'>
+      <properties size='2'>
+        <property name='artifact.size' value='11692'/>
+        <property name='download.size' value='11692'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.aopalliance_1.0.0.v201105210816.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.aopalliance_1.0.0.v201105210816.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.tracecompass.lttng2.kernel' version='4.2.0.201812120704'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.tracecompass.lttng2.kernel_4.2.0.201812120704/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.tracecompass.lttng2.kernel_4.2.0.201812120704'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.objectweb.asm.tree' version='6.2.1.v20181030-2244'>
+      <properties size='2'>
+        <property name='artifact.size' value='64128'/>
+        <property name='download.size' value='64128'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.objectweb.asm.tree_6.2.1.v20181030-2244.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.objectweb.asm.tree_6.2.1.v20181030-2244.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tools.templates.freemarker' version='1.0.0.201812111206'>
+      <properties size='2'>
+        <property name='artifact.size' value='20949'/>
+        <property name='download.size' value='20949'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tools.templates.freemarker_1.0.0.201812111206.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tools.templates.freemarker_1.0.0.201812111206.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.tracecompass.gdbtrace' version='4.2.0.201812120704'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.tracecompass.gdbtrace_4.2.0.201812120704/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.tracecompass.gdbtrace_4.2.0.201812120704'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.remote.doc.isv' version='1.0.0.201803121903'>
+      <properties size='2'>
+        <property name='artifact.size' value='359651'/>
+        <property name='download.size' value='359651'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.remote.doc.isv_1.0.0.201803121903.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.remote.doc.isv_1.0.0.201803121903.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tm4e.ui' version='0.3.0.201812041257'>
+      <properties size='2'>
+        <property name='artifact.size' value='143582'/>
+        <property name='download.size' value='143582'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tm4e.ui_0.3.0.201812041257.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tm4e.ui_0.3.0.201812041257.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.tracecompass.tmf' version='4.2.0.201812120704'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.tracecompass.tmf_4.2.0.201812120704/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.tracecompass.tmf_4.2.0.201812120704'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.rpm.ui' version='1.1.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='62613'/>
+        <property name='download.size' value='62613'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.rpm.ui_1.1.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.rpm.ui_1.1.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.cdt.platform' version='9.6.0.201812111211'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.cdt.platform_9.6.0.201812111211/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.cdt.platform_9.6.0.201812111211'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.linuxtools.systemtap' version='7.1.0.201812121718'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.linuxtools.systemtap_7.1.0.201812121718/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.linuxtools.systemtap_7.1.0.201812121718'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='com.github.jnr.constants' version='0.9.8.v20180207-1730'>
+      <properties size='2'>
+        <property name='artifact.size' value='387950'/>
+        <property name='download.size' value='387950'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/com.github.jnr.constants_0.9.8.v20180207-1730.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/com.github.jnr.constants_0.9.8.v20180207-1730.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.gdbtrace.ui' version='1.1.1.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='29077'/>
+        <property name='download.size' value='29077'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.gdbtrace.ui_1.1.1.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.gdbtrace.ui_1.1.1.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.changelog.core' version='3.0.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='110084'/>
+        <property name='download.size' value='110084'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.changelog.core_3.0.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.changelog.core_3.0.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.objectweb.asm' version='6.2.1.v20181030-2244'>
+      <properties size='2'>
+        <property name='artifact.size' value='124931'/>
+        <property name='download.size' value='124931'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.objectweb.asm_6.2.1.v20181030-2244.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.objectweb.asm_6.2.1.v20181030-2244.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.tracecompass.tmf.ctf' version='4.2.0.201812120704'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.tracecompass.tmf.ctf_4.2.0.201812120704/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.tracecompass.tmf.ctf_4.2.0.201812120704'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tm.terminal.connector.cdtserial' version='4.5.1.201811011621'>
+      <properties size='2'>
+        <property name='artifact.size' value='29644'/>
+        <property name='download.size' value='29644'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tm.terminal.connector.cdtserial_4.5.1.201811011621.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tm.terminal.connector.cdtserial_4.5.1.201811011621.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.tracecompass.ctf' version='4.2.0.201812120704'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.tracecompass.ctf_4.2.0.201812120704/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.tracecompass.ctf_4.2.0.201812120704'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.dsf' version='2.8.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='348891'/>
+        <property name='download.size' value='348891'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.dsf_2.8.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.dsf_2.8.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='com.fasterxml.jackson.jaxrs.jackson-jaxrs-base' version='2.9.2.v20180207-1730'>
+      <properties size='2'>
+        <property name='artifact.size' value='46110'/>
+        <property name='download.size' value='46110'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/com.fasterxml.jackson.jaxrs.jackson-jaxrs-base_2.9.2.v20180207-1730.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/com.fasterxml.jackson.jaxrs.jackson-jaxrs-base_2.9.2.v20180207-1730.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.profiling.ui.capability' version='1.0.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='10169'/>
+        <property name='download.size' value='10169'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.profiling.ui.capability_1.0.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.profiling.ui.capability_1.0.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.linuxtools.callgraph.feature' version='7.1.0.201812121718'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.linuxtools.callgraph.feature_7.1.0.201812121718/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.linuxtools.callgraph.feature_7.1.0.201812121718'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.analysis.os.linux.core' version='3.1.0.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='283310'/>
+        <property name='download.size' value='283310'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.analysis.os.linux.core_3.1.0.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.analysis.os.linux.core_3.1.0.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.core.linux' version='5.3.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='14179'/>
+        <property name='download.size' value='14179'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.core.linux_5.3.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.core.linux_5.3.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.remote.serial' version='3.0.0.201803121903'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.remote.serial_3.0.0.201803121903/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.remote.serial_3.0.0.201803121903'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.managedbuilder.gnu.ui' version='8.3.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='52565'/>
+        <property name='download.size' value='52565'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.managedbuilder.gnu.ui_8.3.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.managedbuilder.gnu.ui_8.3.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.gdbtrace.core' version='1.0.1.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='50717'/>
+        <property name='download.size' value='50717'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.gdbtrace.core_1.0.1.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.gdbtrace.core_1.0.1.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.lttng2.kernel.core' version='2.2.5.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='112199'/>
+        <property name='download.size' value='112199'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.lttng2.kernel.core_2.2.5.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.lttng2.kernel.core_2.2.5.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.tm.terminal.view.feature' version='4.5.1.201811011802'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.tm.terminal.view.feature_4.5.1.201811011802/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.tm.terminal.view.feature_4.5.1.201811011802'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.debug.ui.memory.traditional' version='1.5.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='187496'/>
+        <property name='download.size' value='187496'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.debug.ui.memory.traditional_1.5.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.debug.ui.memory.traditional_1.5.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.autotools.ui' version='2.0.2.201812040412'>
+      <properties size='2'>
+        <property name='artifact.size' value='794460'/>
+        <property name='download.size' value='794460'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.autotools.ui_2.0.2.201812040412.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.autotools.ui_2.0.2.201812040412.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='com.github.jnr.ffi' version='2.1.4.v20180207-1730'>
+      <properties size='2'>
+        <property name='artifact.size' value='749599'/>
+        <property name='download.size' value='749599'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/com.github.jnr.ffi_2.1.4.v20180207-1730.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/com.github.jnr.ffi_2.1.4.v20180207-1730.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.systemtap.ui.doc' version='2.6.5.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='3080491'/>
+        <property name='download.size' value='3080491'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.systemtap.ui.doc_2.6.5.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.systemtap.ui.doc_2.6.5.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.tmf.core' version='4.2.0.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='856309'/>
+        <property name='download.size' value='856309'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.tmf.core_4.2.0.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.tmf.core_4.2.0.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.oprofile.core' version='3.0.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='97630'/>
+        <property name='download.size' value='97630'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.oprofile.core_3.0.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.oprofile.core_3.0.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.arduino.ui' version='2.1.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='129964'/>
+        <property name='download.size' value='129964'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.arduino.ui_2.1.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.arduino.ui_2.1.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.rpm.createrepo' version='1.0.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='97904'/>
+        <property name='download.size' value='97904'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.rpm.createrepo_1.0.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.rpm.createrepo_1.0.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.cdt.gdb' version='9.6.0.201811241055'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.cdt.gdb_9.6.0.201811241055/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.cdt.gdb_9.6.0.201811241055'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.codan.core.cxx' version='3.4.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='76646'/>
+        <property name='download.size' value='76646'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.codan.core.cxx_3.4.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.codan.core.cxx_3.4.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.debug.gdbjtag.ui' version='8.1.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='67027'/>
+        <property name='download.size' value='67027'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.debug.gdbjtag.ui_8.1.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.debug.gdbjtag.ui_8.1.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.docker.core' version='4.1.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='234258'/>
+        <property name='download.size' value='234258'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.docker.core_4.1.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.docker.core_4.1.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tm.terminal.view.core' version='4.5.1.201811011621'>
+      <properties size='2'>
+        <property name='artifact.size' value='42607'/>
+        <property name='download.size' value='42607'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tm.terminal.view.core_4.5.1.201811011621.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tm.terminal.view.core_4.5.1.201811011621.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.core.linux.x86_64' version='5.3.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='20540'/>
+        <property name='download.size' value='20540'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.core.linux.x86_64_5.3.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.core.linux.x86_64_5.3.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.bouncycastle.bcprov' version='1.52.0.v20180328-2148'>
+      <properties size='2'>
+        <property name='artifact.size' value='3083589'/>
+        <property name='download.size' value='3083589'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.bouncycastle.bcprov_1.52.0.v20180328-2148.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.bouncycastle.bcprov_1.52.0.v20180328-2148.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.analysis.lami.ui' version='1.0.4.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='70803'/>
+        <property name='download.size' value='70803'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.analysis.lami.ui_1.0.4.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.analysis.lami.ui_1.0.4.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.remote.console' version='1.2.0.201803121903'>
+      <properties size='2'>
+        <property name='artifact.size' value='62641'/>
+        <property name='download.size' value='62641'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.remote.console_1.2.0.201803121903.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.remote.console_1.2.0.201803121903.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.launch.serial.core' version='1.0.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='16813'/>
+        <property name='download.size' value='16813'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.launch.serial.core_1.0.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.launch.serial.core_1.0.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.analysis.timing.core' version='4.1.1.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='67726'/>
+        <property name='download.size' value='67726'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.analysis.timing.core_4.1.1.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.analysis.timing.core_4.1.1.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.codan.core' version='4.0.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='150523'/>
+        <property name='download.size' value='150523'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.codan.core_4.0.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.codan.core_4.0.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.cdt.native' version='9.6.0.201811241055'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.cdt.native_9.6.0.201811241055/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.cdt.native_9.6.0.201811241055'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.gprof.launch' version='1.2.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='25026'/>
+        <property name='download.size' value='25026'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.gprof.launch_1.2.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.gprof.launch_1.2.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.remote.core' version='4.0.0.201803121903'>
+      <properties size='2'>
+        <property name='artifact.size' value='151136'/>
+        <property name='download.size' value='151136'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.remote.core_4.0.0.201803121903.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.remote.core_4.0.0.201803121903.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.launchbar.remote' version='2.2.2.201811071421'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.launchbar.remote_2.2.2.201811071421/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.launchbar.remote_2.2.2.201811071421'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.glassfish.jersey.media.jersey-media-json-jackson' version='2.22.1.v20161117-2005'>
+      <properties size='2'>
+        <property name='artifact.size' value='43167'/>
+        <property name='download.size' value='43167'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.glassfish.jersey.media.jersey-media-json-jackson_2.22.1.v20161117-2005.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.glassfish.jersey.media.jersey-media-json-jackson_2.22.1.v20161117-2005.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.cmake.core' version='1.2.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='40365'/>
+        <property name='download.size' value='40365'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.cmake.core_1.2.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.cmake.core_1.2.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.gcov.docs' version='1.0.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='381635'/>
+        <property name='download.size' value='381635'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.gcov.docs_1.0.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.gcov.docs_1.0.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.qt.core' version='2.2.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='497412'/>
+        <property name='download.size' value='497412'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.qt.core_2.2.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.qt.core_2.2.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.valgrind.ui' version='2.1.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='41055'/>
+        <property name='download.size' value='41055'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.valgrind.ui_2.1.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.valgrind.ui_2.1.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tm4e.core' version='0.3.0.201812041257'>
+      <properties size='2'>
+        <property name='artifact.size' value='196742'/>
+        <property name='download.size' value='196742'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tm4e.core_0.3.0.201812041257.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tm4e.core_0.3.0.201812041257.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.ctf.core' version='3.0.2.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='322898'/>
+        <property name='download.size' value='322898'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.ctf.core_3.0.2.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.ctf.core_3.0.2.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.debug.application' version='1.1.1.201811241055'>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.debug.application_1.1.1.201811241055/'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.debug.application_1.1.1.201811241055'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.segmentstore.core' version='2.1.1.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='63031'/>
+        <property name='download.size' value='63031'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.segmentstore.core_2.1.1.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.segmentstore.core_2.1.1.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.objectweb.asm.util' version='6.2.1.v20181030-2244'>
+      <properties size='2'>
+        <property name='artifact.size' value='91272'/>
+        <property name='download.size' value='91272'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.objectweb.asm.util_6.2.1.v20181030-2244.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.objectweb.asm.util_6.2.1.v20181030-2244.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.tmf.ui' version='4.2.0.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='2478767'/>
+        <property name='download.size' value='2478767'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.tmf.ui_4.2.0.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.tmf.ui_4.2.0.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.native.serial' version='1.1.2.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='231199'/>
+        <property name='download.size' value='231199'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.native.serial_1.1.2.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.native.serial_1.1.2.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.meson.core' version='1.0.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='44181'/>
+        <property name='download.size' value='44181'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.meson.core_1.0.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.meson.core_1.0.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.linuxtools.cdt.libhover.feature' version='7.1.0.201812121718'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.linuxtools.cdt.libhover.feature_7.1.0.201812121718/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.linuxtools.cdt.libhover.feature_7.1.0.201812121718'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.lttng2.common.core' version='1.1.1.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='14831'/>
+        <property name='download.size' value='14831'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.lttng2.common.core_1.1.1.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.lttng2.common.core_1.1.1.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.linuxtools.cdt.libhover.devhelp.feature' version='7.1.0.201812121718'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.linuxtools.cdt.libhover.devhelp.feature_7.1.0.201812121718/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.linuxtools.cdt.libhover.devhelp.feature_7.1.0.201812121718'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.linuxtools.perf.feature' version='7.1.0.201812121718'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.linuxtools.perf.feature_7.1.0.201812121718/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.linuxtools.perf.feature_7.1.0.201812121718'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.tools.launch.ui' version='2.0.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='18489'/>
+        <property name='download.size' value='18489'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.tools.launch.ui_2.0.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.tools.launch.ui_2.0.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.valgrind.cachegrind' version='1.1.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='48916'/>
+        <property name='download.size' value='48916'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.valgrind.cachegrind_1.1.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.valgrind.cachegrind_1.1.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.oprofile.launch' version='1.1.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='75164'/>
+        <property name='download.size' value='75164'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.oprofile.launch_1.1.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.oprofile.launch_1.1.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.glassfish.hk2.locator' version='2.5.0.v20161103-0227'>
+      <properties size='2'>
+        <property name='artifact.size' value='203983'/>
+        <property name='download.size' value='203983'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.glassfish.hk2.locator_2.5.0.v20161103-0227.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.glassfish.hk2.locator_2.5.0.v20161103-0227.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.docker.ui' version='4.1.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='926377'/>
+        <property name='download.size' value='926377'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.docker.ui_4.1.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.docker.ui_4.1.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.lttng2.ust.ui' version='3.0.5.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='29980'/>
+        <property name='download.size' value='29980'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.lttng2.ust.ui_3.0.5.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.lttng2.ust.ui_3.0.5.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.cdt.meson' version='9.6.0.201812111211'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.cdt.meson_9.6.0.201812111211/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.cdt.meson_9.6.0.201812111211'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.build.gcc.ui' version='1.0.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='38407'/>
+        <property name='download.size' value='38407'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.build.gcc.ui_1.0.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.build.gcc.ui_1.0.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.glassfish.jersey.core.jersey-common' version='2.22.1.v20161103-1916'>
+      <properties size='2'>
+        <property name='artifact.size' value='749553'/>
+        <property name='download.size' value='749553'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.glassfish.jersey.core.jersey-common_2.22.1.v20161103-1916.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.glassfish.jersey.core.jersey-common_2.22.1.v20161103-1916.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.lttng2.control.ui' version='1.2.5.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='494757'/>
+        <property name='download.size' value='494757'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.lttng2.control.ui_1.2.5.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.lttng2.control.ui_1.2.5.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.cdt.docker.launcher' version='9.6.0.201811241055'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.cdt.docker.launcher_9.6.0.201811241055/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.cdt.docker.launcher_9.6.0.201811241055'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.testsrunner.boost' version='7.0.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='18879'/>
+        <property name='download.size' value='18879'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.testsrunner.boost_7.0.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.testsrunner.boost_7.0.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.antlr.runtime' version='3.2.0.v201101311130'>
+      <properties size='2'>
+        <property name='artifact.size' value='214584'/>
+        <property name='download.size' value='214584'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.antlr.runtime_3.2.0.v201101311130.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.antlr.runtime_3.2.0.v201101311130.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='javax.activation' version='1.1.0.v201211130549'>
+      <properties size='2'>
+        <property name='artifact.size' value='55065'/>
+        <property name='download.size' value='55065'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/javax.activation_1.1.0.v201211130549.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/javax.activation_1.1.0.v201211130549.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.codan.ui.cxx' version='3.4.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='29198'/>
+        <property name='download.size' value='29198'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.codan.ui.cxx_3.4.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.codan.ui.cxx_3.4.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.cdt.qt' version='9.6.0.201812111211'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.cdt.qt_9.6.0.201812111211/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.cdt.qt_9.6.0.201812111211'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.doc.dev' version='4.2.0.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='2989675'/>
+        <property name='download.size' value='2989675'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.doc.dev_4.2.0.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.doc.dev_4.2.0.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.tm.terminal.connector.telnet.feature' version='4.5.1.201811011802'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.tm.terminal.connector.telnet.feature_4.5.1.201811011802/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.tm.terminal.connector.telnet.feature_4.5.1.201811011802'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.launch.serial.ui' version='1.0.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='20167'/>
+        <property name='download.size' value='20167'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.launch.serial.ui_1.0.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.launch.serial.ui_1.0.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.oprofile.doc' version='1.0.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='1094379'/>
+        <property name='download.size' value='1094379'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.oprofile.doc_1.0.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.oprofile.doc_1.0.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.json' version='1.0.0.v201011060100'>
+      <properties size='2'>
+        <property name='artifact.size' value='57499'/>
+        <property name='download.size' value='57499'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.json_1.0.0.v201011060100.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.json_1.0.0.v201011060100.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.make.ui' version='7.3.1.201811291831'>
+      <properties size='2'>
+        <property name='artifact.size' value='530095'/>
+        <property name='download.size' value='530095'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.make.ui_7.3.1.201811291831.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.make.ui_7.3.1.201811291831.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.tm.terminal.connector.local.feature' version='4.5.1.201811011802'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.tm.terminal.connector.local.feature_4.5.1.201811011802/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.tm.terminal.connector.local.feature_4.5.1.201811011802'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.lttng2.kernel.ui' version='1.1.4.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='42680'/>
+        <property name='download.size' value='42680'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.lttng2.kernel.ui_1.1.4.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.lttng2.kernel.ui_1.1.4.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.cdt.gnu.debug' version='9.6.0.201811291831'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.cdt.gnu.debug_9.6.0.201811291831/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.cdt.gnu.debug_9.6.0.201811291831'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.codan.ui' version='3.3.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='131283'/>
+        <property name='download.size' value='131283'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.codan.ui_3.3.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.codan.ui_3.3.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.testsrunner' version='8.1.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='205022'/>
+        <property name='download.size' value='205022'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.testsrunner_8.1.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.testsrunner_8.1.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.debug.gdbjtag.core' version='9.2.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='55516'/>
+        <property name='download.size' value='55516'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.debug.gdbjtag.core_9.2.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.debug.gdbjtag.core_9.2.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.swtchart' version='0.10.0.v201605200358'>
+      <properties size='2'>
+        <property name='artifact.size' value='119031'/>
+        <property name='download.size' value='119031'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.swtchart_0.10.0.v201605200358.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.swtchart_0.10.0.v201605200358.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='javax.xml.stream' version='1.0.1.v201004272200'>
+      <properties size='2'>
+        <property name='artifact.size' value='40363'/>
+        <property name='download.size' value='40363'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/javax.xml.stream_1.0.1.v201004272200.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/javax.xml.stream_1.0.1.v201004272200.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.systemtap.structures' version='4.2.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='67621'/>
+        <property name='download.size' value='67621'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.systemtap.structures_4.2.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.systemtap.structures_4.2.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.linuxtools.changelog.c' version='7.1.0.201812121718'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.linuxtools.changelog.c_7.1.0.201812121718/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.linuxtools.changelog.c_7.1.0.201812121718'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.doc.user' version='4.2.0.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='11809324'/>
+        <property name='download.size' value='11809324'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.doc.user_4.2.0.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.doc.user_4.2.0.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.cdt.testsrunner.feature' version='9.6.0.201811241055'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.cdt.testsrunner.feature_9.6.0.201811241055/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.cdt.testsrunner.feature_9.6.0.201811241055'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.mylyn.ui' version='3.24.2.v20180905-0014'>
+      <properties size='2'>
+        <property name='artifact.size' value='75040'/>
+        <property name='download.size' value='75040'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.mylyn.ui_3.24.2.v20180905-0014.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.mylyn.ui_3.24.2.v20180905-0014.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='com.fasterxml.jackson.core.jackson-databind' version='2.9.2.v20180207-1730'>
+      <properties size='2'>
+        <property name='artifact.size' value='1381878'/>
+        <property name='download.size' value='1381878'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/com.fasterxml.jackson.core.jackson-databind_2.9.2.v20180207-1730.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/com.fasterxml.jackson.core.jackson-databind_2.9.2.v20180207-1730.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.linuxtools.oprofile.feature' version='7.1.0.201812121718'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.linuxtools.oprofile.feature_7.1.0.201812121718/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.linuxtools.oprofile.feature_7.1.0.201812121718'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.cdt.debug.standalone' version='9.6.0.201811241055'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.cdt.debug.standalone_9.6.0.201811241055/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.cdt.debug.standalone_9.6.0.201811241055'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.systemtap.graphing.ui' version='4.1.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='143846'/>
+        <property name='download.size' value='143846'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.systemtap.graphing.ui_4.1.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.systemtap.graphing.ui_4.1.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='com.spotify.docker.client' version='8.11.7.v20180731-1413'>
+      <properties size='2'>
+        <property name='artifact.size' value='788037'/>
+        <property name='download.size' value='788037'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/com.spotify.docker.client_8.11.7.v20180731-1413.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/com.spotify.docker.client_8.11.7.v20180731-1413.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.remote.serial.core' version='1.0.0.201803121903'>
+      <properties size='2'>
+        <property name='artifact.size' value='60580'/>
+        <property name='download.size' value='60580'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.remote.serial.core_1.0.0.201803121903.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.remote.serial.core_1.0.0.201803121903.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jcodings' version='1.0.18.v20170306-1742'>
+      <properties size='2'>
+        <property name='artifact.size' value='1687171'/>
+        <property name='download.size' value='1687171'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.jcodings_1.0.18.v20170306-1742.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.jcodings_1.0.18.v20170306-1742.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.profiling.ui' version='3.2.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='30659'/>
+        <property name='download.size' value='30659'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.profiling.ui_3.2.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.profiling.ui_3.2.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tools.templates.freemarker.java11' version='1.0.0.201812111206'>
+      <properties size='2'>
+        <property name='artifact.size' value='8578'/>
+        <property name='download.size' value='8578'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tools.templates.freemarker.java11_1.0.0.201812111206.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tools.templates.freemarker.java11_1.0.0.201812111206.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.changelog.cparser' version='2.7.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='14339'/>
+        <property name='download.size' value='14339'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.changelog.cparser_2.7.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.changelog.cparser_2.7.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='com.github.jnr.enxio' version='0.16.0.v20180207-1730'>
+      <properties size='2'>
+        <property name='artifact.size' value='45931'/>
+        <property name='download.size' value='45931'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/com.github.jnr.enxio_0.16.0.v20180207-1730.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/com.github.jnr.enxio_0.16.0.v20180207-1730.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.cdt.build.crossgcc' version='9.6.0.201811241055'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.cdt.build.crossgcc_9.6.0.201811241055/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.cdt.build.crossgcc_9.6.0.201811241055'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.meson.docs' version='1.0.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='330000'/>
+        <property name='download.size' value='330000'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.meson.docs_1.0.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.meson.docs_1.0.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.qt.ui' version='2.0.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='141050'/>
+        <property name='download.size' value='141050'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.qt.ui_2.0.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.qt.ui_2.0.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.glassfish.jersey.bundles.repackaged.jersey-guava' version='2.22.1.v20161103-1916'>
+      <properties size='2'>
+        <property name='artifact.size' value='1051795'/>
+        <property name='download.size' value='1051795'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.glassfish.jersey.bundles.repackaged.jersey-guava_2.22.1.v20161103-1916.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.glassfish.jersey.bundles.repackaged.jersey-guava_2.22.1.v20161103-1916.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.perf.doc' version='1.0.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='898817'/>
+        <property name='download.size' value='898817'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.perf.doc_1.0.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.perf.doc_1.0.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tools.templates.core' version='1.1.0.201812111206'>
+      <properties size='2'>
+        <property name='artifact.size' value='11645'/>
+        <property name='download.size' value='11645'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tools.templates.core_1.1.0.201812111206.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tools.templates.core_1.1.0.201812111206.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.gdbtrace.doc.user' version='4.2.0.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='200149'/>
+        <property name='download.size' value='200149'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.gdbtrace.doc.user_4.2.0.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.gdbtrace.doc.user_4.2.0.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.gprof.docs' version='1.0.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='547466'/>
+        <property name='download.size' value='547466'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.gprof.docs_1.0.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.gprof.docs_1.0.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.remote.telnet.ui' version='1.0.0.201803121903'>
+      <properties size='2'>
+        <property name='artifact.size' value='103766'/>
+        <property name='download.size' value='103766'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.remote.telnet.ui_1.0.0.201803121903.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.remote.telnet.ui_1.0.0.201803121903.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tools.templates.ui' version='1.1.1.201812111206'>
+      <properties size='2'>
+        <property name='artifact.size' value='36344'/>
+        <property name='download.size' value='36344'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tools.templates.ui_1.1.1.201812111206.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tools.templates.ui_1.1.1.201812111206.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='com.github.jnr.jffi.native' version='1.2.15.v20180207-1730'>
+      <properties size='2'>
+        <property name='artifact.size' value='650796'/>
+        <property name='download.size' value='650796'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/com.github.jnr.jffi.native_1.2.15.v20180207-1730.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/com.github.jnr.jffi.native_1.2.15.v20180207-1730.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.tracecompass.lttng2.ust' version='4.2.0.201812120704'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.tracecompass.lttng2.ust_4.2.0.201812120704/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.tracecompass.lttng2.ust_4.2.0.201812120704'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='com.sun.xml.bind' version='2.2.0.v201505121915'>
+      <properties size='2'>
+        <property name='artifact.size' value='954855'/>
+        <property name='download.size' value='954855'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/com.sun.xml.bind_2.2.0.v201505121915.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/com.sun.xml.bind_2.2.0.v201505121915.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.analysis.profiling.ui' version='1.0.2.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='118107'/>
+        <property name='download.size' value='118107'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.analysis.profiling.ui_1.0.2.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.analysis.profiling.ui_1.0.2.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.cdt.gnu.dsf' version='9.6.0.201812061011'>
+      <properties size='1'>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+      <repositoryProperties size='3'>
+        <property name='artifact.folder' value='true'/>
+        <property name='artifact.reference' value='file:/opt/eclipse/features/org.eclipse.cdt.gnu.dsf_9.6.0.201812061011/'/>
+        <property name='file.name' value='/opt/eclipse/features/org.eclipse.cdt.gnu.dsf_9.6.0.201812061011'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.launchbar.core' version='2.2.2.201811071421'>
+      <properties size='2'>
+        <property name='artifact.size' value='78817'/>
+        <property name='download.size' value='78817'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.launchbar.core_2.2.2.201811071421.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.launchbar.core_2.2.2.201811071421.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tm.terminal.connector.ssh' version='4.5.1.201811011621'>
+      <properties size='2'>
+        <property name='artifact.size' value='55679'/>
+        <property name='download.size' value='55679'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tm.terminal.connector.ssh_4.5.1.201811011621.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tm.terminal.connector.ssh_4.5.1.201811011621.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.remote.jsch.core' version='1.0.0.201803121903'>
+      <properties size='2'>
+        <property name='artifact.size' value='94238'/>
+        <property name='download.size' value='94238'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.remote.jsch.core_1.0.0.201803121903.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.remote.jsch.core_1.0.0.201803121903.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.lttng2.ust.core' version='4.0.1.201812120704'>
+      <properties size='2'>
+        <property name='artifact.size' value='107224'/>
+        <property name='download.size' value='107224'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.tracecompass.lttng2.ust.core_4.0.1.201812120704.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.tracecompass.lttng2.ust.core_4.0.1.201812120704.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.debug.core' version='8.3.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='329255'/>
+        <property name='download.size' value='329255'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.debug.core_8.3.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.debug.core_8.3.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.core.native' version='5.10.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='38614'/>
+        <property name='download.size' value='38614'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.core.native_5.10.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.core.native_5.10.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.rpm.ui.editor' version='4.0.0.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='248626'/>
+        <property name='download.size' value='248626'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.rpm.ui.editor_4.0.0.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.rpm.ui.editor_4.0.0.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.cdt.meson.ui.editor' version='1.0.1.201811241055'>
+      <properties size='2'>
+        <property name='artifact.size' value='11607'/>
+        <property name='download.size' value='11607'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.cdt.meson.ui.editor_1.0.1.201811241055.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.cdt.meson.ui.editor_1.0.1.201811241055.jar'/>
+      </repositoryProperties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.linuxtools.dataviewers.piechart' version='2.0.1.201812121718'>
+      <properties size='2'>
+        <property name='artifact.size' value='18645'/>
+        <property name='download.size' value='18645'/>
+      </properties>
+      <repositoryProperties size='2'>
+        <property name='artifact.reference' value='file:/opt/eclipse/plugins/org.eclipse.linuxtools.dataviewers.piechart_2.0.1.201812121718.jar'/>
+        <property name='file.name' value='/opt/eclipse/plugins/org.eclipse.linuxtools.dataviewers.piechart_2.0.1.201812121718.jar'/>
+      </repositoryProperties>
+    </artifact>
+  </artifacts>
+</repository>

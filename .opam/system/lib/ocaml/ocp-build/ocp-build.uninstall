@@ -1,0 +1,9 @@
+OCP 1
+TYP program
+VER 1.99.20-beta
+REG /home/student/.opam/system/lib/META.ocp-build
+REG /home/student/.opam/system/lib/ocaml/ocp-build/camlp4.ocp
+REG /home/student/.opam/system/lib/ocaml/ocp-build/ocaml.ocp
+REG /home/student/.opam/system/bin/ocp-build
+REG /home/student/.opam/system/bin/ocp-build.byte
+REG /home/student/.opam/system/lib/ocaml/ocp-build/ocp-build.uninstall
